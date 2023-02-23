@@ -1,0 +1,53 @@
+% !TeX spellcheck = en_GB
+%\documentclass[11pt,DIV12,a4paper,BCOR15mm]{scrbook}
+%\documentclass[11pt,DIV=11,a4paper,bibliography=leveldown]{scrreprt}
+\documentclass[10pt,DIV=11,a4paper]{scrartcl}
+\usepackage{ma}
+
+\title{Modelling and Automated Retrieval of Provenance Relationships}
+\author{Thomas Schneider}
+
+\begin{document}
+
+  \maketitle
+
+  % =================================================================
+  \section{Modelling}
+  
+  ... FRBR ...
+  
+  % ------------------------------------------------------------------
+  \subsection{Provenance Relationship Networks}
+  
+  The definition of our central notion of a provenance relationship network
+  is based on the abstract data structure of a directed graph with labelled edges,
+  which is a standard notion in computer science and discrete mathematics.
+  \todo{citation}
+  We fix a set $N$ of \emph{node names} and a set $R$ of \emph{relation names}.
+  A \emph{directed edge-labelled graph over $(N,R)$} is a triple $G = (V,E,\Lmc)$,
+  where
+  %
+  \begin{itemize}
+    \item
+      $V \subseteq N$ is a set, whose members are called \emph{vertices} or \emph{nodes};
+    \item 
+      $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
+    \item
+      $\Lmc : E \to 2^R$ is a function that assigns to each edge a non-empty set of relation names,
+      called the \emph{labels} of that edge; we call \Lmc a \emph{labelling function}.
+  \end{itemize}
+  %
+  \dots\todo{example}
+  
+  A \emph{provenance relationship network} is a directed edge-labelled graph over $(N,R)$,
+  where $N$ ... and $R$ ... \todo{continue}
+  
+     
+
+
+%  % =================================================================
+%  \bibliographystyle{babplain}
+%  \bibliography{expose}
+
+
+\end{document}
