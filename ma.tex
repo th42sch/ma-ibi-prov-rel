@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_GB
 %\documentclass[11pt,DIV12,a4paper,BCOR15mm]{scrbook}
 %\documentclass[11pt,DIV=11,a4paper,bibliography=leveldown]{scrreprt}
-\documentclass[10pt,DIV=11,a4paper]{scrartcl}
+\documentclass[11pt,DIV=11,a4paper]{scrartcl}
 \usepackage{ma}
 
 \title{Modelling and Automated Retrieval of Provenance Relationships}
@@ -23,13 +23,17 @@
   is based on the abstract data structure of a directed graph with labelled edges,
   which is a standard notion in computer science and discrete mathematics.
   \todo{citation}
-  We fix a set $N$ of \emph{node names} and a set $R$ of \emph{relation names}.
+  Let $N$ be a set of \emph{node names} and $N$ a set of \emph{relation names}.
   A \emph{directed edge-labelled graph over $(N,R)$} is a triple $G = (V,E,\Lmc)$,
   where
   %
   \begin{itemize}
     \item
-      $V \subseteq N$ is a set, whose members are called \emph{vertices} or \emph{nodes};
+      $V \subseteq N$ is a set, whose members are called or \emph{nodes};\footnote{%
+        In classical graph theory, nodes are called \emph{vertices}, and the set of
+        nodes of a graph is denoted by $V$. We use the denotation $V$ for conformity
+        and the more modern term ``node'' for brevity.%
+      }      
     \item 
       $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
     \item
@@ -37,7 +41,20 @@
       called the \emph{labels} of that edge; we call \Lmc a \emph{labelling function}.
   \end{itemize}
   %
-  \dots\todo{example}
+  \missingfigure{example}
+  
+  In order to define provenance relationship networks, we now fix sets $N$ and $R$ to consist
+  of elements that are relevant for provenance research:
+  The set $N$ consists of \emph{entities} such as 
+  works, expressions, manifestations, copies, people, and corporations
+  that are contained in a fixed collection of data sources (such as library catalogues,
+  authority files, and knowledge bases). The set $R$ consists of relationships
+  between entities that are taken either from the FRBR model\todo{cite, introduce}
+  or from the same collection of data sources (in particular, relationships between people and/or corporations
+  such as ``is student of'' or ``collaborated with'' or ...)
+  
+  *** FIRST THINK ABOUT QUERY TYPES, THEN CONTINUE WITH THESE DEF.S ***
+  
   
   A \emph{provenance relationship network} is a directed edge-labelled graph over $(N,R)$,
   where $N$ ... and $R$ ... \todo{continue}
