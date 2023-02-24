@@ -3,14 +3,39 @@
 % =================================================================
 \chapter{Modelling Provenance Relationships and Queries}
 
+In this chapter, we develop a generic approach to modelling provenance relationships
+that will serve as a basis for the investigations in the following chapters.
+The central notion of this approach is that of a directed graph with edge labels,
+which is a standard notion in computer science and discrete mathematics.
+\todo{citation}
+In a nutshell, a directed graph consists of a set of nodes, a set of directed edges between
+the nodes, and a function that assigns labels to the edges.
+In our setting, these three abstract components have the following meaning:
+Nodes represent entities such as works, expressions, manifestations, copies,
+persons, or corporations.
+Edges represent relationships between nodes, which are typically directed:
+e.g., \term{has\_owner} points \emph{from} a book copy \emph{to} a person or corporation,
+whereas \term{is\_owner\_of} points into the opposite direction.%
+\footnote{%
+  Symmetric (i.e., bidirectional) relationships, such as \term{is\_collaborator\_of},
+  can be represented via two edges, one for each direction.%
+}
+Edge labels allow the specification of one or several relation names for each edge.
+For example, if a person $p$ is author \emph{and} owner of a book copy $b$,
+then this can be represented via an edge from $b$ to $p$ with the label
+$\{\term{has\_author},\term{has\_owner}\}$
+(and/or an edge from $b$ to $p$ with the label $\{\term{is\_author\_of},\term{is\_owner\_of}\}$).
+
+As we will see in the following, edge-labelled directed graphs can be used in our setting
+to represent (combinations of) data sources as well as queries.
+They allow us to draw on standard notions from graph theory and query answering
+in order to define admissible query answers and to devise methods for obtaining those.
 
 % ------------------------------------------------------------------
 \section{Provenance Relationship Networks}
 
 The definition of our central notion of a provenance relationship network
-is based on the abstract data structure of a directed graph with labelled edges,
-which is a standard notion in computer science and discrete mathematics.
-\todo{citation}
+is based on the abstract data structure of a directed graph with labelled edges.
 Let $N$ be a set of \emph{node names} and $N$ a set of \emph{relation names}.
 A \emph{directed edge-labelled graph over $(N,R)$} is a triple $G = (V,E,\Lmc)$,
 where
