@@ -1,0 +1,61 @@
+{
+    "InternalPDFViewer": {
+        "Embedded": true,
+        "File": "ma.pdf"
+    },
+    "Session": {
+        "Bookmarks": [
+            {
+                "bookmarkNumber": 1,
+                "fileName": "../../Neuer Ordner/klausurtest.tex",
+                "lineNumber": 33,
+                "text": "klausurtest.tex\n\\begin{document}"
+            }
+        ],
+        "CurrentFile": "ma.tex",
+        "FileVersion": 1,
+        "Files": [
+            {
+                "Col": 25,
+                "EditorGroup": 0,
+                "FileName": "ma.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 15
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "ma.sty",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 0
+            },
+            {
+                "Col": 77,
+                "EditorGroup": 0,
+                "FileName": "000_intro.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 18
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "100_prelim.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 2
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "200_modelling.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 6
+            }
+        ],
+        "MasterFile": "ma.tex"
+    }
+}
