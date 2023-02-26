@@ -5,12 +5,12 @@
 
 In this chapter, we develop a generic approach to modelling provenance relationships
 that will serve as a basis for the investigations in the following chapters.
-The central notion of this approach is that of a directed graph with edge labels,
+The central notion of this approach is that of a directed graph with node and edge labels,
 which is a standard notion in computer science and discrete mathematics.
 \todo{citation}
 
-In a nutshell, a directed graph consists of a set of nodes, a set of directed edges between
-the nodes, and a function that assigns labels to the edges.
+In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
+the nodes, and a function that assigns labels to the nodes and edges.
 In our setting, these three abstract components have the following meaning:
 %
 \begin{itemize}
@@ -20,11 +20,14 @@ In our setting, these three abstract components have the following meaning:
   \item 
     Edges represent relationships between nodes, which are typically directed:
     e.g., \term{has\_owner} points \emph{from} a book copy \emph{to} a person or corporation,
-    whereas \term{is\_owner\_of} points into the opposite direction.%
-    \footnote{%
-      Symmetric (i.e., bidirectional) relationships, such as \term{is\_collaborator\_of},
-      can be represented via two edges, one for each direction.%
-    }
+    whereas \term{is\_owner\_of} points into the opposite direction.
+    Symmetric relationships, such as \term{is\_collaborator\_of},
+    can be represented via two edges, one for each direction.
+  \item 
+    Node labels allow the specification of a unique name for each node.
+    That name is the name of the entity represented by the node.
+    We deliberately distinguish between a node and its label
+    in order to separate the structure of a graph from its ``meaning''.
   \item 
     Edge labels allow the specification of one or several relation names for each edge.
     For example, if a person $p$ is author \emph{and} owner of a book copy $b$,
@@ -33,19 +36,19 @@ In our setting, these three abstract components have the following meaning:
     (and/or an edge from $b$ to $p$ with the label $\{\term{is\_author\_of},\term{is\_owner\_of}\}$).
 \end{itemize}
 %
-A directed graph with edge labels can be visualised in the obvious way:
-nodes are represented using circles or rectangles,
-edges are denoted by edges,
-and edge labels are written next to the respective edge,
-see Figure~\ref{fig:example_eld_graph}.
+A labelled directed graph can be visualised in the obvious way:
+each nodes is represented using a circle or rectangle
+enclosing the node's name,
+and each edge is denoted by arrows, with the edge label written next to it,
+see Figure~\ref{fig:example_graph}.
 
 \begin{figure}
-  \missingfigure{example}
+  \missingfigure{example graph}
   \caption{An example graph}
-  \label{fig:example_eld_graph}
+  \label{fig:example_graph}
 \end{figure}
 
-As we will see in the following, edge-labelled directed graphs can be used in our setting
+As we will see in the following, labelled directed graphs can be used in our setting
 to represent (combinations of) data sources as well as queries.
 They allow us to draw on standard notions from graph theory and query answering
 in order to define admissible query answers and to devise methods for obtaining those.
@@ -53,14 +56,36 @@ in order to define admissible query answers and to devise methods for obtaining 
 % ------------------------------------------------------------------
 \section{Basic Definitions from Graph Theory}
 
+We start with the standard definition of a labelled directed graph.
+
+%\begin{definition}
+%  Let $R$ be a set of \emph{relation names}.
+%  A \emph{directed edge-labelled graph over $R$} is a triple $G = (V,E,\Lmc)$,
+%  where
+%  %
+%  \begin{itemize}
+%    \item
+%    $V$ is a set, whose members are called or \emph{nodes};\footnote{%
+%      In classical graph theory, nodes are called \emph{vertices}; thus the set of
+%      nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
+%      and the more modern term ``node'' for brevity.%
+%    }      
+%    \item 
+%    $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
+%    \item
+%    $\Lmc : E \to 2^R$ is a function that assigns to each edge a non-empty set of relation names,
+%    called the \emph{labels} of that edge; we call \Lmc a \emph{labelling function}.
+%  \end{itemize}
+%\end{definition}
+%
 \begin{definition}
-  Let $R$ be a set of \emph{relation names}.
-  A \emph{directed edge-labelled graph over $(N,R)$} is a triple $G = (V,E,\Lmc)$,
+  Let \NV be a set of \emph{node names} and \NR a set of \emph{relation names}.
+  A \emph{directed labelled graph over $(\NV,\NR)$} is a triple $G = (V,E,\Lmc)$,
   where
   %
   \begin{itemize}
     \item
-    $V$ is a set, whose members are called or \emph{nodes};\footnote{%
+    $V$ is a set, whose members are called \emph{nodes};\footnote{%
       In classical graph theory, nodes are called \emph{vertices}; thus the set of
       nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
       and the more modern term ``node'' for brevity.%
@@ -68,12 +93,54 @@ in order to define admissible query answers and to devise methods for obtaining 
     \item 
     $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
     \item
-    $\Lmc : E \to 2^R$ is a function that assigns to each edge a non-empty set of relation names,
-    called the \emph{labels} of that edge; we call \Lmc a \emph{labelling function}.
+    $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
+    to each node a single node name (called the node's \emph{label}) and
+    to each edge a non-empty set of relation names (called the edge's \emph{labels});
+    we call \Lmc a \emph{labelling function}.
   \end{itemize}
 \end{definition}
 %
-\missingfigure{example}
+In the example in Figure~\ref{fig:example_graph},
+we have $V = \dots$, \dots\todo{finish example}
+
+In accordance with the previous explanations, we allow single node names but multiple relation names
+via the labelling function.
+
+Since we want to use graphs to model data sources as well as queries,
+we will additionally have to allow query variables as node names.
+For this purpose, we fix a set $\VAR \subseteq \NV$ of \emph{variables},
+which can be used as node names.
+
+Answers to queries will be defined via homomorphisms that map graphs representing queries
+to graphs representing data sources.
+%
+\begin{definition}
+  Given two labelled directed graphs $G = (V,E,\Lmc)$ and $G' = (V',E',\Lmc')$,
+  a \emph{homomorphism from $G'$ to $G$} is a map $h : V' \to V$ such that
+  %
+  \begin{enumerate}
+    \item
+      $\Lmc'(v') = \Lmc(h(v'))$ for every node $v' \in V'$ with $\Lmc'(v') \notin \VAR$;
+      
+      i.e., if a node in $G'$ is labelled with a name that is not a variable,
+      then its image under $h$ has the same label in $G$.
+    \item
+      $\Lmc'(v_1', v_2') \subseteq \Lmc(h(v_1'), h(v_2'))$
+      for every edge $(v_1',v_2') \in E$;
+      
+      i.e., all labels of an edge in $G'$ occur with its image under $h$ in $G$
+      (but the image may have additional labels).
+  \end{enumerate}
+  %
+  If $h$ is a homomorphism from $G'$ to $G$, we write $h : G' \to G$.
+  If there is some homomorphism from $G'$ to $G$, we write $G' \lesssim G$.
+\end{definition}
+
+\begin{figure}
+  \missingfigure{example homomorphism}
+  \caption{An example homomorphism}
+  \label{fig:example_hmph}
+\end{figure}
 
 
 % ------------------------------------------------------------------
@@ -81,6 +148,23 @@ in order to define admissible query answers and to devise methods for obtaining 
 
 % ------------------------------------------------------------------
 \section{Modelling Queries and Answers}
+
+% ------------------------------------------------------------------
+\section{Attributes on Relationships}
+
+\todo[inline]{TODO}
+
+\begin{itemize}
+  \item
+    sketch idea: e.g., add year to relationship \term{has\_owner} -- example: ``passed on to'' requires descending year numbers \emph{and} no successor with intermediate year number
+  \item
+    explain difficulties: more complex formal machinery (def.\ of graphs, queries, and matches)
+  \item
+    argue for limited use: with or without the use of additional attributes, results may contain false positives due to incomplete data $\leadsto$ manual inspection is necessary anyway
+  \item
+    conclusion: attributes are not covered here
+\end{itemize}
+
 
 
 % ------------------------------------------------------------------
