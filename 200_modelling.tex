@@ -12,7 +12,7 @@ which is a standard notion in computer science and discrete mathematics.
 \section{Labelled Directed Graphs}
 
 In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
-the nodes, a function that assigns unique names to the nodes,
+the nodes, a function that names nodes with individuals,
 and a function that labels the nodes (edges) with concepts (relations)
 of which the nodes (edges) are instances.
 In our setting, these four abstract components have the following meaning:
@@ -47,7 +47,8 @@ In our setting, these four abstract components have the following meaning:
 A labelled directed graph can be visualised in the obvious way:
 each node is represented using a circle or rectangle
 enclosing the node's name,
-and each edge is denoted by arrows, with the edge label written next to it,
+and each edge is denoted by an arrow.
+Node and edge labels are written next to the respective node or edge,
 see Figure~\ref{fig:example_graph}.
 
 \begin{figure}
@@ -61,7 +62,8 @@ to represent (combinations of) data sources as well as queries.
 They allow us to draw on standard notions from graph theory and query answering
 in order to define admissible query answers and to devise methods for obtaining those.
 
-The standard definition of a labelled directed graph is as follows.
+These considerations lead to the following slight variation
+of the standard definition of a labelled directed graph.
 
 %\begin{definition}
 %  Let $R$ be a set of \emph{relation names}.
@@ -85,8 +87,8 @@ The standard definition of a labelled directed graph is as follows.
 %
 \begin{definition}
   \label{def:ld_graph}
-  Let $(\NV,\NC,\NR)$ be a \emph{namespace} consisting of a set \NV of \emph{node names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
-  A \emph{directed labelled graph over $(\NV,\NC,\NR)$} is a triple $G = (V,E,\Nmc,\Lmc)$,
+  Let $(\NI,\NC,\NR)$ be a \emph{namespace} consisting of a set \NI of \emph{individual names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
+  A \emph{directed labelled graph over $(\NI,\NC,\NR)$} is a triple $G = (V,E,\Nmc,\Lmc)$,
   where
   %
   \begin{itemize}
@@ -99,8 +101,8 @@ The standard definition of a labelled directed graph is as follows.
     \item 
       $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
     \item
-      $\Nmc : V \to \NV$ is an injective function that assigns
-      to each node its \emph{name};
+      $\Nmc : V \to \NI$ is an injective function that assigns
+      to each node a unique individual (called the node's \emph{name});
     \item
       $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
       to each node a set of concept names (called the node's \emph{labels}) and
@@ -109,17 +111,22 @@ The standard definition of a labelled directed graph is as follows.
   \end{itemize}
 \end{definition}
 %
-Definition~1 stipulates that
+Definition~1 stipulates the following conditions.
+%%
+%\begin{itemize}
+%  \item
+%    every node has a unique name and no two nodes have the same name (the latter being ensured by injectivity);
+%  \item
+%    a node can have an arbitrary number of labels, including no label (in case the node belongs to no concept);
+%  \item
+%    an edge can have an arbitrary number of labels, but that number must not be zero --
+%    the effect of an edge having no labels can be achieved by simply omitting the edge.
+%\end{itemize}
 %
-\begin{itemize}
-  \item
-    every node has a unique name and no two nodes have the same name (the latter follows from injectivity);
-  \item
-    a node can have an arbitrary number of labels, including no label (in case the node belongs to no concept);
-  \item
-    an edge can have an arbitrary number of labels, but that number must not be zero --
-    the effect of an edge having no labels can be achieved by simply omitting the edge.
-\end{itemize}
+(1) Every node has a unique name, and no two nodes have the same name (the latter being ensured by injectivity).
+(2) A node can have an arbitrary number of labels, including no label (in case the node belongs to no concept).
+(3) An edge can have an arbitrary number of labels, but that number must not be zero --
+the effect of an edge having no labels can be achieved by simply omitting that edge.
 
 In the example in Figure~\ref{fig:example_graph},
 we have $V = \dots$, \dots\todo{finish example}
@@ -132,7 +139,7 @@ using the exact notion of a graph that we have introduced above.
 %
 \begin{definition}
   A \emph{data source} is a labelled directed graph
-  over some namespace $(\NV,\NC,\NR)$.
+  over some namespace $(\NI,\NC,\NR)$.
 \end{definition}
 %
 With this definition, we obviously commit ourselves to a restricted view of a data source:
@@ -173,17 +180,15 @@ of the query.
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,
 and we require that these two sets are disjoint with each other
-and with any set ****** of individuals.
+and with any set \NI of individual names.
 In particular, the namespace of data sources must not contain any variables,
 in contrast to the namespace of queries.
 These considerations lead to the following definition of a query.
 
 \begin{definition}
   A \emph{query} is a labelled directed graph
-  over $(\NV \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
+  over $(\NI \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
 \end{definition}
-
-\todo{use \NI instead of \NV!}
 
 \todo[inline]{comment on Boolean queries?}
 
