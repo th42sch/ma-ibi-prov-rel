@@ -85,7 +85,7 @@ The standard definition of a labelled directed graph is as follows.
 %
 \begin{definition}
   \label{def:ld_graph}
-  Let \NV be a set of \emph{node names}, \NC set of \emph{concept names}, and \NR a set of \emph{relation names}.
+  Let $(\NV,\NC,\NR)$ be a \emph{namespace} consisting of a set \NV of \emph{node names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
   A \emph{directed labelled graph over $(\NV,\NC,\NR)$} is a triple $G = (V,E,\Nmc,\Lmc)$,
   where
   %
@@ -113,7 +113,7 @@ Definition~1 stipulates that
 %
 \begin{itemize}
   \item
-    every node has a unique name and no two node have the same name (the latter via injectivity);
+    every node has a unique name and no two nodes have the same name (the latter follows from injectivity);
   \item
     a node can have an arbitrary number of labels, including no label (in case the node belongs to no concept);
   \item
@@ -131,7 +131,8 @@ We now model a data source (e.g., library catalogue, authority file, or other da
 using the exact notion of a graph that we have introduced above.
 %
 \begin{definition}
-  A \emph{data source} is a labelled directed graph.
+  A \emph{data source} is a labelled directed graph
+  over some namespace $(\NV,\NC,\NR)$.
 \end{definition}
 %
 With this definition, we obviously commit ourselves to a restricted view of a data source:
@@ -141,30 +142,68 @@ However, we do not consider this a significant restriction in the context of our
 because we only want to represent relations that are relevant for provenance research,
 and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
 
+In order to model queries with the same notion of graphs, we need to introduce
+two sets of variables that serve as distinct node names:
+For example, consider the following query derived from~\ref{exa_query2} in Chapter~\ref{chap:intro}:
+%
+\begin{enumerate}
+  \item[(Q2$'$)]
+    \label{exa_query2'}
+    Which copies of work $W$ were passed from one of its owners to a collaborator of theirs?
+\end{enumerate}
+%
+Query~\ref{exa_query2'}
+should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2}.
+Its node names divide into three groups:
+(1) the node $W$ represents the work $W$ named in the query;
+(2) the node $x$ represents a copy of the work $W$ that satisfies the conditions stated in~\ref{exa_query2} and
+whose name is to be found;
+(3) the nodes $y,z$ represent the two owners (collaborators) whose names are not known.
+Consequently, $x$ serves as a placeholder for the answer to the query,
+and $y,z$ are placeholders for further individuals that ``witness'' the answer.
+We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
+of the query.
 
+\begin{figure}
+  \missingfigure{example query graph}
+  \caption{A graph representing example query \ref{exa_query2}}
+  \label{fig:graph_for_exa_query2}
+\end{figure}
 
-In order to model queries, ...
+From now on, we fix two sets \VARANS and \VARANON
+of \emph{answer variables} and \emph{anonymous variables}, respectively,
+and we require that these two sets are disjoint with each other
+and with any set ****** of individuals.
+In particular, the namespace of data sources must not contain any variables,
+in contrast to the namespace of queries.
+These considerations lead to the following definition of a query.
 
+\begin{definition}
+  A \emph{query} is a labelled directed graph
+  over $(\NV \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
+\end{definition}
+
+\todo{use \NI instead of \NV!}
+
+\todo[inline]{comment on Boolean queries?}
+
+\todo[inline]{Can Q1 be modelled this way? We seem to need answer vars representing sets. Comment ...}
 
 *****
 
 \todo[inline]{The following needs to be adapted to incorporate individuals and distinguish them from variables}
-
-Since we want to use graphs to model data sources as well as queries,
-we will additionally have to allow query variables as node names.
-For this purpose, we fix a set $\VAR \subseteq \NV$ of \emph{variables},
-which can be used as node names.
 
 Answers to queries will be defined via homomorphisms that map graphs representing queries
 to graphs representing data sources.
 %
 \begin{definition}
   Given two labelled directed graphs $G = (V,E,\Lmc)$ and $G' = (V',E',\Lmc')$,
+  *** over the same set of names .... ***
   a \emph{homomorphism from $G'$ to $G$} is a map $h : V' \to V$ such that
   %
   \begin{enumerate}
     \item
-      $\Lmc'(v') = \Lmc(h(v'))$ for every node $v' \in V'$ with $\Lmc'(v') \notin \VAR$;
+      $\Lmc'(v') = \Lmc(h(v'))$ for every node $v' \in V'$ with $\Lmc'(v') \notin VAR***$;
       
       i.e., if a node in $G'$ is labelled with a name that is not a variable,
       then its image under $h$ has the same label in $G$.
