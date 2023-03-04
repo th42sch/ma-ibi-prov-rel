@@ -9,6 +9,8 @@ The central notion of this approach is that of a directed graph with node and ed
 which is a standard notion in computer science and discrete mathematics.
 \todo{citation}
 
+\section{Labelled Directed Graphs}
+
 In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
 the nodes, and a function that assigns labels to the nodes and edges.
 In our setting, these three abstract components have the following meaning:
@@ -38,7 +40,7 @@ In our setting, these three abstract components have the following meaning:
 \end{itemize}
 %
 A labelled directed graph can be visualised in the obvious way:
-each nodes is represented using a circle or rectangle
+each node is represented using a circle or rectangle
 enclosing the node's name,
 and each edge is denoted by arrows, with the edge label written next to it,
 see Figure~\ref{fig:example_graph}.
@@ -54,10 +56,7 @@ to represent (combinations of) data sources as well as queries.
 They allow us to draw on standard notions from graph theory and query answering
 in order to define admissible query answers and to devise methods for obtaining those.
 
-% ------------------------------------------------------------------
-\section{Basic Definitions from Graph Theory}
-
-We start with the standard definition of a labelled directed graph.
+The standard definition of a labelled directed graph is as follows.
 
 %\begin{definition}
 %  Let $R$ be a set of \emph{relation names}.
@@ -112,8 +111,29 @@ we choose the slight discrepancy over the more complex alternatives.
 In the example in Figure~\ref{fig:example_graph},
 we have $V = \dots$, \dots\todo{finish example}
 
-In accordance with the previous explanations, we allow single node names but multiple relation names
-via the labelling function.
+% ------------------------------------------------------------------
+\section{Modelling Data Sources, Queries, and Answers}
+
+We now model a data source (e.g., library catalogue, authority file, or other database)
+using the exact notion of a graph that we have introduced above.
+%
+\begin{definition}
+  A \emph{data source} is a labelled directed graph.
+\end{definition}
+%
+With this definition, we obviously commit ourselves to a restricted view of a data source:
+graphs can only represent unary and binary relations via nodes and edges
+while, in general, a database may have relations of arbitrary arity.
+However, we do not consider this a significant restriction in the context of our purpose
+because we only want to represent relations that are relevant for provenance research,
+and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
+
+In order to model queries, ...
+
+
+*****
+
+\todo[inline]{The following needs to be adapted to incorporate individuals and distinguish them from variables}
 
 Since we want to use graphs to model data sources as well as queries,
 we will additionally have to allow query variables as node names.
@@ -151,25 +171,6 @@ to graphs representing data sources.
   \label{fig:example_hmph}
 \end{figure}
 
-
-% ------------------------------------------------------------------
-\section{Modelling Data Sources, Queries, and Answers}
-
-We model a data source (e.g., library catalogue, authority file, or other database)
-using the notion of a graph that we have introduced above.
-%
-\begin{definition}
-  A \emph{data source} is a labelled directed graph.
-\end{definition}
-%
-With this definition, we obviously commit ourselves to a restricted view of a data source:
-graphs can only represent unary and binary relations via nodes and edges
-while, in general, a database may have relations of arbitrary arity.
-However, we do not consider this a significant restriction in the context of our purpose
-because we only want to represent relations that are relevant for provenance research,
-and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
-
-In order to model queries, ...
 
 
 % ------------------------------------------------------------------
