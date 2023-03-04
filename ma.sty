@@ -29,12 +29,6 @@
 %\selectbiblanguage{ngerman}
 %\RequirePackage[noisbn,noissn]{babelbib}
 
-%%%% !!! ADD ALL OTHER PACKAGES BEFORE THIS LINE !!! %%%
-%\RequirePackage[strings]{underscore}
-
-
-
-
 
 %\pagestyle{empty}
 \pagestyle{plain}
@@ -46,6 +40,7 @@
 \parindent0pt
 
 \theoremstyle{plain}
+
 % ...
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
@@ -82,3 +77,6 @@
 
 \newcommand{\VARANS}{\ensuremath{\mathsf{VAR}_\mathsf{ANS}}\xspace}
 \newcommand{\VARANON}{\ensuremath{\mathsf{VAR}_\mathsf{ANON}}\xspace}
+
+%\newcommand{\exaquery}[1]{\textsf{\textbf{{\small\boldmath Q#1}}}}
+\newcommand{\exaquery}[1]{\textsf{\textbf{{\boldmath Q#1}}}}

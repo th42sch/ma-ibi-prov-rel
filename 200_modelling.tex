@@ -151,19 +151,18 @@ and those are predominantly unary or binary. \todo{strengthen argument, give exa
 
 In order to model queries with the same notion of graphs, we need to introduce
 two sets of variables that serve as distinct node names:
-For example, consider the following query derived from~\ref{exa_query2} in Chapter~\ref{chap:intro}:
+For example, consider the following variant of the example query \exaquery{2} from Chapter~\ref{chap:intro}:
 %
 \begin{enumerate}
-  \item[(Q2$'$)]
-    \label{exa_query2'}
+  \item[\exaquery{2$'$}]
     Which copies of work $W$ were passed from one of its owners to a collaborator of theirs?
 \end{enumerate}
 %
-Query~\ref{exa_query2'}
-should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2}.
+Query~\exaquery{2$'$}
+should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 Its node names divide into three groups:
 (1) the node $W$ represents the work $W$ named in the query;
-(2) the node $x$ represents a copy of the work $W$ that satisfies the conditions stated in~\ref{exa_query2} and
+(2) the node $x$ represents a copy of the work $W$ that satisfies the conditions stated in~\exaquery{2$'$} and
 whose name is to be found;
 (3) the nodes $y,z$ represent the two owners (collaborators) whose names are not known.
 Consequently, $x$ serves as a placeholder for the answer to the query,
@@ -173,8 +172,8 @@ of the query.
 
 \begin{figure}
   \missingfigure{example query graph}
-  \caption{A graph representing example query \ref{exa_query2}}
-  \label{fig:graph_for_exa_query2}
+  \caption{A graph representing example query \exaquery{2$'$}}
+  \label{fig:graph_for_exa_query2'}
 \end{figure}
 
 From now on, we fix two sets \VARANS and \VARANON
