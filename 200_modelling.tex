@@ -12,8 +12,10 @@ which is a standard notion in computer science and discrete mathematics.
 \section{Labelled Directed Graphs}
 
 In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
-the nodes, and a function that assigns labels to the nodes and edges.
-In our setting, these three abstract components have the following meaning:
+the nodes, a function that assigns unique names to the nodes,
+and a function that labels the nodes (edges) with concepts (relations)
+of which the nodes (edges) are instances.
+In our setting, these four abstract components have the following meaning:
 %
 \begin{itemize}
   \item 
@@ -26,12 +28,15 @@ In our setting, these three abstract components have the following meaning:
     Symmetric relationships, such as \term{is\_collaborator\_of},
     can be represented via two edges, one for each direction.
   \item 
+    The unique node name specifies the individual that is represented by the node.
+  \item 
     Node labels allow the specification of one or several concepts
     of which the respective node is an instance.
     For example, a node representing the physicist Albert Einstein
     may be labelled, among others, with the concepts \term{person}, \term{scientist},
     and \term{physicist}.
-  \item 
+%  \item 
+
     Edge labels allow the specification of one or several relation names for each edge.
     For example, if a person $p$ is author \emph{and} owner of a book copy $b$,
     then this can be represented via an edge from $b$ to $p$ with the label
@@ -80,33 +85,41 @@ The standard definition of a labelled directed graph is as follows.
 %
 \begin{definition}
   \label{def:ld_graph}
-  Let \NV be a set of \emph{node names} and \NR a set of \emph{relation names}.
-  A \emph{directed labelled graph over $(\NV,\NR)$} is a triple $G = (V,E,\Lmc)$,
+  Let \NV be a set of \emph{node names}, \NC set of \emph{concept names}, and \NR a set of \emph{relation names}.
+  A \emph{directed labelled graph over $(\NV,\NC,\NR)$} is a triple $G = (V,E,\Nmc,\Lmc)$,
   where
   %
   \begin{itemize}
     \item
-    $V$ is a set, whose members are called \emph{nodes};\footnote{%
-      In classical graph theory, nodes are called \emph{vertices}; thus the set of
-      nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
-      and the more modern term ``node'' for brevity.%
-    }      
+      $V$ is a set, whose members are called \emph{nodes};\footnote{%
+        In classical graph theory, nodes are called \emph{vertices}; thus the set of
+        nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
+        and the more modern term ``node'' for brevity.%
+      }      
     \item 
-    $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
+      $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
     \item
-    $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
-    to each node a set of node names (called the node's \emph{labels}) and
-    to each edge a non-empty set of relation names (called the edge's \emph{labels});
-    we call \Lmc a \emph{labelling function}.
+      $\Nmc : V \to \NV$ is an injective function that assigns
+      to each node its \emph{name};
+    \item
+      $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
+      to each node a set of concept names (called the node's \emph{labels}) and
+      to each edge a non-empty set of relation names (called the edge's \emph{labels});
+      we call \Lmc a \emph{labelling function}.
   \end{itemize}
 \end{definition}
 %
-It should be noted that we allow node labels to be empty (in case a node belongs to no concept),
-but require that edge labels be non-empty (because otherwise the edge should not exist).
-This slight discrepancy could be resolved in two opposite ways by either omitting $E$ from Definition~\ref{def:ld_graph}
-and defining \Lmc directly on $V \times V$ instead, or by introducing an explicit top-level concept
-of which all nodes are required to be instances. In order to keep the definition simple,
-we choose the slight discrepancy over the more complex alternatives.
+Definition~1 stipulates that
+%
+\begin{itemize}
+  \item
+    every node has a unique name and no two node have the same name (the latter via injectivity);
+  \item
+    a node can have an arbitrary number of labels, including no label (in case the node belongs to no concept);
+  \item
+    an edge can have an arbitrary number of labels, but that number must not be zero --
+    the effect of an edge having no labels can be achieved by simply omitting the edge.
+\end{itemize}
 
 In the example in Figure~\ref{fig:example_graph},
 we have $V = \dots$, \dots\todo{finish example}
@@ -127,6 +140,8 @@ while, in general, a database may have relations of arbitrary arity.
 However, we do not consider this a significant restriction in the context of our purpose
 because we only want to represent relations that are relevant for provenance research,
 and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
+
+
 
 In order to model queries, ...
 
