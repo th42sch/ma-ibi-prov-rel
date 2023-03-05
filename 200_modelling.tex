@@ -44,12 +44,13 @@ In our setting, these four abstract components have the following meaning:
     Node labels allow the specification of one or several concepts
     of which the respective node is an instance.
     For example, a node representing the physicist Albert Einstein
-    may be labelled, among others, with the concepts \term{person}, \term{scientist},
-    and \term{physicist}.
+    may be labelled, among others, with the concepts \term{Person}, \term{Scientist},
+    and \term{Physicist}.
 %  \item 
 
     Edge labels allow the specification of one or several relation names for each edge.
     For example, if a person $p$ is author \emph{and} owner of a book copy $b$,
+    \todo{!! copy vs. work !! author of a copy is not possible $\leadsto$ rephrase !!}
     then this can be represented via an edge from $b$ to $p$ with the label
     $\{\term{has\_author},\term{has\_owner}\}$
     (and/or an edge from $b$ to $p$ with the label $\{\term{is\_author\_of},\term{is\_owner\_of}\}$).
