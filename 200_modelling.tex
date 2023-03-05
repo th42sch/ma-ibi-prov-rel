@@ -1,13 +1,24 @@
 % !TeX spellcheck = en_GB
 
 % =================================================================
-\chapter{Modelling Provenance Relationships and Queries}
+\chapter{Modelling Provenance Relationships}
 
 In this chapter, we develop a generic approach to modelling provenance relationships
 that will serve as a basis for the investigations in the following chapters.
-The central notion of this approach is that of a directed graph with node and edge labels,
-which is a standard notion in computer science and discrete mathematics.
+The central notion for representing data sources
+as well as queries will be that of a directed graph with node and edge labels,
+which is standard in computer science and discrete mathematics.
 \todo{citation}
+We can then model answers to queries using homomorphisms,
+another standard notion in the context of query answering with positive computational properties.
+\todo{citation}
+
+
+\todo[inline]{%
+  Explain that we could also use database theory, that the use of graphs is essentially a restriction to unary and binary predicates,
+  and that we do this in order to keep the presentation digestible for readers with little or no background in maths and CS
+  (i.e., a large proportion of librarians and historians).%
+}
 
 \section{Labelled Directed Graphs}
 
@@ -229,12 +240,17 @@ to graphs representing data sources.
   \label{fig:example_hmph}
 \end{figure}
 
+% ------------------------------------------------------------------
+\section{Decision Problems}
 
+\todo[inline]{TODO: formulate problems, discuss (data!) complexity}
 
 % ------------------------------------------------------------------
-\section{Attributes on Relationships}
+\section{Possible Extensions}
 
-\todo[inline]{TODO}
+\todo[inline]{TODO; discuss more options? E.g., relations of arbitrary arity}
+
+\subsection*{Attributes on Relationships}
 
 \begin{itemize}
   \item
@@ -247,23 +263,3 @@ to graphs representing data sources.
     conclusion: attributes are not covered here
 \end{itemize}
 
-
-
-% ------------------------------------------------------------------
-\section{OLD: Provenance Relationship Networks}
-
-In order to define provenance relationship networks, we now fix sets $N$ and $R$ to consist
-of elements that are relevant for provenance research:
-The set $N$ consists of \emph{entities} such as 
-works, expressions, manifestations, copies, people, and corporations
-that are contained in a fixed collection of data sources (such as library catalogues,
-authority files, and knowledge bases). The set $R$ consists of relationships
-between entities that are taken either from the FRBR model\todo{cite, introduce}
-or from the same collection of data sources (in particular, relationships between people and/or corporations
-such as ``is student of'' or ``collaborated with'' or ...)
-
-*** FIRST THINK ABOUT QUERY TYPES, THEN CONTINUE WITH THESE DEF.S ***
-
-
-A \emph{provenance relationship network} is a directed edge-labelled graph over $(N,R)$,
-where $N$ ... and $R$ ... \todo{continue}
