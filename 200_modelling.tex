@@ -98,8 +98,8 @@ of the standard definition of a labelled directed graph.
 %
 \begin{definition}
   \label{def:ld_graph}
-  Let $(\NI,\NC,\NR)$ be a \emph{namespace} consisting of a set \NI of \emph{individual names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
-  A \emph{directed labelled graph over $(\NI,\NC,\NR)$} is a triple $G = (V,E,\Nmc,\Lmc)$,
+  Let $\namespace=(\NI,\NC,\NR)$ be a \emph{namespace} consisting of a set \NI of \emph{individual names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
+  A \emph{directed labelled graph over $\namespace$} is a triple $G = (V,E,\Nmc,\Lmc)$
   where
   %
   \begin{itemize}
@@ -149,8 +149,8 @@ We now model a data source (e.g., library catalogue, authority file, or other da
 using the exact notion of a graph that we have introduced above.
 %
 \begin{definition}
-  A \emph{data source} is a labelled directed graph
-  over some namespace $(\NI,\NC,\NR)$.
+  A \emph{data source over the namespace $\namespace=(\NI,\NC,\NR)$} is a labelled directed graph
+  over \namespace.
 \end{definition}
 %
 With this definition, we obviously commit ourselves to a restricted view of a data source:
@@ -196,7 +196,7 @@ in contrast to the namespace of queries.
 These considerations lead to the following definition of a query.
 
 \begin{definition}
-  A \emph{query} is a labelled directed graph
+  A \emph{query over the namespace $(\NI,\NC,\NR)$} is a labelled directed graph
   over $(\NI \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
 \end{definition}
 
@@ -204,21 +204,17 @@ These considerations lead to the following definition of a query.
 
 \todo[inline]{Can Q1 be modelled this way? We seem to need answer vars representing sets. Comment ...}
 
-*****
-
-\todo[inline]{The following needs to be adapted to incorporate individuals and distinguish them from variables}
-
 Answers to queries will be defined via homomorphisms that map graphs representing queries
 to graphs representing data sources.
 %
 \begin{definition}
-  Given two labelled directed graphs $G = (V,E,\Nmc,\Lmc)$ and $G' = (V',E',\Nmc',\Lmc')$
-  over the same namespace $(\NI,\NC,\NR)$,
-  a \emph{homomorphism from $G$ to $G'$} is a map $h : V \to V'$ that satisfies the following properties.
+  Let $(\NI,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
+  and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
+  A \emph{homomorphism from $G$ to $G'$} is a map $h : V \to V'$ that satisfies the following properties.
   %
   \begin{enumerate}
     \item[\hmph{1}]
-      $\Nmc(v) = \Nmc'(h(v))$ for every node $v \in V$ with $\Nmc(v) \in \NI$. \todo{VARs?}
+      $\Nmc(v) = \Nmc'(h(v))$ for every node $v \in V$ with $\Nmc(v) \in \NI$.
     \item[\hmph{2}]
       $\Lmc(v) \subseteq \Lmc'(h(v))$ for every node $v \in V$.
     \item[\hmph{3}]
@@ -232,10 +228,10 @@ to graphs representing data sources.
 %
 Property~\hmph{1} ensures that a homomorphism maps each node in $G$ that is named with an individual
 to that node in $G'$ which is named with the same individual.
+Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
 Properties~\hmph{2} and~\hmph{3} ensure that homomorphisms preserve node and edge labels;
 the $\subseteq$-relation allows the image of a node (or edge) under $h$ to have more labels
 than the node (or edge) itself.
-\todo[inline]{Note on variables}
 
 \begin{figure}
   \missingfigure{example homomorphism}
