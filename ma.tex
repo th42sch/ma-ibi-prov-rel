@@ -1,7 +1,17 @@
 % !TeX spellcheck = en_GB
 %\documentclass[11pt,DIV=11,a4paper,BCOR=15mm,twoside=on,bibliography=leveldown]{scrbook}
 %\documentclass[11pt,DIV=11,a4paper,BCOR=15mm]{scrbook}
-\documentclass[11pt,DIV=16,a4paper,BCOR=15mm,twoside=on]{scrreprt}
+\documentclass[%
+  11pt,
+  DIV=16,
+  a4paper,
+  BCOR=15mm,
+  twoside=on,
+  bibliography=totoc,
+  headings=normal,
+%  captions=tableheading,
+%  chapterprefix=true% like in standard class "report"
+]{scrreprt}
 %\documentclass[11pt,DIV=11,a4paper]{scrartcl}
 \usepackage{ma}
 
@@ -16,7 +26,7 @@
   \tableofcontents
 
   \clearpage
-  \pagestyle{scrheadings}
+  \pagestyle{headings}
   \pagenumbering{arabic}
   \include{000_intro}
   \include{100_prelim}
