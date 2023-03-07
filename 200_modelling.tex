@@ -63,7 +63,43 @@ Node and edge labels are written next to the respective node or edge,
 see Figure~\ref{fig:example_graph}.
 
 \begin{figure}
-  \missingfigure{example graph}
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={rectangle, rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \node                                     (work1)   {\fns\strut$\term{work}_1$};
+    \node [below=15mm of work1]               (item1)   {\fns\strut$\term{item}_1$};
+    \node [above right=2mm and 50mm of work1] (person1) {\fns\strut$\term{person}_1$};
+    \node [above right=4mm and 50mm of item1] (person2) {\fns\strut$\term{person}_2$};
+    \node [below right=4mm and 50mm of item1] (person3) {\fns\strut$\term{person}_3$};
+    
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm}
+    ]
+      \path[->]
+        (work1)   edge[bend right=10] node[pos=.3,left=1mm]      {\fns\term{has\_exemplar}}         (item1)
+        (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
+        (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
+        (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
+        (item1)   edge[bend left=12]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
+        (person2) edge[bend left=-4]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+        (item1)   edge[bend left=-4]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
+        (person3) edge[bend left=12]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+        (person2) edge[bend right=10] node[left=1mm]             {\fns\tikztab[r]{\term{has\_student}\\[-1pt]\term{collaborates\_with}}}          (person3)
+        (person3) edge[bend right=10] node[right=1mm]            {\fns\tikztab{\term{is\_student\_of}\\[-1pt]\term{collaborates\_with}}}       (person2)
+        ;
+        
+      \node[left=.5mm of work1]    () {\fns\term{Work}};
+      \node[left=.5mm of item1]    () {\fns\term{Item}};
+      \node[right=.5mm of person1] () {\fns\tikztab{\term{Person}\\[-1pt]\term{Scientist}}};
+      \node[right=.5mm of person2] () {\fns\tikztab{\term{Person}\\[-1pt]\term{Mathematician}}};
+      \node[right=.5mm of person3] () {\fns\tikztab{\term{Person}\\[-1pt]\term{Astronomer}}};
+      
+    \end{scope}
+  \end{tikzpicture}
+  
   \caption{An example graph}
   \label{fig:example_graph}
 \end{figure}
@@ -140,7 +176,25 @@ Definition~1 stipulates the following conditions.
 the effect of an edge having no labels can be achieved by simply omitting that edge.
 
 In the example in Figure~\ref{fig:example_graph},
-we have $V = \dots$, \dots\todo{finish example}
+$V$ consists of five nodes, which we call $v_1,\dots,v_5$,
+and $E$ consists of ten edges. Let $v_1,v_2$ denote the nodes on the left and $v_3,v_4,v_5$
+denote the nodes on the right (both from top to bottom).
+Then we have, among others, the following node names and labels:
+%
+\begin{equation*}
+  \Nmc(v_1) = \term{work}_1
+  \qquad
+  \Lmc(v_1) = \{\term{Work}\}
+  \qquad
+  \Lmc(v_5) = \{\term{Person},\term{Astronomer}\}
+\end{equation*}
+%
+Additionally, two of the ten edges have the following labels:
+%
+\begin{alignat*}{2}
+  e_1 & = (v_4,v_5) & \qquad \Lmc(e_1) & = \{\term{has\_student},\term{collaborates\_with}\} \\
+  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
+\end{alignat*}
 
 % ------------------------------------------------------------------
 \section{Modelling Data Sources, Queries, and Answers}

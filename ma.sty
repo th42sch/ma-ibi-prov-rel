@@ -25,6 +25,11 @@
 \setlength{\marginparwidth}{2cm}
 \RequirePackage{todonotes}
 
+\RequirePackage{pgfsys}
+\RequirePackage{tikz}
+\usetikzlibrary{automata,positioning,arrows.meta,graphs,decorations.text,calc,shapes}%,fit}
+
+
 %\RequirePackage[fixlanguage,noisbn,noissn]{babelbib}
 %\selectbiblanguage{ngerman}
 %\RequirePackage[noisbn,noissn]{babelbib}
@@ -42,18 +47,40 @@
 
 \theoremstyle{plain}
 
+\newcommand{\fns}{\footnotesize}
+\newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
 % ...
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
 %\renewcommand{\bfdefault}{ebsc}
 
+% ----------------- some colours ---------------------------
 \definecolor{gray}{rgb}{.5,.5,.5}
 \definecolor{dgray}{rgb}{.2,.2,.2}
 %\definecolor{dgblu}{rgb}{.2,.2,.27}
 %\definecolor{dgblu}{rgb}{.2,.2,.32}
 %\definecolor{dgblu}{rgb}{.18,.18,.29}
 \definecolor{dgblu}{rgb}{.1,.1,.5}
+
+\definecolor{lightblue}{rgb}{0.929,0.953,0.996}
+\definecolor{medblue}{rgb}{0.816,0.922,0.996}
+
+%\colorlet{Econnred}{red!50}
+%\colorlet{Econnblue}{blue!20}
+%\colorlet{Econngreen}{green!10}
+%\colorlet{Econniso}{black}
+%
+\colorlet{Econnred}{red!7}
+\colorlet{Econnblue}{blue!25}
+\colorlet{Econngreen}{green!50!black}
+\colorlet{Econniso}{white}
+
+\colorlet{ctableone}{white}
+\colorlet{ctabletwo}{lightblue}
+\colorlet{ctablehead}{medblue}
+
 
 \newcommand{\textsfbf}[1]{\textsf{\textbf{{\boldmath #1}}}}
 \newcommand{\textsfbfgr}[1]{\textsf{\textbf{\textcolor{dgray}{#1}}}}
@@ -70,6 +97,7 @@
 \newcommand{\Nmc}{\ensuremath{\mathcal{N}}\xspace}
 
 \newcommand{\term}[1]{\textsf{#1}}
+%\newcommand{\fnterm}[1]{\textsf{{\footnotesize #1}}}
 \newcommand{\sig}[1]{\textsf{#1}}
 
 \newcommand{\NC}{\ensuremath{\mathsf{N}_\mathsf{C}}\xspace}
