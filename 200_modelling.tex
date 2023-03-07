@@ -13,11 +13,11 @@ We can then model answers to queries using homomorphisms,
 another standard notion in the context of query answering with positive computational properties.
 \todo{citation}
 
-
-\todo[inline]{%
-  Explain that we could also use database theory, that the use of graphs is essentially a restriction to unary and binary predicates,
-  and that we do this in order to keep the presentation digestible for readers with little or no background in maths and CS
-  (i.e., a large proportion of librarians and historians).%
+\todo[inline]{
+  We want to model individuals and concepts (e.g., ...) as well as relationships
+  between individuals (e.g., ...). For simplicity's sake, we do not make temporal distinctions (``is/was student'') or ``was owner in year $n$''. Hence only constants, unary and binary relations; no fully-fledged database theory; no fancy stuff such as attributes (citation) --> keep the presentation digestible for readers with little or no background in maths and CS
+  (i.e., a large proportion of librarians and historians).
+  Possible extensions in Section~\ref{sec:possible_extensions}.%
 }
 
 \section{Labelled Directed Graphs}
@@ -36,7 +36,7 @@ In our setting, these four abstract components have the following meaning:
     Edges represent relationships between nodes, which are typically directed:
     e.g., \term{has\_owner} points \emph{from} a book copy \emph{to} a person or corporation,
     whereas \term{is\_owner\_of} points into the opposite direction.
-    Symmetric relationships, such as \term{is\_collaborator\_of},
+    Symmetric relationships, such as \term{collaborates\_with},
     can be represented via two edges, one for each direction.
   \item 
     The unique node name specifies the individual that is represented by the node.
@@ -49,11 +49,10 @@ In our setting, these four abstract components have the following meaning:
 %  \item 
 
     Edge labels allow the specification of one or several relation names for each edge.
-    For example, if a person $p$ is author \emph{and} owner of a book copy $b$,
-    \todo{!! copy vs. work !! author of a copy is not possible $\leadsto$ rephrase !!}
-    then this can be represented via an edge from $b$ to $p$ with the label
-    $\{\term{has\_author},\term{has\_owner}\}$
-    (and/or an edge from $b$ to $p$ with the label $\{\term{is\_author\_of},\term{is\_owner\_of}\}$).
+    For example, if a person $p_1$ has a student $p_2$ and, in later life, 
+    collaborates with $p_2$, then this can be represented via an edge from $p_1$ to $p_2$
+    with the label $\{\term{has\_student},\term{collaborates\_with}\}$
+    (and/or an edge from $b$ to $p$ with the label $\{\term{is\_student\_of},\term{collaborates\_with}\}$).
 \end{itemize}
 %
 A labelled directed graph can be visualised in the obvious way:
@@ -247,6 +246,7 @@ than the node (or edge) itself.
 
 % ------------------------------------------------------------------
 \section{Possible Extensions}
+\label{sec:possible_extensions}
 
 \todo[inline]{TODO; discuss more options? E.g., relations of arbitrary arity}
 
