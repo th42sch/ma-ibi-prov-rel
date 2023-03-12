@@ -9,6 +9,7 @@
   twoside=on,
   bibliography=totoc,
   headings=normal,
+  titlepage
 %  captions=tableheading,
 %  chapterprefix=true% like in standard class "report"
 ]{scrreprt}
@@ -21,8 +22,11 @@
 \begin{document}
 
   \pagenumbering{roman}
-  \maketitle
+  % \maketitle
+  \selectlanguage{ngerman}
+  \input{000_title}
 %  \setcounter{tocdepth}{2}
+  \selectlanguage{UKenglish}
   \tableofcontents
 
   \clearpage
