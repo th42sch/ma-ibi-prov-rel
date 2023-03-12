@@ -71,25 +71,25 @@ see Figure~\ref{fig:example_graph}.
   ]
     \node                                     (work1)   {\fns\strut$\term{work}_1$};
     \node [below=15mm of work1]               (item1)   {\fns\strut$\term{item}_1$};
-    \node [above right=2mm and 50mm of work1] (person1) {\fns\strut$\term{person}_1$};
-    \node [above right=4mm and 50mm of item1] (person2) {\fns\strut$\term{person}_2$};
-    \node [below right=4mm and 50mm of item1] (person3) {\fns\strut$\term{person}_3$};
+    \node [above right=2mm and 40mm of work1] (person1) {\fns\strut$\term{person}_1$};
+    \node [above right=4mm and 40mm of item1] (person2) {\fns\strut$\term{person}_2$};
+    \node [below right=4mm and 40mm of item1] (person3) {\fns\strut$\term{person}_3$};
     
     \begin{scope}[%
       every node/.style={draw=none,fill=none,inner sep=.2mm}
     ]
       \path[->]
-        (work1)   edge[bend right=10] node[pos=.3,left=1mm]      {\fns\term{has\_exemplar}}         (item1)
-        (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
+        (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\term{has\_exemplar}}         (item1)
+        (item1)   edge[bend right=10] node[pos=.8,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
         (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
         (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
-        (item1)   edge[bend left=12]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
-        (person2) edge[bend left=-4]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
-        (item1)   edge[bend left=-4]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
-        (person3) edge[bend left=12]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
-        (person2) edge[bend right=10] node[left=1mm]             {\fns\tikztab[r]{\term{has\_student}\\[-1pt]\term{collaborates\_with}}}          (person3)
-        (person3) edge[bend right=10] node[right=1mm]            {\fns\tikztab{\term{is\_student\_of}\\[-1pt]\term{collaborates\_with}}}       (person2)
-        ;
+        (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
+        (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+        (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
+        (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+        (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztab[r]{\term{has\_student}\\[-1pt]\term{collaborates\_with}}}          (person3)
+        (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztab{\term{is\_student\_of}\\[-1pt]\term{collaborates\_with}}}       (person2)
+      ;
         
       \node[left=.5mm of work1]    () {\fns\term{Work}};
       \node[left=.5mm of item1]    () {\fns\term{Item}};
@@ -220,23 +220,52 @@ For example, consider the following variant of the example query \exaquery{2} fr
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
-    Which copies of work $W$ were passed from one of its owners to a collaborator of theirs?
+%    Which copies of work $W$ were passed from one of its owners to a collaborator of theirs?
+    Which copies of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
 \end{enumerate}
 %
 Query~\exaquery{2$'$}
 should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
-Its node names divide into three groups:
-(1) the node $W$ represents the work $W$ named in the query;
-(2) the node $x$ represents a copy of the work $W$ that satisfies the conditions stated in~\exaquery{2$'$} and
+Its node names fall into three groups:
+(1) the node named ``De revolutionibus'' represents that work;
+(2) the node $x$ represents a copy of this work that satisfies the conditions stated in~\exaquery{2$'$} and
 whose name is to be found;
-(3) the nodes $y,z$ represent the two owners (collaborators) whose names are not known.
+(3) the nodes $y,z$ represent the two owners (scientist and their student) whose names are not known.
 Consequently, $x$ serves as a placeholder for the answer to the query,
 and $y,z$ are placeholders for further individuals that ``witness'' the answer.
 We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
 of the query.
 
 \begin{figure}[ht]
-  \missingfigure{example query graph}
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={rectangle, rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \node                                        (derev) {\fns\strut$\term{De revolutionibus}$};
+    \node [ansvar,below=8mm of work1]           (x)     {\fns\strut$x$};
+    \node [anovar,above right=3mm and 20mm of x] (y)     {\fns\strut$y$};
+    \node [anovar,below right=3mm and 20mm of x] (z)     {\fns\strut$z$};
+    
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm}
+    ]
+      \path[->]
+        (derev) edge node[left=1mm]      {\fns\term{has\_exemplar}}      (x)
+        (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+        (x)     edge node[sloped, below] {\fns\strut\term{has\_owner}}   (z)
+        (y)     edge node[right=1mm]     {\fns\strut\term{has\_student}} (z)
+      
+      ;
+        
+      \node[left=.5mm of derev] () {\fns\term{Work}};
+      \node[left=.5mm of x]     () {\fns\term{Item}};
+      \node[right=.5mm of y]    () {\fns\term{Scientist}};
+      
+    \end{scope}
+  \end{tikzpicture}
+  
   \caption{A graph representing example query \exaquery{2$'$}}
   \label{fig:graph_for_exa_query2'}
 \end{figure}
