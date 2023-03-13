@@ -1,6 +1,7 @@
 \RequirePackage[utf8x]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{latexsym,amssymb,amsmath,amsthm}
+%\RequirePackage{latexsym,amssymb,amsmath,amsthm}
+\RequirePackage{amssymb,amsmath,amsthm}
 %\RequirePackage{marvosym}
 \RequirePackage{xspace}
 %\RequirePackage{calc}
@@ -8,9 +9,9 @@
 \RequirePackage{xcolor}
 \RequirePackage[pdfborder={0 0 0}]{hyperref}
 %\RequirePackage{xurl}
-\RequirePackage{inconsolata}
 %\RequirePackage[scaled=1.12]{nimbusmononarrow}
-\RequirePackage[subscriptcorrection]{notomath}
+%\RequirePackage{inconsolata}
+\RequirePackage[subscriptcorrection,mono]{notomath}
 %\RequirePackage[mono,subscriptcorrection]{notomath}
 %\RequirePackage[scaled=.88]{noto-mono}
 \RequirePackage{graphicx}
@@ -44,8 +45,9 @@
 
 \parskip6pt
 \parindent0pt
+\Urlmuskip=0mu plus 10mu
 
-\theoremstyle{plain}
+\counterwithout{footnote}{chapter}
 
 \newcommand{\fns}{\footnotesize}
 
@@ -54,7 +56,9 @@
 \tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm]
 \tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm]
 
-% ...
+% ----- Theorems etc. -----
+\theoremstyle{plain}
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
