@@ -3,15 +3,31 @@
 \chapter{Modelling Provenance Relationships}
 \label{chap:modelling}
 
-In this chapter, we develop a generic approach to modelling provenance relationships
-that will serve as a basis for the investigations in the following chapters.
-The central notion for representing data sources
-as well as queries will be that of a directed graph with node and edge labels,
-which is standard in computer science and discrete mathematics.
-\todo{citation}
-We can then model answers to queries using homomorphisms,
-another standard notion in the context of query answering, which has positive computational properties.
-\todo{citation}
+In this chapter, we develop a generic approach to modelling provenance relationships.
+More precisely, we need to model three central notions: queries that a user may want to ask,
+data sources that are to be consulted in order to answer a query,
+and answers given to a query.
+In order to obtain a generic approach, we aim at providing definitions
+for these central concepts that are intensional rather than extensional.
+In particular, our definitions should depend neither on concrete example queries or data sources
+such as the ones discussed in Chapter~\ref{chap:intro},
+nor on concrete objects, concepts, or relationships (such as ``Copernicus'', ``copy of a work'', or ``student'').
+Instead, we will develop an abstract model that provides definitions
+of the notions of a query, data source, and answer.
+This model can then be used with a multitude of concrete queries and data sources,
+and its potential implementation will provide answers as specified by our definitions.
+
+An obvious source of generic definitions would be 
+
+
+
+As a central notion for representing data sources
+and queries, we use directed graphs with labels.
+The concept of a graph is standard in computer science and discrete mathematics;
+see, e.g., the textbook by Diestel \cite{Diestel2012}.
+Graphs and graph techniques are used to represent large knowledge bases. \todo{citation}
+They provide an easy means for visualising objects and their relationships,
+and they lend themselves to computationally well-behaved algorithms for query answering. \todo{citation}
 
 \todo[inline]{
   We want to model individuals and concepts (e.g., ...) as well as relationships
