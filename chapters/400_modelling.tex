@@ -7,21 +7,38 @@ In this chapter, we develop a generic approach to modelling provenance relations
 More precisely, we need to model three central notions: queries that a user may want to ask,
 data sources that are to be consulted in order to answer a query,
 and answers given to a query.
-In order to obtain a generic approach, we aim at providing definitions
-for these central concepts that are intensional rather than extensional.
-In particular, our definitions should depend neither on concrete example queries or data sources
-such as the ones discussed in Chapter~\ref{chap:intro},
-nor on concrete objects, concepts, or relationships (such as ``Copernicus'', ``copy of a work'', or ``student'').
-Instead, we will develop an abstract model that provides definitions
+In order to obtain a generic approach, we aim at providing rigorous definitions
+for these central concepts, and we seek intensional rather than extensional definitions.
+In particular, those definitions should not depend on concrete example queries or data sources
+such as the ones discussed in Chapter~\ref{chap:intro};
+neither should they depend on concrete objects, concepts, or relationships (such as ``Copernicus'', ``copy of a work'', or ``student'').
+Instead, we will develop an abstract model with precise but general definitions
 of the notions of a query, data source, and answer.
 This model can then be used with a multitude of concrete queries and data sources,
 and its potential implementation will provide answers as specified by our definitions.
 
-An obvious source of generic definitions would be 
+An 
+\todo{tentative par} obvious choice would be to base our abstract model on database theory,
+where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
+see, e.g., the standard introduction ... \todo{citation}.
+This framework is very general, well-established, and implemented in database management systems
+that scale well to large databases \todo{citation}.
+However, .....
+%
+\begin{itemize}
+  \item
+    mathematically complex
+  \item
+    hard to visualise
+  \item
+    relations of arity $\geqslant 2$ seem overkill, given the relations used in OPACs, GND, Wikidata
+\end{itemize}
+%
+\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
-
-
-As a central notion for representing data sources
+As 
+\todo{tentative par}
+a central notion for representing data sources
 and queries, we use directed graphs with labels.
 The concept of a graph is standard in computer science and discrete mathematics;
 see, e.g., the textbook by Diestel \cite{Diestel2012}.
