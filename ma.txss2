@@ -16,52 +16,44 @@
         "FileVersion": 1,
         "Files": [
             {
-                "Col": 27,
+                "Col": 20,
                 "EditorGroup": 0,
                 "FileName": "ma.tex",
                 "FirstLine": 0,
                 "FoldedLines": "",
-                "Line": 38
+                "Line": 41
             },
             {
-                "Col": 33,
+                "Col": 15,
                 "EditorGroup": 0,
                 "FileName": "ma.sty",
-                "FirstLine": 27,
+                "FirstLine": 37,
                 "FoldedLines": "",
-                "Line": 59
-            },
-            {
-                "Col": 14,
-                "EditorGroup": 0,
-                "FileName": "000_title.tex",
-                "FirstLine": 0,
-                "FoldedLines": "",
-                "Line": 6
+                "Line": 47
             },
             {
                 "Col": 0,
                 "EditorGroup": 0,
-                "FileName": "100_intro.tex",
+                "FileName": "chapters/000_title.tex",
                 "FirstLine": 0,
                 "FoldedLines": "",
-                "Line": 4
-            },
-            {
-                "Col": 67,
-                "EditorGroup": 0,
-                "FileName": "300_prelim.tex",
-                "FirstLine": 0,
-                "FoldedLines": "",
-                "Line": 1
+                "Line": 0
             },
             {
                 "Col": 0,
                 "EditorGroup": 0,
-                "FileName": "400_modelling.tex",
+                "FileName": "chapters/100_intro.tex",
                 "FirstLine": 0,
                 "FoldedLines": "",
-                "Line": 4
+                "Line": 0
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "chapters/400_modelling.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 0
             }
         ],
         "MasterFile": "ma.tex",
