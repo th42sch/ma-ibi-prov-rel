@@ -11,16 +11,14 @@
   every edge/.style={draw=black,thick}  
 ]
   \node                                 (queries)         {Prototype queries};
-  \node [below=10mm of queries]         (datasources)     {\tikztab[c]{Analysis of available\\[-1pt]data sources}};
-  \node [below=10mm of datasources]     (requirements)    {Requirement analysis};
-  \node [below=10mm of requirements]    (modelling)       {Modelling};
+  \node [below=10mm of queries]         (datasources)     {\tikztab[c]{Requirement analysis:\\[-1pt]Analysis of available data sources\\[-1pt]Analysis of possible queries}};
+  \node [below=10mm of datasources]     (modelling)       {Modelling};
   \node [below=10mm of modelling]       (dataintegration) {Data integration};
   \node [below=10mm of dataintegration] (method)          {Method};
   
   \path[->]
     (queries)         edge (datasources)
-    (datasources)     edge (requirements)
-    (requirements)    edge (modelling)
+    (datasources)     edge (modelling)
     (modelling)       edge (dataintegration)
     (dataintegration) edge (method)
   ;
@@ -29,7 +27,7 @@
 
 \begin{itemize}
   \item 
-    Modelling depends on requirement analysis: why is it ok to use graphs rather than ``fully-fledged'' database theory?
+    Modelling depends on requirement analysis: why is it appropriate to use graphs rather than ``fully-fledged'' database theory?
   \item
     OTOH, the early specification of prototype queries will necessarily remain vague and extensional
     as long as we don't have an abstract model!
