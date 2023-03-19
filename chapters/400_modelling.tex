@@ -17,40 +17,53 @@ of the notions of a query, data source, and answer.
 This model can then be used with a multitude of concrete queries and data sources,
 and its potential implementation will provide answers as specified by our definitions.
 
-An 
-\todo{tentative par} obvious choice would be to base our abstract model on database theory,
-where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
-see, e.g., the standard introduction ... \todo{citation}.
-This framework is very general, well-established, and implemented in database management systems
-that scale well to large databases \todo{citation}.
-However, .....
-%
-\begin{itemize}
-  \item
-    mathematically complex
-  \item
-    hard to visualise
-  \item
-    relations of arity $\geqslant 2$ seem overkill, given the relations used in OPACs, GND, Wikidata
-\end{itemize}
-%
-\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
+\todo[inline]{Discuss the choice of this graph-based framework; delineate from classical database theory (text snippet commented out). This argument has to be a logical consequence of the requirement analysis in the previous chapter(s)!}
+%An obvious choice would be to base our abstract model on database theory,
+%where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
+%see, e.g., the standard introduction ... \todo{citation}.
+%This framework is very general, well-established, and implemented in database management systems
+%that scale well to large databases \todo{citation}.
+%However, .....
+%...
+%We want to model individuals and concepts (e.g., ...) as well as relationships
+%between individuals (e.g., ...).  $\leadsto$ constants, unary and binary relations
+%%
+%\begin{itemize}
+%  \item
+%    mathematically complex
+%  \item
+%    hard to visualise
+%  \item
+%    relations of arity $\geqslant 2$ seem overkill, given the relations used in OPACs, GND, Wikidata
+%\end{itemize}
+%%
+%\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
 As 
-\todo{tentative par}
+\todo{this par is tentative}
 a central notion for representing data sources
 and queries, we use directed graphs with labels.
-The concept of a graph is standard in computer science and discrete mathematics;
-see, e.g., the textbook by Diestel \cite{Diestel2012}.
-Graphs and graph techniques are used to represent large knowledge bases. \todo{citation}
+The concept of a graph is standard in computer science and discrete mathematics \cite{Diestel2012}.
+Graphs and graph techniques are used to represent large knowledge bases \cite{Ehrlinger2016}.
 They provide an easy means for visualising objects and their relationships,
-and they lend themselves to computationally well-behaved algorithms for query answering. \todo{citation}
+and they lend themselves to computationally well-behaved algorithms for query answering. \todo{explain; citation}
 
-\todo[inline]{
-  We want to model individuals and concepts (e.g., ...) as well as relationships
-  between individuals (e.g., ...). For simplicity's sake, we do not make temporal distinctions (``is/was student'') or ``was owner in year $n$''. Hence only constants, unary and binary relations; no fully-fledged database theory; no fancy stuff such as attributes (citation) --> keep the presentation digestible for readers with little or no background in maths and CS
-  (i.e., a large proportion of librarians and historians).
-  Possible extensions in Section~\ref{sec:possible_extensions}.%
+\todo[inline,caption={}]{
+  \parbox{\textwidth}{%
+    Comment on restrictions made:
+    %
+    \begin{itemize}
+      \item
+        no temporal distinctions (``is/was student'') or ``was owner in year $n$''. 
+      \item[$(\leadsto)$]
+        no attributes for relationships (citation)
+      \item[$\leadsto$]
+        keep the presentation digestible for readers with little or no background in maths and CS
+        (i.e., a large proportion of librarians and historians).
+      \item
+        possible extensions in Section~\ref{sec:possible_extensions}
+    \end{itemize}
+  }%
 }
 
 % -------------------------------------------------------------------
