@@ -17,7 +17,7 @@ of the notions of a query, data source, and answer.
 This model can then be used with a multitude of concrete queries and data sources,
 and its potential implementation will provide answers as specified by our definitions.
 
-\todo[inline]{Discuss the choice of this graph-based framework; delineate from classical database theory (text snippet commented out). This argument has to be a logical consequence of the requirement analysis in the previous chapter(s)!}
+\todo[inline]{Discuss the choice of this graph-based framework; delineate from classical database theory (text snippets commented out). This argument has to be a logical consequence of the requirement analysis in the previous chapter(s)!}
 %An obvious choice would be to base our abstract model on database theory,
 %where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
 %see, e.g., the standard introduction ... \todo{citation}.
@@ -27,6 +27,14 @@ and its potential implementation will provide answers as specified by our defini
 %...
 %We want to model individuals and concepts (e.g., ...) as well as relationships
 %between individuals (e.g., ...).  $\leadsto$ constants, unary and binary relations
+%...
+%With the choice of graphs, we commit ourselves to a restricted view of a data source:
+%graphs can only represent unary and binary relations via nodes and edges
+%while, in general, a database may have relations of arbitrary arity.
+%However, we do not consider this a significant restriction in the context of our purpose
+%because we only want to represent relations that are relevant for provenance research,
+%and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
+%
 %%
 %\begin{itemize}
 %  \item
@@ -264,13 +272,13 @@ using the exact notion of a graph that we have introduced above.
   over \namespace.
 \end{definition}
 %
-With this definition, we obviously commit ourselves to a restricted view of a data source:
-graphs can only represent unary and binary relations via nodes and edges
-while, in general, a database may have relations of arbitrary arity.
-However, we do not consider this a significant restriction in the context of our purpose
-because we only want to represent relations that are relevant for provenance research,
-and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
-
+%With this definition, we obviously commit ourselves to a restricted view of a data source:
+%graphs can only represent unary and binary relations via nodes and edges
+%while, in general, a database may have relations of arbitrary arity.
+%However, we do not consider this a significant restriction in the context of our purpose
+%because we only want to represent relations that are relevant for provenance research,
+%and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
+%
 In order to model queries with the same notion of graphs, we need to introduce
 two sets of variables that serve as distinct node names:
 For example, consider the following variant of the example query \exaquery{2} from Chapter~\ref{chap:intro}:
@@ -342,11 +350,27 @@ These considerations lead to the following definition of a query.
   A \emph{query over the namespace $(\NI,\NC,\NR)$} is a labelled directed graph
   over $(\NI \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
 \end{definition}
-
-\todo[inline]{comment on Boolean queries?}
-
-\todo[inline]{Can Q1 be modelled this way? We seem to need answer vars representing sets. Comment ...}
-
+%
+\todo[inline,caption={}]{%
+  Possibly comment on:
+  %
+  \begin{itemize}
+    \item
+      the special case of Boolean queries?
+    \item
+      specific requirements for modelling \exaquery{1} and \exaquery{3}: 
+      \begin{itemize}
+        \item 
+          \exaquery{1} seems to require answer variables representing sets (the owners)
+          and an appropriate extension of the definition of a homomorphism;
+        \item 
+          the same holds for \exaquery{3}; additionally the answer should include the relationships
+          between the images of the answer variables (the relationships between the owners),
+          i.e., some sort of spanned subgraph
+      \end{itemize}
+  \end{itemize}
+}
+%
 Answers to queries will be defined via homomorphisms that map graphs representing queries
 to graphs representing data sources.
 %
