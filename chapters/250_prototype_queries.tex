@@ -1,0 +1,121 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter{Prototype Queries}
+\label{chap:prototype_queries}
+
+\begin{itemize}
+  \item
+    for illustration purposes
+  \item
+    precise definition of the scope of queries that can be answered by this approach: Chapter~\ref{chap:modelling}
+  \item
+    Prototype queries from Chapter~\ref{chap:intro}, general:
+    %
+    \begin{enumerate}
+      \item[\exaquery{1}]
+        Who read work $W$, in which manifestation and in which year?
+      \item[\exaquery{2}]
+        Which copies of work $W$ were passed from one of its owners to a collaborator (or a student)?
+      \item[\exaquery{3}]
+        What are the relationships between the recipients of work $W$
+        (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
+    \end{enumerate}
+\end{itemize}
+%
+To illustrate these abstract queries and possible approaches to answering them, let us fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
+(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) by the astronomer Nicolaus Copernicus (1473–1543) \cite{Kopernikus1543}.
+We consider the following more precise variant of \exaquery{2}:
+%
+\begin{enumerate}
+  \item[\exaquery{2$'$}]
+%    Which copies of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
+    Which copies of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
+\end{enumerate}
+%
+Let us first assume that a researcher wants to answer this question.
+One obvious way to proceed would be as follows: first, our researcher finds copies of \emph{De revolutionibus} 
+in online catalogues of libraries and library networks. For each such copy, they then inspect the provenance entries
+that name owners who were people (not corporations). Finally, our researcher will have to find those names in databases such as
+authority files or Wikidata and, for each entry, explore the specified profession (``scientist'') and relationships to other people (``student'').
+
+For example, the online catalogue (OPAC) of the Gotha Research Library of the University of Erfurt (Forschungsbibliothek Gotha) lists two printed copies
+of \emph{De revolutionibus}.%
+\footnote{%
+  \url{https://opac.uni-erfurt.de/DB=1/CMD?ACT=SRCHA&IKT=1016&SRT=YOP&TRM=tit+de+revolutionibus+and+per+kopernikus+and+jah+15**+and+bbg+a*}%
+}
+One of these copies bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners:%
+\footnote{%
+  \url{https://opac.uni-erfurt.de/DB=1/XMLPRS=N/PPN?PPN=567506266}%
+}
+%
+\begin{itemize}
+  \item
+    Hieronymus Tilesius (1529–1566): autograph and date 1551
+  \item
+    NN: note, date 1553, name scraped out
+  \item
+    Johann Hommel (1518–1562), autograph
+  \item
+    Valentin Thau (1531–1575), note (greek proverb, possibly not denoting ownership)
+  \item
+    Ernest II, Duke of Saxe-Gotha-Altenburg (1745–1804): stamp/seal, initial
+  \item
+    Ducal Library, Gotha (a predecessor organisation of Gotha Research Library): stamp marking a duplicate
+  \item
+    Ernestine Gymnasium, Gotha: stamp
+  \item
+    Landesbibliothek Gotha: stamp
+\end{itemize}
+%
+Our researcher can immediately decide that they can ignore the second entry (no name given) and the last three entries (corporations).
+For the remaining four entries, our researcher follows the links given in the OPAC to the Integrated Authority File (GND) of the German National Library.%
+\footnote{%
+  \url{https://katalog.dnb.de/EN/home.html?v=plist}%
+}
+On inspection of these entries, it turns out that Ernest II was a regent and very probably not a scientist,
+and that the other three people---Tilesius, Hommel, and Thau---had professions such as theologian,
+mathematician, and astronomer, which qualifies them as scientists. Furthermore, Hommel's entry
+contains a reference to Thau with the relationship ``has student''
+(and Thau's entry contains the inverse reference to Hommel).
+From this reference, our researcher can conclude that two scientists in the teacher-student relation
+have both possessed the book. Since the data available does implies neither that Hommel passed the book (directly) to Thau
+nor that Thau was really an owner,
+our researcher can formulate hypotheses based on the retrieved data and start an in-depth research.
+
+The manual process that we have just described is cumbersome, laborious, and prone to errors and omissions for several reasons:
+The search in library catalogues for copies of works and their provenances requires expert skills.
+Catalogues with potential matches need to be selected manually,
+and each catalogue needs to be queried individually, using its own search functionality and syntax. \todo{give examples of commonalities (OPAC) and differences (discovery vs. OPAC)?}
+The traversal through all retrieved copies and the pursuit of each potential relevant provenance entry per copy 
+multiplies the amount of manual work necessary.
+Finally, it is not clear what an effective and efficient way to ``explore'' relationships would be:
+while it is easy to find direct relationships such as ``person $P_1$ is student of person $P_2$'' in the view for a person's entry
+in databases such as GND or Wikidata, there are relationships that cannot be discovered easily by hand,
+e.g., ``$P_1$ and $P_2$ are students of the same scholar''.
+
+It should be clear from this example that the process of answering questions such as \exaquery{2$'$}
+would strongly benefit from automated support, which could help reduce the amount of manual work, integrate heterogeneous data sources,
+incorporate background knowledge (e.g., every mathematician is a scientist),
+and discover relationships between entities that are not necessarily direct.
+It is also clear that, due to the incompleteness of data, query answers obtained by manual or automated search
+are always tentative in two complementary senses: First, if relevant provenance entries or relationships between people are missing
+in the data sources, then neither a human nor a machine will be able to retrieve the respective answers. Hence, the sets of query answers obtained
+are not necessarily complete.
+Second, since the relationship ``person $P_1$ passed a book on to another person $P_2$'' is generally omitted from
+provenance entries, a human or machine can only retrieve possible constellations such as the ones
+given above. Hence, not all query answers need to be correct, but all answers can be considered
+as informed hypotheses that initiate further research.
+
+\todo[inline]{!! ``scientist'' isn't given in GND for, e.g., Thau -- only more specific relations such as ``mathematician'', ``astronomer'', ``lawyer''. $\Rightarrow$ we need QA with taxonomies/ontologies !!}
+
+...
+%
+\begin{itemize}
+  \item
+    more examples for \exaquery{1} or \exaquery{3}?
+  \item
+    explain how \exaquery{1}--\exaquery{3} differ from each other
+  \item
+    In this thesis, focus on these three types of queries.
+    This is a deliberate restriction of what one can generally ask – scope of master's thesis!
+\end{itemize}
