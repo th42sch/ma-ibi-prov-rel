@@ -163,14 +163,44 @@ and to devise a method for obtaining answers in this abstract framework.
 \section{Aim and Research Question(s)}
 \label{sec:research_questions}
 
-\todo[inline]{TODO: import from \emph{Exposé}}
-
-We want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporations
+In this thesis, we pursue the goal of facilitating
+the automated retrieval of provenance relationships.
+More precisely,
+we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporations
 as well as the relationships between those. This method should consult standard data sources such as 
 library catalogues, authority files, and knowledge bases. The method should furthermore be implementable as a software tool
 that supports the user in formulating their queries, answering them, and exploring the data that supports the query answers.
 In the long term, we envisage that such a tool will support provenance research
 by prospectively retrieving potentially interesting constellations.
+
+This goal leads to the following
+central research question for this thesis.
+%
+\begin{quote}
+  \begin{itshape}
+    How can provenance relationships be modelled and automatically retrieved?
+  \end{itshape}
+\end{quote}
+%  
+This question implies several subordinate questions:
+%
+\begin{enumerate}[\subquestion{1}]
+  \item[\subquestion{1}]
+    \emph{Which data sources are available for answering provenance queries?}
+  \item[\subquestion{2}]
+    \emph{What are the overlap and differences between the contents of these data sources?}
+    \todo{Skip this one?}
+  \item[\subquestion{3}]
+    \emph{Which techniques and tools are available for the integration
+    of data from heterogeneous sources?}
+  \item[\subquestion{4}]
+    \emph{Based on the structure of the identified data sources,
+    how data sources, queries, and answers be modelled in an abstract framework?}
+  \item[\subquestion{5}]
+    \emph{What is a suitable method for retrieving provenance relationships
+    in that framework?}
+\end{enumerate}
+
 
 % -----------------------------------------------------------------
 \section{Outline}
