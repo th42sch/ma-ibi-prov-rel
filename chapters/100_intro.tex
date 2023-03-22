@@ -100,9 +100,51 @@ Hence, the state of data on persons and corporation is heterogeneous as well,
 and depending on the concrete individual, it may be necessary
 to consult several data sources and combine the obtained data.
 
+Given this diversity and heterogeneity of the existing data sources,
+it is currently difficult to impossible to retrieve provenance relationships
+that are not restricted to bibliographic items and their owners
+but which also involve various relationships between works, copies, and (multiple) owners.
+For example, one could be interested in answers to the following queries.
+%
+\begin{enumerate}
+  \item[\exaquery{1}]
+    Who read work $W$, in which manifestation and in which year?
+  \item[\exaquery{2}]
+    Which copies of work $W$ were passed from one of its owners to a collaborator (or a student)?
+  \item[\exaquery{3}]
+    What are the relationships between the recipients of work $W$
+    (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
+\end{enumerate}
+%
+Query~\exaquery{1} addresses works as well as their manifestations
+(e.g., editions of the same work in various languages).
+An answer to this query would allow it to trace the reception
+of the same work over several eras. For example, Duchess Luise Dorothea of Saxe-Gotha-Altenburg
+read French editions of English works.\todo{give more concrete example}\footnote{Dietrich Hakelberg, personal communication}
+%
+Queries~\exaquery{2} and~\exaquery{3}
+aim at highlighting the network
+that spans between the recipients of a work.
+For example, one of the two copies of Nicolaus Copernicus's
+main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
+that are now held by the Gotha Research Library of the University of Erfurt
+have been owned, or at least read, by several scholars
+from the circle around the author,
+some of which were in the teacher-student relationship;
+this can be verified using the accounts of Gingerich~\autocite[p.\,69]{Gingerich2002}
+and Salatowsky and Lotze~\autocite[p.\,142]{Salatowsky2015}
+or looking up the entry in the electronic catalogue of the library.%
+\footnote{\url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}, field ``Provenance(s)''}
+%
+An important difference between \exaquery{2} and~\exaquery{3} is the following.
+While \exaquery{2} fixes a relationship between two persons (``collaborator'' or ``student'')
+and asks for works in whose context this relation occurs,
+\exaquery{3} does not fix a particular relationship but asks for the entire context of
+the work or a manifestation or copy thereof.
+
   
 
-\todo[inline]{TODO: continue import from \emph{Exposé} -- par starting with ``Aufgrund der beschriebenen Vielfalt und Heterogenität der Datenquellen''}
+\todo[inline]{TODO: continue import from \emph{Exposé} -- par starting with ``Zur Beantwortung von Fragestellungen''}
 
 
 % -----------------------------------------------------------------
