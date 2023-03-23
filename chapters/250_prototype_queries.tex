@@ -10,26 +10,27 @@ in Chapter~\ref{chap:analysis},
 and they will be generalised by the abstract framework developed in Chapter~\ref{chap:modelling}.
 That framework will provide a rigorous definition of the queries that can be formulated
 within it.
-These queries \todo{patterns!} from Section~\ref{sec:background} have been identified
+These query patterns from Section~\ref{sec:background} have been identified
 as important examples by personal communication
-with provenance researchers\todo{ask more people?},%
+with provenance researchers\todo{ask more experts},%
 \footnote{Dietrich Hakelberg, Research Library Gotha of the University of Erfurt}
-which justifies our perception of them as prototypical.
+which justifies the choice of considering them as \emph{prototypical}.
 
-Obviously, the question arises whether these prototype queries are representative
+Obviously, the question arises whether these prototypical query patterns are representative
 for the range of queries that provenance researchers are interested in asking.
-In order to answer this question, an extensive interview study would be necessary,
-which would have to be based on very generic questions of a predominantly open-ended nature,
+The answer to that question would require an extensive interview study
+based on very generic questions of a predominantly open-ended nature,
 entailing a labour-intensive evaluation.
-Since this thesis focusses on technical aspects,
+Given that this thesis focusses on the technical prerequisites and realisation,
 such a study is clearly outside its scope. However, since the general framework that we will develop
 is informed by the available data sources
 and designed to cover a wide range of possible queries,
 it is reasonable to assume that tools developed on its basis will be helpful for provenance researchers.
-The extent to which researchers' needs are served can then be determined based on a prototype tool via a more specific user study
-with more focussed questions, which in turn can inform possible extensions of the framework.
+In subsequent work, the extent to which researchers' needs are served can
+be determined based on a prototype tool via a more focussed user study
+with more specific questions, which in turn can inform possible extensions of the framework.
 
-Let us now examine the prototype queries more closely.
+Let us now examine the prototypical query patterns more closely.
 %
 \begin{enumerate}
   \item[\exaquery{1}]
@@ -41,9 +42,9 @@ Let us now examine the prototype queries more closely.
     (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
 \end{enumerate}
 %
-In order to make these abstract query patterns more concrete, let us fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
+In order instantiate one of them, let us fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
 (short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) by the astronomer Nicolaus Copernicus (1473–1543) \autocite{Kopernikus1543}.
-We now consider the following instance of \exaquery{2}:
+We now consider the following concrete query, which is an instance of \exaquery{2}:
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
@@ -51,7 +52,7 @@ We now consider the following instance of \exaquery{2}:
     Which copies of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
 \end{enumerate}
 %
-Let us first assume that a researcher wants to answer this question.
+Let us first assume that a researcher wants to answer this query.
 One obvious way to proceed would be as follows: first, our researcher finds copies of \emph{De revolutionibus} 
 in online catalogues of libraries and library networks. For each such copy, they then inspect the provenance entries
 that name owners who were people (not corporations). Finally, our researcher will have to find those names in databases such as
@@ -113,7 +114,7 @@ while it is easy to find direct relationships such as \enquote{person $P_1$ is s
 in databases such as GND or Wikidata, there are relationships that cannot be discovered easily by hand,
 e.g., \enquote{$P_1$ and $P_2$ are students of the same scholar}.
 
-It should be clear from this example that the process of answering questions such as \exaquery{2$'$}
+It should be clear from this example that the process of answering queries such as \exaquery{2$'$}
 would strongly benefit from automated support, which could help reduce the amount of manual work, integrate heterogeneous data sources,
 incorporate background knowledge (e.g., every mathematician is a scientist),
 and discover relationships between entities that are not necessarily direct.

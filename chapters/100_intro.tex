@@ -104,7 +104,7 @@ Given this diversity and heterogeneity of the existing data sources,
 it is currently difficult to impossible to retrieve provenance relationships
 that are not restricted to bibliographic items and their owners
 but which also involve various relationships between works, copies, and (multiple) owners.
-For example, one could be interested in answers to the following queries.
+For example, one could be interested in answers to queries of the following form.
 %
 \begin{enumerate}
   \item[\exaquery{1}]
@@ -116,13 +116,19 @@ For example, one could be interested in answers to the following queries.
     (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
 \end{enumerate}
 %
-Query~\exaquery{1} addresses works as well as their manifestations
+In these examples, we use variables $W,M,C$ to refer to arbitrary works,
+manifestations, or copies. Therefore, \exaquery{1}--\exaquery{3} are in fact
+\emph{query patterns}, each of which represents a set of possible queries
+that can be obtained by assigning concrete objects to the variables.
+We will elaborate on this thought in Chapter~\ref{chap:prototype_queries}.
+
+Query Pattern~\exaquery{1} addresses works as well as their manifestations
 (e.g., editions of the same work in various languages).
-An answer to this query would allow it to trace the reception
+An answer to a query of this type would allow it to trace the reception
 of the same work over several eras. For example, Duchess Luise Dorothea of Saxe-Gotha-Altenburg
 read French editions of English works.\todo{give more concrete example}\footnote{Dietrich Hakelberg, personal communication}
-%
-Queries~\exaquery{2} and~\exaquery{3}
+
+Query Patterns~\exaquery{2} and~\exaquery{3}
 aim at highlighting the network
 that spans between the recipients of a work.
 For example, one of the two copies of Nicolaus Copernicus's
@@ -139,14 +145,14 @@ following the links to the GND entries of the owners,
 and inspecting the relationships between the owners in GND;
 see Chapter~\ref{chap:prototype_queries} for a more detailed derivation.
 %\footnote{\url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}, field \enquote{Provenance(s)}}
-%
-An important difference between \exaquery{2} and~\exaquery{3} is the following.
+
+An important difference between Patterns~\exaquery{2} and~\exaquery{3} is the following.
 While \exaquery{2} fixes a relationship between two persons (\enquote{collaborator} or \enquote{student})
 and asks for works in whose context this relation occurs,
 \exaquery{3} does not fix a particular relationship but asks for the entire context of
 the work or a manifestation or copy thereof.
 
-In order to answer queries such as \exaquery{1}--\exaquery{3},
+When attempting to answer queries conforming to patterns such as \exaquery{1}--\exaquery{3},
 it does not suffice to consult a single data source such as
 a catalogue, authority file, or knowledge base.
 Instead, it is necessary to consult several data sources
