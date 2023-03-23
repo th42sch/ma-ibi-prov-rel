@@ -272,8 +272,8 @@ We now model a data source (e.g., library catalogue, authority file, or other da
 using the exact notion of a graph that we have introduced above.
 %
 \begin{definition}
-  A \emph{data source over the namespace $\namespace=(\NI,\NC,\NR)$} is a labelled directed graph
-  over \namespace.
+  \scalebox{0.973}[1]{A \emph{data source over the namespace $\namespace=(\NI,\NC,\NR)$} is a labelled directed graph
+  over \namespace.}
 \end{definition}
 %
 %With this definition, we obviously commit ourselves to a restricted view of a data source:
@@ -295,15 +295,6 @@ For example, consider the following variant of the example query \exaquery{2} fr
 %
 Query~\exaquery{2$'$}
 should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
-Its node names fall into three groups:
-(1) the node named \term{De revolutionibus} represents that work;
-(2) the node $x$ represents a copy of this work that satisfies the conditions stated in~\exaquery{2$'$} and
-whose name is to be found;
-(3) the nodes $y,z$ represent the two owners (scientist and their student) whose names are not known.
-Consequently, $x$ serves as a placeholder for the answer to the query,
-and $y,z$ are placeholders for further individuals that \enquote{witness} the answer.
-We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
-of the query.
 
 \newcommand{\tikzexaquery}{%
   \node                                        (derev) {\fns\strut$\term{De revolutionibus}$};
@@ -341,6 +332,24 @@ of the query.
   \caption{A graph representing example query \exaquery{2$'$}}
   \label{fig:graph_for_exa_query2'}
 \end{figure}
+
+The nodes of this graph fall into three groups:
+%
+\begin{enumerate}[(1)]
+  \item
+    the node named \tikzinlinenode{\term{De revolutionibus}} represents that work;
+  \item
+    node \tikzinlinenode[ansvar]{$x$} represents a copy of this work that satisfies the conditions stated in~\exaquery{2$'$}
+    and whose name is to be found;
+  \item
+    nodes \tikzinlinenode[anovar]{$y$} and \tikzinlinenode[anovar]{$z$}
+    represent the two owners (scientist and their student) whose names are not known.
+\end{enumerate}
+%
+Consequently, node name $x$ serves as a placeholder for the answer to the query,
+and names $y,z$ are placeholders for further individuals that \enquote{witness} the answer.
+We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
+of the query.
 
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,

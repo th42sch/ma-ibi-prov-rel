@@ -63,6 +63,16 @@
 \tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm]
 \tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm]
 
+\newcommand{\tikzinlinenode}[2][]{%
+  \begin{tikzpicture}[
+    >=Latex,baseline=-2.4pt,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%    every edge/.style={draw=black,thick}
+  ]
+    \node[#1] () {\fns\strut#2};
+  \end{tikzpicture}%  
+}
+
 % ----- Theorems etc. -----
 \theoremstyle{plain}
 
