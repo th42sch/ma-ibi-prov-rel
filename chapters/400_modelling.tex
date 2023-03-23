@@ -11,7 +11,8 @@ In order to obtain a generic approach, we aim at providing rigorous definitions
 for these central concepts, and we seek intensional rather than extensional definitions.
 In particular, those definitions should not depend on concrete example queries or data sources
 such as the ones discussed in Chapters~\ref{chap:prototype_queries} and~\ref{chap:analysis};
-neither should they depend on concrete objects, concepts, or relationships (such as ``Copernicus'', ``copy of a work'', or ``student'').
+neither should they depend on concrete objects, concepts, or relationships
+(such as \enquote{Copernicus}, \enquote{copy of a work}, or \enquote{student}).
 Instead, we will develop an abstract model with precise but general definitions
 of the notions of a query, data source, and answer.
 This model can then be used with a multitude of concrete queries and data sources,
@@ -63,7 +64,7 @@ and they lend themselves to computationally well-behaved algorithms for query an
     %
     \begin{itemize}
       \item
-        no temporal distinctions (``is/was student'') or ``was owner in year $n$''. 
+        no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
       \item[$(\leadsto)$]
         no attributes for relationships (citation)
       \item[$\leadsto$]
@@ -123,7 +124,8 @@ which represents a part of the data described in Chapter~\ref{chap:prototype_que
 concerning a copy of Copernicus' \emph{De revolutionibus} at the
 Gotha Research Library \emph{(FB Gotha)}.
 For the sake of simplicity, the example graph deviates from the FRBR model
-by omitting the FRBR entities ``Expression'' and ``Manifestation'' between the nodes labelled ``Work'' and ``Item''.
+by omitting the FRBR entities \enquote{Expression} and \enquote{Manifestation}
+between the nodes labelled \enquote{Work} and \enquote{Item}.
 
 \newcommand{\tikzexagraph}[1][]{%
   \node [#1]                                (work1)   {\fns\tikztab{\term{De revolutionibus}}};
@@ -188,7 +190,7 @@ These considerations lead to the following definition of a labelled directed gra
 %    $V$ is a set, whose members are called or \emph{nodes};\footnote{%
 %      In classical graph theory, nodes are called \emph{vertices}; thus the set of
 %      nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
-%      and the more modern term ``node'' for brevity.%
+%      and the more modern term \enquote{node} for brevity.%
 %    }      
 %    \item 
 %    $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
@@ -209,7 +211,7 @@ These considerations lead to the following definition of a labelled directed gra
       $V$ is a set, whose members are called \emph{nodes};\footnote{%
         In classical graph theory, nodes are called \emph{vertices}; thus the set of
         nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
-        and the more modern term ``node'' for brevity.%
+        and the more modern term \enquote{node} for brevity.%
       }      
     \item 
       $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
@@ -294,12 +296,12 @@ For example, consider the following variant of the example query \exaquery{2} fr
 Query~\exaquery{2$'$}
 should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 Its node names fall into three groups:
-(1) the node named ``De revolutionibus'' represents that work;
+(1) the node named \term{De revolutionibus} represents that work;
 (2) the node $x$ represents a copy of this work that satisfies the conditions stated in~\exaquery{2$'$} and
 whose name is to be found;
 (3) the nodes $y,z$ represent the two owners (scientist and their student) whose names are not known.
 Consequently, $x$ serves as a placeholder for the answer to the query,
-and $y,z$ are placeholders for further individuals that ``witness'' the answer.
+and $y,z$ are placeholders for further individuals that \enquote{witness} the answer.
 We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
 of the query.
 
@@ -444,13 +446,13 @@ to the graph from Figure~\ref{fig:example_graph}.
 \section{Possible Extensions}
 \label{sec:possible_extensions}
 
-\todo[inline]{TODO; discuss more options? E.g., relations of arbitrary arity, data provenance, concrete values (``year of publication'')}
+\todo[inline]{TODO; discuss more options? E.g., relations of arbitrary arity, data provenance, concrete values (\enquote{year of publication})}
 
 \subsection*{Attributes on Relationships}
 
 \begin{itemize}
   \item
-    sketch idea: e.g., add year to relationship \term{has\_owner} -- example: ``passed on to'' requires descending year numbers \emph{and} no successor with intermediate year number
+    sketch idea: e.g., add year to relationship \term{has\_owner} -- example: \enquote{passed on to} requires descending year numbers \emph{and} no successor with intermediate year number
   \item
     explain difficulties: more complex formal machinery (def.\ of graphs, queries, and matches)
   \item
