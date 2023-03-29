@@ -42,6 +42,9 @@
 \setlength{\bibitemsep}{4pt}
 \RequirePackage[style=american,german=quotes,english=american]{csquotes}
 
+%\DeclareFontSeriesDefault{bf}{sb}
+\newcommand{\mybold}[1]{\textbf{\textsf{#1}}}
+
 
 %\pagestyle{empty}
 %\pagestyle{plain}
@@ -74,12 +77,30 @@
 }
 
 % ----- Theorems etc. -----
-\theoremstyle{plain}
+\newtheoremstyle{myplain} % name
+{\topsep}                    % Space above
+{\topsep}                    % Space below
+{\itshape}                   % Body font
+{}                           % Indent amount
+{\bfseries\sffamily}         % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}  % Theorem head spec (can be left empty, meaning ‘normal’)
 
-\theoremstyle{definition}
+\newtheoremstyle{mydefinition} % name
+{\topsep}                    % Space above
+{\topsep}                    % Space below
+{\upshape}                   % Body font
+{}                           % Indent amount
+{\bfseries\sffamily}         % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}  % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\theoremstyle{mydefinition}
 \newtheorem{definition}{Definition}
 
-%\renewcommand{\bfdefault}{ebsc}
+\theoremstyle{myplain}
 
 % ----------------- some colours ---------------------------
 \definecolor{gray}{rgb}{.5,.5,.5}
