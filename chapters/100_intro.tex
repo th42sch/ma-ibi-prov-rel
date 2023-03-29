@@ -9,23 +9,26 @@
 
 \todo[inline,color=red!30]{Address \enquote{Raubgut} (loot?), items acquired without purchase $\leadsto$ add relevant prototype queries?}
 
-In research on the historical holdings of university and research libraries,
-the origins of book copies\todo[color=red!30]{restrict to books only later!} are of central importance.
+In research on the historical holdings of %university and research libraries,
+cultural heritage institutions,
+the origins of cultural objects are of central importance.
 The origin of an item is also called its \emph{provenance} 
-and comprises the people or corporations\todo[color=red!30]{institution? see RDA toolkit. Throughout.}
+and comprises the people or corporate bodies
 that owned this item over time.
-Particularly interesting provenances are those related to the change of
-owners when book copies are passed on or distributed \autocite[p.\,2]{Hakelberg2016}.
+
+In the case of the holdings of university and research libraries,
+particularly interesting provenances are those related to the change of
+owners when a book exemplar is passed on or distributed \autocite[p.\,2]{Hakelberg2016}.
 Provenances can be reconstructed by marks of ownership
 such as stamps, bookplates (ex libris), or handwritten signatures:
 with the help of these features, it is possible to retrace
-the \enquote{history} of a book copy
+the \enquote{history} of a book exemplar
 or the extent of library holdings that have been scattered in the meantime \autocite[p.\,2]{Hakelberg2016}.
 
 In order to enable provenance research,
 libraries index the provenances of their historical holdings
 and make them available to users via their catalogues.
-A provenance entry refers to a person or corporation
+A provenance entry refers to a person or coporate body
 and to a feature that indicates ownership.
 In order for owners to be identified unequivocally,
 they are often given via a reference to authority files such as the
@@ -34,9 +37,9 @@ Integrated Authority File (GND) of the German National Library.%
   \url{https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd.html}%
 }
 The indexed provenance data makes it possible, for example,
-to query and reconstruct the books owned or held by a single person or corporation,
-to query the whereabouts of relevant copies,
-or to retrace the distribution of all indexed copies of a work.
+to query and reconstruct the items owned or held by a single person or corporate body,
+to query the whereabouts of relevant items,
+or to retrace the distribution of all indexed exemplars derived from a given work.
 
 Nowadays, provenance entries are recorded in electronic catalogues.
 German university and research libraries typically do not 
@@ -68,9 +71,9 @@ in data fields on the bibliographic level,
 while others use the level on the exemplar level.
 These deviations lead to large differences in the presentation
 of the holdings in the online catalogue,
-which hinders the retrieval of relevant copies and historical holdings.
+which hinders the retrieval of relevant items and historical holdings.
 
-Data about persons and corporations are recorded
+Data about persons and corporate bodies are recorded
 in Germany- or worldwide authority files and further databases,
 such as the previously mentioned GND,
 the \emph{WorldCat},%
@@ -86,7 +89,7 @@ such as MARC~21 and RDF via several interfaces in the case of GND.
 Data about a person contain, among others, the name and alternative name forms
 (which can be manifold in the case of, e.g., scholars of previous centuries),
 places of birth, death, and work,
-as well as relationships to corporations and other persons
+as well as relationships to corporate bodies and other persons
 (e.g., coauthors and students).
 The extent of a dataset of the same person can differ between data sources,
 which is witnessed, for example, by the entries on the scholar
@@ -94,19 +97,19 @@ Georg Joachim Rheticus in ISNI, VIAF, WorldCat, GND, and Wikidata.%
 \footnote{%
   This can be verified by following,
   at the end of the Wikipedia page on Rheticus 
-  in the table „Authority Control“ \url{https://en.wikipedia.org/wiki/Georg_Joachim_Rheticus\#External_links}\,,
+  in the table \enquote{Authority Control} \url{https://en.wikipedia.org/wiki/Georg_Joachim_Rheticus\#External_links}\,,
   the links to ISNI, VIAF, WorldCat und GND,
   and inspecting the Wikidata data set
   \url{https://www.wikidata.org/wiki/Q93588}\,.
 }
-Hence, the state of data on persons and corporation is heterogeneous as well,
+Hence, the state of data on persons and corporate body is heterogeneous as well,
 and depending on the concrete individual, it may be necessary
 to consult several data sources and combine the obtained data.
 
 Given this diversity and heterogeneity of the existing data sources,
 it is currently difficult to impossible to retrieve provenance relationships
-that are not restricted to bibliographic items and their owners
-but which also involve various relationships between works, copies, and (multiple) owners.
+that are not restricted to bibliographic objects and their owners
+but which also involve various relationships between works, exemplars, and (multiple) owners.
 For example, one could be interested in answers to queries of the following form.
 %
 \begin{enumerate}
@@ -114,14 +117,22 @@ For example, one could be interested in answers to queries of the following form
     Who read\todo[color=red!30]{read $\neq$ own; make clear what is meant}
     work $W$, in which manifestation and in which year?
   \item[\exaquery{2}]
-    Which copies of work $W$ were passed from one of its owners to a collaborator (or a student)?
+    Which exemplars% 
+    \footnote{%
+      Conforming to the FRBR model,
+      the precise wording should be \enquote{examplars of manifestations of expressions of $W$}
+      but, here and in the following,
+      we omit the intermediate entities for brevity when no misunderstanding is expected.%
+    }\todo{cite FRBR model}
+    of work $W$
+    were passed from one of its owners to a collaborator (or a student)?
   \item[\exaquery{3}]
     What are the relationships between the recipients of work $W$
-    (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
+    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
 \end{enumerate}
 %
 In these examples, we use variables $W,M,C$ to refer to arbitrary works,
-manifestations, or copies. Therefore, \exaquery{1}--\exaquery{3} are in fact
+manifestations, or exemplars. Therefore, \exaquery{1}--\exaquery{3} are in fact
 \emph{query patterns}, each of which represents a set of possible queries
 that can be obtained by assigning concrete objects to the variables.
 We will elaborate on this thought in Chapter~\ref{chap:prototype_queries}.
@@ -135,7 +146,7 @@ read French editions of English works.\todo{give more concrete example}\footnote
 Query Patterns~\exaquery{2} and~\exaquery{3}
 aim at highlighting the network
 that spans between the recipients of a work.
-For example, one of the two copies of Nicolaus Copernicus's
+For example, one of the two exemplars of Nicolaus Copernicus's
 main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
 that are now held by the Gotha Research Library of the University of Erfurt
 have been owned, or at least read, by several scholars
@@ -154,7 +165,7 @@ An important difference between Patterns~\exaquery{2} and~\exaquery{3} is the fo
 While \exaquery{2} fixes a relationship between two persons (\enquote{collaborator} or \enquote{student})
 and asks for works in whose context this relation occurs,
 \exaquery{3} does not fix a particular relationship but asks for the entire context of
-the work or a manifestation or copy thereof.
+the work or a manifestation or exemplar thereof.
 
 When attempting to answer queries conforming to patterns such as \exaquery{1}--\exaquery{3},
 it does not suffice to consult a single data source such as
@@ -183,7 +194,7 @@ and to devise a method for obtaining answers in this abstract framework.
         from a modelling point of view, it is highly relevant concerning the
         amount of query answers and their handling.
       \item
-        Copies with traces of ownerships that do not name the owner
+        Exemplars with traces of ownerships that do not name the owner
         can be particularly interesting to study in the context of missing holdings.
         Some libraries record such traces (e.g., HAAB Weimar), but of course not exhaustively so.
         Could this be a prototype query that can be incorporated into the model,
@@ -199,7 +210,7 @@ and to devise a method for obtaining answers in this abstract framework.
 In this thesis, we pursue the goal of facilitating
 the automated retrieval of provenance relationships.
 More precisely,
-we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporations
+we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and coporate bodies
 as well as the relationships between those. This method should consult standard data sources such as 
 library catalogues, authority files, and knowledge bases. The method should furthermore be implementable as a software tool
 that supports the user in formulating their queries, answering them, and exploring the data that supports the query answers.
