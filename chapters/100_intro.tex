@@ -7,10 +7,13 @@
 \section{Background}
 \label{sec:background}
 
+\todo[inline,color=red!30]{Address \enquote{Raubgut} (loot?), items acquired without purchase $\leadsto$ add relevant prototype queries?}
+
 In research on the historical holdings of university and research libraries,
 the origins of book copies\todo{really restrict to books?} are of central importance.
 The origin of an item is also called its \emph{provenance} 
-and comprises the people or corporations that owned this item over time.
+and comprises the people or corporations\todo[color=red!30]{institution? see RDA toolkit. Throughout.}
+that owned this item over time.
 Particularly interesting provenances are those related to the change of
 owners when book copies are passed on or distributed \autocite[p.\,2]{Hakelberg2016}.
 Provenances can be reconstructed by marks of ownership
@@ -169,6 +172,24 @@ it is necessary to analyse available data sources, data models, and data integra
 to develop an abstract model of data sources and possible queries,
 and to devise a method for obtaining answers in this abstract framework.
 
+\todo[inline,color=red!30,caption={}]{%
+  Further thoughts on prototype queries:
+  \parbox{.99\linewidth}{%
+    \begin{itemize}
+      \item
+        While the difference between persons and institutions may be negligible
+        from a modelling point of view, it is highly relevant concerning the
+        amount of query answers and their handling.
+      \item
+        Copies with traces of ownerships that do not name the owner
+        can be particularly interesting to study in the context of missing holdings.
+        Some libraries record such traces (e.g., HAAB Weimar), but of course not exhaustively so.
+        Could this be a prototype query that can be incorporated into the model,
+        or should it be discussed under possible extensions?
+    \end{itemize}
+  }
+}
+
 % -----------------------------------------------------------------
 \section{Aim and Research Question}
 \label{sec:research_questions}
@@ -210,6 +231,13 @@ This question implies several subordinate questions:
     \emph{What is a suitable method for retrieving provenance relationships
     in that framework?}
 \end{enumerate}
+
+
+% -----------------------------------------------------------------
+\section{Methods}
+\label{sec:methods}
+
+\todo[inline,color=red!30]{Connect questions from library science with methods from maths/theor. CS $\leadsto$ benefit. Name methods for each SQ?}
 
 
 % -----------------------------------------------------------------
