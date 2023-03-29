@@ -37,10 +37,10 @@ Let us now examine the prototypical query patterns more closely.
   \item[\exaquery{1}]
     Who read work $W$, in which manifestation and in which year?
   \item[\exaquery{2}]
-    Which copies of work $W$ were passed from one of its owners to a collaborator (or a student)?
+    Which exemplars of work $W$ were passed from one of its owners to a collaborator (or a student)?
   \item[\exaquery{3}]
     What are the relationships between the recipients of work $W$
-    (or of manifestation $M$ of $W$ or of copy $C$ of $W$, respectively)?
+    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
 \end{enumerate}
 %
 In order instantiate one of them, let us fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
@@ -49,23 +49,23 @@ We now consider the following concrete query, which is an instance of \exaquery{
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
-%    Which copies of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
-    Which copies of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
+%    Which exemplars of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
+    Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
 \end{enumerate}
 %
 Let us first assume that a researcher wants to answer this query.
-One obvious way to proceed would be as follows: first, our researcher finds copies of \emph{De revolutionibus} 
-in online catalogues of libraries and library networks. For each such copy, they then inspect the provenance entries
+One obvious way to proceed would be as follows: first, our researcher finds exemplars of \emph{De revolutionibus} 
+in online catalogues of libraries and library networks. For each such exemplar, they then inspect the provenance entries
 that name owners who were people (not corporations). Finally, our researcher will have to find those names in databases such as
 authority files or Wikidata and, for each entry, explore the specified profession (\enquote{scientist})
 and relationships to other people (\enquote{student}).
 
-For example, the online catalogue (OPAC) of the Gotha Research Library of the University of Erfurt (Forschungsbibliothek Gotha) lists two printed copies
+For example, the online catalogue (OPAC) of the Gotha Research Library of the University of Erfurt (Forschungsbibliothek Gotha) lists two printed exemplars
 of \emph{De revolutionibus}.%
 \footnote{%
   \url{https://opac.uni-erfurt.de/DB=1/CMD?ACT=SRCHA&IKT=1016&SRT=YOP&TRM=tit+de+revolutionibus+and+per+kopernikus+and+jah+15**+and+bbg+a*}%
 }
-One of these copies bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners:%
+One of those bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners:%
 \footnote{%
   \url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}%
 }
@@ -100,15 +100,15 @@ mathematician, and astronomer, which qualifies them as scientists. Furthermore, 
 contains a reference to Thau with the relationship \enquote{has student}
 (and Thau's entry contains the inverse reference to Hommel).
 From this reference, our researcher can conclude that two scientists in the teacher-student relation
-have both possessed the book. Since the data available does implies neither that Hommel passed the book (directly) to Thau
+have both possessed the exemplar. Since the data available does implies neither that Hommel passed the exemplar (directly) to Thau
 nor that Thau was really an owner,
 our researcher can formulate hypotheses based on the retrieved data and start an in-depth research.
 
 The manual process that we have just described is cumbersome, laborious, and prone to errors and omissions for several reasons:
-The search in library catalogues for copies of works and their provenances requires expert skills.
+The search in library catalogues for exemplars of works and their provenances requires expert skills.
 Catalogues with potential matches need to be selected manually,
 and each catalogue needs to be queried individually, using its own search functionality and syntax. \todo{give examples of commonalities (OPAC) and differences (discovery vs. OPAC)?}
-The traversal through all retrieved copies and the pursuit of each potential relevant provenance entry per copy 
+The traversal through all retrieved exemplars and the pursuit of each potential relevant provenance entry per exemplar 
 multiplies the amount of manual work necessary.
 Finally, it is not clear what an effective and efficient way to \enquote{explore} relationships would be:
 while it is easy to find direct relationships such as \enquote{person $P_1$ is student of person $P_2$} in the view for a person's entry
