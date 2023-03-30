@@ -46,7 +46,24 @@
   % =================================================================
 %%%  \bibliographystyle{babalpha}
 %%%  \bibliography{bib/ma_jabref}
-  \printbibliography
+
+%  \printbibliography
+
+  \printbibheading[title=References]
+  \printbibliography[%
+    heading=subbibliography,
+    title={Bibliography},
+    nottype=online,
+    omitnumbers
+  ]
+  
+  \newrefcontext[sorting=none]
+  \printbibliography[%
+    heading=subbibliography,
+    title={Web Resources},
+    type=online,
+    env=online
+  ]
 
   \includepdf{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
 
