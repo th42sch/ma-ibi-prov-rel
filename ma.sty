@@ -45,8 +45,63 @@
 \addbibresource{bib/ma_jabref.bib}
 \setlength{\bibitemsep}{4pt}
 
+% --- Citations in brackets rather than parens
 \DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket}
 
+% --- Preparations for longer hyperlink anchors in citations
+\renewbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \iffieldundef{shorthand}
+    {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+      {\usebibmacro{cite:label}%
+        \setunit{\printdelim{nonameyeardelim}}}
+      {\printnames{labelname}%
+        \setunit{\printdelim{nameyeardelim}}}%
+      \usebibmacro{cite:labeldate+extradate}}
+    {\usebibmacro{cite:shorthand}}}}
+
+\renewbibmacro*{citeyear}{%
+  \printtext[bibhyperref]{%
+    \iffieldundef{shorthand}
+    {\iffieldundef{labelyear}
+      {\usebibmacro{cite:label}}
+      {\usebibmacro{cite:labeldate+extradate}}}
+    {\usebibmacro{cite:shorthand}}}}
+
+\renewbibmacro*{textcite}{%
+  \ifnameundef{labelname}
+  {\iffieldundef{shorthand}
+    {\printtext[bibhyperref]{%
+        \usebibmacro{cite:label}}%
+      \setunit{%
+        \global\booltrue{cbx:parens}%
+        \printdelim{nonameyeardelim}\bibopenparen}%
+      \ifnumequal{\value{citecount}}{1}
+      {\usebibmacro{prenote}}
+      {}%
+      \printtext[bibhyperref]{\usebibmacro{cite:labeldate+extradate}}}
+    {\printtext[bibhyperref]{\usebibmacro{cite:shorthand}}}}
+  {\printtext[bibhyperref]{\printnames{labelname}}%
+    \setunit{%
+      \global\booltrue{cbx:parens}%
+      \printdelim{nameyeardelim}\bibopenparen}%
+    \ifnumequal{\value{citecount}}{1}
+    {\usebibmacro{prenote}}
+    {}%
+    \usebibmacro{citeyear}}}
+
+\renewbibmacro*{cite:shorthand}{%
+  \printfield{shorthand}}
+
+\renewbibmacro*{cite:label}{%
+  \iffieldundef{label}
+  {\printfield[citetitle]{labeltitle}}
+  {\printfield{label}}}
+
+\renewbibmacro*{cite:labeldate+extradate}{%
+  \printlabeldateextra}
+
+% --- Preparations for two bibliographies
 \letbibmacro{cite:default}{cite}
 
 \newbibmacro{cite:online}{%
@@ -78,6 +133,7 @@
 
 \DeclareRefcontext{online}{labelprefix=Web}
 
+
 % ===== General settings =====
 %\pagestyle{empty}
 %\pagestyle{plain}
@@ -96,6 +152,52 @@
 \counterwithout{footnote}{chapter}
 
 \newcommand{\fns}{\footnotesize}
+
+% ===== Colours =====
+
+\definecolor{gray}{rgb}{.5,.5,.5}
+\definecolor{dgray}{rgb}{.2,.2,.2}
+%\definecolor{dgblu}{rgb}{.2,.2,.27}
+%\definecolor{dgblu}{rgb}{.2,.2,.32}
+%\definecolor{dgblu}{rgb}{.18,.18,.29}
+\definecolor{dgblu}{rgb}{.1,.1,.5}
+
+\definecolor{lightblue}{rgb}{0.929,0.953,0.996}
+\definecolor{medblue}{rgb}{0.816,0.922,0.996}
+\colorlet{ansvar}{yellow!50!white}
+\colorlet{anovar}{orange!30!white}
+
+%\colorlet{Econnred}{red!50}
+%\colorlet{Econnblue}{blue!20}
+%\colorlet{Econngreen}{green!10}
+%\colorlet{Econniso}{black}
+%
+\colorlet{Econnred}{red!7}
+\colorlet{Econnblue}{blue!25}
+\colorlet{Econngreen}{green!50!black}
+\colorlet{Econniso}{white}
+
+\colorlet{ctableone}{white}
+\colorlet{ctabletwo}{lightblue}
+\colorlet{ctablehead}{medblue}
+
+
+%\definecolor{solblue}{HTML}{268BD2}
+\colorlet{linkblue}{dgblu}
+
+% ===== hyperref setup =====
+
+\hypersetup{
+  pdfhighlight = /P,
+  colorlinks=true,
+  urlcolor=linkblue,
+  filecolor=linkblue,
+  linkcolor=linkblue,
+  citecolor=linkblue,
+  raiselinks=true,
+  breaklinks,
+  unicode,
+}
 
 % ===== Macros for TikZ pictures =====
 \newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
@@ -138,33 +240,7 @@
 
 \theoremstyle{myplain}
 
-% ----------------- some colours ---------------------------
-\definecolor{gray}{rgb}{.5,.5,.5}
-\definecolor{dgray}{rgb}{.2,.2,.2}
-%\definecolor{dgblu}{rgb}{.2,.2,.27}
-%\definecolor{dgblu}{rgb}{.2,.2,.32}
-%\definecolor{dgblu}{rgb}{.18,.18,.29}
-\definecolor{dgblu}{rgb}{.1,.1,.5}
-
-\definecolor{lightblue}{rgb}{0.929,0.953,0.996}
-\definecolor{medblue}{rgb}{0.816,0.922,0.996}
-\colorlet{ansvar}{yellow!50!white}
-\colorlet{anovar}{orange!30!white}
-
-%\colorlet{Econnred}{red!50}
-%\colorlet{Econnblue}{blue!20}
-%\colorlet{Econngreen}{green!10}
-%\colorlet{Econniso}{black}
-%
-\colorlet{Econnred}{red!7}
-\colorlet{Econnblue}{blue!25}
-\colorlet{Econngreen}{green!50!black}
-\colorlet{Econniso}{white}
-
-\colorlet{ctableone}{white}
-\colorlet{ctabletwo}{lightblue}
-\colorlet{ctablehead}{medblue}
-
+% ==============
 
 \newcommand{\textsfbf}[1]{\textsf{\textbf{{\boldmath #1}}}}
 \newcommand{\textsfbfgr}[1]{\textsf{\textbf{\textcolor{dgray}{#1}}}}
