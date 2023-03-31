@@ -9,6 +9,7 @@
 \RequirePackage{xcolor}
 %\RequirePackage[pdfborder={0 0 0}]{hyperref}
 \RequirePackage{hyperref}
+\RequirePackage[symbol=${}^{\uparrow}$]{footnotebackref}
 %\RequirePackage{xurl}
 %\RequirePackage[scaled=1.12]{nimbusmononarrow}
 %\RequirePackage{inconsolata}
@@ -142,6 +143,14 @@
 {\item}
 
 \DeclareRefcontext{online}{labelprefix=Web}
+
+% --- Omit year from web resources
+\AtEveryBibitem{%
+  \ifentrytype{online}{%
+    \clearfield{labelyear}%
+  }{%
+  }%
+}
 
 
 % ===== General settings =====
