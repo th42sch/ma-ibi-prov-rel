@@ -48,6 +48,9 @@
 % --- Citations in brackets rather than parens
 \DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket}
 
+% --- Declare redundant languages 
+\DeclareRedundantLanguages{English}{english,american,british,canadian,australian,newzealand,USenglish,UKenglish}
+
 % --- Preparations for longer hyperlink anchors in citations
 \renewbibmacro*{cite}{%
   \printtext[bibhyperref]{%
