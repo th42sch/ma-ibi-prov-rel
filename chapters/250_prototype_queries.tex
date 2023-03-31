@@ -3,6 +3,10 @@
 \chapter{Prototype Queries}
 \label{chap:prototype_queries}
 
+% -----------------------------------------------------------------
+\section{Prototype Queries and Answer Retrieval}
+\label{sec:prototype_queries}
+
 As a first step towards delineating the type of queries that should be covered by our approach,
 we examine the query patterns introduced in Section~\ref{sec:background} more closely.
 Those will serve as a point of reference for the analysis of the available data sources
@@ -43,9 +47,11 @@ Let us now examine the prototypical query patterns more closely.
     (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
 \end{enumerate}
 %
-In order instantiate one of them, let us fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
+We want to instantiate \exaquery{2} and demonstrate how a researcher
+could proceed (manually) in order to answer that query.
+For this purpose, we fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
 (short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) by the astronomer Nicolaus Copernicus (1473–1543) \autocite{Kopernikus1543}.
-We now consider the following concrete query, which is an instance of \exaquery{2}:
+We thus consider the following concrete query.
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
@@ -104,6 +110,10 @@ have both possessed the exemplar. Since the data available does implies neither 
 nor that Thau was really an owner,
 our researcher can formulate hypotheses based on the retrieved data and start an in-depth research.
 
+% -----------------------------------------------------------------
+\section{Manual Versus Automated Query Answering}
+\label{sec:manual_vs_automated}
+
 The manual process that we have just described is cumbersome, laborious, and prone to errors and omissions for several reasons:
 The search in library catalogues for exemplars of works and their provenances requires expert skills.
 Catalogues with potential matches need to be selected manually,
@@ -111,7 +121,7 @@ and each catalogue needs to be queried individually, using its own search functi
 The traversal through all retrieved exemplars and the pursuit of each potential relevant provenance entry per exemplar 
 multiplies the amount of manual work necessary.
 Finally, it is not clear what an effective and efficient way to \enquote{explore} relationships would be:
-while it is easy to find direct relationships such as \enquote{person $P_1$ is student of person $P_2$} in the view for a person's entry
+while it is easy to find direct relationships such as \enquote{is student of} in the view for a person's entry
 in databases such as GND or Wikidata, there are relationships that cannot be discovered easily by hand,
 e.g., \enquote{$P_1$ and $P_2$ are students of the same scholar}.
 
@@ -119,24 +129,52 @@ It should be clear from this example that the process of answering queries such 
 would strongly benefit from automated support, which could help reduce the amount of manual work, integrate heterogeneous data sources,
 incorporate background knowledge (e.g., every mathematician is a scientist),
 and discover relationships between entities that are not necessarily direct.
-It is also clear that, due to the incompleteness of data, query answers obtained by manual or automated search
-are always tentative in two complementary senses: First, if relevant provenance entries or relationships between people are missing
-in the data sources, then neither a human nor a machine will be able to retrieve the respective answers. Hence, the sets of query answers obtained
-are not necessarily complete.
-Second, since the relationship \enquote{person $P_1$ passed a book on to another person $P_2$} is generally omitted from
-provenance entries, a human or machine can only retrieve possible constellations such as the ones
-given above. Hence, not all query answers need to be correct, but all answers can be considered
-as informed hypotheses that initiate further research.
+
+
+% -----------------------------------------------------------------
+\section{Quality of Query Answers}
+\label{sec:quality_of_answers}
+
+It becomes clear from this simple example already that the quality of query answers
+strongly depends on the quality of the underlying data, regardless of whether they are
+obtained manually or automatically. 
+Interestingly, incompleteness of the data can occur on
+two levels, with different consequences on the quality of the query answers obtained:
+First, the lack of single provenance entries or relationships in the data
+unsurprisingly leads to missing answers.
+In the above example, if some \enquote{has student} relationships
+between owners of the exemplar are missing in the data, then the respective answers
+cannot be obtained; the resulting set of answers can be regarded as
+an \emph{underapproximation} of the real set of answers.
+Second, the general decision not to record certain relationships in provenance entries%
+---such as \enquote{passed a book on to} from
+the above example, or \enquote{read} from \exaquery{1}---%
+completely prevents the answering of queries instantiating our prototypes when
+those relationships are taken literally.
+However, the example shows that it is possible to \emph{overapproximate}
+the set of query answers by \emph{assuming} that the respective relationships hold
+between the entities that match the remaining parts of the query.
+The resulting, potentially spurious, answers can serve as candidates
+that need to be inspected and further investigated by the researcher who
+posed the original query.
 
 \todo[inline]{!! GND doesn't give \enquote{scientist} for, e.g., Thau -- it uses more specific relations such as \enquote{mathematician}, \enquote{astronomer}, \enquote{lawyer}. $\Rightarrow$ we need query answering with taxonomies/ontologies !!}
 
-A similar imprecision can be observed for Query Pattern~\exaquery{1}:
-While the pattern names the action \enquote{read} because it reflects the \emph{reception}
-of a work in which researchers are interested,
-the available provenance data typically supports the relationship{owned}.
-As a consequence, query answers obtained from the data
-can only be expected to contain \emph{owners}, not \emph{readers},
-and further interpretation and research are necessary to obtain conclusive answers.
+In the light of these observations,
+it is best to regard query answers obtained automatically
+as *** candidate constellations *** and *** the service of QA as prospectively providing
+candidate constellations. ***
+
+
+%A similar imprecision can be observed for Query Pattern~\exaquery{1}:
+%While the pattern names the action \enquote{read} because it reflects the \emph{reception}
+%of a work in which researchers are interested,
+%the available provenance data typically supports the relationship{owned}.
+%As a consequence, query answers obtained from the data
+%can only be expected to contain \emph{owners}, not \emph{readers},
+%and further interpretation and research are necessary to obtain conclusive answers.
+
+
 
 
 %
