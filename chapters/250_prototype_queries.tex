@@ -1,11 +1,7 @@
 % !TeX spellcheck = en_GB
 % =================================================================
-\chapter{Prototype Queries}
+\chapter{Prototype Queries and Answers}
 \label{chap:prototype_queries}
-
-% -----------------------------------------------------------------
-\section{Prototype Queries and Answer Retrieval}
-\label{sec:prototype_queries}
 
 As a first step towards delineating the type of queries that should be covered by our approach,
 we examine the query patterns introduced in Section~\ref{sec:background} more closely.
@@ -14,7 +10,24 @@ in Chapter~\ref{chap:analysis},
 and they will be generalised by the abstract framework developed in Chapter~\ref{chap:modelling}.
 That framework will provide a rigorous definition of the queries that can be formulated
 within it.
-These query patterns from Section~\ref{sec:background} have been identified
+
+% -----------------------------------------------------------------
+\section{Prototype Queries}
+\label{sec:prototype_queries}
+
+The query patterns introduced in Section~\ref{sec:background} are the following.
+%
+\begin{enumerate}
+  \item[\exaquery{1}]
+    Who read work $W$, in which manifestation and in which year?
+  \item[\exaquery{2}]
+    Which exemplars of work $W$ were passed from one of its owners to a collaborator (or a student)?
+  \item[\exaquery{3}]
+    What are the relationships between the recipients of work $W$
+    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
+\end{enumerate}
+%
+These query patterns have been identified
 as important examples by personal communication
 with provenance researchers\todo{ask more experts},%
 \footnote{Dietrich Hakelberg, Research Library Gotha of the University of Erfurt}
@@ -35,22 +48,14 @@ In subsequent work, when our method will hopefully have been implemented in a pr
 the extent to which researchers' needs are served can be determined by means of a more focussed user study
 with more specific questions, which in turn can inform possible extensions of the framework.
 
-Let us now examine the prototypical query patterns more closely.
-%
-\begin{enumerate}
-  \item[\exaquery{1}]
-    Who read work $W$, in which manifestation and in which year?
-  \item[\exaquery{2}]
-    Which exemplars of work $W$ were passed from one of its owners to a collaborator (or a student)?
-  \item[\exaquery{3}]
-    What are the relationships between the recipients of work $W$
-    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
-\end{enumerate}
-%
-We want to instantiate \exaquery{2} and demonstrate how a researcher
-could proceed (manually) in order to answer that query.
-For this purpose, we fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
-(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) by the astronomer Nicolaus Copernicus (1473–1543) \autocite{Kopernikus1543}.
+% -----------------------------------------------------------------
+\section{Manual Answer Retrieval}
+\label{sec:manual_answering}
+
+In order to demonstrate how a researcher could proceed (manually) when answering a query,
+we take Pattern~\exaquery{2} and fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
+(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
+by the astronomer Nicolaus Copernicus (1473–1543).
 We thus consider the following concrete query.
 %
 \begin{enumerate}
@@ -59,8 +64,8 @@ We thus consider the following concrete query.
     Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
 \end{enumerate}
 %
-Let us first assume that a researcher wants to answer this query.
-One obvious way to proceed would be as follows: first, our researcher finds exemplars of \emph{De revolutionibus} 
+When answering \exaquery{2$'$}, an obvious way to proceed is the following:
+first, our researcher finds exemplars of \emph{De revolutionibus} 
 in online catalogues of libraries and library networks. For each such exemplar, they then inspect the provenance entries
 that name owners who were people (not corporate bodies). Finally, our researcher will have to find those names in databases such as
 authority files or Wikidata and, for each entry, explore the specified profession (\enquote{scientist})
@@ -108,7 +113,7 @@ contains a reference to Thau with the relationship \enquote{has student}
 From this reference, our researcher can conclude that two scientists in the teacher-student relation
 have both possessed the exemplar. Since the data available does implies neither that Hommel passed the exemplar (directly) to Thau
 nor that Thau was really an owner,
-our researcher can formulate hypotheses based on the retrieved data and start an in-depth research.
+our researcher needs to formulate hypotheses based on the retrieved data and conduct further research.
 
 % -----------------------------------------------------------------
 \section{Manual Versus Automated Query Answering}
