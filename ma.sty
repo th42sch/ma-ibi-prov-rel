@@ -5,7 +5,7 @@
 %\RequirePackage{marvosym}
 \RequirePackage{xspace}
 %\RequirePackage{calc}
-\RequirePackage{microtype}
+\RequirePackage[final]{microtype}
 \RequirePackage{xcolor}
 %\RequirePackage[pdfborder={0 0 0}]{hyperref}
 \RequirePackage{hyperref}
@@ -167,6 +167,9 @@
 \parskip6pt
 \parindent0pt
 \Urlmuskip=0mu plus 10mu
+
+% ----- highlight overfull hboxes
+%\overfullrule=5pt
 
 %\DeclareFontSeriesDefault{bf}{sb}
 \newcommand{\mybold}[1]{\textbf{\textsf{#1}}}
