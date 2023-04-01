@@ -138,14 +138,24 @@ and discover relationships between entities that are not necessarily direct.
 It becomes clear from this simple example already that the quality of query answers
 strongly depends on the quality of the underlying data, regardless of whether they are
 obtained manually or automatically. 
-Interestingly, incompleteness of the data can occur on
-two levels, with different consequences on the quality of the query answers obtained:
-First, the lack of single provenance entries or relationships in the data
-unsurprisingly leads to missing answers.
+In the following, we identify two distinct causes for data sources being incomplete.
+
+Interestingly, data sources can be incomplete for two different reasons,
+and there are several ways to handle the incompleteness,
+which have different consequences on the quality of the query answers obtained,
+as we will argue now.
+
+The first reason for incompleteness is an unsystematic lack of entries,
+for instance, when single provenance entries or relationships are missing in the data.
+Unsurprisingly, this effect leads to missing answers.
 In the above example, if some \enquote{has student} relationships
 between owners of the exemplar are missing in the data, then the respective answers
-cannot be obtained; the resulting set of answers can be regarded as
+simply cannot be obtained. The resulting set of answers can be regarded as
 an \emph{underapproximation} of the real set of answers.
+
+The second reason for incompleteness is a systematic lack of entries,
+caused by the general decision not to record certain relationships in provenance entries.
+
 Second, the general decision not to record certain relationships in provenance entries%
 ---such as \enquote{passed a book on to} from
 the above example, or \enquote{read} from \exaquery{1}---%
@@ -156,7 +166,7 @@ the set of query answers by \emph{assuming} that the respective relationships ho
 between the entities that match the remaining parts of the query.
 The resulting, potentially spurious, answers can serve as candidates
 that need to be inspected and further investigated by the researcher who
-posed the original query.
+posed the query in the first place.
 
 \todo[inline]{!! GND doesn't give \enquote{scientist} for, e.g., Thau -- it uses more specific relations such as \enquote{mathematician}, \enquote{astronomer}, \enquote{lawyer}. $\Rightarrow$ we need query answering with taxonomies/ontologies !!}
 
