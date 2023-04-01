@@ -111,15 +111,106 @@ mathematician, and astronomer, which qualifies them as scientists. Furthermore, 
 contains a reference to Thau with the relationship \enquote{has student}
 (and Thau's entry contains the inverse reference to Hommel).
 From this reference, our researcher can conclude that two scientists in the teacher-student relation
-have both possessed the exemplar. Since the data available does implies neither that Hommel passed the exemplar (directly) to Thau
-nor that Thau was really an owner,
-our researcher needs to formulate hypotheses based on the retrieved data and conduct further research.
+have both possessed the exemplar. 
+
+Unfortunately, the data available does not imply that Hommel passed the exemplar (directly) to Thau;
+furthermore, the provenance entry for Thau raises doubts as to whether Thau was really an owner of the exemplar.
+Therefore, the retrieved data can only be regarded as a \emph{candidate answer}
+which entails the hypothesis that the found exemplar was passed from Hommel to Thau.
+Our researcher can now engage in further research in order to verify that hypothesis.
+
+% -----------------------------------------------------------------
+\section{The Quality of Query Answers}
+\label{sec:quality_of_answers}
+
+Our simple example already illustrates that the quality of query answers
+strongly depends on the quality of the underlying data,
+regardless of whether answers are obtained manually or automatically. 
+In particular, missing or spurious data will lead to missing or spurious answers.
+Before we begin to deal with automated query answering,
+we need to analyse the sources missing or spurious data and their effects on the answers obtained.
+
+For the sake of a principled discussion, we call the set of answers to a query obtained by some manual or automatic procedure
+an \emph{answer set}, and we call the (set of) answers that the query has in reality the \emph{true answers} and the \emph{true answer set}.
+In the above example, the answer set obtained by the described manual process consists of the single answer
+\enquote{\sig{Druck~4°~00466}}, if we assume that our researcher interprets the data retrieved generously
+(i.e., as an indication that Thau might have been an owner and might have received the book directly from Hommel)
+and draws additional conclusions (i.e., that every mathematician or astronomer is a scientist).
+The true answer set is not known and will most probably never be known; it is a term of rather philosophical nature.
+
+Ideally, both answer sets should coincide.
+Incomplete data may cause the answer set to exclude some true answers,
+and spurious data may cause it to contain some answers that are not true.
+We call the respective answers \emph{missing} and \emph{spurious}.
+On the basis of our example, we can identify four distinct causes for data being incomplete or spurious.
+%
+\begin{enumerate}
+  \item
+    In the example, there is no information available on whether any of the persons involved is indeed
+    a \emph{scientist}.
+    However, information on more specific professions (e.g., theologian,
+    mathematician, and astronomer) is available, and the information that,
+    e.g., Thau and Hommel were scientists has to be derived based on general knowledge
+    of the world.
+    The same effect can occur with relations instead of students:
+    if \exaquery{2} were to ask for family members instead of collaborators or students,
+    then the data would presumably only support more specific relations
+    such as \enquote{has sister} or \enquote{has father}, and relationships using
+    \enquote{has family member} would need to be derived.
+
+    More generally speaking, concepts and relations can be missing in the data
+    because\todo{find proof in the lit./with experts? Ask DH?}
+    membership in them is implicit, for example, from membership in more specific concepts
+    or relations. If the query uses such concepts or relations, then the answer set is always empty
+    unless the person or machine determining the answers makes derivations based on their
+    knowledge of the world.
+
+    Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
+    because that would massively inflate the data: 
+    most concepts and relations have several superordinate concepts or relations and,
+    furthermore, implicit knowledge is not restricted to taxonomic knowledge.
+    \todo[inline]{Explain this further? A case for ontologies!}
+  \item
+    In the example, there is no information available on whether any of the owners of the exemplar
+    \emph{passed it on} to another owner. Similarly,
+    attempts to answer instances of Query Pattern~\exaquery{1} will have to deal
+    with the problem that there is no information available as to who \emph{read} books.
+    
+    More generally speaking, concepts or relations can be missing in the data
+    because they are not recorded at all, as a consequence of general design decisions
+    for the data source. The reasons for such decisions can be manifold:
+    for example, relationships such as who has actually \emph{read} a book are very hard to confirm,
+    or relations may not be part of the fixed vocabulary for a data field in a source.\todo{find example?}
+    If the query uses such concepts or relations, then the answer set is always empty, as in Case~1.
+  \item    
+    In the example, it is possible that single owners of the exemplar or single relationships between owners
+    have not been recorded because no evidence has been found yet.
+    More generally, concept memberships or relationships can be missing sporadically,
+    which may lead to missing answers.
+  \item
+    In the example, if the provenance entry on Hommel is incorrect, then the answer obtained on the grounds
+    of that entry is incorrect.
+    More generally, spurious concept memberships or relationships may lead to spurious answers.
+\end{enumerate}
+%
+These cases reveal a striking qualitative difference concerning the effects of data incompleteness or spuriousness
+on the answer set: Cases~3 and~4 have effects on single answers only, i.e., some answers are missing spurious.
+However, Cases~1 and~2 generally make \emph{all} answers missing unless further provisions are made.
+In the above example, such ``provisions'' might include the conclusion that mathematicians etc.\ are scientists.
+and the hypothesis that Thau was an owner and received the book directly from Hommel.
+Getting back to the general objective of this thesis, it is appropriate to consider
+answers as \emph{candidates} that necessitate (and inspire) further research.
+For this purpose, spurious answers (in manageable numbers) are less harmful than missing answers.
+Consequently, it is important to find ways to avoid missing answers without generating too many spurious answers.
+In other words, it is desirable to obtain an answer set that is a slight \emph{overapproximation}
+of the true answer set.
 
 % -----------------------------------------------------------------
 \section{Manual Versus Automated Query Answering}
 \label{sec:manual_vs_automated}
 
-The manual process that we have just described is cumbersome, laborious, and prone to errors and omissions for several reasons:
+The manual process that we have described in Section~\ref{sec:manual_answering}
+is cumbersome, laborious, and prone to errors and omissions for several reasons:
 The search in library catalogues for exemplars of works and their provenances requires expert skills.
 Catalogues with potential matches need to be selected manually,
 and each catalogue needs to be queried individually, using its own search functionality and syntax. \todo{give examples of commonalities (OPAC) and differences (discovery vs. OPAC)?}
@@ -136,60 +227,7 @@ incorporate background knowledge (e.g., every mathematician is a scientist),
 and discover relationships between entities that are not necessarily direct.
 
 
-% -----------------------------------------------------------------
-\section{Quality of Query Answers}
-\label{sec:quality_of_answers}
-
-It becomes clear from this simple example already that the quality of query answers
-strongly depends on the quality of the underlying data, regardless of whether they are
-obtained manually or automatically. 
-In the following, we identify two distinct causes for data sources being incomplete.
-
-Interestingly, data sources can be incomplete for two different reasons,
-and there are several ways to handle the incompleteness,
-which have different consequences on the quality of the query answers obtained,
-as we will argue now.
-
-The first reason for incompleteness is an unsystematic lack of entries,
-for instance, when single provenance entries or relationships are missing in the data.
-Unsurprisingly, this effect leads to missing answers.
-In the above example, if some \enquote{has student} relationships
-between owners of the exemplar are missing in the data, then the respective answers
-simply cannot be obtained. The resulting set of answers can be regarded as
-an \emph{underapproximation} of the real set of answers.
-
-The second reason for incompleteness is a systematic lack of entries,
-caused by the general decision not to record certain relationships in provenance entries.
-
-Second, the general decision not to record certain relationships in provenance entries%
----such as \enquote{passed a book on to} from
-the above example, or \enquote{read} from \exaquery{1}---%
-completely prevents the answering of queries instantiating our prototypes when
-those relationships are taken literally.
-However, the example shows that it is possible to \emph{overapproximate}
-the set of query answers by \emph{assuming} that the respective relationships hold
-between the entities that match the remaining parts of the query.
-The resulting, potentially spurious, answers can serve as candidates
-that need to be inspected and further investigated by the researcher who
-posed the query in the first place.
-
-\todo[inline]{!! GND doesn't give \enquote{scientist} for, e.g., Thau -- it uses more specific relations such as \enquote{mathematician}, \enquote{astronomer}, \enquote{lawyer}. $\Rightarrow$ we need query answering with taxonomies/ontologies !!}
-
-In\todo[color=red!50]{continue here} the light of these observations,
-it is best to regard query answers obtained automatically
-as *** candidate constellations *** and *** the service of QA as prospectively providing
-candidate constellations. ***
-
-
-%A similar imprecision can be observed for Query Pattern~\exaquery{1}:
-%While the pattern names the action \enquote{read} because it reflects the \emph{reception}
-%of a work in which researchers are interested,
-%the available provenance data typically supports the relationship{owned}.
-%As a consequence, query answers obtained from the data
-%can only be expected to contain \emph{owners}, not \emph{readers},
-%and further interpretation and research are necessary to obtain conclusive answers.
-
-
+\todo[inline]{highlight: advantages for researchers, *candidate* answers}
 
 
 %
