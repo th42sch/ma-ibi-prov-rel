@@ -131,17 +131,17 @@ by omitting the FRBR entities \enquote{Expression} and \enquote{Manifestation}
 between the nodes labelled \enquote{Work} and \enquote{Item}.
 
 \newcommand{\tikzexagraph}[1][]{%
-  \node [#1]                                (work1)   {\fns\tikztab{\term{De revolutionibus}}};
-  \node [below=21mm of work1]               (item1)   {\fns\tikztab{\term{FB Gotha}\\[-1pt]\term{Druck~4°~00466}}};
-  \node [above right=4mm and 50mm of work1] (person1) {\fns\tikztab{\term{Nicolaus}\\[-1pt]\term{Copernicus}}};
-  \node [above right=9.5mm and 50mm of item1] (person2) {\fns\tikztab{\term{Johann}\\[-1pt]\term{Hommel}}};
-  \node [below right=9.5mm and 50mm of item1] (person3) {\fns\tikztab{\term{Valentin}\\[-1pt]\term{Thau}}};
+  \node [#1]                                (work1)   {\fns\mystrut\term{De revolutionibus}};
+  \node [below=21mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB Gotha}}{\term{Druck~4°~00466}}};
+  \node [above right=4mm and 50mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus}}{\term{Copernicus}}};
+  \node [above right=9.5mm and 50mm of item1] (person2) {\fns\tikztabtwo{\term{Johann}}{\term{Hommel}}};
+  \node [below right=9.5mm and 50mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin}}{\term{Thau}}};
   
   \begin{scope}[%
     every node/.style={draw=none,fill=none,inner sep=.2mm}
   ]
     \path[->]
-      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztab[r]{\term{has\_}\\[-1pt]\term{exemplar}}} (item1)
+      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (item1)
       (item1)   edge[bend right=10] node[pos=.8,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
       (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
       (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
@@ -149,15 +149,15 @@ between the nodes labelled \enquote{Work} and \enquote{Item}.
       (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
       (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
       (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
-      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztab[r]{\term{has\_student,}\\[-1pt]\term{collaborates\_with}}} (person3)
-      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztab{\term{is\_student\_of,}\\[-1pt]\term{collaborates\_with}}} (person2)
+      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
+      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
     ;
       
     \node[above=.5mm of work1]   () {\fns\term{Work}};
     \node[below=.5mm of item1]   () {\fns\term{Item}};
-    \node[right=.5mm of person1] () {\fns\tikztab{\term{Person,}\\[-1pt]\term{Scientist}}};
-    \node[right=.5mm of person2] () {\fns\tikztab{\term{Person,}\\[-1pt]\term{Mathematician}}};
-    \node[right=.5mm of person3] () {\fns\tikztab{\term{Person,}\\[-1pt]\term{Astronomer}}};
+    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Scientist}}};
+    \node[right=.5mm of person2] () {\fns\tikztabtwo{\term{Person,}}{\term{Mathematician}}};
+    \node[right=.5mm of person3] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
     
   \end{scope}      
 }
@@ -300,19 +300,19 @@ Query~\exaquery{2$'$}
 should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
 \newcommand{\tikzexaquery}{%
-  \node                                        (derev) {\fns\strut$\term{De revolutionibus}$};
-  \node [ansvar,below=14mm of work1]           (x)     {\fns\strut$x$};
-  \node [anovar,above right=6.4mm and 24mm of x] (y)     {\fns\strut$y$};
-  \node [anovar,below right=6.4mm and 24mm of x] (z)     {\fns\strut$z$};
+  \node                                        (derev) {\fns\mystrut$\term{De revolutionibus}$};
+  \node [ansvar,below=14mm of work1]           (x)     {\fns\mystrut$x$};
+  \node [anovar,above right=6.4mm and 24mm of x] (y)     {\fns\mystrut$y$};
+  \node [anovar,below right=6.4mm and 24mm of x] (z)     {\fns\mystrut$z$};
   
   \begin{scope}[%
     every node/.style={draw=none,fill=none,inner sep=.2mm}
   ]
     \path[->]
-      (derev) edge node[left=1mm]           {\fns\tikztab[r]{\term{has\_}\\[-2pt]\term{exemplar}}} (x)
+      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
       (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
       (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-      (y)     edge node[right=1mm]          {\fns\tikztab[r]{\term{has\_}\\[-2pt]\term{student}}} (z)      
+      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
     ;
       
     \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -342,10 +342,10 @@ The nodes of this graph fall into three groups:
   \item
     the node named \tikzinlinenode{\term{De revolutionibus}} represents that work;
   \item
-    node \tikzinlinenode[ansvar]{$x$} represents an exemplar of this work that satisfies the conditions stated in~\exaquery{2$'$}
+    node \tikzinlinenode[ansvar]{\mystrut$x$} represents an exemplar of this work that satisfies the conditions stated in~\exaquery{2$'$}
     and whose name is to be found;
   \item
-    nodes \tikzinlinenode[anovar]{$y$} and \tikzinlinenode[anovar]{$z$}
+    nodes \tikzinlinenode[anovar]{\mystrut$y$} and \tikzinlinenode[anovar]{\mystrut$z$}
     represent the two owners (scientist and their student) whose names are not known.
 \end{enumerate}
 %

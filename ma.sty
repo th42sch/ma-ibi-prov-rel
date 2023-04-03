@@ -226,18 +226,21 @@
 
 % ===== Macros for TikZ pictures =====
 \newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand{\tikztabtwo}[3][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1pt]\mystrut#3\\[-1.5pt]\end{tabular}}
 \tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm]
 \tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm]
 
 \newcommand{\tikzinlinenode}[2][]{%
   \begin{tikzpicture}[
-    >=Latex,baseline=-2.4pt,
+    >=Latex,baseline=-2.8pt,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
 %    every edge/.style={draw=black,thick}
   ]
-    \node[#1] () {\fns\strut#2};
+    \node[#1] () {\fns\mystrut#2};
   \end{tikzpicture}%  
 }
+
+\newcommand{\mystrut}{\rule[-2.2pt]{0pt}{9.8pt}}
 
 % ===== Theorems etc. =====
 \newtheoremstyle{myplain} % name
