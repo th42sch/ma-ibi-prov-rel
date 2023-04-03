@@ -141,7 +141,7 @@ strongly depends on the quality of the underlying data,
 regardless of whether answers are obtained manually or automatically. 
 In particular, missing or spurious data will lead to missing or spurious answers.
 Before we begin to deal with automated query answering,
-we need to analyse the sources missing or spurious data and their effects on the answers obtained.
+we need to analyse the sources of missing or spurious data and their effects on the answers obtained.
 
 For the sake of a principled discussion, we call the set of answers to a query obtained by some manual or automatic procedure
 an \emph{answer set}, and we call the (set of) answers that the query has in reality the \emph{true answers} and the \emph{true answer set}.
@@ -155,7 +155,9 @@ Ideally, both answer sets should coincide.
 Incomplete data may cause the answer set to exclude some true answers,
 and spurious data may cause it to contain some answers that are not true.
 We call the respective answers \emph{missing} and \emph{spurious}.
-On the basis of our example, we can identify four distinct causes for data being incomplete or spurious.
+On the basis of our example, we can identify four distinct causes for data being incomplete or spurious,
+as discussed in the following. We use the word \emph{term} as an umbrella term for concepts (such as \enquote{scientist})
+and relations (such as \enquote{is student of}).
 %
 \begin{enumerate}
   \item
@@ -165,22 +167,22 @@ On the basis of our example, we can identify four distinct causes for data being
     mathematician, and astronomer) is available, and the information that,
     e.g., Thau and Hommel were scientists has to be derived based on general knowledge
     of the world.
-    The same effect can occur with relations instead of students:
+    The same effect can occur with relations instead of concepts:
     if \exaquery{2} were to ask for family members instead of collaborators or students,
     then the data would presumably only support more specific relations
     such as \enquote{has sister} or \enquote{has father}, and relationships using
     \enquote{has family member} would need to be derived.
 
-    More generally speaking, concepts and relations can be missing in the data
+    More generally speaking, terms can be missing in the data sources
     because\todo{find proof in the lit./with experts? Ask DH?}
-    membership in them is implicit, for example, from membership in more specific concepts
-    or relations. If the query uses such concepts or relations, then the answer set is always empty
+    membership in them is implicit, for example, from membership in more specific terms.
+    If the query uses such terms, then the answer set is always empty
     unless the person or machine determining the answers makes derivations based on their
     knowledge of the world.
 
     Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
-    because that would massively inflate the data: 
-    most concepts and relations have several superordinate concepts or relations and,
+    because that would massively inflate the data,
+    as most terms have several superordinate concepts or relations and,
     furthermore, implicit knowledge is not restricted to taxonomic knowledge.
     \todo[inline]{Explain this further? A case for ontologies!}
   \item
@@ -189,12 +191,12 @@ On the basis of our example, we can identify four distinct causes for data being
     attempts to answer instances of Query Pattern~\exaquery{1} will have to deal
     with the problem that there is no information available as to who \emph{read} books.
     
-    More generally speaking, concepts or relations can be missing in the data
+    More generally speaking, terms can be missing in the data sources
     because they are not recorded at all, as a consequence of general design decisions
     for the data source. The reasons for such decisions can be manifold:
-    for example, relationships such as who has actually \emph{read} a book are very hard to confirm,
-    or relations may not be part of the fixed vocabulary for a data field in a source.\todo{find example?}
-    If the query uses such concepts or relations, then the answer set is always empty, as in Case~1.
+    for example, relationships such as who actually \emph{read} a book are very hard to confirm,
+    or terms may not be part of the fixed vocabulary for a data field in a source.\todo{find example?}
+    If the query uses such terms, then the answer set is always empty, as in Case~1.
   \item    
     In the example, it is possible that single owners of the exemplar or single relationships between owners
     have not been recorded because no evidence has been found yet.
@@ -207,7 +209,7 @@ On the basis of our example, we can identify four distinct causes for data being
 \end{enumerate}
 %
 These cases reveal a striking qualitative difference concerning the effects of data incompleteness or spuriousness
-on the answer set: Cases~3 and~4 have effects on single answers only, i.e., some answers are missing spurious.
+on the answer set: Cases~3 and~4 have effects on single answers only, i.e., some answers are missing or spurious.
 However, Cases~1 and~2 generally make \emph{all} answers missing unless further provisions are made.
 In the above example, such ``provisions'' might include the conclusion that mathematicians etc.\ are scientists.
 and the hypothesis that Thau was an owner and received the book directly from Hommel.
@@ -248,7 +250,7 @@ Section~\ref{sec:quality_of_answers}. The tool thus needs to implement ways
 to map those terms with the available vocabulary, as well as techniques
 for integrating data from heterogeneous sources.
 It is our general vision that the software tool will serve as an instrument for prospectively finding interesting
-candidates that can be examined in further research.
+candidates that inspire further research.
 In the remainder of this thesis, we want to lay the foundations and develop a precise method
 that can serve as a basis for a future implementation of this tool.
 
