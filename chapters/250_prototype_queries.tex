@@ -119,6 +119,19 @@ Therefore, the retrieved data can only be regarded as a \emph{candidate answer}
 which entails the hypothesis that the found exemplar was passed from Hommel to Thau.
 Our researcher can now engage in further research in order to verify that hypothesis.
 
+\todo[inline,caption={}]{
+  \parbox{.99\linewidth}{%
+    \begin{itemize}
+      \item
+        Discuss instances of \exaquery{1} or \exaquery{3}?
+      \item
+        Add further prototypical query patterns?
+      \item
+        Explain how \exaquery{1}--\exaquery{3} differ from each other (extend remarks from Section~\ref{sec:background})?
+    \end{itemize}
+  }%
+}
+
 % -----------------------------------------------------------------
 \section{The Quality of Query Answers}
 \label{sec:quality_of_answers}
@@ -206,7 +219,7 @@ In other words, it is desirable to obtain an answer set that is a slight \emph{o
 of the true answer set.
 
 % -----------------------------------------------------------------
-\section{Manual Versus Automated Query Answering}
+\section{From Manual to Automated Query Answering}
 \label{sec:manual_vs_automated}
 
 The manual process that we have described in Section~\ref{sec:manual_answering}
@@ -221,19 +234,21 @@ while it is easy to find direct relationships such as \enquote{is student of} in
 in databases such as GND or Wikidata, there are relationships that cannot be discovered easily by hand,
 e.g., \enquote{$P_1$ and $P_2$ are students of the same scholar}.
 
-It should be clear from this example that the process of answering queries such as \exaquery{2$'$}
-would strongly benefit from automated support, which could help reduce the amount of manual work, integrate heterogeneous data sources,
+These considerations suggest that query answering will
+strongly benefit from automated support,
+which can help reduce the amount of manual work, integrate heterogeneous data sources,
 incorporate background knowledge (e.g., every mathematician is a scientist),
 and discover relationships between entities that are not necessarily direct.
+We envisage a software tool that enables researchers to formulate queries 
+and which computes answers consulting data sources selected by the user.
+The vocabulary used for formulating queries should be based on the vocabulary
+present in the data sources, but it should also include terms such as \enquote{scientist} or \enquote{read},
+which are not recorded in the data, as discussed in
+Section~\ref{sec:quality_of_answers}. The tool thus needs to implement ways
+to map those terms with the available vocabulary, as well as techniques
+for integrating data from heterogeneous sources.
+It is our general vision that the software tool will serve as an instrument for prospectively finding interesting
+candidates that can be examined in further research.
+In the remainder of this thesis, we want to lay the foundations and develop a precise method
+that can serve as a basis for a future implementation of this tool.
 
-
-\todo[inline]{highlight: advantages for researchers, *candidate* answers}
-
-
-%
-\begin{itemize}
-  \item
-    more instances of \exaquery{1} or \exaquery{3}?
-  \item
-    explain how \exaquery{1}--\exaquery{3} differ from each other (extend remarks from Section~\ref{sec:background}?)
-\end{itemize}
