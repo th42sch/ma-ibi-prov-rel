@@ -44,8 +44,8 @@ some of which lend themselves to computationally well-behaved algorithms for que
 %that scale well to large databases \todo{citation}.
 %However, .....
 %...
-%We want to model individuals and concepts (e.g., ...) as well as relationships
-%between individuals (e.g., ...).  $\leadsto$ constants, unary and binary relations
+%We want to model objects and concepts (e.g., ...) as well as relationships
+%between objects (e.g., ...).  $\leadsto$ constants, unary and binary relations
 %...
 %With the choice of graphs, we commit ourselves to a restricted view of a data source:
 %graphs can only represent unary and binary relations via nodes and edges
@@ -186,7 +186,7 @@ They allow us to draw on standard notions from graph theory and query answering
 in order to define admissible query answers and to devise methods for obtaining those.
 
 %In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
-%the nodes, a function that names nodes with individuals,
+%the nodes, a function that names nodes with objects,
 %and a function that labels the nodes (edges) with concepts (relations)
 %of which the nodes (edges) are instances.
 %In our setting, these four abstract components have the following meaning:
@@ -224,7 +224,7 @@ labelled directed graph.
 %
 \begin{definition}
   \label{def:ld_graph}
-  Let $\namespace=(\NI,\NC,\NR)$ be a \emph{namespace} consisting of a set \NI of \emph{individual names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
+  Let $\namespace=(\NO,\NC,\NR)$ be a \emph{namespace} consisting of a set \NO of \emph{object names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
   A \emph{labelled directed graph over $\namespace$} is a triple $G = (V,E,\Nmc,\Lmc)$
   where
   %
@@ -238,8 +238,8 @@ labelled directed graph.
     \item 
       $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
     \item
-      $\Nmc : V \to \NI$ is an injective function that assigns
-      to each node a unique individual (called the node's \emph{name});
+      $\Nmc : V \to \NO$ is an injective function that assigns
+      to each node a unique object (called the node's \emph{name});
     \item
       $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
       to each node a set of concept names (called the node's \emph{labels}) and
@@ -294,7 +294,7 @@ We now model a data source (e.g., library catalogue, authority file, or other da
 using the exact notion of a graph that we have introduced above.
 %
 \begin{definition}
-  \scalebox{0.973}[1]{A \emph{data source over the namespace $\namespace=(\NI,\NC,\NR)$} is a labelled directed graph
+  \scalebox{0.973}[1]{A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
   over \namespace.}
 \end{definition}
 %
@@ -369,21 +369,21 @@ The nodes of this graph fall into three groups:
 \end{enumerate}
 %
 Consequently, node name $x$ serves as a placeholder for the answer to the query,
-and names $y,z$ are placeholders for further individuals that \enquote{witness} the answer.
+and names $y,z$ are placeholders for further objects that \enquote{witness} the answer.
 We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
 of the query.
 
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,
 and we require that these two sets are disjoint with each other
-and with any set \NI of individual names.
+and with any set \NO of object names.
 In particular, the namespace of data sources must not contain any variables,
 in contrast to the namespace of queries.
 These considerations lead to the following definition of a query.
 
 \begin{definition}
-  A \emph{query over the namespace $(\NI,\NC,\NR)$} is a labelled directed graph
-  over $(\NI \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
+  A \emph{query over the namespace $(\NO,\NC,\NR)$} is a labelled directed graph
+  over $(\NO \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
 \end{definition}
 %
 \todo[inline,caption={}]{%
@@ -410,13 +410,13 @@ Answers to queries will be defined via homomorphisms that map graphs representin
 to graphs representing data sources.
 %
 \begin{definition}
-  Let $\namespace=(\NI,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
+  Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
   and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
   A \emph{homomorphism from $G$ to $G'$} is a map $h : V \to V'$ that satisfies the following properties.
   %
   \begin{enumerate}
     \item[\hmph{1}]
-      $\Nmc(v) = \Nmc'(h(v))$ for every node $v \in V$ with $\Nmc(v) \in \NI$.
+      $\Nmc(v) = \Nmc'(h(v))$ for every node $v \in V$ with $\Nmc(v) \in \NO$.
     \item[\hmph{2}]
       $\Lmc(v) \subseteq \Lmc'(h(v))$ for every node $v \in V$.
     \item[\hmph{3}]
@@ -428,8 +428,8 @@ to graphs representing data sources.
   If there is some homomorphism from $G$ to $G'$, we write $G \lesssim G'$.
 \end{definition}
 %
-Property~\hmph{1} ensures that a homomorphism maps each node in $G$ that is named with an individual
-to that node in $G'$ which is named with the same individual.
+Property~\hmph{1} ensures that a homomorphism maps each node in $G$ that is named with an object
+to that node in $G'$ which is named with the same object.
 Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
 Properties~\hmph{2} and~\hmph{3} ensure that homomorphisms preserve node and edge labels;
 the $\subseteq$-relation allows the image of a node (or edge) under $h$ to have more labels
