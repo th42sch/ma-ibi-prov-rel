@@ -15,12 +15,48 @@ In particular, those definitions should not depend on concrete example queries o
 such as the ones discussed in Chapters~\ref{chap:prototype_queries} and~\ref{chap:analysis};
 neither should they depend on concrete objects, concepts, or relationships
 (such as \enquote{Copernicus}, \enquote{exemplar}, or \enquote{student}).
-Instead, we will develop an abstract model with precise but general definitions
-of the notions of a query, data source, and answer.
-This model can then be used with a multitude of concrete queries and data sources,
-and its potential implementation will provide answers as specified by our definitions.
+Instead, we will develop an abstract model that formalises
+the notions of a query, data source, and answer.
+This model can then be instantiated with a multitude of concrete queries and data sources,
+and it specifies how future implementations need to proceed in order to
+provide answers as specified by the definitions in the model.
 
-\todo[inline]{Discuss the choice of this graph-based framework; delineate from classical database theory (text snippets commented out). This argument should be a logical consequence of the requirement analysis in the previous chapter(s)!}
+As a basis for our abstract model, we choose standard concepts and techniques
+from graph theory.
+The concept of a graph is widely used in computer science and discrete mathematics;
+see standard textbooks \autocite[e.g.,][]{Diestel2012}.
+Graphs and graph techniques are widely applied in various areas such as 
+computer science, linguistics, physics and chemistry,
+social sciences, and biology \autocite{WikiGraphTheoryApplications}.
+In particular, they are used to represent large knowledge bases \autocite[e.g.,][]{Ehrlinger2016}
+and underlie the Resource Description Framework (RDF) ..., which is a standard of the
+World Wide Web Consortium (W3C) ... 
+Furthermore, the basic definition of a graph is conceptually simple,
+while graph theory provides a plethora of well-understood methods,
+some of which lend themselves to computationally well-behaved algorithms for query answering. \todo{explain; citation}
+
+\todo[inline,caption={}]{
+  \parbox{.99\linewidth}{%
+    Comment on restrictions made:
+    %
+    \begin{itemize}
+      \item
+        no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
+      \item[$(\leadsto)$]
+        no attributes for relationships (citation)
+      \item[$\leadsto$]
+        keep the presentation digestible for readers with little or no background in maths and CS
+        (i.e., a large proportion of librarians and historians).
+      \item
+        possible extensions in Section~\ref{sec:possible_extensions}
+    \end{itemize}
+  }%
+}
+
+In this chapter ...
+
+\todo[inline]{Delineate from classical database theory (text snippets commented out)? Take care that this argument is a logical consequence of the requirement analysis in the previous chapter(s)!}
+
 %An obvious choice would be to base our abstract model on database theory,
 %where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
 %see, e.g., the standard introduction ... \todo{citation}.
@@ -50,33 +86,6 @@ and its potential implementation will provide answers as specified by our defini
 %%
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
-As 
-\todo{this par is tentative}
-a central notion for representing data sources
-and queries, we use directed graphs with labels.
-The concept of a graph is widely used in computer science and discrete mathematics;
-see standard textbooks \autocite[e.g.,][]{Diestel2012}.
-Graphs and graph techniques are used to represent large knowledge bases \autocite[e.g.,][]{Ehrlinger2016}.
-They provide an easy means for visualising objects and their relationships,
-and they lend themselves to computationally well-behaved algorithms for query answering. \todo{explain; citation}
-
-\todo[inline,caption={}]{
-  \parbox{.99\linewidth}{%
-    Comment on restrictions made:
-    %
-    \begin{itemize}
-      \item
-        no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
-      \item[$(\leadsto)$]
-        no attributes for relationships (citation)
-      \item[$\leadsto$]
-        keep the presentation digestible for readers with little or no background in maths and CS
-        (i.e., a large proportion of librarians and historians).
-      \item
-        possible extensions in Section~\ref{sec:possible_extensions}
-    \end{itemize}
-  }%
-}
 
 % -------------------------------------------------------------------
 \section{Labelled Directed Graphs}
