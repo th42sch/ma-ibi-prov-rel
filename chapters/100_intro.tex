@@ -255,31 +255,35 @@ This question implies several subordinate questions:
 
 
 % -----------------------------------------------------------------
-\section{Methods}
+\section{Methods and Outline}
 \label{sec:methods}
 
-\todo[inline,color=red!30]{Connect questions from library science with methods from mathematics/theoretical computer science $\leadsto$ benefit. Name methods for each SQ above?}
+In order to answer our research questions, we will proceed as follows.
 
+We will start with a review of related work in Chapter~\ref{chap:rel_work}.
+\todo{possibly adapt this paragraph later}
+As a next step,
+we will get back to the exemplary query patterns from Section~\ref{sec:background},
+demonstrate a manual attempt at answering them,
+and discuss the expected quality of query answers and difficulties with this manual process.
+This discussion takes place in Chapter~\ref{chap:prototype_queries}
+and will be used as a point of reference for the subsequent considerations.
 
-% -----------------------------------------------------------------
-\section{Outline}
-\label{sec:outline}
+In order to answer Questions~\subquestion{1} and~\subquestion{2}, we will review
+data sources, data models and data integration techniques in Chapter~\ref{chap:analysis}.
+Based on the results of this analysis, we will develop an abstract model of
+data sources, queries, and answers in Chapter~\ref{chap:modelling}.
+This mathematical model will subsume the previous examples
+while being vastly more general: it gives a formal description of how to
+build admissible queries, without restricting their contents
+(i.e., the specific names, attributes, concepts, and relationships used)
+or their complexity. Using this model, we hope to provide a means
+for library science, which is the origin of the research question,
+to benefit from established methods from mathematics and computer science
 
-\begin{itemize}
-  \item
-    review of related work: Chapter~\ref{chap:rel_work}
-  \item
-    discussion of prototype queries: Chapter~\ref{chap:prototype_queries}
-  \item
-    analysis of available data sources and techniques: Chapter~\ref{chap:analysis}
-  \item
-    generic model of data sources, queries, and answers: Chapter~\ref{chap:modelling}
-  \item
-    method for answering queries: Chapter~\ref{chap:retrieval}
-  \item
-    conclusion and outlook: Chapter~\ref{chap:conclusion}
-  \item
-    name methods used?
-\end{itemize}
-
+Based on our model and the insights from the preceding analysis,
+we will develop in Chapter~\ref{chap:retrieval}
+a method for answering queries that can serve as the basis of a software tool
+as indicated in the previous section.
+Finally, we draw conclusions in Chapter~\ref{chap:conclusion}.
 
