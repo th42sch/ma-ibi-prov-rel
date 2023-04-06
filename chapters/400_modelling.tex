@@ -35,26 +35,6 @@ Furthermore, the basic definition of a graph is conceptually simple,
 while graph theory provides a plethora of well-understood methods,
 some of which lend themselves to computationally well-behaved algorithms for query answering. \todo{explain; citation}
 
-\todo[inline,caption={}]{
-  \parbox{.99\linewidth}{%
-    Comment on restrictions made:
-    %
-    \begin{itemize}
-      \item
-        no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
-      \item[$(\leadsto)$]
-        no attributes for relationships (citation)
-      \item[$\leadsto$]
-        keep the presentation digestible for readers with little or no background in maths and CS
-        (i.e., a large proportion of librarians and historians).
-      \item
-        possible extensions in Section~\ref{sec:possible_extensions}
-    \end{itemize}
-  }%
-}
-
-In this chapter ...
-
 \todo[inline]{Delineate from classical database theory (text snippets commented out)? Take care that this argument is a logical consequence of the requirement analysis in the previous chapter(s)!}
 
 %An obvious choice would be to base our abstract model on database theory,
@@ -86,6 +66,13 @@ In this chapter ...
 %%
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
+In the following sections, we introduce the basic notion of a graph used in our model,
+demonstrate how to use it for modelling data sources, queries, and answers,
+discuss decision procedures related to query answering,
+and comment on possible extensions in the context of our application.
+Although the definitions are standard and self-sufficient from a mathematical point of view,
+we provide explanations and illustrations for the sake of readers with little or no background in
+mathematics.
 
 % -------------------------------------------------------------------
 \section{Labelled Directed Graphs}
@@ -456,6 +443,26 @@ to the graph from Figure~\ref{fig:example_graph}.
   \caption{An example homomorphism}
   \label{fig:example_hmph}
 \end{figure}
+
+\todo[inline,caption={}]{
+  \parbox{.99\linewidth}{%
+    Comment on restrictions made:
+    %
+    \begin{itemize}
+      \item
+      no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
+      \item[$(\leadsto)$]
+      no attributes for relationships (citation)
+      \item[$\leadsto$]
+      keep the presentation digestible for readers with little or no background in maths and CS
+      (i.e., a large proportion of librarians and historians).
+      \item
+      possible extensions in Section~\ref{sec:possible_extensions}
+    \end{itemize}
+  }%
+}
+
+
 
 % ------------------------------------------------------------------
 \section{Decision Problems}
