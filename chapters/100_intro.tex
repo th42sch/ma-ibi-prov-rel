@@ -12,7 +12,7 @@
 In research on the historical holdings of %university and research libraries,
 cultural heritage institutions,
 the origins of cultural objects are of central importance.
-The origin of an item is also called its \emph{provenance} 
+The origin of an item is also called its \emph{provenance}
 and comprises the people or corporate bodies
 that owned this item over time.
 
@@ -42,7 +42,7 @@ to query the whereabouts of relevant items,
 or to retrace the distribution of all indexed exemplars derived from a given work.
 
 Nowadays, provenance entries are recorded in electronic catalogues.
-German university and research libraries typically do not 
+German university and research libraries typically do not
 maintain their own individual catalogue; rather they are provided with a central
 catalogue by the library network in which they participate.%
 \footnote{%
@@ -97,7 +97,7 @@ which is witnessed, for example, by the entries on the scholar
 Georg Joachim Rheticus in ISNI, VIAF, WorldCat, GND, and Wikidata.%
 \footnote{%
   This can be verified by following,
-  at the end of the Wikipedia page on Rheticus 
+  at the end of the Wikipedia page on Rheticus
   in the table \enquote{Authority Control}
   \autocite{WikiRheticusExternalLinks},
   %\url{https://en.wikipedia.org/wiki/Georg_Joachim_Rheticus\#External_links}\,,
@@ -121,7 +121,7 @@ For example, one could be interested in answers to queries of the following form
     Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
     work $W$, in which manifestation and in which year?
   \item[\exaquery{2}]
-    Which exemplars% 
+    Which exemplars%
     \footnote{%
       Conforming to the FRBR model,
       the precise wording should be \enquote{examplars of manifestations of expressions of $W$}
@@ -219,7 +219,7 @@ In this thesis, we pursue the goal of facilitating
 the automated retrieval of provenance relationships.
 More precisely,
 we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and coporate bodies
-as well as the relationships between those. This method should consult standard data sources such as 
+as well as the relationships between those. This method should consult standard data sources such as
 library catalogues, authority files, and knowledge bases. The method should furthermore be implementable as a software tool
 that supports the user in formulating their queries, answering them, and exploring the data that supports the query answers.
 In the long term, we envisage that such a tool will support provenance research
@@ -233,22 +233,22 @@ central research question for this thesis.
     How can provenance relationships be modelled and automatically retrieved?
   \end{itshape}
 \end{quote}
-%  
+%
 This question implies several subordinate questions:
 %
 \begin{enumerate}
   \item[\subquestion{1}]
     \emph{Which data sources are available for answering provenance queries?}
+%  \item[\subquestion{2}]
+%    \emph{What are the overlap and differences between the contents of these data sources?}
+%    \todo{Restrict or omit later!}
   \item[\subquestion{2}]
-    \emph{What are the overlap and differences between the contents of these data sources?}
-    \todo{Restrict or omit later!}
-  \item[\subquestion{3}]
     \emph{Which techniques and tools are available for the integration
     of data from heterogeneous sources?}
-  \item[\subquestion{4}]
+  \item[\subquestion{3}]
     \emph{Based on the structure of the identified data sources,
     how data sources, queries, and answers be modelled in an abstract framework?}
-  \item[\subquestion{5}]
+  \item[\subquestion{4}]
     \emph{What is a suitable method for retrieving provenance relationships
     in that framework?}
 \end{enumerate}
