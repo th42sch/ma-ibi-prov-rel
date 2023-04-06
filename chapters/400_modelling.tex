@@ -86,7 +86,7 @@ Figure~\ref{fig:example_graph_abstract} gives an abstract example of a directed 
 \begin{figure}[ht]
   \centering
   \missingfigure{draw Haus vom Nikolaus or similar}
-  \caption{An abstract example graph}
+  \caption{A directed graph}
   \label{fig:example_graph_abstract}
 \end{figure}
 %
@@ -175,7 +175,7 @@ between the nodes labelled \enquote{Work} and \enquote{Item}.
     \tikzexagraph
   \end{tikzpicture}
   
-  \caption{An example graph representing data described
+  \caption{A labelled directed graph that represents data
     concerning an exemplar of Copernicus' \emph{De revolutionibus} and some of its owners}
   \label{fig:example_graph}
 \end{figure}
@@ -248,7 +248,7 @@ labelled directed graph.
   \end{itemize}
 \end{definition}
 %
-Definition~1 stipulates the following conditions.
+Definition~1 formalises the following commitments regarding names and labels.
 %%
 %\begin{itemize}
 %  \item
@@ -265,26 +265,44 @@ Definition~1 stipulates the following conditions.
 (3) An edge can have an arbitrary number of labels, but that number must not be zero --
 the effect of an edge having no labels can be achieved by simply omitting that edge.
 
-In the example in Figure~\ref{fig:example_graph},
-$V$ consists of five nodes, which we call $v_1,\dots,v_5$,
-and $E$ consists of ten edges. Let $v_1,v_2$ denote the nodes on the left and $v_3,v_4,v_5$
-denote the nodes on the right (both from top to bottom).
-Then we have, among others, the following node names and labels:
+In order to illustrate the components of Definition~\ref{def:ld_graph},
+we refer to the graph depicted in Figure~\ref{fig:example_graph}:
+$V$ consists of five nodes, and $E$ of ten edges
+(each single arrow constitutes an edge since the direction matters).
+%Let $v_1,v_2$ denote the nodes on the left and $v_3,v_4,v_5$
+%denote the nodes on the right (both from top to bottom).
+There are, among others, the following node names and labels:
 %
-\begin{equation*}
-  \Nmc(v_1) = \term{work}_1
-  \qquad
-  \Lmc(v_1) = \{\term{Work}\}
-  \qquad
-  \Lmc(v_5) = \{\term{Person},\term{Astronomer}\}
-\end{equation*}
+\begin{itemize}
+  \item
+    The node at the top left has the name \term{De revolutionibus}
+    and the single label \term{Work}.
+  \item 
+    The node at the bottom right has the two labels \term{Person} and \term{Astronomer}.
+  \item 
+    The edge from the node named \term{Johann Hommel} to the node named \term{Valentin Thau}
+    has the two labels \term{has\_student} and \term{collaborates\_with},
+    and the edge pointing into the converse direction has the labels
+    \term{is\_student\_of} and \term{collaborates\_with}.
+\end{itemize}
 %
-Additionally, two of the ten edges have the following labels:
-%
-\begin{alignat*}{2}
-  e_1 & = (v_4,v_5) & \qquad \Lmc(e_1) & = \{\term{has\_student},\term{collaborates\_with}\} \\
-  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
-\end{alignat*}
+\todo[inline]{add underscore to object names in text and pictures? :-(}
+
+%%
+%\begin{equation*}
+%  \Nmc(v_1) = \term{De revolutionibus}
+%  \qquad
+%  \Lmc(v_1) = \{\term{Work}\}
+%  \qquad
+%  \Lmc(v_5) = \{\term{Person},\term{Astronomer}\}
+%\end{equation*}
+%%
+%Additionally, two of the ten edges have the following labels:
+%%
+%\begin{alignat*}{2}
+%  e_1 & = (v_4,v_5) & \qquad \Lmc(e_1) & = \{\term{has\_student},\term{collaborates\_with}\} \\
+%  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
+%\end{alignat*}
 
 % ------------------------------------------------------------------
 \section{Modelling Data Sources, Queries, and Answers}
