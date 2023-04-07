@@ -3,8 +3,6 @@
 \chapter{Modelling Provenance Relationships}
 \label{chap:modelling}
 
-\todo[inline,color=red!30]{Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
-  
 In this chapter, we develop a generic approach to modelling provenance relationships.
 More precisely, we need to model three central notions: queries that a user may want to ask,
 data sources that are to be consulted in order to answer a query,
@@ -78,18 +76,43 @@ mathematics.
 \section{Labelled Directed Graphs}
 \label{sec:labelled_digraphs}
 
+%\begin{figure}[ht]
+\begin{wrapfigure}{o}{5cm}
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \node                       (nw)                         {};
+    \node [right=12mm of nw]    (ne)                         {};
+    \node [below= 8mm of nw]    (sw)                         {};
+    \node [right=12mm of sw]    (se)                         {};
+    \node [draw=none,fill=none] (n)     at ($(nw)!0.5!(ne)$) {};
+    \node [above= 6mm of n]     (ridge)                      {};
+      
+    \path[->]
+      (sw)    edge (nw)
+      (nw)    edge (ridge)
+      (ridge) edge (ne)
+      (ne)    edge (se)
+      (se)    edge (sw)
+      (sw)    edge (ne)
+      (ne)    edge (nw)
+      (nw)    edge (se)
+    ;
+        
+  \end{tikzpicture}
+  \caption{A directed graph}
+  \label{fig:example_graph_abstract}
+%\end{figure}
+\end{wrapfigure}
+
 The basic components of a graph are nodes and edges. Edges link nodes, and they can be directed
 or undirected. Graphs are easy to visualise; nodes are typically represented as circles
 or rectangles, and edges as arrows (directed) or lines (undirected).
 Figure~\ref{fig:example_graph_abstract} gives an abstract example of a directed graph.
-%
-\begin{figure}[ht]
-  \centering
-  \missingfigure{draw Haus vom Nikolaus or similar}
-  \caption{A directed graph}
-  \label{fig:example_graph_abstract}
-\end{figure}
-%
+
 For our purposes,
 nodes represent entities such as works, expressions, manifestations, items,
 persons, or corporate bodies.
@@ -304,6 +327,8 @@ There are, among others, the following node names and labels:
 %  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
 %\end{alignat*}
 
+\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
+ 
 % ------------------------------------------------------------------
 \section{Modelling Data Sources, Queries, and Answers}
 \label{sec:modelling}
