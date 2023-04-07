@@ -333,16 +333,16 @@ There are, among others, the following node names and labels:
 %  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
 %\end{alignat*}
 
-\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
- 
 % ------------------------------------------------------------------
 \section{Modelling Data Sources, Queries, and Answers}
 \label{sec:modelling}
 
-We now model a data source (e.g., library catalogue, authority file, or other database)
-using the exact notion of a graph that we have introduced above.
+We can now use our notion of a labelled directed graph to model
+data sources and queries, and to obtain a rigorous definition of a query answer.
+We begin with data sources---they correspond exactly to our notion of a graph.
 %
 \begin{definition}
+  \label{def:data_source}
 %  \scalebox{0.965}[1]{A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
 %  over \namespace.}
   A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
@@ -356,9 +356,10 @@ using the exact notion of a graph that we have introduced above.
 %because we only want to represent relations that are relevant for provenance research,
 %and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
 %
-In order to model queries with the same notion of graphs, we need to introduce
-two sets of variables that serve as distinct node names:
-For example, consider the following variant of the example query \exaquery{2} from Chapter~\ref{chap:prototype_queries}:
+In order to model queries based on the same notion of a graph, we need to distinguish
+two special groups of nodes that act as placeholders (1) for the object(s) after which the query asks
+and (2) for further objects that are mentioned in the query without being named explicitly.
+For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answering}:
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
@@ -366,8 +367,12 @@ For example, consider the following variant of the example query \exaquery{2} fr
     Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
 \end{enumerate}
 %
+To model this query, we do not only need a node representing the work \emph{De revolutionibus},
+but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
+and two nodes representing the owner and their student (Group~2).
+Since these three individuals are not known, we need to use \emph{variables} for naming them.
 Query~\exaquery{2$'$}
-should be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
+can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
 \newcommand{\tikzexaquery}{%
   \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
@@ -410,33 +415,41 @@ The nodes of this graph fall into three groups:
 %
 \begin{enumerate}[(1)]
   \item
-    the node named \tikzinlinenode{\term{De\_revolutionibus}} represents that work;
+    The node named \tikzinlinenode{\term{De\_revolutionibus}} represents that work;
   \item
-    node \tikzinlinenode[ansvar]{\mystrut$x$} represents an exemplar of this work that satisfies the conditions stated in~\exaquery{2$'$}
-    and whose name is to be found;
+    Node \tikzinlinenode[ansvar]{\mystrut$x$} falls into Group~1 as explained above;
   \item
-    nodes \tikzinlinenode[anovar]{\mystrut$y$} and \tikzinlinenode[anovar]{\mystrut$z$}
-    represent the two owners (scientist and their student) whose names are not known.
+    Nodes \tikzinlinenode[anovar]{\mystrut$y$} and \tikzinlinenode[anovar]{\mystrut$z$}
+    fall into Group~2 as explained above.
 \end{enumerate}
 %
-Consequently, node name $x$ serves as a placeholder for the answer to the query,
-and names $y,z$ are placeholders for further objects that \enquote{witness} the answer.
-We call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
+Node names $x,y,z$ are the variables mentioned above,
+and we call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
 of the query.
-
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,
-and we require that these two sets are disjoint with each other
+and we assume that they both contain a countably infinite number of elements---%
+which simply ensures that there is an unlimited supply of variables.
+We furthermore require that these two sets are disjoint with each other
 and with any set \NO of object names.
-In particular, the namespace of data sources must not contain any variables,
-in contrast to the namespace of queries.
-These considerations lead to the following definition of a query.
+Thus, according to Definition~\ref{def:data_source},
+graphs representing data sources cannot use any variables as node names.
 
+In order to allow queries to use variables,
+the following definition of a query is now immediate. 
+%
 \begin{definition}
   A \emph{query over the namespace $(\NO,\NC,\NR)$} is a labelled directed graph
   over $(\NO \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
 \end{definition}
 %
+The operator \enquote{$\uplus$} used in this definition
+stands for \emph{disjoint union}, i.e., \enquote{$A \uplus B$}
+stands for the union of the \emph{disjoint} sets $A,B$.
+The wording of the definition also ensures
+that we do not have to mention variables explicitly when specifying the
+namespace of a query.
+
 \todo[inline,caption={}]{%
   Possibly comment on:
   %
@@ -456,6 +469,9 @@ These considerations lead to the following definition of a query.
       \end{itemize}
   \end{itemize}
 }
+
+\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
+ 
 %
 Answers to queries will be defined via homomorphisms that map graphs representing queries
 to graphs representing data sources.
