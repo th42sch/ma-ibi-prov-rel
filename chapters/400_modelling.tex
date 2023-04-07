@@ -155,6 +155,8 @@ Gotha Research Library \emph{(FB Gotha)}.
 It contains a node for the work (labelled with the FRBR entity \term{Work}),
 a node for the exemplar (labelled with the FRBR entity \term{Item}),
 and nodes for the author and two of the owners (labelled with their professions according to their GND entries).
+For the sake of this example, the owners are additionally labelled with the profession
+\term{Scientist}, which is implicit in the real data.
 The ten edges represent the FRBR relationships between work and item,
 the creator relationship between work and author,
 the owner relationship between exemplar and two owners,
@@ -189,9 +191,9 @@ that should occur between the nodes labelled \enquote{Work} and \enquote{Item}.
       
     \node[above=.5mm of work1]   () {\fns\term{Work}};
     \node[below=.5mm of item1]   () {\fns\term{Item}};
-    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Scientist}}};
-    \node[right=.5mm of person2] () {\fns\tikztabtwo{\term{Person,}}{\term{Mathematician}}};
-    \node[right=.5mm of person3] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
+    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
+    \node[right=.5mm of person2] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Mathematician}}};
+    \node[right=.5mm of person3] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Astronomer}}};
     
   \end{scope}      
 }
@@ -459,20 +461,136 @@ that have the same structure as the small graph.
 For the example query given in Figure~\ref{fig:graph_for_exa_query2'},
 this means that every subgraph of the data source consisting of four nodes
 with the same edges and labels should be an answer.
-To continue the example, the subgraphs given in
+Regarding the previous example, the subgraphs given in
 Figure~\ref{fig:example_answers}~(a,\,b) constitute answers,
-while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not.
+while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not:
+Subgraph~(a) is identical to the query graph with the only exception that it
+contains proper objects instead of variables in the node names;
+Subgraph~(b) is the same graph but extended with additional information;
+Subgraph~(c) lacks the edge labelled \term{has\_student} between the two owners;
+Subgraph~(d) resembles the structure of the query but does not contain
+the required node named \term{De\_revolutionibus}.
 
+\newlength{\student}
+\settowidth{\student}{{\fns\term{student}}}
+\newlength{\Scientist}
+\settowidth{\Scientist}{{\fns\term{Scientist}}}
 \begin{figure}[ht]
   \centering
-%  \begin{tikzpicture}[
-%    >=Latex,
-%    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
-%    every edge/.style={draw=black,thick}
-%  ]
-%    \dots
-%  \end{tikzpicture}
-  \missingfigure{2 examples and 2 non-examples}
+  \begin{tabular}{@{}c@{\hspace{10mm}}c@{}}
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm}
+      ]
+        \path[->]
+          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[above=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm}
+      ]
+        \path[->]
+          (derev) edge[bend right=10] node[left=1mm]         {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{is\_exemplar\_of}}                       (derev)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[right=.5mm of y]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+        \node[right=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[-6pt]
+    (a) & (b) \\[6pt]
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm}
+      ]
+        \path[->]
+          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+        ;
+        \path[every edge/.style={draw=none}]
+          (y) edge node[right=1mm] {\rule{\student}{0pt}} (z)
+        ;
+
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[above=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                   (derev) {\fns\mystrut$\term{ABC}$};
+      \node [below=16mm of work1]             (x)     {\fns\mystrut$\term{DEF}$};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm}
+      ]
+        \path[->]
+          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[right=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[-6pt]
+    (c) & (d)
+  \end{tabular}
+  %
   \caption{Positive (a,\,b) and negative (c,\,d) examples for query answers}
   \label{fig:example_answers}
 \end{figure}
@@ -482,7 +600,7 @@ we use the notion of a homomorphism.
 A homomorphism is a function that maps some object to another
 while preserving the structure of the former.
 We therefore need to define a variant of homomorphisms that maps queries
-to data sources. This is done as follows.
+to data sources. This variant is given in the following.
 %
 \begin{definition}
   Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
