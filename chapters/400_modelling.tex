@@ -621,14 +621,12 @@ to data sources. This variant is given in the following.
   If there is some homomorphism from $G$ to $G'$, we write $G \lesssim G'$.
 \end{definition}
 %
-\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
- 
-Property~\hmph{1} ensures that a homomorphism maps each node in $G$ that is named with an object
+Property~\hmph{1} requires that a homomorphism maps each node in $G$ that is named with an object
 to that node in $G'$ which is named with the same object.
 Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
-Properties~\hmph{2} and~\hmph{3} ensure that homomorphisms preserve node and edge labels;
-the $\subseteq$-relation allows the image of a node (or edge) under $h$ to have more labels
-than the node (or edge) itself.
+Properties~\hmph{2} and~\hmph{3} require that homomorphisms preserve node and edge labels;
+more precisely, the image of a node (or edge) under $h$ must have \emph{at least}
+the same labels (and may have additional labels).
 
 Figure~\ref{fig:example_hmph} shows a homomorphism $h$ (dashed lines)
 from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
@@ -661,6 +659,9 @@ to the graph from Figure~\ref{fig:example_graph}.
   \caption{An example homomorphism}
   \label{fig:example_hmph}
 \end{figure}
+
+\todo[inline,color=red!30]{Continue here: Name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
+
 
 \todo[inline,caption={}]{%
   Relate this \enquote{machinery} to the prototype queries. In particular:
