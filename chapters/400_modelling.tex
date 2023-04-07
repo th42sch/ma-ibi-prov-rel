@@ -450,31 +450,39 @@ The wording of the definition also ensures
 that we do not have to mention variables explicitly when specifying the
 namespace of a query.
 
-\todo[inline,caption={}]{%
-  Possibly comment on:
-  %
-  \begin{itemize}
-    \item
-      the special case of Boolean queries?
-    \item
-      specific requirements for modelling \exaquery{1} and \exaquery{3}: 
-      \begin{itemize}
-        \item 
-          \exaquery{1} seems to require answer variables representing sets (the owners)
-          and an appropriate extension of the definition of a homomorphism;
-        \item 
-          the same holds for \exaquery{3}; additionally the answer should include the relationships
-          between the images of the answer variables (the relationships between the owners),
-          i.e., some sort of spanned subgraph
-      \end{itemize}
-  \end{itemize}
-}
+Based on the representation of both data sources and queries as graphs,
+we can now define the notion of an answer to a query 
+with respect to a data source. For this purpose, it is important to realise
+that, typically, a query is a small graph and a data source is a large graph,
+and that finding answers simply means finding small parts of the large graph
+that have the same structure as the small graph.
+For the example query given in Figure~\ref{fig:graph_for_exa_query2'},
+this means that every subgraph of the data source consisting of four nodes
+with the same edges and labels should be an answer.
+To continue the example, the subgraphs given in
+Figure~\ref{fig:example_answers}~(a,\,b) constitute answers,
+while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not.
 
-\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
- 
-%
-Answers to queries will be defined via homomorphisms that map graphs representing queries
-to graphs representing data sources.
+\begin{figure}[ht]
+  \centering
+%  \begin{tikzpicture}[
+%    >=Latex,
+%    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%    every edge/.style={draw=black,thick}
+%  ]
+%    \dots
+%  \end{tikzpicture}
+  \missingfigure{2 examples and 2 non-examples}
+  \caption{Positive (a,\,b) and negative (c,\,d) examples for query answers}
+  \label{fig:example_answers}
+\end{figure}
+
+In order to identify subgraphs of a given graph that have the same structure as another given graph,
+we use the notion of a homomorphism.
+A homomorphism is a function that maps some object to another
+while preserving the structure of the former.
+We therefore need to define a variant of homomorphisms that maps queries
+to data sources. This is done as follows.
 %
 \begin{definition}
   Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
@@ -495,6 +503,8 @@ to graphs representing data sources.
   If there is some homomorphism from $G$ to $G'$, we write $G \lesssim G'$.
 \end{definition}
 %
+\todo[inline,color=red!30]{Continue here: Give more explanation for people not familiar with graph theory; make steps that seem logical more explicit; name advantages of using graph theory as an instrument (modelling power, abstraction, available methods, well-behaved algorithms, ready-to-use implementations); span bridge from concrete example queries to GT; possibly give links to basic (video) tutorials in GT (ask Leif?)}
+ 
 Property~\hmph{1} ensures that a homomorphism maps each node in $G$ that is named with an object
 to that node in $G'$ which is named with the same object.
 Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
@@ -533,6 +543,27 @@ to the graph from Figure~\ref{fig:example_graph}.
   \caption{An example homomorphism}
   \label{fig:example_hmph}
 \end{figure}
+
+\todo[inline,caption={}]{%
+  Relate this \enquote{machinery} to the prototype queries. In particular:
+  %
+  \begin{itemize}
+    \item
+      Comment on Boolean queries if necessary.
+    \item
+      Discuss specific requirements for modelling \exaquery{1} and \exaquery{3}: 
+      \begin{itemize}
+        \item 
+          \exaquery{1} seems to require answer variables representing sets (the owners)
+          and an appropriate extension of the definition of a homomorphism;
+        \item 
+          the same holds for \exaquery{3}; additionally the answer should include the relationships
+          between the images of the answer variables (the relationships between the owners),
+          i.e., some sort of spanned subgraph
+      \end{itemize}
+  \end{itemize}
+}
+
 
 \todo[inline,caption={}]{
   \parbox{.99\linewidth}{%
