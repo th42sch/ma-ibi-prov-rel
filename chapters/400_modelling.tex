@@ -149,12 +149,20 @@ node names are written into the respective node,
 and node and edge labels are written next to the node or edge.
 Multiple labels of the same node or edge are delimited with commas.
 An example is given in Figure~\ref{fig:example_graph}.
-This graph represents a part of the data described in Chapter~\ref{chap:prototype_queries}
+The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
 concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
 Gotha Research Library \emph{(FB Gotha)}.
-For the sake of simplicity, the shown graph deviates from the FRBR model \autocite{FRBR1998}
+It contains a node for the work (labelled with the FRBR entity \term{Work}),
+a node for the exemplar (labelled with the FRBR entity \term{Item}),
+and nodes for the author and two of the owners (labelled with their professions according to their GND entries).
+The ten edges represent the FRBR relationships between work and item,
+the creator relationship between work and author,
+the owner relationship between exemplar and two owners,
+student and collaboration relationships between the owners,
+and the converses of these relationships.
+For the sake of simplicity, the graph deviates from the FRBR model \autocite{FRBR1998}
 by omitting the FRBR entities \enquote{Expression} and \enquote{Manifestation}
-between the nodes labelled \enquote{Work} and \enquote{Item}.
+that should occur between the nodes labelled \enquote{Work} and \enquote{Item}.
 
 \newcommand{\tikzexagraph}[1][]{%
   \node [#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
@@ -217,7 +225,7 @@ in order to define admissible query answers and to devise methods for obtaining 
 The above explanations can be cast into a rigorous mathematical definition,
 which uses sets to represent nodes, a binary relation over the set of nodes
 to represent edges, and functions over the nodes and edges to represent
-names and labels. In order for the range of these functions to be well-defined,
+names and labels. In order for the range of those functions to be well-defined,
 the definition of a labelled directed graph is relative to a namespace which
 contains all the names of objects, concepts and relations that are relevant.
 The contents of this namespace is arbitrary and may consist,
