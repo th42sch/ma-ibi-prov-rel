@@ -29,6 +29,7 @@
 \setlength{\marginparwidth}{2cm}
 \RequirePackage[backgroundcolor=yellow!30!white]{todonotes}
 \RequirePackage{pdfpages}
+\RequirePackage[framemethod=default]{mdframed}
 
 % ===== Set up TikZ (Macros see below) =====
 \RequirePackage{pgfsys}
@@ -271,8 +272,16 @@
 
 \theoremstyle{mydefinition}
 \newtheorem{definition}{Definition}
+%\surroundwithmdframed[outerlinewidth=1pt,
+%  innerlinewidth=0pt,
+%  middlelinewidth=0pt,
+%  middlelinecolor=white,
+%  leftline=false,rightline=false]{definition}
+\surroundwithmdframed[linewidth=1pt,linecolor=black!50,innertopmargin=-3pt,leftline=false,rightline=false]{definition}
 
 \theoremstyle{myplain}
+
+
 
 % ==============
 
