@@ -155,6 +155,12 @@
   }%
 }
 
+% --- Show short author names in front of author names, if specified
+\renewbibmacro*{begentry}{%
+    \ifnameundef{shortauthor}
+        {}
+        {\printnames{shortauthor}%
+         \addspace\textendash\space}}
 
 % ===== General settings =====
 %\pagestyle{empty}
