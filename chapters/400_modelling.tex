@@ -665,46 +665,6 @@ to the graph from Figure~\ref{fig:example_graph}.
   \label{fig:example_hmph}
 \end{figure}
 
-\todo[inline,caption={}]{%
-  Relate this \enquote{machinery} to the prototype queries. In particular:
-  %
-  \begin{itemize}
-    \item
-      Comment on Boolean queries if necessary.
-    \item
-      Discuss specific requirements for modelling \exaquery{1} and \exaquery{3}: 
-      \begin{itemize}
-        \item 
-          \exaquery{1} seems to require answer variables representing sets (the owners)
-          and an appropriate extension of the definition of a homomorphism;
-        \item 
-          the same holds for \exaquery{3}; additionally the answer should include the relationships
-          between the images of the answer variables (the relationships between the owners),
-          i.e., some sort of spanned subgraph
-      \end{itemize}
-  \end{itemize}
-}
-
-
-\todo[inline,caption={}]{
-  \parbox{.99\linewidth}{%
-    Comment on restrictions made:
-    %
-    \begin{itemize}
-      \item
-      no temporal distinctions (\enquote{is/was student}) or \enquote{was owner in year $n$}. 
-      \item[$(\leadsto)$]
-      no attributes for relationships (citation)
-      \item[$\leadsto$]
-      keep the presentation digestible for readers with little or no background in maths and CS
-      (i.e., a large proportion of librarians and historians).
-      \item
-      possible extensions in Section~\ref{sec:possible_extensions}
-    \end{itemize}
-  }%
-}
-
-
 
 % ------------------------------------------------------------------
 \section{Decision Problems}
@@ -712,22 +672,68 @@ to the graph from Figure~\ref{fig:example_graph}.
 
 \todo[inline]{TODO: formulate problems, discuss (data!) complexity}
 
+
+% ------------------------------------------------------------------
+\section{Discussion of the Modelling Decisions}
+\label{sec:modelling_discussion}
+
+\todo[inline]{TODO: Relate this \enquote{machinery} to the prototype queries. In particular:}
+%
+\begin{itemize}
+  \item
+    Comment on Boolean queries if necessary.
+  \item
+    Discuss specific requirements for modelling \exaquery{1} and \exaquery{3}: 
+    %
+    \begin{itemize}
+      \item 
+        \exaquery{1} seems to require answer variables representing sets (the owners)
+        and an appropriate extension of the definition of a homomorphism;
+      \item 
+        the same holds for \exaquery{3}; additionally the answer should include the relationships
+        between the images of the answer variables (the relationships between the owners),
+        i.e., some sort of spanned subgraph
+      \item[$\leadsto$]
+        extensions needed; description or sketch of these and other extensions in the next section
+    \end{itemize}
+    %
+\end{itemize}
+
+
+
 % ------------------------------------------------------------------
 \section{Possible Extensions}
 \label{sec:possible_extensions}
 
-\todo[inline]{TODO; discuss more options? E.g., relations of arbitrary arity, data provenance, concrete values (\enquote{year of publication})}
-
-\subsection*{Attributes on Relationships}
-
+\todo[inline]{TODO: Discuss further extensions:}
+%
 \begin{itemize}
   \item
-    sketch idea: e.g., add year to relationship \term{has\_owner} -- example: \enquote{passed on to} requires descending year numbers \emph{and} no successor with intermediate year number
+    relations of arbitrary arity
   \item
-    explain difficulties: more complex formal machinery (def.\ of graphs, queries, and matches)
+    data provenance
   \item
-    argue for limited use: with or without the use of additional attributes, results may contain false positives due to incomplete data $\leadsto$ manual inspection is necessary anyway
+    concrete values (\enquote{year of publication})
   \item
-    conclusion: attributes are not covered here
+    attributes on relationships:
+    %
+    \begin{itemize}
+      \item
+        sketch idea: e.g., provide year for relationship \term{has\_owner} -- example: \enquote{passed on to} requires descending year numbers \emph{and} no successor with intermediate year number
+      \item
+        solution: quads instead of triples (in RDF speak); add attributes to the graph model? (Markus Krötzsch's work?)
+      \item
+        explain difficulties: more complex formal machinery (def.\ of graphs, queries, and matches); missing data, e.g.:
+        %
+        \begin{itemize}
+          \item
+            From which year \emph{to which year} did person $X$ own item $Y$?
+          \item
+            Was person $Z$ a student of person $X$'s \emph{at the point in time when $X$ passed the item on to $Z$}?
+        \end{itemize}
+      \item
+        discuss usefulness: false positives due to incomplete data as discussed in Section~\ref{sec:quality_of_answers}
+        $\leadsto$ manual inspection is necessary anyway; attributes may still help hide false answers
+    \end{itemize}
+    %
 \end{itemize}
-
