@@ -360,13 +360,12 @@ Data sources correspond exactly to our notion of a graph.
   over \namespace.
 \end{definition}
 %
-%With this definition, we obviously commit ourselves to a restricted view of a data source:
-%graphs can only represent unary and binary relations via nodes and edges
-%while, in general, a database may have relations of arbitrary arity.
-%However, we do not consider this a significant restriction in the context of our purpose
-%because we only want to represent relations that are relevant for provenance research,
-%and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
-%
+In our model, we assume that there is always a \emph{single} data source against which a query is posed and evaluated.
+When the model is applied to real-word queries and data sources,
+the abstract notion of a data source is instantiated by the union of
+all available concrete data sources (such as catalogues, authority files, knowledge bases),
+including mappings between them if applicable.
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Queries}
 
@@ -439,7 +438,7 @@ The nodes of this graph fall into three groups:
 %
 Node names $x,y,z$ are the variables mentioned above,
 and we call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
-of the query.
+of this query.
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,
 and we assume that they both contain a countably infinite number of elements---%
