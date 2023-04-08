@@ -346,7 +346,11 @@ There are, among others, the following node names and labels:
 
 We can now use our notion of a labelled directed graph to model
 data sources and queries, and to obtain a rigorous definition of a query answer.
-We begin with data sources---they correspond exactly to our notion of a graph.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Data Sources}
+
+Data sources correspond exactly to our notion of a graph.
 %
 \begin{definition}
   \label{def:data_source}
@@ -363,6 +367,9 @@ We begin with data sources---they correspond exactly to our notion of a graph.
 %because we only want to represent relations that are relevant for provenance research,
 %and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
 %
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Queries}
+
 In order to model queries based on the same notion of a graph, we need to distinguish
 two special groups of nodes that act as placeholders (1) for the object(s) after which the query asks
 and (2) for further objects that are mentioned in the query without being named explicitly.
@@ -456,6 +463,9 @@ stands for the union of the \emph{disjoint} sets $A,B$.
 The wording of the definition also ensures
 that we do not have to mention variables explicitly when specifying the
 namespace of a query.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Query Answers}
 
 Based on the representation of both data sources and queries as graphs,
 we can now define the notion of an answer to a query 
