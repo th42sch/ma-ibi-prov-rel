@@ -17,7 +17,7 @@ Instead, we will develop an abstract model that formalises
 the notions of a query, data source, and answer.
 This model can then be instantiated with a multitude of concrete queries and data sources,
 and it specifies how future implementations need to proceed in order to
-provide answers as specified by the definitions in the model.
+provide answers.
 
 As a basis for our abstract model, we choose standard concepts and techniques
 from graph theory.
@@ -69,13 +69,18 @@ and from numerous implementations.
 %%
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
-In the following sections, we introduce the basic notion of a graph used in our model,
-demonstrate how to use it for modelling data sources, queries, and answers,
-discuss decision procedures related to query answering,
-and comment on possible extensions in the context of our application.
-Although the definitions are standard and self-sufficient from a mathematical point of view,
-we provide explanations and illustrations for the sake of readers with little or no background in
+In the following sections, we introduce our model
+by defining the underlying notion of a graph and the abstract notions of data sources, queries, and answers
+(Sections~\ref{sec:labelled_digraphs} and~\ref{sec:modelling}).
+We also discuss decision procedures related to query answering in Section~\ref{sec:decision_problems}.
+Up to that point, the model remains very basic, which is a deliberate choice
+in order to make it conceptually comprehensible.
+In particular, although
+the definitions are elementary and self-contained from a mathematical point of view,
+we provide additional explanations and illustrations for the sake of readers with little or no background in
 mathematics.
+In order to obtain a more flexible and comprehensive model, we discuss our modelling decisions
+in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\ref{sec:possible_extensions}.
 
 % -------------------------------------------------------------------
 \section{Labelled Directed Graphs}
