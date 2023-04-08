@@ -50,7 +50,8 @@
   defernumbers,
   backref=true,
   autolang=hyphen,
-  sorting=ynt,sortcites
+  sorting=ynt,sortcites,
+  opcittracker=true
 ]{biblatex}
 \addbibresource{bib/ma_jabref.bib}
 \setlength{\bibitemsep}{4pt}
@@ -160,8 +161,10 @@
 \renewbibmacro*{begentry}{%
     \ifnameundef{shortauthor}
         {}
-        {\printnames{shortauthor}%
-         \addspace\textendash\space}}
+        {\ifopcit{}{\printnames{shortauthor}%
+         \addspace\textendash\space}}}
+%        {\printnames{shortauthor}%
+%         \addspace\textendash\space}}
 
 % ===== General settings =====
 %\pagestyle{empty}
