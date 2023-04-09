@@ -45,12 +45,13 @@
 \RequirePackage[style=american,german=quotes,english=american]{csquotes}
 \RequirePackage[
   backend=biber,
-  style=ext-authoryear-icomp,
+  %style=ext-authoryear-icomp,  % didn't work with separate list of web resources (no semicolons between citation entries)
+  style=ext-authoryear,
   labelnumber,
   defernumbers,
   backref=true,
   autolang=hyphen,
-  sorting=ynt,sortcites,
+%  sorting=ynt,sortcites,
   opcittracker=true
 ]{biblatex}
 \addbibresource{bib/ma_jabref.bib}
@@ -134,19 +135,19 @@
 \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
 \DeclareFieldFormat{shorthandwidth}{\mkbibbrackets{#1}}
 \defbibenvironment{online}
-{\list
-  {\printtext[labelnumberwidth]{%
-      \printfield{labelprefix}%
-      \printfield{labelnumber}}}
-  {\setlength{\labelwidth}{\labelnumberwidth}%
-    \setlength{\leftmargin}{\labelwidth}%
-    \setlength{\labelsep}{\biblabelsep}%
-    \addtolength{\leftmargin}{\labelsep}%
-    \setlength{\itemsep}{\bibitemsep}%
-    \setlength{\parsep}{\bibparsep}}%
-  \renewcommand*{\makelabel}[1]{\hss##1}}
-{\endlist}
-{\item}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
 
 \DeclareRefcontext{online}{labelprefix=Web}
 
