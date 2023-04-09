@@ -33,9 +33,7 @@ Furthermore, the basic definition of a graph is conceptually simple,
 and graph theory provides a plethora of well-understood concepts
 and algorithms. By utilising graph theory, our application scenario
 can benefit from these concepts, algorithms \autocite{Diestel2012,Even2012},
-and implementations \autocite{PythonGraphLibraries,JGraphT}.\todo{repair citation format}
-
-\todo[inline]{Span bridge from concrete example queries to GT? Possibly give links to basic (video) tutorials in GT (ask Leif?)}
+and implementations \autocite{PythonGraphLibraries,JGraphT}.
 
 \todo[inline]{Delineate from classical database theory (text snippets commented out)? This argument should be a logical consequence of the requirement analysis in the previous chapter(s)!}
 
@@ -86,8 +84,9 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
 \label{sec:labelled_digraphs}
 
 %\begin{figure}[ht]
-\begin{wrapfigure}{o}{5cm}
+\begin{wrapfigure}[6]{o}{5.2cm}
   \centering
+  \vspace*{-.7\baselineskip}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -123,15 +122,15 @@ or rectangles, and edges as arrows (directed) or lines (undirected).
 Figure~\ref{fig:example_graph_abstract} gives an abstract example of a directed graph.
 
 For our purposes,
-nodes represent entities such as works, expressions, manifestations, items,
-persons, or corporate bodies.
-Edges represent relationships between those entities, which are typically directed:
+nodes represent objects or literals. Objects include, e.g., works, expressions, manifestations, items,
+persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
+Edges represent relationships between those objects or literals, and those relationships are typically directed:
 e.g., \term{has\_owner} points \emph{from} an item
 \emph{to} a person or corporate body,
 whereas \term{is\_owner\_of} points into the opposite direction.
-Therefore we use directed graphs.
+Therefore we use \emph{directed} graphs.
 Symmetric relationships, such as \term{collaborates\_with},
-can be represented via two edges, one for each direction.
+can be represented via two edges in both directions.
 
 Furthermore, we want to assign a unique name to each node of a graph
 and one or several labels to each node and each edge:
