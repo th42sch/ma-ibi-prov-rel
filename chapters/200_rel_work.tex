@@ -101,8 +101,8 @@ on the provenance of their data.
 A main constituent of the report is a catalogue of requirements
 to HNA and the research technology. This catalogue consists of 61
 requirements that reflect the specific needs of researchers.
-The requirements relevant for our purposes are the following
-(description translated from the original German text and slightly rephrased/shortened):
+The following of these requirements are relevant for our purposes
+(descriptions translated from the original German text and slightly rephrased and/or shortened):
 %
 \begin{description}
   \item[R003]
@@ -122,8 +122,18 @@ The requirements relevant for our purposes are the following
     Researchers want a list of corporate bodies connected to a given person.
   \item[R018]
     Researchers want a list of people connected to a given person via some corporate body.
+  \item[R029]
+    Researchers want, given a node, a description of the \enquote{potentially available attributes}
+    and the provenance of the data.
+  \item[R030]
+    (dito, but with edges instead of nodes)
+  \item[R043]
+    [Researchers want] a filter on attributes, e.g. biographical data, in order to
+    restrict relationships to adulthood.
+  \item[R061]
+    Researchers want to know which kinds of relationships are contained in the dataset.
   \item[...]
-    \todo[inline]{Continue checking with R020!}
+    \todo[inline]{Continue checking from R028!}
 \end{description}
 
 
@@ -134,12 +144,17 @@ The requirements relevant for our purposes are the following
 
 *** Insights for our topic:
 * delineation from pure (H)NA -- focus on more \enquote{local} questions, but (H)NA is possible
-* SoNAR: relationships, temporal aspects, hermeneutic circle; visualisation out of scope, but enabled!
+* SoNAR: 
+  more general setting than just provenance research. \enquote{Overlap} with our topic:
+  relationships. (?)
+  Discuss from the above: relationships, temporal aspects, hermeneutic circle; visualisation out of scope, but enabled!
   Explorative approach; our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
   Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
   Authority files; data provenance;
   Some requirements can be addressed directly with our queries, e.g., R006!
   R016 seems to require the \enquote{$\top$-role} in queries!
+  Edge weights;
+  E.g. R029, 30, 61: explorative (for every node/edge the available attributes) vs. ??? (ask query knowing those attributes)
 
 
 
