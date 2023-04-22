@@ -86,10 +86,26 @@ The report uses the term \emph{data source} for original documents, media, and a
 from which network-compatible (i.e., essentially relational) data can be obtained;
 data sources can be identified via \emph{repositories} of various kinds,
 including library catalogues, archive portals, databases, and many more.
-The authors report the general observation that missing or erroneous data in the repositories
-leads to distorted answers to the questions.
-
-*** Elaborate on choice of repositories (from 3rd part of the report)
+The report highlights the advantages of using data from authority files
+such as the GND (see Section~\ref{sec:background}), which are standardised,
+subject to quality control, and essential for disambiguating personal names.
+Moreover, authority files are freely accessible and provide information
+on the provenance of their data.
+The authors report the general problem of missing or erroneous data in the repositories,
+which leads to distorted answers to the questions, and which could not been solved
+systematically. In particular, the GND is focussed on German library holdings
+and thus contains a disproportionately high amount of German-speaking persons.
+The data is biased towards people who have published at all,
+towards elite research, towards men (in particular among authors before the 1950s),
+and against certain disciplines, such as economy.
+The authors conclude that these restrictions significantly effect the answers to
+historical research questions. As possible remedies, they include 
+further repositories, such as 
+the German Union Catalogue of Serials (ZDB),
+the German National Library (DNB),
+the Kalliope Union Catalogue (KPE),
+and, tentatively, other authority files (in particular, Wikidata and VIAF);
+we will get back to these in Section~\ref{sec:data_sources}.
 
 Concerning the selection of data, the report distinguishes between
 direct and indirect information on relationships.
@@ -103,11 +119,6 @@ The authors also address a special kind of indirect relationship,
 called intellectual, which mostly involves a third person
 or event, such as the co-citation of $A$'s and $B$'s texts by someone else.
 
-The report highlights the advantages of using data from authority files
-such as the GND (see Section~\ref{sec:background}), which are standardised,
-subject to quality control, and essential for disambiguating personal names.
-Moreover, authority files are freely accessible and provide information
-on the provenance of their data.
 
 A main constituent of the report is a catalogue of requirements
 to HNA and the research technology. This catalogue consists of 61
@@ -159,7 +170,9 @@ The following of these requirements are relevant for our purposes
   Discuss from the above: relationships, temporal aspects, hermeneutic circle; visualisation out of scope, but enabled!
   Explorative approach; our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
   Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
-  Authority files; data provenance;
+  Authority files, additional repositories; 
+  
+  data provenance;
   Some requirements can be addressed directly with our queries, e.g., R006!
   R016 seems to require the \enquote{$\top$-role} in queries!
   Edge weights;
