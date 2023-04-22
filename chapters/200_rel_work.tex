@@ -90,8 +90,12 @@ The report highlights the advantages of using data from authority files
 such as the GND (see Section~\ref{sec:background}), which are standardised,
 subject to quality control, and essential for disambiguating personal names.
 Moreover, authority files are freely accessible and provide information
-on the provenance of their data.
-The authors report the general problem of missing or erroneous data in the repositories,
+on the provenance of their data. According to the authors,
+\enquote{the use of authority data from GND in SoNAR is a unique feature
+of the research technology environment and has, in principle, proved its worth}.
+
+Concerning the repositories used,
+the authors report the general problem of missing or erroneous data,
 which leads to distorted answers to the questions, and which could not been solved
 systematically. In particular, the GND is focussed on German library holdings
 and thus contains a disproportionately high amount of German-speaking persons.
@@ -106,6 +110,13 @@ the German National Library (DNB),
 the Kalliope Union Catalogue (KPE),
 and, tentatively, other authority files (in particular, Wikidata and VIAF);
 we will get back to these in Section~\ref{sec:data_sources}.
+However, the evaluation showed that even the sum of these repositories
+does not provide enough data for a differentiated temporal
+analysis; in particular, biographical data of the authors 
+dominate, but those cover long time spans and do not provide sufficient evidence
+for or against dynamic relationships such as teacher-student relationships.
+
+\enquote{allow a temporal differentiation over longer periods of time} (translated).
 
 Concerning the selection of data, the report distinguishes between
 direct and indirect information on relationships.
@@ -156,22 +167,31 @@ The following of these requirements are relevant for our purposes
     Researchers want to know which kinds of relationships are contained in the dataset.
 \end{description}
 
+We now discuss how these insights from the SoNAR project relate to, and inform, our work on the topic of this thesis.
+First, the analysis of historical networks is a broad concept, and SoNAR supports a setting
+that is much more general than just provenance research.
+The setting that we want to support in this thesis is a specific section of HNA and subsumed 
+by the SoNAR setting.
+While the exemplary research questions for which SoNAR caters are of a global nature,
+our exemplary queries are more local in the sense that they focus on
+a single item, person, or corporate body and its neighbourhood in the network
+(e.g., owners of a book or students of a scholar). 
+What we are missing from the SoNAR project is a rigorous definition of admissible queries
+that specifies exactly which queries are in the scope and which are not.
+Therefore, we aim at providing such a rigorous definition for our setting
+which, at the same time, should be as general as possible. We consider this rigorous definition
+a main feature of our approach.
 
-
-*** Catalogue of requirements (R001--062); address R003 and possibly others!
-
-
+\todo[inline]{no statistical approach; no visualisation (formulate this after discussing HNA above)}
 
 *** Insights for our topic:
-* delineation from pure (H)NA -- focus on more \enquote{local} questions, but (H)NA is possible
 * SoNAR: 
-  more general setting than just provenance research. \enquote{Overlap} with our topic:
+  \enquote{Overlap} with our topic:
   relationships. (?)
   Discuss from the above: relationships, temporal aspects, hermeneutic circle; visualisation out of scope, but enabled!
   Explorative approach; our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
   Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
-  Authority files, additional repositories; 
-  
+  Pro authority files, con GND, pro additional repositories/Wikidata/VIAF, GND \enquote{Alleinstellungsmerkmal}; 
   data provenance;
   Some requirements can be addressed directly with our queries, e.g., R006!
   R016 seems to require the \enquote{$\top$-role} in queries!
