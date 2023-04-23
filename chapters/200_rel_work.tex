@@ -84,7 +84,7 @@ i.e., the hope that an inspection of the data helps identify unexpected
 phenomena that contribute to the shaping of the research question.
 
 The report uses the term \emph{data source} for original documents, media, and artefacts
-from which network-compatible (i.e., essentially relational) data can be obtained;
+from which \enquote{network-compatible} (i.e., essentially relational) data can be obtained;
 data sources can be identified via \emph{repositories} of various kinds,
 including library catalogues, archive portals, databases, and many more.
 The report highlights the advantages of using data from authority files
@@ -199,13 +199,26 @@ We aim at providing such a rigorous definition for our setting
 which, at the same time, should be as general as possible. We consider this rigorous definition
 a main feature of our approach.
 
+Data sources in the sense used by SoNAR, i.e., original documents, media, and further artefacts
+are not part of our setting, as we do not consider the part of the research process
+that consults those data sources. Our approach focusses on the level of
+what the SoNAR authors call repositories.
+In order to allow researchers to refer to the original data sources,
+it becomes clear that \emph{data provenance} plays a crucial role:
+the answer to a specific query in our setting needs to refer to
+the original data sources that provide evidence for the information contained in that answer.
+This reference can point to original documents (SoNAR: data sources),
+and/or to data sets in repositories. For a more detailed discussion of data provenance,
+see Section~\ref{sec:data_provenance}.
+In this thesis, we continue to use the term \enquote{data source} for what
+SoNAR calls a repository.
+
+
 
 *** Insights for our topic:
 * SoNAR: 
-  our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
   Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
   Pro authority files, con GND, pro additional repositories/Wikidata/VIAF, GND \enquote{Alleinstellungsmerkmal}; 
-  data provenance;
   Some requirements can be addressed directly with our queries, e.g., R006!
   R016 seems to require the \enquote{$\top$-role} in queries!
   Edge weights;
