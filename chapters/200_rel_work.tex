@@ -202,7 +202,7 @@ a main feature of our approach.
 Data sources in the sense used by SoNAR, i.e., original documents, media, and further artefacts
 are not part of our setting, as we do not consider the part of the research process
 that consults those data sources. Our approach focusses on the level of
-what the SoNAR authors call repositories.
+what the SoNAR authors refer to as repositories.
 In order to allow researchers to refer to the original data sources,
 it becomes clear that \emph{data provenance} plays a crucial role:
 the answer to a specific query in our setting needs to refer to
@@ -211,13 +211,32 @@ This reference can point to original documents (SoNAR: data sources),
 and/or to data sets in repositories. For a more detailed discussion of data provenance,
 see Section~\ref{sec:data_provenance}.
 In this thesis, we continue to use the term \enquote{data source} for what
-SoNAR calls a repository.
+SoNAR refers to as a repository.
 
+Another observation in the context of SoNAR seems important to keep in mind
+when designing our method: the relevance of indirect or substitute information.
+It has to be noted that not all information that one might be looking for is recorded
+in the data. For example, there is no record of who \emph{read} a book,
+and ownership has to be used as a substitute for readership although evidence
+of ownership is only a necessary condition for readership and not a sufficient one---%
+although one might argue that, in the case of, say, a scientist, ownership is very likely
+to indicate readership.
+Therefore, answers to questions
+about readership retrieved on the grounds of recorded ownership require further interpretation and investigation
+by the researcher who asked the question in the first place.
+The example from the SoNAR report that uses \enquote{having the same biographical dates}
+as a substitute for a social relationship is very similar, but in addition
+the fact that two persons have the same biographical dates is not a relationship that is
+given explicitly in the data but requires a certain amount of reasoning on several attributes of the entries
+for the two persons.
+This general observation has to be taken into account by our method.
 
+We discuss substitutes further in Section ... \todo{reference and back-reference}
+
+\todo[inline]{In general, look for a uniform word to refer to our approach and use it from the start!}
 
 *** Insights for our topic:
 * SoNAR: 
-  Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
   Pro authority files, con GND, pro additional repositories/Wikidata/VIAF, GND \enquote{Alleinstellungsmerkmal}; 
   Some requirements can be addressed directly with our queries, e.g., R006!
   R016 seems to require the \enquote{$\top$-role} in queries!
