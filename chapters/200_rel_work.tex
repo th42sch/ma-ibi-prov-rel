@@ -24,6 +24,7 @@
 \label{sec:HNA+SoNAR}
 
 *** Network analysis, SNA, HNA:
+* define \enquote{network}
 * methods of SNA
 * importance of HNA for historical research
 
@@ -170,35 +171,39 @@ The following of these requirements are relevant for our purposes
 We now discuss how these insights from the SoNAR project relate to, and inform, our work on the topic of this thesis.
 First, the analysis of historical networks is a broad concept, and SoNAR supports a setting
 that is much more general than just provenance research.
-The setting that we want to support in this thesis is a specific section of HNA and subsumed 
+Thus, the setting that we want to support in this thesis is a specific section of HNA and subsumed 
 by the SoNAR setting.
-While the exemplary research questions for which SoNAR caters are of a global nature,
+
+The central role of relationships and of temporal aspects in historical research
+have to be reflected in the model and method that we are going to develop.
+Furthermore, the hermeneutic approach to historical research
+and the explorative approach to answering general research questions 
+need to be supported by our method. In fact, the repeated exploration of data
+is exactly what we hope to support by enabling researchers to ask specific
+queries over a combination of data sources and use the answers to obtain
+\enquote{local} views of the whole network and thus inform the next steps in their research process.
+
+Locality is a feature that distinguishes our approach from the SoNAR setting:
+while the exemplary research questions for which SoNAR caters are mostly of a global nature,
 our exemplary queries are more local in the sense that they focus on
 a single item, person, or corporate body and its neighbourhood in the network
 (e.g., owners of a book or students of a scholar). 
-What we are missing from the SoNAR project is a rigorous definition of admissible queries
+In order to fit the scope of a master's thesis,
+we consider it prudent to restrict this work to a local setting,
+and leave global features (including, among others, network metrics)
+for future work. The same holds for visualisation, which is an important component
+of SoNAR.
+
+A feature we are missing from the SoNAR project is a rigorous definition of admissible queries
 that specifies exactly which queries are in the scope and which are not.
 Therefore, we aim at providing such a rigorous definition for our setting
 which, at the same time, should be as general as possible. We consider this rigorous definition
 a main feature of our approach.
 
-\todo[inline]{no statistical approach; no visualisation (but enabled) (formulate this after discussing HNA above)}
-
-Further insights from SoNAR described above are relevant for our approach:
-The central role of relationships and of temporal aspects in historical research
-as well as the hermeneutic approach have to be taken into account.
-Furthermore, the importance of the explorative approach to answering general research questions 
-is part of our motivation for developing a method for answering specific, local queries
-over a combination of data sources---%
-this way, researchers can explore the available data in a ........ 
-
-We aim at supporting the explorative approach to answering general research questions 
-by enabling 
-
 
 *** Insights for our topic:
 * SoNAR: 
-  Explorative approach; our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
+  our notion of a data source (abstract from original documents, focus on machine-readable data in a standardised format).
   Indirect information (substitute); even \enquote{having the same biographical data} already involves some interpretation of, or reasoning on, the pure data.
   Pro authority files, con GND, pro additional repositories/Wikidata/VIAF, GND \enquote{Alleinstellungsmerkmal}; 
   data provenance;
