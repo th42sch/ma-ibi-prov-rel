@@ -23,7 +23,7 @@
 \section{Network Analysis and the SoNAR Project}
 \label{sec:HNA+SoNAR}
 
-* begin with a motivation on describing NWA; see also 4th sentence below.
+\todo[inline]{begin with a motivation on describing NWA; see also 4th sentence below.}
 
 % - - - - - - - - - - - - - - - 
 \subsection{Network Analysis}
@@ -61,8 +61,10 @@ Since a graph can conveniently be represented by its adjacency matrix,
 methods from matrix algebra are part of the toolset.
 
 
+\todo[inline]{
 * SNA, methods
 * HNA and importance for historical research
+}
 
 % - - - - - - - - - - - - - - - 
 \subsection{SoNAR (IDH)}
@@ -94,7 +96,7 @@ addresses the development of the research technology environment
 and its evaluation against real research questions.
 In the following paragraphs,
 we summarise the insights described in the final report on this WP \autocite{Fangerau2022}
-that are relevant for the topic of this thesis.
+that are relevant for the research goals of this thesis.
 
 The report emphasises relationships and their evolution over time
 as central aspects of historical research and acknowledges the increased 
@@ -137,7 +139,7 @@ of the research technology environment and has, in principle, proved its worth}.
 Concerning the repositories used,
 the authors report the general problem of missing or erroneous data,
 which leads to distorted answers to the questions, and which could not been solved
-systematically. In particular, the GND is focussed on German library holdings
+systematically. In particular, the GND is focused on German library holdings
 and thus contains a disproportionately high amount of German-speaking persons.
 The data is biased towards people who have published at all,
 towards elite research, towards men (in particular among authors before the 1950s),
@@ -209,7 +211,8 @@ The following of these requirements are relevant for our purposes
 % - - - - - - - - - - - - - - - 
 \subsection{Insights relevant for this thesis}
 
-We now discuss how these insights from the SoNAR project relate to, and inform, our work on the topic of this thesis.
+We now discuss how these insights from the SoNAR project relate to, and inform, the research goals
+pursued in this thesis.
 First, the analysis of historical networks is a broad concept, and SoNAR supports a setting
 that is much more general than just provenance research.
 Thus, the setting that we want to support in this thesis is a specific section of HNA and subsumed 
@@ -227,10 +230,10 @@ queries over a combination of data sources and use the answers to obtain
 Locality is a feature that distinguishes our approach from the SoNAR setting:
 while the exemplary research questions for which SoNAR caters are mostly of a global nature,
 our exemplary queries are more local in the sense that they focus on
-a single item, person, or corporate body and its neighbourhood in the network
+a single item/actor and its neighbourhood in the network
 (e.g., owners of a book or students of a scholar). 
-In order to fit the scope of a master's thesis,
-we consider it prudent to restrict this work to a local setting,
+In order to fit the scope of this thesis,
+we consider it appropriate to focus on this local perspective
 and leave global features (including, among others, network metrics)
 for future work. The same holds for visualisation, which is an important component
 of SoNAR.
@@ -243,11 +246,11 @@ a main feature of our approach.
 
 Data sources in the sense used by SoNAR, i.e., original documents, media, and further artefacts
 are not part of our setting, as we do not consider the part of the research process
-that consults those data sources. Our approach focusses on the level of
+that consults those data sources. Our work focuses on the level of
 what the SoNAR authors refer to as repositories.
 In order to allow researchers to refer to the original data sources,
 it becomes clear that \emph{data provenance} plays a crucial role:
-the answer to a specific query in our setting needs to refer to
+the answer to a specific query in our approach needs to refer to
 the original data sources that provide evidence for the information contained in that answer.
 This reference can point to original documents (SoNAR: data sources),
 and/or to data sets in repositories. For a more detailed discussion of data provenance,
@@ -256,7 +259,7 @@ In this thesis, we continue to use the term \enquote{data source} for what
 SoNAR refers to as a repository.
 
 Another observation in the context of SoNAR seems important to keep in mind
-when designing our method: the relevance of indirect or substitute information.
+for our work: the relevance of indirect or substitute information.
 It has to be noted that not all information that one might be looking for is recorded
 in the data. For example, there is no record of who \emph{read} a book,
 and ownership has to be used as a substitute for readership although evidence
@@ -271,17 +274,10 @@ as a substitute for a social relationship is very similar, but in addition
 the fact that two persons have the same biographical dates is not a relationship that is
 given explicitly in the data but requires a certain amount of reasoning on several attributes of the entries
 for the two persons.
-This general observation has to be taken into account by our method.
+This general observation has to be taken into account by our approach.
 
 Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
-
-\todo[inline]{In general, look for a uniform word to refer to our approach and use it from the start!}
-
-
-
-
-\dots
 
 % -------------------------------------------------------------------
 \section{Linked Data and Data Integration}
