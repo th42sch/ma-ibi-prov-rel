@@ -294,6 +294,37 @@ This general observation has to be taken into account by our approach.
 Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
 
+% - - - - - - - - - - - - - - - 
+\subsection{Graph Technologies for the Analysis of HNAs Using Heterogeneous Data Sources}
+
+In the paper of the same name, \citeauthor*{Menzel2020} \autocite*{Menzel2020} report on
+work in the SoNAR project concerning the 
+\enquote{creation and operation of research infrastructure
+for [HNA] based on heterogeneous data sources from cultural heritage institutions}.
+In particular, the authors present insights on modelling and transformation
+of heterogeneous data sources and on the design of visualisation for HNAs.
+
+In the described approach, the authors integrate data from 6 heterogeneous sources
+into a large uniform graph that is stored in a graph database
+and managed by the highly performant graph database management system Neo4j\todo{cite}.
+The original sources comprise an authority file (GND \autocite{GND}),
+federated library catalogues (DNB, ZDB, KPE \todo{cite}), and full texts (ZeFYS, Exile Press \todo{cite}).
+The data model is restricted to 9 entity types (e.g., \term{Resource} or \term{PersonName})
+and 9 very generic relation types (e.g., \term{RelationToPersonName}, \term{RelationToTopicTerm}).
+There is also a distinction between explicit and implicit relations:
+the former are present in the data, and the latter have to be inferred automatically via
+certain \enquote{guidelines} and marked as such.
+
+Since the data sources used include full texts, names of people, corporate bodies, or geographical entities
+have to be linked to entities in authority files. The use of the underlying technique,
+\emph{named entity linking}, is discussed further by \citeauthor*{Menzel2021} \autocite*{Menzel2021}
+in this context.
+
+*** CONTINUE WITH §4.2 FROM NOTES
+
+*** Related projects from \autocite[§2.1]{Menzel2021} 
+
+
 
 \todo[inline]{TODO: import from \emph{Exposé} and extend}
 
@@ -315,7 +346,11 @@ will affect our discussion of data sources in Section~\ref{sec:data_sources}.
   \item 
     no \enquote{complete} answering of a research questions; instead, providing of evidence, candidates for further \emph{exploration}
   \item
-    \emph{in-place} answering of a query $\leadsto$ no construction of a graph, but consultation of single repositories \enquote{on the fly}
+    \emph{in-place} answering of a query $\leadsto$ no construction of a graph required, but consultation of single repositories \enquote{on the fly} (however, works on \enquote{integrated} graph as well)
+  \item
+    no a-priori restriction to specific entity or relation types
+  \item
+    tool for exploration \emph{in addition to} visualisation; provision of \emph{entry points}
 \end{itemize}
 
 
