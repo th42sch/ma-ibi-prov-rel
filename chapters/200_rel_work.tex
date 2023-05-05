@@ -303,26 +303,41 @@ work in the SoNAR project concerning the
 for [HNA] based on heterogeneous data sources from cultural heritage institutions}.
 In particular, the authors present insights on modelling and transformation
 of heterogeneous data sources and on the design of visualisation for HNAs.
+We summarise the insights on data selection and processing.
 
 In the described approach, the authors integrate data from 6 heterogeneous sources
 into a large uniform graph that is stored in a graph database
-and managed by the highly performant graph database management system Neo4j\todo{cite}.
+and managed by the highly performant graph database management system Neo4j \autocite{Neo4j}.
 The original sources comprise an authority file (GND \autocite{GND}),
-federated library catalogues (DNB, ZDB, KPE \todo{cite}), and full texts (ZeFYS, Exile Press \todo{cite}).
+federated library catalogues (DNB, ZDB, KPE \autocite{DNBCatalogue,ZDB,KPE}),
+and full texts (ZEFYS, Exile Press \autocite{ZEFYS,ExilePress});
+altogether they contain some 30 million records.
 The data model is restricted to 9 entity types (e.g., \term{Resource} or \term{PersonName})
 and 9 very generic relation types (e.g., \term{RelationToPersonName}, \term{RelationToTopicTerm}).
 There is also a distinction between explicit and implicit relations:
 the former are present in the data, and the latter have to be inferred automatically via
 certain \enquote{guidelines} and marked as such.
 
-Since the data sources used include full texts, names of people, corporate bodies, or geographical entities
-have to be linked to entities in authority files. The use of the underlying technique,
+Since some of the above data sources include full texts,
+it is necessary to link names of people, corporate bodies, or geographical entities
+to entities in authority files. The use of the underlying technique,
 \emph{named entity linking}, is discussed further by \citeauthor*{Menzel2021} \autocite*{Menzel2021}
-in this context.
+the context of SoNAR,
+and by \citeauthor*{Meiners2022} \autocite*{Meiners2022} independently of SoNAR.
+
+Among the challenges associated specifically with processing data,
+\citeauthor*{Menzel2020} \autocite*{Menzel2020} name
+the sheer size of the combined graph, which causes performance issues,
+and the fact that the normalisation led to errors and inconsistencies.
+More generic challenges include the integration of domain knowledge
+and the adaptation of a more performant graph database engine (GraphDB),
+which requires extensive remodelling.
+
+
 
 *** CONTINUE WITH §4.2 FROM NOTES
 
-*** Related projects from \autocite[§2.1]{Menzel2021} 
+*** Related projects from \autocite[§2.1]{Menzel2020} 
 
 
 
@@ -331,8 +346,6 @@ in this context.
 \begin{itemize}
   \item
     Named Entity Linking and Recognition: \autocite{Menzel2021, Meiners2022}, see Exposé
-  \item 
-    Historical Network Analysis: \autocite{Menzel2020}, see Exposé
   \item
     more from project SoNAR (IDH): Abstract 2020 and references therein; more recent publications?
 \end{itemize}
