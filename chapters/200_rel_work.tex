@@ -309,6 +309,15 @@ In a similar spirit, we will not study visualisation;
 however, our envisaged tool can be used \emph{along with} visualisation tools
 and provide entry points to a large network.
 
+The construction of a uniform data source that integrates all the available data
+from the heterogeneous sources appears to be an integral part of SoNAR,
+according to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} discussion.
+*** advantages
+*** disadvantages
+*** our decision: \emph{in-place} answering of a query $\leadsto$ no construction of a graph required, but consultation of single repositories \enquote{on the fly} (however, works on \enquote{integrated} graph as well)
+\todo{finish this par}
+
+
 A feature that we miss in the reports and publications of SoNAR is a rigorous definition of admissible queries
 that specifies exactly which queries are in the scope and which are not.
 We aim at providing such a rigorous definition for our setting
@@ -321,7 +330,7 @@ are not part of our setting, as we do not consider the part of the research proc
 that consults those data sources. Our work focuses on the level of
 what the SoNAR authors refer to as repositories,
 and we will relate our choice of repositories in Section~\ref{sec:data_sources}
-to \citeauthor*{Menzel2020}'s \autocite{Menzel2020} selection.
+to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} selection.
 In this thesis, we continue to use the term \enquote{data source} for what
 SoNAR refers to as a repository,
 and we speak of \emph{original data sources} to refer to original documents etc.
@@ -334,8 +343,8 @@ This reference can point to original documents (SoNAR: data sources),
 and/or to data sets in repositories. For a more detailed discussion of data provenance,
 see Section~\ref{sec:data_provenance}.
 
-Another observation in the context of SoNAR seems important to keep in mind
-for our work: the relevance of indirect or substitute information.
+The observed relevance of indirect or substitute information in the context of SoNAR 
+seems important to keep in mind for our work as well: 
 It has to be noted that not all information that one might be looking for is recorded
 in the data. For example, there is no record of who \emph{read} a book,
 and ownership has to be used as a substitute for readership although evidence
@@ -355,24 +364,6 @@ This general observation has to be taken into account by our approach.
 Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
 
-
-
-*** CONTINUE DISCUSSION WITH INSIGHTS FROM \autocite{Menzel2020}
-
-\todo[inline]{My motivation and delineation from HNA/SoNAR/further approaches in \autocite{Menzel2020}:}
-
-\begin{itemize}
-  \item
-    \emph{local} queries, no \enquote{graph-wide} methods
-  \item 
-    no \enquote{complete} answering of a research questions; instead, providing of evidence, candidates for further \emph{exploration}
-  \item
-    \emph{in-place} answering of a query $\leadsto$ no construction of a graph required, but consultation of single repositories \enquote{on the fly} (however, works on \enquote{integrated} graph as well)
-  \item
-    no a-priori restriction to specific entity or relation types
-  \item
-    tool for exploration \emph{in addition to} visualisation; provision of \emph{entry points}
-\end{itemize}
 
 
 % -------------------------------------------------------------------
