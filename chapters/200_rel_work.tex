@@ -263,15 +263,15 @@ More generic challenges include the integration of domain knowledge
 and the adaptation of a more performant graph database engine (GraphDB),
 which requires extensive remodelling.
 
-*** Related projects from \autocite[§2.1]{Menzel2020} 
+\todo[inline]{Mention/discuss related projects from \autocite[§2.1]{Menzel2020}}
 
-*** Some more comments on NEL and choice of data sources from \autocite*{Menzel2021, Meiners2022}? see Exposé
+\todo[inline]{Some more comments on NEL and choice of data sources from \autocite*{Menzel2021, Meiners2022}? see Exposé}
 
 % - - - - - - - - - - - - - - - 
 \subsection{Insights Relevant for This Thesis}
 
-We now discuss how these insights from the SoNAR project relate to, and inform, the research goals
-pursued in this thesis.
+We now put the insights from the SoNAR project described in the previous two subections
+into relation with the research goals pursued in this thesis.
 First, the analysis of historical networks is a broad concept, and SoNAR supports a setting
 that is much more general than just provenance research.
 Thus, the setting that we want to support in this thesis is a specific section of HNA and subsumed 
@@ -304,10 +304,17 @@ We aim at providing such a rigorous definition for our setting
 which, at the same time, should be as general as possible. We consider this rigorous definition
 a main feature of our approach.
 
-Data sources in the sense used by SoNAR, i.e., original documents, media, and further artefacts
+Data sources in the sense used in the SoNAR project report,
+i.e., original documents, media, and further artefacts
 are not part of our setting, as we do not consider the part of the research process
 that consults those data sources. Our work focuses on the level of
-what the SoNAR authors refer to as repositories.
+what the SoNAR authors refer to as repositories,
+and we will relate our choice of repositories in Section~\ref{sec:data_sources}
+to \citeauthor*{Menzel2020}'s \autocite{Menzel2020} selection.
+In this thesis, we continue to use the term \enquote{data source} for what
+SoNAR refers to as a repository,
+and we speak of \emph{original data sources} to refer to original documents etc.
+
 In order to allow researchers to refer to the original data sources,
 it becomes clear that \emph{data provenance} plays a crucial role:
 the answer to a specific query in our approach needs to refer to
@@ -315,8 +322,6 @@ the original data sources that provide evidence for the information contained in
 This reference can point to original documents (SoNAR: data sources),
 and/or to data sets in repositories. For a more detailed discussion of data provenance,
 see Section~\ref{sec:data_provenance}.
-In this thesis, we continue to use the term \enquote{data source} for what
-SoNAR refers to as a repository.
 
 Another observation in the context of SoNAR seems important to keep in mind
 for our work: the relevance of indirect or substitute information.
@@ -338,6 +343,8 @@ This general observation has to be taken into account by our approach.
 
 Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
+
+
 
 *** CONTINUE DISCUSSION WITH INSIGHTS FROM \autocite{Menzel2020}
 
