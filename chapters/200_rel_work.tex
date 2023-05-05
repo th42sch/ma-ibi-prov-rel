@@ -286,17 +286,28 @@ is exactly what we hope to support by enabling researchers to ask specific
 queries over a combination of data sources and use the answers to obtain
 \enquote{local} views of the whole network and thus inform the next steps in their research process.
 
-Locality is a feature that distinguishes our approach from the SoNAR setting:
-while the exemplary research questions for which SoNAR caters are mostly of a global nature,
-our exemplary queries are more local in the sense that they focus on
-a single item/actor and its neighbourhood in the network
-(e.g., owners of a book or students of a scholar). 
-In order to fit the scope of this thesis,
-we consider it appropriate to focus on this local perspective
-and leave global features (including, among others, network metrics)
-for future work. For the same reason, we will spend very little attention
-on visualisation, which is an important component
-of SoNAR.
+\emph{Locality} is an important feature that distinguishes our approach from the SoNAR setting:
+The exemplary research questions from the SoNAR report appear to be rather global
+in the sense that they focus on wider areas in the network and that their analysis requires
+\enquote{global} techniques such as graph metrics and statistical methods.
+In contrast, we aim at answering more local queries
+that are part of a larger research question and which 
+focus on a single item/actor and its neighbourhood in the network
+(e.g., owners of a book or students of a scholar, see the exemplary questions
+in Section~\ref{sec:background}). Answering such queries
+requires the retrieval of certain \enquote{candidates} from that neighbourhood
+which provide the necessary evidence and which then can be used
+to inform another iteration within the explorative approach.
+In the light of these considerations, 
+we should not adopt the a-priori restriction
+to a fixed set of entity types or (generic) relation types;
+instead, it should be to use arbitrary concepts and relations
+from the data sources in queries and answers.
+Hence, we will focus on the described local perspective
+and leave the accommodation of global techniques for future work.
+In a similar spirit, we will not study visualisation;
+however, our envisaged tool can be used \emph{along with} visualisation tools
+and provide entry points to a large network.
 
 A feature that we miss in the reports and publications of SoNAR is a rigorous definition of admissible queries
 that specifies exactly which queries are in the scope and which are not.
