@@ -227,7 +227,7 @@ The following of these requirements are relevant for our purposes
 % - - - - - - - - - - - - - - - 
 \subsection{Graph Technologies for the Analysis of HNAs Using Heterogeneous Data Sources}
 
-In the paper of the same name, \citeauthor*{Menzel2020} \autocite*{Menzel2020} report on
+In the paper of the same name, \textcite{Menzel2020} report on
 work in the SoNAR project concerning the 
 \enquote{creation and operation of research infrastructure
 for [HNA] based on heterogeneous data sources from cultural heritage institutions}.
@@ -251,12 +251,12 @@ certain \enquote{guidelines} and marked as such.
 Since some of the above data sources include full texts,
 it is necessary to link names of people, corporate bodies, or geographical entities
 to entities in authority files. The use of the underlying technique,
-\emph{named entity linking}, is discussed further by \citeauthor*{Menzel2021} \autocite*{Menzel2021}
+\emph{named entity linking}, is discussed further by \textcite{Menzel2021}
 in the context of SoNAR,
-and by \citeauthor*{Meiners2022} \autocite*{Meiners2022} independently of SoNAR.
+and by \textcite{Meiners2022} independently of SoNAR.
 
 Among the challenges associated specifically with processing data,
-\citeauthor*{Menzel2020} \autocite*{Menzel2020} name
+\textcite{Menzel2020} name
 the sheer size of the combined graph, which causes performance issues,
 and the fact that the normalisation led to errors and inconsistencies.
 More generic challenges include the integration of domain knowledge
@@ -388,6 +388,44 @@ This general observation has to be taken into account by our approach.
 Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
 
+% - - - - - - - - - - - - - - - 
+\subsection{Further Initiatives Providing Research Infrastructures}
+
+\textcite{Menzel2020} mention several projects that connect
+decentralised and heterogeneous bibliographic data sources
+and/or extract historical networks within the social sciences and humanities.
+We briefly summarise some of these projects.
+
+DARIAH-DE \autocite{DariahDE} is an association that develops
+a digital research infrastructure for the arts and humanities
+following the example of large digital research infrastructures for the natural sciences.
+It comprises of 16 partner institutions from the academic sector
+and is part of the European network DARIAH-EU \autocite{DariahEU}.
+According to Wikipedia \autocite{WikiDariahDE},
+DARIAH-DE's services for research include
+the development and hosting of services for data analysis and visualisation.
+
+Culturegraph \autocite{Vorndran2018,Culturegraph} is a service offered by the
+German National Library (DNB) which aggregates bibliographic data 
+from library networks in German-speaking countries,
+from the DNB itself, and from the British National Library.
+According to \textcite{Vorndran2018}, Culturegraph makes over 160 million data sets
+available \enquote{for data analyses, evaluation of connections and statistical analyses}.
+This is achieved, among other things,
+by enrichment via external data sources such as GND \autocite{GND}
+and ORCID \autocite{ORCID}, thus allowing for the identification
+and disambiguation of persons.
+
+\textcite{Menzel2020} further note \enquote{an increase in joint research projects
+that are focused on the extraction of historical networks within the social sciences and the humanities.}
+These projects include \emph{Six Degrees of Francis Beacon} \autocite{Warren2016,SixDegreesFB},
+\emph{histoGraph} \autocite{Novak2014,histograph},
+\emph{Issues with Europe} \autocite{IssuesWithEurope},
+\emph{APIS} \autocite{Gruber2017,APIS},
+and \emph{Gesellschaftliche Wissensproduktion in der Aufklärung} \autocite{Purschwitz2018}.
+Judging from \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} summary,
+these projects put an emphasis on statistical methods,
+visualisation, and/or exploration.
 
 
 % -------------------------------------------------------------------
