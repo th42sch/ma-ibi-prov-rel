@@ -430,11 +430,36 @@ visualisation, and/or exploration.
 \section{Linked Data and Data Integration}
 \label{sec:linked_data+integration}
 
-Linked data \autocite{W3CLinkedData,Domingue2011} refers to data published on the world wide web that is structured and connected with other data.
-Based on a small and uniform set of simple technologies (essentially HTTP URIs and controlled vocabulary terms expressed in RDF serialisation),
+\emph{Linked data} \autocite{W3CLinkedData,Domingue2011} refers to data published on the world wide web that is structured and connected with other data.
+Based on a small and uniform set of simple technologies---essentially HTTP URIs and the Resource Description Framework (RDF)---,
 the linked data paradigm provides applications with access to \enquote{a global, unbounded dataspace} \autocite{Domingue2011}.
 In the context of the semantic web \autocite{BernersLee2001,Marshall2003},
 linked data is one of several developments aimed at making data on the web more machine-understandable.
+
+\emph{Linked open data (LOD)} is linked data that is also \emph{open data},
+i.e., accessible and shareable by everyone. \todo{cite wiki?}
+The state of LOD in the library domain in 2013 is summarised by \textcite{Pohl2013}
+in their introduction to the edited volume \enquote{(Open) Linked Data in Libraries} \autocite{Danowski2013}
+as follows (translated from German and rephrased): Libraries and related organisations
+began to experiment with linked data as early as 2008.
+This was followed by linked-data initiatives by important players such as
+OCLC, the Library of Congress (LC), and the DNB;
+in particular, the LC started the initiative \enquote{Bibliographic Framework for the Digital Age} in 2011,
+declaring the renunciation of the library-specific standards MARC21 and Z39.50,
+and announcing the development of an infrastructure based on the Resource Description Framework (RDF) as a basic data model. The advantages of LOD for the library domain include
+retrievability of, e.g., catalogue data by search engines,
+mechanisms for permanently linking, e.g., hit lists and hit views,
+the use of a much more flexible data model,
+interoperability ensured by the use of open web standards,
+and reusability via open licences.
+A prominent example of this development is the provision of authority data as LOD,
+which can be shared an reused on the web:
+e.g., authority data on person names from the GND has been used by Wikipedia since 2005
+in order to provide links to further reading in Wikipedia articles, see also \autocite{Hengel2005}.
+In addition to the GND, further providers have made authority data available as LOD,
+among them LC and VIAF.
+
+*** RDF, OWL, SPARQL
 
 \dots
 
@@ -443,7 +468,7 @@ linked data is one of several developments aimed at making data on the web more 
 \section{Data Provenance}
 \label{sec:data_provenance}
 
-*** \autocite{Eckert2012}
+*** \autocite{Eckert2012,Eckert2013}
 *** PoDI Chapter 14?
 
 \dots
