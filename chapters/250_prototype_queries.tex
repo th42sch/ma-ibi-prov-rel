@@ -1,7 +1,8 @@
 % !TeX spellcheck = en_GB
 % =================================================================
-\chapter{Prototype Queries and Answers}
+\chapter{Example Queries and Answers: A Case Study}
 \label{chap:prototype_queries}
+\label{chap:example_queries}
 
 As a first step towards delineating the type of queries that should be covered by our approach,
 we examine the query patterns introduced in Section~\ref{sec:background} more closely.
@@ -25,12 +26,26 @@ The query patterns introduced in Section~\ref{sec:background} are the following.
 %
 \begin{enumerate}
   \item[\exaquery{1}]
-    Who read work $W$, in which manifestation and in which year?
+    Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
+    work $X$, in which manifestation and in which year?
   \item[\exaquery{2}]
-    Which exemplars of work $W$ were passed from one of its owners to a collaborator (or a student)?
+    Which exemplars%
+    \footnote{%
+      Conforming to the FRBR model \autocite{FRBR1998},
+      the precise wording should be \enquote{examplars of manifestations of expressions of $X$}
+      but, here and in the following,
+      we omit the intermediate entities for brevity when no misunderstanding is expected.%
+    }
+    of work $X$
+    were passed from one of its owners to a student?
   \item[\exaquery{3}]
-    What are the relationships between the recipients of work $W$
-    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
+    What are the relationships between the recipients of manifestation $Y$ of work $X$?
+%    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
+  \item[\exaquery{4}]
+    Which exemplars from a collection $X$ were passed on by its owner to a family member?
+  \item[\exaquery{5}]
+    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$
+    between 1933 and 1945?
 \end{enumerate}
 %
 These query patterns have been identified
@@ -129,11 +144,11 @@ Our researcher can now engage in further research in order to verify that hypoth
 %
 \begin{itemize}
   \item
-    Discuss instances of \exaquery{1} or \exaquery{3}?
+    Discuss instances of \exaquery{1}, \exaquery{3}, \exaquery{4}, or \exaquery{5}?
   \item
     Add further prototypical query patterns?
   \item
-    Explain how \exaquery{1}--\exaquery{3} differ from each other (extend remarks from Section~\ref{sec:background})?
+    Explain how \exaquery{1}--\exaquery{5} differ from each other (extend remarks from Section~\ref{sec:background})?
 \end{itemize}
 
 % -----------------------------------------------------------------
