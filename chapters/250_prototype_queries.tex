@@ -5,24 +5,21 @@
 \label{chap:example_queries}
 
 As a first step towards delineating the type of queries that should be covered by our approach,
-we examine the query patterns introduced in Section~\ref{sec:background} more closely.
-Those will serve as a point of reference for the analysis of the available data sources
+we examine the queries used as motivating examples in Section~\ref{sec:background} more closely.
+Those queries will serve as a point of reference for the analysis of the available data sources
 in Chapter~\ref{chap:analysis},
 and they will be generalised by the abstract framework developed in Chapter~\ref{chap:modelling}.
-That framework will provide a rigorous definition of the queries that can be formulated
-within it.
-
-\todo[inline]{Perhaps \enquote{prototype} is too strong? See explanations in email to Christian Rüter:}
-
-\begin{quote}
-  Zur Bedeutung von Q1–Q3: aus meiner Sicht sind das Beispielfragen, anhand derer ich die allgemeine Idee veranschaulichen möchte. Wahrscheinlich ist mein Begriff „Prototyp“ zu stark. Das abstrakte Modell wiederum ist so allgemein, dass es vom konkreten Inhalt der Frage unabhängig ist. Dazu habe ich inzwischen mehr Erläuterungen geschrieben, und ich bin auch gerade bei einer Anforderungsanalyse, die sich aus dem Literaturstudium ergeben hat (v.a. Projekt SoNAR von Frau Petras et al.). Ich habe auch drei Expertinnen um weitere Beispiel-Fragestellungen gebeten, aber in zwei Fällen noch keine Antwort bekommen.
-\end{quote}
+With that framework, we will provide a rigorous definition of the admissible queries 
+that specifies their structure but does not impose any restriction on their content.
 
 % -----------------------------------------------------------------
-\section{Prototype Queries}
+\section{Example Queries}
 \label{sec:prototype_queries}
+\label{sec:example_queries}
 
-The query patterns introduced in Section~\ref{sec:background} are the following.
+As already noted in Section~\ref{sec:background}, the queries introduced there
+are in fact \emph{query patterns}, and we will make this distinction in the remainder
+of this section. We repeat the query patterns here in order to discuss them in more depth.
 %
 \begin{enumerate}
   \item[\exaquery{1}]
@@ -48,22 +45,30 @@ The query patterns introduced in Section~\ref{sec:background} are the following.
     between 1933 and 1945?
 \end{enumerate}
 %
-These query patterns have been identified
-as important examples by personal communication
-with provenance researchers\todo{ask more experts (V. Petras, M. Hopp, J. Weis)},%
-\footnote{Dietrich Hakelberg, Research Library Gotha of the University of Erfurt}
-which justifies the choice of considering them as \emph{prototypical}.
-
-Obviously, the question arises whether these prototypical query patterns are representative
+These patterns can be instantiated by substituting each variable with concrete object,
+which yields a specific \emph{query}. For example, if we substitute the variable $X$
+in \exaquery{2} with the seminal work \emph{De revolutionibus orbium coelestium}
+(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
+by the astronomer Nicolaus Copernicus (1473–1543),
+we obtain the following query.
+%
+\begin{enumerate}
+  \item[\exaquery{2$'$}]
+%    Which exemplars of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
+    Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
+\end{enumerate}
+%
+It is important to note that these exemplary query patterns are not meant to be representative
 for the range of queries that provenance researchers are interested in asking.
-Answering that question would require systematic analysis of queries relevant to or useful for researchers.
+Finding a representative choice would require a systematic analysis
+of queries relevant to or useful for researchers.
 Such an analysis would need to comprise an extensive interview study
 based on very generic questions of a predominantly open-ended nature,
-requiring a labour-intensive evaluation.
-Given that this thesis focuses on the technical prerequisites and realisation,
-such a study is clearly outside its scope. However, since the general framework that we will develop
+requiring a labour-intensive evaluation which could easily fill a separate thesis.
+As indicated above, the general framework that we will develop
 is informed by the available data sources
-and designed to cover a wide range of possible queries,
+and designed to cover a wide range of possible queries.
+Hence,
 it is reasonable to assume that tools developed on its basis will be helpful for provenance researchers.
 In subsequent work, when our method will hopefully have been implemented in a prototype tool,
 the extent to which researchers' needs are served can be determined by means of a more focused user study
@@ -146,7 +151,7 @@ Our researcher can now engage in further research in order to verify that hypoth
   \item
     Discuss instances of \exaquery{1}, \exaquery{3}, \exaquery{4}, or \exaquery{5}?
   \item
-    Add further prototypical query patterns?
+    Add further exemplary query patterns?
   \item
     Explain how \exaquery{1}--\exaquery{5} differ from each other (extend remarks from Section~\ref{sec:background})?
 \end{itemize}
