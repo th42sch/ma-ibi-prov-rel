@@ -23,7 +23,7 @@
 %\RequirePackage{setspace}
 %\onehalfspacing
 \setlength{\marginparwidth}{2cm}
-\RequirePackage[backgroundcolor=yellow!30!white]{todonotes}
+\RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos]{todonotes}
 \RequirePackage{pdfpages}
 \RequirePackage[framemethod=default]{mdframed}
 
@@ -321,6 +321,12 @@
 
 \theoremstyle{myplain}
 
+
+% ===== todonotes styles =====
+\todostyle{think}{backgroundcolor=yellow!30!white}
+\todostyle{quick}{backgroundcolor=orange!30!white}
+\todostyle{ask}{backgroundcolor=blue!30!white}
+\todostyle{defer}{backgroundcolor=black!30!white}
 
 
 % ==============
