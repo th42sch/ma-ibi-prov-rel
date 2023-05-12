@@ -70,7 +70,11 @@
 \addbibresource{bib/ma_jabref.bib}
 \setlength{\bibitemsep}{4pt}
 
+
 \DefaultInheritance{override=true}
+
+% --- enable Oxford comma before 'and' in author lists
+\DefineBibliographyExtras{UKenglish}{\def\finalandcomma{\addcomma}}
 
 % --- Citations in brackets rather than parens
 \DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket}

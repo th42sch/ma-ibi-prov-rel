@@ -431,10 +431,36 @@ visualisation, and/or exploration.
 \label{sec:linked_data+integration}
 
 \emph{Linked data} \autocite{W3CLinkedData,Domingue2011} refers to data published on the world wide web that is structured and connected with other data.
-Based on a small and uniform set of simple technologies---essentially HTTP URIs and the Resource Description Framework (RDF)---,
+Based on a small and uniform set of simple technologies
+%---essentially HTTP URIs and the Resource Description Framework (RDF)---,
 the linked data paradigm provides applications with access to \enquote{a global, unbounded dataspace} \autocite{Domingue2011}.
 In the context of the semantic web \autocite{BernersLee2001,Marshall2003},
 linked data is one of several developments aimed at making data on the web more machine-understandable.
+
+The main technologies underlying linked data are the following.
+%
+\begin{enumerate}
+  \item
+    \emph{Uniform Resource Identifiers (URIs)} \autocite{RFC3986}:
+    
+    \par
+    A URI is a string that is assigned to a physical or logical resource
+    in order to identify that resource uniquely. URLs (Uniform Resource Locators)
+    are a special case of URIs which additionally ensure that a resource
+    can be located in a network and that information can be retrieved from it,
+    where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
+    URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
+  \item
+    the \emph{Hypertext Transfer Protocol (HTTP)} \autocite{HTTP}:
+    
+    HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
+  \item
+    .....
+\end{enumerate}
+
+\todo[quick,inline]{RDF, OWL, SPARQL}
+
+\todo[quick,inline]{ontologies}
 
 \emph{Linked open data (LOD)} is linked data that is also \emph{open data},
 i.e., accessible and shareable by everyone \autocite{WikiLinkedData}.
@@ -459,7 +485,6 @@ in order to provide links to further reading in Wikipedia articles, see also \au
 In addition to the GND, further providers have made authority data available as LOD,
 among them LC and VIAF.
 
-*** RDF, OWL, SPARQL
 
 \dots
 
