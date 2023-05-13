@@ -471,7 +471,7 @@ The main technologies underlying linked data are the following.
 %
 In the context of the Semantic Web, RDF and associated technologies
 are important tools for the definition and use of ontologies.
-For the definition of an ontology in this setting, we cite \textcite{Horrocks2011}:
+For a definition of the term \enquote{ontology} in this setting, we cite \textcite{Horrocks2011}:
 \enquote{A major feature of the Semantic Web is the ability to provide definitions for objects and types of objects that are accessible and manipulable from within the Semantic Web. In Computer Science, a collection of these sorts of definitions about a particular domain is called an ontology, although philosophers may (and probably will) have a different understanding of what constitutes an ontology.}
 
 The following technologies associated with RDF and ontologies
@@ -486,10 +486,24 @@ are of interest for the purposes of this thesis:
     and thus serves as a very basic ontology language.
     It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
   \item
-    the \emph{Web Ontology Language OWL} \autocite{***}:
+    the \emph{Web Ontology Language OWL} \autocite{OWLPrimer}:
     
     \par
-    ...
+    OWL is the ontology language recommended by the W3C.
+    It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
+    DLs have a well-defined syntax and model-theoretic semantics, which allows
+    for unambiguous statements about the domain of interest
+    and for reasoning (inference), i.e., the discovery of information that is implicit in the set of statements
+    that constitute the ontology.
+    The members of the DL family vary regarding their expressive power and,
+    closely related, regarding the computational complexity of their basic reasoning problems.
+    OWL 2, which is the current version of OWL,
+    is based on an expressive DL where reasoning is still decidable and algorithms have been implemented
+    that perform well on a wide range of real-world ontologies.
+    Besides these knowledge representation languages,
+    OWL includes infrastructure for interaction with ontologies and interoperability
+    within the Web, such as Internationalized Resource Identifiers (IRIs),
+    XML schema datatypes, import mechanisms, and many more.
   \item
     \emph{SPARQL} (Simple Protocol And RDF Query Language) \autocite{***}:
     
