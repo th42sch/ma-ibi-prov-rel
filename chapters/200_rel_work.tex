@@ -618,6 +618,30 @@ In particular, the GND ontology provides a vocabulary for describing entities su
 thus allowing to disambiguate and link these entities.
 
 % - - - - - - - - - - - - - - - 
+\subsection{Metadata Provenance}
+\label{sec:data_provenance}
+
+In the data integration scenario, the origins of (meta)data are important:
+When querying the combination of several data sources, the retrieved answer
+should contain, for every fact, information that identifies the original data source or repository
+from which that fact was taken.
+This information is useful as a \enquote{justification} for the retrieved answer
+or as a pointer for further research;
+it is especially desirable when the consulted data sources contain conflicting information.
+In order to delineate the origin of data about a book (or other item)
+from the provenance of that book itself,
+we adopt the notion of \emph{metadata provenance} \autocite{Eckert2012}.
+
+\textcite{Eckert2013,Eckert2012} studies metadata provenance in connection with linked data
+in the context of the Europeana portal. ***** \todo{continue}
+
+Metadata provenance on the Web
+has been studied
+from the beginnings of linked data
+\autocite[][see, e.g.]{Hartig2009,Moreau2008,Moreau2008a};
+it has also received attention in the classical database domain \autocite[Chapter 14][see, e.g.]{Doan2012}.
+
+% - - - - - - - - - - - - - - - 
 \subsection{Some Recent Developments}
 
 \textcite{Boumechaal2023} developed a framework for transforming queries formulated in natural language (NL)
@@ -630,15 +654,7 @@ would be a barrier for most users. This aspect is, however, not in the scope of 
 and should be considered in future work.
 
 
-% - - - - - - - - - - - - - - - 
-\subsection{Data Provenance}
-\label{sec:data_provenance}
 
-*** \autocite{Eckert2012,Eckert2013}
-*** PoDI Chapter 14?
-*** more from Data Provenance folder
-
-\dots
 
 
 % -------------------------------------------------------------------
