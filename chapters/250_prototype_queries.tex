@@ -131,7 +131,7 @@ For the remaining four entries, our researcher follows the links given in the OP
 %\footnote{%
 %  \url{https://katalog.dnb.de/EN/home.html?v=plist}%
 %}
-On inspection of these entries, it turns out that Ernest II was a regent and very probably not a scientist,
+On inspection of these GND entries, it turns out that Ernest II was a regent and very probably not a scientist,
 and that the other three people---Tilesius, Hommel, and Thau---had professions such as theologian,
 mathematician, and astronomer, which qualifies them as scientists. Furthermore, Hommel's entry
 contains a reference to Thau with the relationship \enquote{has student}
@@ -185,22 +185,28 @@ and relations (such as \enquote{is student of}).
 %
 \begin{enumerate}
   \item
-    In the example, there is no information available on whether any of the persons involved is indeed
-    a \emph{scientist}.
-    However, information on more specific professions (e.g., theologian,
-    mathematician, and astronomer) is available, and the information that,
-    e.g., Thau and Hommel were scientists has to be derived based on general knowledge
-    of the world.
+    In the example, there is no information available in the GND on whether any of the persons involved is indeed
+    a \emph{scientist}. Instead, GND provides information on more specific professions,
+    e.g., for Thau and Hommel (theologian, mathematician, and astronomer).
+    The information that they were scientists has to be \emph{derived} based on \emph{general knowledge
+    of the world}.
+    Indeed, a search in the GND catalogue
+    reveals that GND does have an entry for the subject \enquote{Wissenschaftler} (scientist) \autocite{...}
+    which, however, is used only sporadically: its 46 subordinate terms do not include, for example,
+    \enquote{Mathematiker}, \enquote{Astronom}, or \enquote{Theologe} (mathematician, astronomer, theologian)  \autocite{...}.
+    
     The same effect can occur with relations instead of concepts:
-    if \exaquery{2} were to ask for family members instead of collaborators or students,
-    then the data would presumably only support more specific relations
-    such as \enquote{has sister} or \enquote{has father}, and relationships using
+    if \exaquery{2} were to ask for family members instead of collaborators or students
+    but the data only supported more specific relations
+    such as \enquote{has sister} or \enquote{has father}, then relationships using
     \enquote{has family member} would need to be derived.
-
-    More generally speaking, terms can be missing in the data sources
-    because\todo[ask]{find proof in the lit./with experts? Ask DH?}
-    membership in them is implicit, for example, from membership in more specific terms.
-    If the query uses such terms, then the answer set is always empty
+    Unfortunately, the cataloguing rules for GND authority datasets do not require
+    that relationships are recorded exhaustively nor using a normed vocabulary;
+    see Section~\ref{sec:data_sources} for more details.
+    
+    In summary, terms can be missing in the data sources because
+    they have not been recorded or because they are implicit in more specific terms.
+    If the query uses such missing terms, then the answer set is always empty
     unless the person or machine determining the answers makes derivations based on their
     knowledge of the world.
 
@@ -215,13 +221,11 @@ and relations (such as \enquote{is student of}).
     attempts to answer instances of Query Pattern~\exaquery{1} will have to deal
     with the problem that there is no information available as to who \emph{read} books.
     
-    \todo[quick,inline]{get back to \enquote{indirect/substitute information} from SoNAR, see Section~\ref{sec:HNA+SoNAR}}
-    
     More generally speaking, terms can be missing in the data sources
-    because they are not recorded at all, as a consequence of general design decisions
-    for the data source. The reasons for such decisions can be manifold:
+    because they are not recorded at all, as a consequence of either a general lack of evidence
+    or a general design decision for the data source. The underlying reasons can be manifold:
     for example, relationships such as who actually \emph{read} a book are very hard to confirm,
-    or terms may not be part of the fixed vocabulary for a data field in a source.\todo[ask]{find example? DH?}
+    or terms may not be part of the fixed vocabulary for a data field in a source.
     If the query uses such terms, then the answer set is always empty, as in Case~1.
   \item    
     In the example, it is possible that single owners of the exemplar or single relationships between owners
@@ -237,10 +241,19 @@ and relations (such as \enquote{is student of}).
 These cases reveal a striking qualitative difference concerning the effects of data incompleteness or spuriousness
 on the answer set: Cases~3 and~4 have effects on single answers only, i.e., some answers are missing or spurious.
 However, Cases~1 and~2 generally make \emph{all} answers missing unless further provisions are made.
-In the above example, such ``provisions'' might include the conclusion that mathematicians etc.\ are scientists.
-and the hypothesis that Thau was an owner and received the book directly from Hommel.
-Getting back to the general objective of this thesis, it is appropriate to consider
-answers as \emph{candidates} that necessitate (and inspire) further research.
+Such \enquote{provisions} might include \emph{reasoning}
+(e.g., deriving the implicit knowledge that Hommel was a scientist from the explicitly recorded fact that he was a mathematician)
+and \emph{hypothesising} (e.g., assuming that Thau was an owner and received the book directly from Hommel).
+Reasoning can be supported using semantic technologies such as (domain-specific or top-level) ontologies and related infrastructure.
+A possible way to support hypothesising is to provide for the use of \emph{substitute information},
+which has been addressed in the context of the SoNAR project; see Section~\ref{sec:HNA+SoNAR}.
+That is, users could be allowed to declare terms occurring in the data that may act as substitutes for certain terms used in their queries.
+
+% Getting back to the general objective of this thesis, 
+In the light of these observations,
+it is appropriate to consider
+query answers as \emph{candidates} that necessitate (and inspire) further research.
+%as ....
 For this purpose, spurious answers (in manageable numbers) are less harmful than missing answers.
 Consequently, it is important to find ways to avoid missing answers without generating too many spurious answers.
 In other words, it is desirable to obtain an answer set that is a slight \emph{overapproximation}

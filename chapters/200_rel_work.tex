@@ -184,7 +184,7 @@ For example, if one is looking for support for the hypothesis of a social relati
 between two persons $A$ and $B$, then a family relationship between $A$ and $B$ explicit in the data
 supports the hypothesis directly, while matching biographical dates for $A$ and $B$
 are an indirect indicator. In the latter case, the relationship
-explicit in the data (matching biographical dates) acts as a substitute
+explicit in the data (matching biographical dates) acts as \emph{substitute information}
 (\enquote{Stellvertreterinformation}) for the relationship under consideration.
 The authors also address a special kind of indirect relationship,
 called intellectual, which mostly involves a third person
@@ -491,6 +491,10 @@ In the context of the Semantic Web, RDF and associated technologies
 are important tools for the definition and use of ontologies.
 For a definition of the term \enquote{ontology} in this setting, we cite \textcite{Horrocks2011}:
 \enquote{A major feature of the Semantic Web is the ability to provide definitions for objects and types of objects that are accessible and manipulable from within the Semantic Web. In Computer Science, a collection of these sorts of definitions about a particular domain is called an ontology, although philosophers may (and probably will) have a different understanding of what constitutes an ontology.}
+More importantly for this thesis, ontologies can be used to represent knowledge about a specific domain
+or about the world in general, in an unambiguous and machine-readable way, using a formal language.
+What is more, \emph{reasoning} mechanisms can be employed to derive implicit knowledge,
+i.e., knowledge that logically follows from the explicitly represented knowledge.
 
 The following technologies associated with RDF and ontologies
 are of interest for the purposes of this thesis:
@@ -509,16 +513,14 @@ are of interest for the purposes of this thesis:
     \par
     OWL is the ontology language recommended by the W3C.
     It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
-    DLs have a well-defined syntax and model-theoretic semantics, which allows
-    for unambiguous statements about the domain of interest
-    and for reasoning (inference), i.e., the discovery of information that is implicit in the set of statements
-    that constitute the ontology.
+    DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+    as a formal ontology language in the sense mentioned above.
     The members of the DL family vary regarding their expressive power and,
     closely related, regarding the computational complexity of their basic reasoning problems.
     OWL 2, which is the current version of OWL,
-    is based on an expressive DL where reasoning is still decidable and algorithms have been implemented
-    that perform well on a wide range of real-world ontologies.
-    Besides these knowledge representation languages,
+    is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
+    in various inference machines that perform well on a wide range of real-world ontologies.
+    Besides these knowledge representation languages and support for reasoning,
     OWL includes infrastructure for interaction with ontologies and interoperability
     within the Web, such as Internationalized Resource Identifiers (IRIs),
     XML schema datatypes, import mechanisms, and many more.
@@ -641,7 +643,7 @@ In the context of linked data from cultural heritage institutions
 and especially the Europeana portal,
 metadata provenance is studied by
 \citeauthor{Eckert2013} \autocite*{Eckert2013,Eckert2013a,Eckert2012}.
-\todo[think,inline]{elaborate, depending on whether provenance plays a larger role in subsequent chapters}
+\todo[defer,inline]{elaborate, depending on whether provenance plays a larger role in subsequent chapters}
 Data provenance has also received attention 
 in the classical database domain
 \autocite[see, e.g.,][Chapter 14]{Doan2012}.
@@ -658,15 +660,11 @@ is important in the context of historical research, where the use of a formal qu
 would be a barrier for most users. This aspect is, however, not in the scope of this thesis
 and should be considered in future work.
 
-
-
-
-
 % -------------------------------------------------------------------
 \section{Knowledge Graphs}
 \label{sec:KGs}
 
-\dots
+\todo[defer,inline]{review literature on KGS}
 
 
 % -------------------------------------------------------------------
