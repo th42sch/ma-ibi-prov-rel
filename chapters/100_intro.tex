@@ -119,10 +119,23 @@ to consult several data sources and combine the obtained data.
 
 Given this diversity and heterogeneity of the existing data sources,
 it is currently difficult to retrieve provenance relationships
-that are not restricted to bibliographic objects and their owners
-but which also involve various relationships between works, exemplars, and (multiple) owners.
-For example, cultural scientists are interested in answers to queries of the following form.%
-\footnote{from personal communication with Dietrich Hakelberg, Research Library Gotha of the University of Erfurt, and Jo\"elle Weis, University of Trier}
+which require data that is distributed over several sources.
+This requirement can occur when historians, cultural scientists, or provenance researchers formulate research questions
+that involve bibliographic objects, persons, and relations between them at the same time.
+The following list contains examples for such questions,
+which were obtained in personal communication with researchers.%
+\footnote{%
+%  personal communication with
+  Dietrich Hakelberg 
+  (head of Dept.\ \enquote{Collection Development and Cataloguing}, Research Library Gotha of the University of Erfurt)
+  \autocite{HakelbergWeb},
+  Michaela Scheibe
+  (deputy head of Dept.\ \enquote{Manuscripts and Early Printed Books}),
+  \autocite{ScheibeWeb},
+  and Jo\"elle Weis 
+  (head of Research Area \enquote{Digital Literary and Cultural Studies}, University of Trier), 
+  \autocite{WeisWeb}.
+}
 %
 \begin{enumerate}
   \item[\exaquery{1}]
@@ -146,14 +159,22 @@ For example, cultural scientists are interested in answers to queries of the fol
   \item[\exaquery{5}]
     Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$
     between 1933 and 1945?
+  \item[\exaquery{6}]
+    Who participated in the sale of collection $X$?
+  \item[\exaquery{7}]
+    Via which paths did exemplars from collection $X$ enter library $Y$?
+  \item[\exaquery{8}]
+    Which libraries own the exemplars once owned by person $X$?
+  \item[\exaquery{9}]
+    Where did person $X$ acquire exemplars and did they know the previous owners?
 \end{enumerate}
 %
-In these examples, we use variables $X,Y$ as placeholders for arbitrary works,
-manifestations, collections, etc. Therefore, \exaquery{1}--\exaquery{5} are actually
+In these examples, variables $X,Y$ are used as placeholders for arbitrary works,
+manifestations, collections, etc. Therefore, \exaquery{1}--\exaquery{9} are actually
 query \emph{patterns}, each of which represents a set of possible queries
 that can be obtained by instantiating the variables with concrete objects.
 For the introductory purposes of this chapter,
-we continue to use the placeholders and refer to \exaquery{1}--\exaquery{5}
+we continue to use the placeholders and refer to \exaquery{1}--\exaquery{9}
 simply as queries. We will get back this distinction in Chapter~\ref{chap:prototype_queries}.
 
 Query~\exaquery{1} addresses works as well as their manifestations
@@ -195,9 +216,11 @@ the work or a manifestation or exemplar thereof.
 Query \exaquery{4} is very similar in structure to \exaquery{2}.
 Query \exaquery{5} is important in the context of research on Nazi loot.
 
+\todo[inline]{Discuss \emph{all} of \exaquery{1}--\exaquery{9}?}
+
 \todo[inline]{Discuss SNA/HNA and general significance of relationships; see intro report SoNAR AP~2}
 
-When attempting to answer queries such as \exaquery{1}--\exaquery{4},
+When attempting to answer queries such as \exaquery{1}--\exaquery{9},
 it does not suffice to consult a single data source such as
 a catalogue, authority file, or knowledge base.
 Instead, it is necessary to consult several data sources
