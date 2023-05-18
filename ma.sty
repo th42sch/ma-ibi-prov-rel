@@ -26,6 +26,7 @@
 \RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos]{todonotes}
 \RequirePackage{pdfpages}
 \RequirePackage[framemethod=default]{mdframed}
+\RequirePackage[sort=none,abbreviations,stylemods,style=index,nomain]{glossaries-extra}
 
 % ============== Font: Noto ========================
 %\RequirePackage[scaled=1.12]{nimbusmononarrow}
@@ -40,6 +41,12 @@
 %\usepackage[type1]{cabin}% sans serif
 %\usepackage[uprightscript,charter,vvarbb,scaled=1.05]{newtxmath}
 %\linespread{1.04}
+
+% ===== Glossary style and abbreviations =====
+\renewcommand{\glsnamefont}[1]{\mybold{#1}}
+\renewcommand\glstreepredesc{\quad}
+\setabbreviationstyle{long-short}
+\newabbreviation{GND}{GND}{Integrated Authority File of the German National Library \protect\autocite{GND}}
 
 % ===== Set up TikZ (Macros see below) =====
 \RequirePackage{pgfsys}
