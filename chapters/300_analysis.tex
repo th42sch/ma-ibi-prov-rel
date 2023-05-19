@@ -36,7 +36,7 @@ Library catalogues contain the following information relevant for provenance res
 %
 \begin{itemize}
   \item
-    bibliographic entities (works, manifestations, expressions, exemplars) \todo{check for manifestations, expressions}
+    bibliographic entities (works, manifestations, expressions, exemplars) \todo[quick]{check for manifestations, expressions (RDA rules, LG 3.2)}
   \item
     relations between these entities (e.g., \term{isManifestationOf})
   \item
@@ -50,17 +50,55 @@ Library catalogues contain the following information relevant for provenance res
   \item
     (ideally) references to entries in authority files for all these types of entities
 \end{itemize}
-
+%
+Examples of relevant library catalogues include:
+%
+\begin{itemize}
+  \item
+    catalogues of national libraries, which often aim at collecting literature exhaustively
+    and which are most likely to make metadata available in interoperable formats;
+    in particular: DNB, LC, British Library \todo[quick]{take care of abbreviations, also below}
+  \item
+    meta-catalogues that enable a federated search in several catalogues;
+    in particular: WorldCat and the Karlsruhe Virtual Catalogue (KVK)
+  \item
+    catalogues of library networks;
+    in particular: K10plus, B3KAT, hebis-Verbundkatalog, hbz-Verbundkatalog
+  \item
+    catalogues of single libraries, if not covered by any of the above
+  \item
+    special catalogues;
+    in particular: ZDB, KPE, ZeFYS, ExilePress (which have been used in the SoNAR project) \todo{explain; relate to SoNAR or loot research}
+\end{itemize}
 
 
 \subsubsection{Special Databases for Provenance Research}
 
+Special databases that have been created to support provenance research contain detailed and specific information on
+the provenances of the recorded items.
+Examples include Proveana and the Lost Art Database, both by the German Lost Art Foundation. \todo[quick]{links, more info}
+
 \subsubsection{Authority Files}
+
+Authority files contain the following information relevant for provenance research.
+%
+\begin{itemize}
+  \item
+    entities such as persons, corporate bodies, places, works
+  \item
+    relations such as social relations, family relations, professional relations
+  \item
+    attributes for the entities such as their profession
+\end{itemize}
+%
+They are usually subject to a strict quality control.
+Examples include the GND in the German-speaking area (which has been used extensively in SoNAR), and ISNI and VIAF (worldwide).
 
 \subsubsection{Knowledge Bases}
 
-
-\dots
+Finally, open knowledge bases contain, among others, similar data relevant for provenance research as authority files.
+In contrast to the latter, they are edited by the community; hence, they tend to be larger but apply
+a less strict quality control. A prominent example is Wikidata, which has also been suggested in the context of the SoNAR project.
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Analysis of Data Sources}
