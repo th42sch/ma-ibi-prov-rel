@@ -146,18 +146,18 @@ from which \enquote{network-compatible} (i.e., essentially relational) data can 
 data sources can be identified via \emph{repositories} of various kinds,
 including library catalogues, archive portals, databases, and more.
 The report highlights the advantages of using data from authority files
-such as the GND, which are standardised,
+such as the \gls{GND}, which are standardised,
 subject to quality control, and essential for disambiguating personal names.
 Moreover, authority files are freely accessible and provide information
 on the provenance of their data.
 %According to the authors,
-%\enquote{the use of authority data from GND in SoNAR is a unique feature
+%\enquote{the use of authority data from \gls{GND} in SoNAR is a unique feature
 %of the research technology environment and has, in principle, proved its worth}.
 
 Concerning the repositories used,
 the authors report the general problem of missing or erroneous data,
 which leads to distorted answers to the questions, and which was not solved
-systematically in the project. In particular, the GND is focused on German library holdings
+systematically in the project. In particular, the \gls{GND} is focused on German library holdings
 and thus contains a disproportionately high amount of German-speaking persons.
 The data is biased towards people who have published at all,
 towards elite research, towards men (in particular among authors before the 1950s),
@@ -240,7 +240,7 @@ We summarise their insights on data selection and processing.
 In the described approach, the authors integrate data from 6 heterogeneous repositories
 into a large uniform graph that is stored in a graph database
 and managed by the highly performant graph database management system Neo4j \autocite{Neo4j}.
-The original repositories comprise an authority file (GND \autocite{GND}),
+The original repositories comprise an authority file \gls{GND},
 federated library catalogues (DNB, ZDB, KPE \autocite{DNBCatalogue,ZDB,KPE}),
 and full texts (ZEFYS, Exile Press \autocite{ZEFYS,ExilePress});
 altogether they contain some 30 million records.
@@ -412,7 +412,7 @@ from the DNB itself, and from the British National Library.
 According to \textcite{Vorndran2018}, Culturegraph makes over 160 million data sets
 available \enquote{for data analyses, evaluation of connections and statistical analyses}.
 This is achieved, among other things,
-by enrichment via external data sources such as GND \autocite{GND}
+by enrichment via external data sources such as \gls{GND}
 and ORCID \autocite{ORCID}, thus allowing for the identification
 and disambiguation of persons.
 
@@ -565,9 +565,9 @@ interoperability ensured by the use of open web standards,
 and reusability via open licences.
 A prominent example of this development is the provision of authority data as LOD,
 which can be shared an reused on the Web:
-e.g., authority data on person names from the GND has been used by Wikipedia since 2005
+e.g., authority data on person names from the \gls{GND} has been used by Wikipedia since 2005
 in order to provide links to further reading in Wikipedia articles, see also \autocite{Hengel2005}.
-In addition to the GND, further providers have made authority data available as LOD,
+In addition to the \gls{GND}, further providers have made authority data available as LOD,
 among them LC and VIAF.
 
 The state of L(O)D in libraries in 2013 was extensively surveyed in the special issue
@@ -614,10 +614,10 @@ and that bibliographic metadata is becoming increasingly meaningful and reusable
 
 \textcite{Hauser2014} gives an overview of the linked data service
 of the German National Library (DNB),
-which started in 2010 with the publication of GND authority data as linked data.
-Since 2012, the DNB has been using and maintaining its own GND ontology \autocite{GNDOntology}
+which started in 2010 with the publication of \gls{GND} authority data as linked data.
+Since 2012, the DNB has been using and maintaining its own \gls{GND} ontology \autocite{GNDOntology}
 in order to bridge the gap from the original MARC-based data model to a flexible, open data model.
-In particular, the GND ontology provides a vocabulary for describing entities such as persons, corporate bodies, and places,
+In particular, the \gls{GND} ontology provides a vocabulary for describing entities such as persons, corporate bodies, and places,
 thus allowing to disambiguate and link these entities.
 
 % - - - - - - - - - - - - - - - 
@@ -674,11 +674,11 @@ and should be considered in future work.
 In an earlier master's thesis, \textcite{Hakelberg2016}
 studies the state of provenance indexing with authority data.
 We summarise his conclusions in the remainder of this paragraph.
-The GND provides authority data that is
+The \gls{GND} provides authority data that is
 very suitable for recording provenances across institutions;
 this is ensured by the structured data model
-and the open and collaborative nature of the GND.
-The GND has thus become a central instrument for recording
+and the open and collaborative nature of the \gls{GND}.
+The \gls{GND} has thus become a central instrument for recording
 provenance information.
 Provenance indexing is laborious, and
 practices vary greatly between German libraries (see Section~\ref{sec:background}).
@@ -696,7 +696,7 @@ In particular, the T-PRO descriptors need to be assigned URIs
 in order to make them reusable as linked open data. %(see Section~\ref{sec:linked_data+integration}).
 
 We draw the following insights from these observations.
-GND as well as library catalogues should be central data sources within our approach.
+\gls{GND} as well as library catalogues should be central data sources within our approach.
 Obstacles may be caused by
 the heterogeneous situation of indexing in library catalogues
 as well as the fact that T-PRO is not ready for LOD.
