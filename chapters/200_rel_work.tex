@@ -89,6 +89,7 @@ in particular, a large amount of data is distributed over heterogeneous data sou
 The project \enquote{SoNAR (IDH),
 Interfaces to Data for Historical Social Network Analysis
 and Research} \autocite{Bludau2020,Menzel2020,SoNAR},
+\glsunset{SoNAR}%
 which was funded by the German Research Foundation (DFG)
 from 2019 to 2021,
 developed approaches to building 
@@ -230,7 +231,7 @@ The following of these requirements are relevant for our purposes
 \subsection{Graph Technologies for the Analysis of HNAs Using Heterogeneous Data Sources}
 
 In the paper of the same name, \textcite{Menzel2020} report on
-work in the SoNAR project concerning the 
+work in the \gls{SoNAR} project concerning the 
 \enquote{creation and operation of research infrastructure
 for [\gls{HNA}] based on heterogeneous data sources from cultural heritage institutions}.
 In particular, the authors present insights on modelling and transformation
@@ -254,8 +255,8 @@ Since some of the above data sources include full texts,
 it is necessary to link names of people, corporate bodies, or geographical entities
 to entities in authority files. The use of the underlying technique,
 \emph{named entity linking}, is discussed further by \textcite{Menzel2021}
-in the context of SoNAR,
-and by \textcite{Meiners2022} independently of SoNAR.
+in the context of \gls{SoNAR},
+and by \textcite{Meiners2022} independently of \gls{SoNAR}.
 
 Among the challenges associated specifically with processing data,
 \textcite{Menzel2020} name
@@ -270,12 +271,12 @@ which requires extensive remodelling.
 % - - - - - - - - - - - - - - - 
 \subsection{Insights Relevant for This Thesis}
 
-We now put the insights from the SoNAR project described in the previous two subections
+We now put the insights from the \gls{SoNAR} project described in the previous two subections
 into relation with the research goals pursued in this thesis.
-First, the analysis of historical networks is a broad concept, and SoNAR supports a setting
+First, the analysis of historical networks is a broad concept, and \gls{SoNAR} supports a setting
 that is much more general than just provenance research.
 Thus, the setting that we want to support in this thesis is a specific section of \gls{HNA} and subsumed 
-by the SoNAR setting.
+by the \gls{SoNAR} setting.
 
 The central role of relationships and of temporal aspects in historical research
 have to be reflected in the model and method that we are going to develop.
@@ -286,8 +287,8 @@ is exactly what we hope to support by enabling researchers to ask specific
 queries over a combination of data sources and use the answers to obtain
 \enquote{local} views of the whole network and thus inform the next steps in their research process.
 
-\emph{Locality} is an important feature that distinguishes our approach from the SoNAR setting:
-The exemplary research questions from the SoNAR report appear to be rather global
+\emph{Locality} is an important feature that distinguishes our approach from the \gls{SoNAR} setting:
+The exemplary research questions from the \gls{SoNAR} report appear to be rather global
 in the sense that they focus on wider areas in the network and that their analysis requires
 \enquote{global} techniques such as graph metrics and statistical methods.
 In contrast, we aim at answering more local queries
@@ -310,7 +311,7 @@ however, our envisaged tool can be used \emph{along with} visualisation tools
 and provide entry points to a large network.
 
 The construction of a uniform data source \emph{(graph)} that integrates all the available data
-from the heterogeneous repositories appears to be an integral part of SoNAR,
+from the heterogeneous repositories appears to be an integral part of \gls{SoNAR},
 according to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} discussion.
 The obvious advantages include the interaction with a single database,
 the use of a single data model, autonomous hosting
@@ -342,32 +343,32 @@ As a final advantage, the dynamic approach is flexible
 in the sense that it can be applied to a static integrated data source as well,
 thus benefiting from the advantages of the static approach.
 
-A feature that we miss in the reports and publications of SoNAR is a rigorous definition of admissible queries
+A feature that we miss in the reports and publications of \gls{SoNAR} is a rigorous definition of admissible queries
 that specifies exactly which queries are in the scope and which are not.
 We aim at providing such a rigorous definition for our setting
 which, at the same time, should be as general as possible. We consider this rigorous definition
 a main feature of our approach.
 
-Data sources in the sense used in the SoNAR project report,
+Data sources in the sense used in the \gls{SoNAR} project report,
 i.e., original documents, media, and further artefacts
 are not part of our setting, as we do not consider the part of the research process
 that consults those data sources. Our work focuses on the level of
-what the SoNAR authors refer to as repositories,
+what the \gls{SoNAR} authors refer to as repositories,
 and we will relate our choice of repositories in Section~\ref{sec:data_sources}
 to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} selection.
 In this thesis, we continue to use the term \enquote{data source} for what
-SoNAR refers to as a repository,
+\gls{SoNAR} refers to as a repository,
 and we speak of \emph{original data sources} to refer to original documents etc.
 
 In order to allow researchers to refer to the original data sources,
 it becomes clear that \emph{data provenance} plays a crucial role:
 the answer to a specific query in our approach needs to refer to
 the original data sources that provide evidence for the information contained in that answer.
-This reference can point to original documents (SoNAR: data sources),
+This reference can point to original documents (\gls{SoNAR}: data sources),
 and/or to data sets in repositories. For a more detailed discussion of data provenance,
 see Section~\ref{sec:data_provenance}.
 
-The observed relevance of indirect or substitute information in the context of SoNAR 
+The observed relevance of indirect or substitute information in the context of \gls{SoNAR} 
 seems important to keep in mind for our work as well: 
 It has to be noted that not all information that one might be looking for is recorded
 in the data. For example, there is no record of who \emph{read} a book,
@@ -378,14 +379,14 @@ to indicate readership.
 Therefore, answers to questions
 about readership retrieved on the grounds of recorded ownership require further interpretation and investigation
 by the researcher who asked the question in the first place.
-The example from the SoNAR report that uses \enquote{having the same biographical dates}
+The example from the \gls{SoNAR} report that uses \enquote{having the same biographical dates}
 as a substitute for a social relationship is very similar, but in addition
 the fact that two persons have the same biographical dates is not a relationship that is
 given explicitly in the data but requires a certain amount of reasoning on several attributes of the entries
 for the two persons.
 This general observation has to be taken into account by our approach.
 
-Finally, the insights on advantages and disadvantages of the repositories used in SoNAR
+Finally, the insights on advantages and disadvantages of the repositories used in \gls{SoNAR}
 will affect our discussion of data sources in Section~\ref{sec:data_sources}.
 
 % - - - - - - - - - - - - - - - 
