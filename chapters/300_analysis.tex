@@ -16,19 +16,19 @@ persons, ownership, social relationships, and more.
 We decided to put a slight focus on data sources from the German-speaking area, 
 aiming at a selection of data sources that is manageable in the context of a master's thesis,
 and influenced by the selection in the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR}).
-In the following, we will first present the data sources that we have identified
-and then provide more information on each data source,
-in particular the number of datasets and the infrastructure provided.
-In future work, the selection of data sources can be extended easily.
+In the following, we will first give an overview of these data sources
+and then provide more information about some of them,
+including their scope and the technical infrastructure provided.
+This list is not exhaustive and needs to be extended
+as soon as our model is implemented in a concrete tool in future work.
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Collection of Data Sources}
 
-The identified data sources fall into four categories:
+We have identified four categories of relevant data sources:
 library catalogues, special databases for provenance research, authority files, and knowledge bases.
-In the following, we describe, for each of these categories, the relevant information that is
+We next describe, for each of these categories, the relevant information that is
 contained in the respective data sources, and we list examples.
-These examples are described in more detail in the next subsection.
 
 \subsubsection{Library Catalogues}
 
@@ -105,12 +105,12 @@ a less strict quality control. A prominent example is Wikidata, which has also b
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Analysis of Data Sources}
 
-We now provide a review of following the data sources from the previous list:
+We now provide a review of the following data sources from the previous list:
 DNB, KVK, K10plus, ZDB, KPE, Proveana, \gls{GND}, Wikidata. \todo{Europeana?}
 The main goal of this analysis is to provide an exemplary overview of the features and specifics
-of the most prominent data sources, and to inform the model that we will develop in the subsequent chapter.
-If suffices to analyse further data sources when our method is to be implemented in a concrete tool
-in future work.
+of these data sources, and to inform the model that we will develop in the subsequent chapter.
+In order to fulfil this purpose, it is not necessary to review all data sources listed above
+exhaustively.
 
 We collect the following information for each data source.
 %
@@ -139,7 +139,6 @@ We collect the following information for each data source.
 
 \begin{itemize}
   \item
-    library catalogues: OPAC, network catalogues (K10plus etc.), DNB,
     \mybold{KVK} (\enquote{federated search}: shallower than in single catalogues,
     but (sufficient) information on all copies!);
     further catalogues?
