@@ -282,6 +282,31 @@
   unicode,
 }
 
+%% ===== Appendix formatting =====
+%\newcommand\useprefix[2]{#1#2}
+%
+%\NewDocumentCommand\appendixprefixintoc{}
+%{%
+%  \DeclareTOCStyleEntry
+%    [%
+%      entrynumberformat=\useprefix{\appendixname~},% add the prefix before the entrynumber
+%      dynnumwidth
+%    ]{default}{chapter}
+%  \DeclareTOCStyleEntries[%
+%    dynindent
+%  ]{default}{chapter,subsection,subsubsection,paragraph,subparagraph}
+%}
+%
+%\newcommand*{\appendixmore}{%
+%  \renewcommand*{\chapterformat}{%
+%%    \appendixname~\thechapter\autodot\enskip}%
+%    \appendixname~\thechapter:\enskip}%
+%  \renewcommand*{\chaptermarkformat}{%
+%%    \appendixname~\thechapter\autodot\enskip}%
+%    \appendixname~\thechapter:\enskip}%
+%  \addtocontents{toc}{\appendixprefixintoc}%
+%}
+
 % ===== Macros for TikZ pictures =====
 \newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 \newcommand{\tikztabtwo}[3][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1.6pt]\mystrut#3\\[-1.5pt]\end{tabular}}
