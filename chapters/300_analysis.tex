@@ -30,13 +30,14 @@ library catalogues, special databases for provenance research, authority files, 
 We next describe, for each of these categories, the relevant information that is
 contained in the respective data sources, and we list examples.
 
-\subsubsection{Library Catalogues}
+% .............
+\subsubsection{(1) Library Catalogues}
 
 Library catalogues contain the following information relevant for provenance research.
 %
 \begin{itemize}
   \item
-    bibliographic entities (works, manifestations, expressions, exemplars) \todo[quick]{check for manifestations, expressions (RDA rules, LG 3.2)}
+    bibliographic entities (works, manifestations, expressions, exemplars)
   \item
     relations between these entities (e.g., \term{isManifestationOf})
   \item
@@ -57,7 +58,7 @@ Examples of relevant library catalogues include:
   \item
     catalogues of national libraries, which often aim at collecting literature exhaustively
     and which are most likely to make metadata available in interoperable formats;
-    in particular: DNB, LC, British Library \todo[quick]{take care of abbreviations, also below}
+    in particular: \gls{DNB}, LC, British Library \todo[quick]{take care of abbreviations, also below}
   \item
     meta-catalogues that enable a federated search in several catalogues;
     in particular: WorldCat and the Karlsruhe Virtual Catalogue (KVK)
@@ -68,17 +69,18 @@ Examples of relevant library catalogues include:
     catalogues of single libraries, if not covered by any of the above
   \item
     special catalogues;
-    in particular: ZDB, KPE, ZeFYS, ExilePress (which have been used in the \gls{SoNAR} project) \todo{explain; relate to SoNAR or loot research}
+    in particular: \gls{ZDB}, \gls{KPE}, ZeFYS, ExilePress (which have been used in the \gls{SoNAR} project) \todo{explain; relate to SoNAR or loot research}
 \end{itemize}
 
-
-\subsubsection{Special Databases for Provenance Research}
+% .............
+\subsubsection{(2) Special Databases for Provenance Research}
 
 Special databases that have been created to support provenance research contain detailed and specific information on
 the provenances of the recorded items.
 Examples include Proveana and the Lost Art Database, both by the German Lost Art Foundation. \todo[quick]{links, more info}
 
-\subsubsection{Authority Files}
+% .............
+\subsubsection{(3) Authority Files}
 
 Authority files contain the following information relevant for provenance research.
 %
@@ -96,7 +98,8 @@ Examples include the \gls{GND} in the German-speaking area (which has been used 
 the \gls{LCNAF} for North America,
 and \gls{ISNI} and \gls{VIAF} worldwide.
 
-\subsubsection{Knowledge Bases}
+% .............
+\subsubsection{(4) Knowledge Bases}
 
 Finally, open knowledge bases contain, among others, similar data relevant for provenance research as authority files.
 In contrast to the latter, they are edited by the community; hence, they tend to be larger but apply
@@ -106,7 +109,7 @@ a less strict quality control. A prominent example is Wikidata, which has also b
 \subsection{Analysis of Data Sources}
 
 We now provide a review of the following data sources from the previous list:
-DNB, KVK, K10plus, ZDB, KPE, Proveana, \gls{GND}, Wikidata. \todo{Europeana?}
+\gls{DNB}, KVK, K10plus, \gls{ZDB}, \gls{KPE}, Proveana, \gls{GND}, Wikidata. \todo{Europeana?}
 The main goal of this analysis is to provide an exemplary overview of the features and specifics
 of these data sources, and to inform the model that we will develop in the subsequent chapter.
 In order to fulfil this purpose, it is not necessary to review all data sources listed above
@@ -131,6 +134,50 @@ We collect the following information for each data source.
     further features specific to the respective data source
 \end{itemize}
 
+% .............
+\subsubsection{DNB}
+
+\dots
+
+\todo[quick,inline]{explain modelling of manifestations, expressions (RDA rules, LG 3.2)}
+
+% .............
+\subsubsection{WorldCat}
+
+\dots
+
+% .............
+\subsubsection{KVK}
+
+\dots
+
+% .............
+\subsubsection{K10plus}
+
+\dots
+
+% .............
+\subsubsection{ZDB}
+
+\dots
+
+% .............
+\subsubsection{KPE}
+
+\dots
+
+% .............
+\subsubsection{Proveana}
+
+\dots
+
+% .............
+\subsubsection{GND}
+
+\dots
+
+% .............
+\subsubsection{Wikidata}
 
 \dots
 
