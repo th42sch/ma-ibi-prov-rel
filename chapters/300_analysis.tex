@@ -18,7 +18,7 @@ aiming at a selection of data sources that is manageable in the context of a mas
 and influenced by the selection in the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR}).
 In the following, we will first present the data sources that we have identified
 and then provide more information on each data source,
-in particular its extent and the infrastructure provided.
+in particular the number of datasets and the infrastructure provided.
 In future work, the selection of data sources can be extended easily.
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
@@ -105,6 +105,33 @@ a less strict quality control. A prominent example is Wikidata, which has also b
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Analysis of Data Sources}
 
+We now provide a review of following the data sources from the previous list:
+DNB, KVK, K10plus, ZDB, KPE, Proveana, \gls{GND}, Wikidata. \todo{Europeana?}
+The main goal of this analysis is to provide an exemplary overview of the features and specifics
+of the most prominent data sources, and to inform the model that we will develop in the subsequent chapter.
+If suffices to analyse further data sources when our method is to be implemented in a concrete tool
+in future work.
+
+We collect the following information for each data source.
+%
+\begin{itemize}
+  \item
+    \emph{Scope:}~
+    thematic focus; number of datasets; criteria for data collection; coverage ***explain both!***
+  \item
+    \emph{Technical infrastructure:}~
+    data format; data model; interfaces
+  \item
+    \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}):}~
+    use of persistent identifiers and URIs; adherence to standards, e.g., for time and data specification
+  \item
+    \emph{criteria from our discussion of \gls{SoNAR} (Section~\ref{sec:insights_from_SoNAR}):}~
+    recording of temporal attributes or relations; recording of data provenance
+  \item
+    further features specific to the respective data source
+\end{itemize}
+
+
 \dots
 
 \par\bigskip
@@ -116,10 +143,6 @@ a less strict quality control. A prominent example is Wikidata, which has also b
     \mybold{KVK} (\enquote{federated search}: shallower than in single catalogues,
     but (sufficient) information on all copies!);
     further catalogues?
-  \item
-    authority files: \gls{GND} (persons, corporate bodies, places, relationships, what else?
-  \item
-    KBs: Wikidata, what else?
   \item
     more from \gls{SoNAR} , see report on WP 2 (in particular details on p.23f.).
     Get back to the discussion on \gls{GND} and further data sources in Section~\ref{sec:HNA+SoNAR}.
