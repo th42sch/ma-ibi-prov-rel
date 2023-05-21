@@ -1,0 +1,7 @@
+DNB-Bestand auf  https://portal.dnb.de/opac/simpleSearch  , Expertensuche an:
+
+dc.title any a* or dc.title any b* or dc.title any c* or dc.title any d* or dc.title any e* or dc.title any f* or dc.title any g* 
+
+or dc.title any h* or dc.title any i* or dc.title any j* or dc.title any k* or dc.title any l* or dc.title any m* 
+
+or dc.title any n* or dc.title any o* or dc.title any p* or dc.title any q* or dc.title any r* or dc.title any s* or dc.title any t* or dc.title any u* or dc.title any v* or dc.title any w* or dc.title any x* or dc.title any y* or dc.title any z*

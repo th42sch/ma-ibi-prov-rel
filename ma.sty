@@ -59,6 +59,7 @@
 \newabbreviation{KVK}{KVK}{Karlsruhe Virtual Catalogue \protect\autocite{KVK}}
 \newabbreviation{LoC}{LoC}{Library of Congress \protect\autocite{LoC}}
 \newabbreviation{LCNAF}{LCNAF}{Library of Congress Name Authority File \protect\autocite{LCNAF}}
+\newabbreviation{RDA}{RDA}{Resource Description and Access \protect\autocite{DNB_RDA}}
 \newabbreviation{SNA}{SNA}{social network analysis}
 \newabbreviation{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research} \protect\autocite{Bludau2020,Menzel2020,SoNAR}}
 \newabbreviation{VIAF}{VIAF}{Virtual International Authority File \protect\autocite{VIAF}}
@@ -317,6 +318,11 @@
 %    \appendixname~\thechapter:\enskip}%
 %  \addtocontents{toc}{\appendixprefixintoc}%
 %}
+
+%% ==== \paragraph without additional horizontal space (2nd line) ===
+%% ==== !DOESN'T WORK! =====
+%%\newcommand*{\paragraphformat}{\theparagraph\autodot\enskip}
+%\renewcommand*{\paragraphformat}{\theparagraph\autodot}
 
 % ===== Macros for TikZ pictures =====
 \newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
