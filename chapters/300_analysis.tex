@@ -134,10 +134,10 @@ We collect the following information for each data source.
     thematic focus; coverage; number of datasets; standards for cataloguing
   \item
     \emph{Technical infrastructure:}~
-    data format; data model; interfaces
+    data format; data model; interfaces; 
   \item
     \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}):}~
-    use of persistent identifiers and URIs; adherence to standards for, e.g., time and data specification
+    use of persistent identifiers and URIs; adherence to standards for, e.g., time and date specification
   \item
     \emph{criteria from our discussion of \gls{SoNAR} (Section~\ref{sec:insights_from_SoNAR}):}~
     recording of temporal attributes or relations; recording of data provenance
@@ -148,7 +148,7 @@ We collect the following information for each data source.
 % .............
  \paragraph{DNB.}
 
-The following information is taken from the DNB's websites under the category \enquote{DNB Professional} \autocite{DNB_coll_mand,DNB_cataloguing}.
+The following information is taken from the DNB's websites under the category \enquote{DNB Professional} \autocite{DNB_coll_mand,DNB_cataloguing,DNB_metadata}.
 
 The DNB adheres to a legal collection mandate, according to which
 the DNB collects \enquote{all texts, images and sound recordings published in Germany or in the German language, translated from German or relating to Germany that have been issued since 1913}  \autocite{DNB_coll_mand}. This includes all physical publications, and, since 2006, electronic publications made available via the internet. The mandate commits the DNB to a complete and unbiased collection that includes, among others, \enquote{printed works compiled or published between 1933 and 1945 by German-speaking emigrants} \autocite{DNB_coll_mand}.
@@ -161,7 +161,24 @@ According to the 2021 annual report \autocite{DNB_Jahresbericht_2021},
 the DNB's holdings comprise 43.7 million physical or digitally accessible units, 
 which are represented by almost 26 million datasets in the German National Bibliography.
 
+Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the following interfaces and machine-readable formats.
+%
+\begin{itemize}
+  \item
+    \gls{SRU}:
+    
+    XML serialisations of the formats MARC~21, RDF, DNB Casual (an XML-based Dublin Core format), MODS\todo{introduce all these abbreviations}
+  \item
+    \gls{OAI}:
+    
+    the same formats as \gls{SRU}
+  \item
+    individual access via the \enquote{Data Shop}:
+    
+    MARC~21 and RDF in various serialisations, DNB Casual, CSV
+\end{itemize}
 
+\todo[inline]{standards for time and date specification, temporal attributes, provenance}
 
 \todo[quick,inline]{explain modelling of manifestations, expressions (RDA rules, LG 3.2)}
 
@@ -281,7 +298,7 @@ At present, the GND contains around 9 million authority records for persons, cor
 \end{itemize}
 
 % -----------------------------------------------------------------
-\section{Data Models}
+\section{Data Models and Interfaces}
 \label{sec:data_models}
 
 \begin{itemize}
@@ -290,6 +307,8 @@ At present, the GND contains around 9 million authority records for persons, cor
   \item 
     \mybold{OPAC or K10plus data model as ER diagram? Binary vs. \boldmath$n$-ary relations?
     $\leadsto$ check literature (possibly also papers on the FRBR model)!}
+  \item
+    SRU> \url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
 \end{itemize}
 
 \dots
