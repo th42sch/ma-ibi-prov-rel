@@ -5,6 +5,7 @@
 
 \dots
 
+\todo[inline]{FRBR and RDA need to be introduced before the data sources are described; the same for data models??}
 
 % -----------------------------------------------------------------
 \section{Data Sources}
@@ -134,7 +135,7 @@ We collect the following information for each data source.
     thematic focus; coverage; number of datasets; standards for cataloguing
   \item
     \emph{Technical infrastructure:}~
-    data format; data model; interfaces; 
+    data format; data model; interfaces; support for linked data
   \item
     \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}):}~
     use of persistent identifiers and URIs; adherence to standards for, e.g., time and date specification
@@ -148,13 +149,13 @@ We collect the following information for each data source.
 % .............
  \paragraph{DNB.}
 
-The following information is taken from the DNB's websites under the category \enquote{DNB Professional} \autocite{DNB_coll_mand,DNB_cataloguing,DNB_metadata}.
+The following information is taken from the \gls{DNB}'s websites under the category \enquote{DNB Professional} \autocite{DNB_coll_mand,DNB_cataloguing,DNB_metadata}.
 
 The DNB adheres to a legal collection mandate, according to which
 the DNB collects \enquote{all texts, images and sound recordings published in Germany or in the German language, translated from German or relating to Germany that have been issued since 1913}  \autocite{DNB_coll_mand}. This includes all physical publications, and, since 2006, electronic publications made available via the internet. The mandate commits the DNB to a complete and unbiased collection that includes, among others, \enquote{printed works compiled or published between 1933 and 1945 by German-speaking emigrants} \autocite{DNB_coll_mand}.
 
 The DNB catalogues its entire collection both descriptively and by subject, 
-adhering to standards such as \gls{RDA}, using authority data, and including identifiers such as ISBN, ISSN, URN, and DOI.
+adhering to standards such as \gls{RDA}, using authority data, and including persistent identifiers such as ISBN, ISSN, URN, and DOI.
 The cataloguing data feeds the German National Bibliography.
 
 According to the 2021 annual report \autocite{DNB_Jahresbericht_2021},
@@ -167,7 +168,7 @@ Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the
   \item
     \gls{SRU}:
     
-    XML serialisations of the formats MARC~21, RDF, DNB Casual (an XML-based Dublin Core format), MODS\todo{introduce all these abbreviations}
+    XML serialisations of the formats MARC~21, \gls{RDF}, DNB Casual (an XML-based Dublin Core format), MODS\todo{introduce all these abbreviations}
   \item
     \gls{OAI}:
     
@@ -175,12 +176,27 @@ Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the
   \item
     individual access via the \enquote{Data Shop}:
     
-    MARC~21 and RDF in various serialisations, DNB Casual, CSV
+    MARC~21 and \gls{RDF} in various serialisations, DNB Casual, CSV
 \end{itemize}
+%
+In particular, the DNB's Linked Data Service provides open access to its bibliographic and authority data
+in RDF under the Creative Commons Zero (CC0 1.0) license.
 
-\todo[inline]{standards for time and date specification, temporal attributes, provenance}
+According to the detailed specifications on the MARC format by the DNB
+\autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
+geographic area codes, and countries conforms to ISO standards (8601, 639-1, 3166).
+Since 2015, the DNB has been using MARC field 883
+for recording the metadata provenance for a selection of data fields
+\autocite{DNBwiki_MARC_883}.
 
-\todo[quick,inline]{explain modelling of manifestations, expressions (RDA rules, LG 3.2)}
+RDA and the application guidelines for the German-speaking area
+stipulate the following practice for cataloguing works, expressions, manifestations, and exemplars
+in relation with each other: Datasets have a bibliographic level for describing a manifestation
+and an exemplar level for describing the related exemplars. The description of works and expressions
+is considered part of the description of a manifestation and thus recorded on the bibliographic level.
+However, it is possible to create and link an authority dataset for a work or expression
+and record the relevant description there. In that case, the source of the information can be recorded as well
+\autocite[cf.][Chapter~5.1]{Wiesenmueller2015}.
 
 % .............
  \paragraph{WorldCat}
@@ -213,6 +229,8 @@ Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the
 \dots
 The GND is operated by the DNB \enquote{in cooperation with many other libraries, libray networks and other cultural and academic institutions.
 At present, the GND contains around 9 million authority records for persons, corporate bodies, congresses, geographic entities, specialised terms and works; these are supplemented, updated and used frequently} \autocite{DNB_cataloguing}.
+
+\todo[inline]{add insights from SoNAR (§~\ref{sec:HNA+SoNAR}) and DHa (see below)}
 
 % .............
  \paragraph{Wikidata}
@@ -308,7 +326,7 @@ At present, the GND contains around 9 million authority records for persons, cor
     \mybold{OPAC or K10plus data model as ER diagram? Binary vs. \boldmath$n$-ary relations?
     $\leadsto$ check literature (possibly also papers on the FRBR model)!}
   \item
-    SRU> \url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
+    SRU: \url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
 \end{itemize}
 
 \dots
@@ -327,7 +345,7 @@ At present, the GND contains around 9 million authority records for persons, cor
   \item
     FRBRoo?
   \item
-    RDF, SPARQL, N-Quads?
+    \gls{RDF}, SPARQL, N-Quads?
 \end{itemize}
 
 

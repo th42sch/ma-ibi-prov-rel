@@ -26,7 +26,7 @@
 \RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos]{todonotes}
 \RequirePackage{pdfpages}
 \RequirePackage[framemethod=default]{mdframed}
-\RequirePackage[sort=standard,abbreviations,stylemods,style=index,nomain]{glossaries-extra}
+\RequirePackage[sort=standard,abbreviations,stylemods,style=index,nomain,toc]{glossaries-extra}
 
 % ============== Font: Noto ========================
 %\RequirePackage[scaled=1.12]{nimbusmononarrow}
@@ -43,6 +43,7 @@
 %\linespread{1.04}
 
 % ===== Glossary style and abbreviations =====
+\glssetcategoryattribute{acronym}{indexonlyfirst}{true}
 \renewcommand{\glsnamefont}[1]{\mybold{#1}}
 %\renewcommand\glstreepredesc{\quad}
 \setabbreviationstyle{long-short}
@@ -61,6 +62,7 @@
 \newabbreviation{LCNAF}{LCNAF}{Library of Congress Name Authority File \protect\autocite{LCNAF}}
 \newabbreviation{OAI}{OAI-PMH}{the Open Archives Initiative Protocol for Metadata Harvesting \protect\autocite{OAI}}
 \newabbreviation{RDA}{RDA}{Resource Description and Access \protect\autocite{DNB_RDA}}
+\newabbreviation{RDF}{RDF}{Resource Description Framework  \protect\autocite{RDFPrimer}}
 \newabbreviation{SNA}{SNA}{social network analysis}
 \newabbreviation{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research} \protect\autocite{Bludau2020,Menzel2020,SoNAR}}
 \newabbreviation{SRU}{SRU}{Search/Retrieval via URL \protect\autocite{SRU}}

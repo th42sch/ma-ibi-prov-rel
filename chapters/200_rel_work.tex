@@ -478,20 +478,22 @@ The main technologies underlying linked data are the following.
     \par
     HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
   \item
-    the \emph{Resource Description Framework (RDF)} \autocite{RDFPrimer}:
+    the \emph{\gls{RDF}}:
     
     \par
-    RDF is \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
+    \gls{RDF} is \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
     \autocite{RDFPrimer}.
     Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
-    RDF statements are \emph{triples} of the format \enquote{subject--predicate--object}
+    \gls{RDF} statements are \emph{triples} of the format \enquote{subject--predicate--object}
     consisting of a resource, a property, and a resource (or literal).
     Resources and properties are described using URIs.
-    RDF thus provides a simple and flexible data model that is particularly useful for the publication
-    and linking of data on the Web.
+    \gls{RDF} thus provides a simple and flexible data model that is particularly useful for the publication
+    and linking of data on the Web;
+    it has been a standard of the
+    World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
 \end{itemize}
 %
-In the context of the Semantic Web, RDF and associated technologies
+In the context of the Semantic Web, \gls{RDF} and associated technologies
 are important tools for the definition and use of ontologies.
 For a definition of the term \enquote{ontology} in this setting, we cite \textcite{Horrocks2011}:
 \enquote{A major feature of the Semantic Web is the ability to provide definitions for objects and types of objects that are accessible and manipulable from within the Semantic Web. In Computer Science, a collection of these sorts of definitions about a particular domain is called an ontology, although philosophers may (and probably will) have a different understanding of what constitutes an ontology.}
@@ -500,7 +502,7 @@ or about the world in general, in an unambiguous and machine-readable way, using
 What is more, \emph{reasoning} mechanisms can be employed to derive implicit knowledge,
 i.e., knowledge that logically follows from the explicitly represented knowledge.
 
-The following technologies associated with RDF and ontologies
+The following technologies associated with \gls{RDF} and ontologies
 are of interest for the purposes of this thesis:
 %
 \begin{itemize}
@@ -508,7 +510,7 @@ are of interest for the purposes of this thesis:
     \emph{RDF Schema (RDFS)} \autocite{RDFS}:
     
     \par
-    RDFS is a specific RDF vocabulary which can be used for modelling
+    RDFS is a specific \gls{RDF} vocabulary which can be used for modelling
     and thus serves as a very basic ontology language.
     It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
   \item
@@ -533,13 +535,13 @@ are of interest for the purposes of this thesis:
     
     \par
     SPARQL is a W3C-recommended query language for the Semantic Web.
-    More precisely, it is a language for querying RDF graphs via pattern matching,
+    More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
     whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
     However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
     SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
-    answers are returned in RDF or XML.
+    answers are returned in \gls{RDF} or XML.
     Additionally, SPARQL exploits inference mechanisms,
-    i.e., answers may contain facts that are not explicitly stated in the original RDF graph
+    i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
     but are obtained involving certain sets of inference rules, based on OWL or other standards.
 \end{itemize}
 
@@ -561,7 +563,7 @@ This was followed by linked-data initiatives by important players such as
 OCLC, the \gls{LoC}, and the \gls{DNB};
 in particular, the \gls{LoC} started the initiative \enquote{Bibliographic Framework for the Digital Age} in 2011,
 declaring the renunciation of the library-specific standards MARC21 and Z39.50,
-and announcing the development of an infrastructure based on the Resource Description Framework (RDF) as a basic data model. The advantages of LOD for the library domain include
+and announcing the development of an infrastructure based on \gls{RDF} as a basic data model. The advantages of LOD for the library domain include
 retrievability of, e.g., catalogue data by search engines,
 mechanisms for permanently linking, e.g., hit lists and hit views,
 the use of a much more flexible data model,

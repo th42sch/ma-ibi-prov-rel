@@ -81,10 +81,13 @@
   ]
   
   \glsfindwidesttoplevelname
-  \setglossarystyle{alttree}
-%  \renewcommand*{\arraystretch}{.5}
+%  \setglossarystyle{alttree}
+  \setglossarystyle{super}\setlength{\glsdescwidth}{13.4cm}%
+  \renewcommand*{\arraystretch}{1.2}
   \glsnogroupskiptrue
   \printunsrtglossaries
+%  \printglossaries
+%  \printabbreviations %%% mit latexmk probieren, wenn Perl installiert ist
 
   % =================================================================
   \appendix
