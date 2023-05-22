@@ -137,13 +137,14 @@ We collect the following information for each data source.
     \emph{Technical infrastructure:}~
     data format; data model; interfaces; support for linked data
   \item
-    \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}):}~
+    \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}),
+    if applicable:}~
     use of persistent identifiers and URIs; adherence to standards for, e.g., time and date specification
   \item
-    \emph{criteria from our discussion of \gls{SoNAR} (Section~\ref{sec:insights_from_SoNAR}):}~
+    \emph{features useful in the context of \gls{SoNAR} (see our discussion in Section~\ref{sec:insights_from_SoNAR}), if applicable:}~
     recording of temporal attributes or relations; recording of data provenance
   \item
-    further features specific to the respective data source
+    further features specific to the respective data source, if applicable
 \end{itemize}
 
 % .............
@@ -198,6 +199,8 @@ However, it is possible to create and link an authority dataset for a work or ex
 and record the relevant description there. In that case, the source of the information can be recorded as well
 \autocite[cf.][Chapter~5.1]{Wiesenmueller2015}.
 
+\todo[inline]{temporal data restricted to year of publication?}
+
 % .............
  \paragraph{WorldCat}
 
@@ -212,6 +215,8 @@ and record the relevant description there. In that case, the source of the infor
  \paragraph{K10plus}
 
 \dots
+
+\todo[inline]{discuss provenance indexing}
 
 \todo[inline]{GND data accessible via the same interface?}
 
@@ -237,9 +242,33 @@ GND adheres to the same cataloguing standards and offers the same technical infr
 as the DNB catalogue; in particular, GND data is accessible alongside DNB data
 via the same interfaces and data formats, including RDF.
 
+\todo[inline]{temporal data restricted to year of publication or years of birth and death, if available? No temporal attributes on relations (e.g., student, coauthor)}
 
 
 \todo[inline]{add insights from SoNAR (§~\ref{sec:HNA+SoNAR}) and DHa (see below)}
+
+DHa's remarks on GND vocabulary and richness of GND data:
+%
+\begin{itemize}
+  \item
+    \emph{Individualisierungsregeln}: relationships to other people are given in order to uniquely
+    identify the current person; there is no obligation to record relationships
+    (and GND does not claim to be an encyclopedia)
+  \item
+    relations are not normed:
+    e.g., field \enquote{Funktionsbezeichnung}: \$4 code \enquote{Eigenschaft der Beziehung},
+    specified by \$v \enquote{Freitext}
+  \item
+    professions are recorded in 678 \$b \enquote{biographische Anmerkung(en)} --
+    historically in free text,
+    more recently via link to the GND authority data for the respective profession (i.e., more standardised)
+  \item
+    Tp1 datasets: field 65 (6J?) \enquote{GND Systematik: eingeschr. Tätigkeit} (?),
+    query level 1 datasets?
+  \item
+    $\leadsto$ \mybold{look/read all this up!}
+\end{itemize}
+
 
 \dots
 
@@ -290,10 +319,6 @@ via the same interfaces and data formats, including RDF.
       \end{itemize}
     }
   \item
-    Proveana, Kulturgut-DB (recommended by Jo\"elle Weis)
-  \item 
-    criteria for analysis of data sources: see, e.g., \gls{SoNAR} grant proposal (appendices) 
-  \item
     further criteria: arity of relationships, data formats, temporal data?
   \item
     also clarify: does the structure of these data sources support the model to be developed?
@@ -303,28 +328,6 @@ via the same interfaces and data formats, including RDF.
   \item 
     in-depth analysis of data sources (e.g., overlap and differences) is worthwhile
     but must be deferred to future work
-  \item
-    DHa's remarks on GND vocabulary and richness of GND data:
-    %
-    \begin{itemize}
-      \item
-        \emph{Individualisierungsregeln}: relationships to other people are given in order to uniquely
-        identify the current person; there is no obligation to record relationships
-        (and GND does not claim to be an encyclopedia)
-      \item
-        relations are not normed:
-        e.g., field \enquote{Funktionsbezeichnung}: \$4 code \enquote{Eigenschaft der Beziehung},
-        specified by \$v \enquote{Freitext}
-      \item
-        professions are recorded in 678 \$b \enquote{biographische Anmerkung(en)} --
-        historically in free text,
-        more recently via link to the GND authority data for the respective profession (i.e., more standardised)
-      \item
-        Tp1 datasets: field 65 (6J?) \enquote{GND Systematik: eingeschr. Tätigkeit} (?),
-        query level 1 datasets?
-      \item
-        $\leadsto$ \mybold{look/read all this up!}
-    \end{itemize}
 \end{itemize}
 
 % -----------------------------------------------------------------
