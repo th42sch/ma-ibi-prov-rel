@@ -26,7 +26,7 @@
 \RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos]{todonotes}
 \RequirePackage{pdfpages}
 \RequirePackage[framemethod=default]{mdframed}
-\RequirePackage[sort=standard,abbreviations,stylemods,style=index,nomain,toc]{glossaries-extra}
+\RequirePackage[sort=standard,abbreviations,stylemods,nomain,toc]{glossaries-extra}
 
 % ============== Font: Noto ========================
 %\RequirePackage[scaled=1.12]{nimbusmononarrow}
@@ -43,7 +43,9 @@
 %\linespread{1.04}
 
 % ===== Glossary style and abbreviations =====
+\makeglossaries
 \glssetcategoryattribute{acronym}{indexonlyfirst}{true}
+\glssetcategoryattribute{abbreviation}{indexonlyfirst}{true}
 \renewcommand{\glsnamefont}[1]{\mybold{#1}}
 %\renewcommand\glstreepredesc{\quad}
 \setabbreviationstyle{long-short}

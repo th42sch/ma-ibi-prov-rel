@@ -274,3 +274,7 @@ TSWLatexianTemp*
 
 ## Specific files
 /ma.pdf
+ma.ist
+ma.gls-abr
+ma.glo-abr
+ma.glg-abr
