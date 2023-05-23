@@ -181,7 +181,8 @@ Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the
 \end{itemize}
 %
 In particular, the DNB's Linked Data Service provides open access to its bibliographic and authority data
-in RDF under the Creative Commons Zero (CC0 1.0) license.
+in RDF under the Creative Commons Zero (CC0 1.0) license. Instructions on how to use these interfaces
+are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 
 According to the detailed specifications on the MARC format by the DNB
 \autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
@@ -217,14 +218,24 @@ containing the relevant description. In that case, the source of the information
 
 is the joint catalogue of the German library networks GBV and SWB.
 Together, these two networks comprise more than 1400 national, regional,
-academic, and public libraries \autocite{BSZGBV,GBV_VZG}. Thus, \gls{K10plus} comprises the data from
+academic, and public libraries \autocite{BSZGBV,GBV_VZG},
+of which 838 participate in K10plus, according to the list of participating institutions
+in the K10plus Wiki \autocite{K10plusWiki}. Thus, \gls{K10plus} comprises the data from
 the majority of German academic institutions \autocite[cf.][]{BSZ_K10plus}.
 
 Cataloguing in K10plus adheres to the same standards as in the DNB.
 As of 31 December 2022, K10plus contains 80.8 million bibliographic records (\enquote{Titeldatensätze})
 with 235.4 million ownership records \autocite{GBV_K10plus_Statistik}.
 
-
+K10plus provides metadata freely (under the CC0 1.0 licence),
+mainly via the interfaces Z39.50 and SRU.
+Those support the data formats MARC~21, MARC-XML (and its variant Turbomarc),
+PICA+, PICA-XML, DC, and MODS (and the legacy format MAB2).
+Detailed instructions on how to use these interfaces
+are given in the K10plus Wiki \autocite{K10plusWiki}.
+In addition, snapshots of K10plus data are provided regularly
+in MARC-XML and as LOD (RDF-XML), but the information
+on these in the K10plus Wiki is incomplete \autocite{K10plusWikiOD}.
 
 
 
