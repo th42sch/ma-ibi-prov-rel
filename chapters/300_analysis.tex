@@ -15,6 +15,33 @@ relevant for our work.
 % .............
 \paragraph{FRBR}
 
+The \gls{FRBR} comprise an entity-relationship model
+developed by the \gls{IFLA} in 1998 (and updated in 2009)
+in order to support users in finding, identifying, selecting, and accessing
+bibliographic items \autocite[p.17]{Wiesenmueller2015}.
+\gls{FRBR}'s entities represent things that need to be represented in the data.
+These entities fall into three groups, of which we restrict ourselves to the first
+two.
+Entities of \emph{Group~1} are \term{Work}, \term{Expression}, \term{Manifestation}, \term{Item},
+and their common superordinate concept \emph{Endeavour};
+entities of \emph{Group~2} are \term{Person}, \term{Family}, \term{Corporate body},
+and their superordinate concept \emph{Responsible\_entity}.
+Furthermore, \gls{FRBR} contains relations that link Group-1 entities with each other
+and with Group-2 entities, respectively.
+Relations of the first kind are
+\term{has\_realisation}, \term{has\_embodiment}, \term{has\_exemplar}, plus
+their inverses and the superordinate relations \term{has\_part}, \term{is\_part\_of}, and \term{has\_related\_endevour}).%
+\footnote{We slightly deviate from the original names \enquote{realization}, \enquote{embodiment}, etc.\
+in order to distinguish relations from concepts and indicate their direction more clearly.}
+Relations of the second kind are
+\term{has\_creator}, \term{has\_realiser}, \term{has\_creator}, and \emph{has\_owner},
+plus their inverses and the superordinate relations \term{has\_responsible\_entity}
+and \term{is\_responsible\_entity\_of}.
+
+\todo{picture?}
+
+***** CONTINUE ***
+
 \dots
 
 % .............
@@ -398,7 +425,7 @@ DHa's remarks on GND vocabulary and richness of GND data:
 
 \begin{itemize}
   \item
-    \mybold{constants plus unary and binary relationships suffice (?)}
+    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, works on graph techniques in HNA, data sources}
   \item 
     online vs.\ offline phase?
     %
