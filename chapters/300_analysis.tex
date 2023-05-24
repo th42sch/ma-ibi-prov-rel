@@ -6,7 +6,7 @@
 \dots
 
 % -----------------------------------------------------------------
-\section{Data Models and Formats}
+\section{Data Models, Standards, and Formats}
 \label{sec:data_models}
 
 In this section, we describe data models, standards, and formats that are used in the data sources
@@ -51,12 +51,32 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
   \label{fig:FRBR}
 \end{figure}
 
-FRBR serves as a basic principle of RDA, which we discuss in the following.
+FRBR serves as a basic principle of RDA, which we discuss next.
 
 % .............
 \paragraph{RDA}
 
-\dots
+\gls{RDA} is a standard for the cataloguing of publications
+in cultural heritage institutions, and particularly in libraries.
+RDA is implemented and used in the library systems of several countries, including
+the US, the UK, Canada, Australia, and the German-speaking countries
+\cite{WikiDE_RDA}.
+
+RDA and the application guidelines for the German-speaking area
+stipulate a special practice for recording FRBR Group-1 entities and relating 
+them to each other: Bibliographic records (\enquote{Titeldatensätze})
+have a bibliographic level for describing a manifestation
+and an exemplar level for describing the related exemplars. The description of works and expressions
+is considered part of the description of a manifestation and thus recorded on the bibliographic level.
+However, it is possible to create and link an authority record for a work or expression
+containing the relevant description. In that case, the source of the information can be recorded as well
+\autocite[cf.][Chapter~5.1]{Wiesenmueller2015}.
+
+For our approach, this observation means that catalogues of German libraries
+do not use a uniform way of linking, e.g., a work $X$ with its manifestations.
+In particular, if there is no authority record for $X$,
+then $X$ is represented in the data of its manifestations only implicitly 
+(and possibly ambiguously).
 
 
 \begin{itemize}
@@ -242,15 +262,7 @@ Since 2015, the DNB has been using MARC field 883
 for recording the metadata provenance for a selection of data fields
 \autocite{DNBwiki_MARC_883}.
 
-RDA and the application guidelines for the German-speaking area
-stipulate the following practice for cataloguing works, expressions, manifestations, and exemplars
-in relation with each other: Bibliographic records (\enquote{Titeldatensätze})
-have a bibliographic level for describing a manifestation
-and an exemplar level for describing the related exemplars. The description of works and expressions
-is considered part of the description of a manifestation and thus recorded on the bibliographic level.
-However, it is possible to create and link an authority record for a work or expression
-containing the relevant description. In that case, the source of the information can be recorded as well
-\autocite[cf.][Chapter~5.1]{Wiesenmueller2015}.
+\todo[inline]{more comments on consequences of using RDA (works/expressions)?}
 
 \todo[inline]{temporal data restricted to year of publication?}
 
