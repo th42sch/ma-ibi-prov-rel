@@ -26,8 +26,12 @@ decision to use the term \emph{metadata} in the most general sense,
 \section{Data Models, Standards, and Formats}
 \label{sec:data_models}
 
+
 In this section, we describe data models, standards, and formats that are used in the data sources
 relevant for our work. 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Standards for Description of Bibliographic Resources}
 
 % .............
 \paragraph{FRBR}
@@ -97,15 +101,41 @@ In particular, if there is no authority record for $X$,
 then $X$ is represented in the data of its manifestations only implicitly 
 (and possibly ambiguously).
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Frameworks and Standards for Data Formats}
+
+% .............
+\paragraph{MARC}
+
+\dots
+
+(21, XML, Turbomarc, MAB2 as a MARC \enquote{family member} \autocite[p.204]{Hider2008})
+
 % .............
 \paragraph{DC} ???
 
 \dots
 
+% .............
+\paragraph{MODS}
 
+\dots
 
 % .............
-\paragraph{SRU}
+\paragraph{PICA} ???
+
+\dots
+
+% .............
+\paragraph{RDF}  ?????
+
+\dots
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection{Data Transmission Protocols}
+
+% .............
+\paragraph{Z39.50}
 
 \dots
 
@@ -115,44 +145,12 @@ then $X$ is represented in the data of its manifestations only implicitly
 \dots
 
 % .............
-\paragraph{MARC}
+\paragraph{SRU}
 
 \dots
 
-(21, XML, Turbomarc)
+\url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
 
-% .............
-\paragraph{MODS}
-
-\dots
-
-% .............
-\paragraph{MODS}
-
-\dots
-
-% .............
-\paragraph{MAB2}  ?????
-
-\dots
-
-% .............
-\paragraph{RDF}  ?????
-
-\dots
-
-
-
-
-\begin{itemize}
-  \item 
-    \mybold{OPAC or K10plus data model as ER diagram? Binary vs. \boldmath$n$-ary relations?
-    $\leadsto$ check literature (possibly also papers on the FRBR model)!}
-  \item
-    SRU: \url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
-\end{itemize}
-
-\dots
 
 
 % -----------------------------------------------------------------
@@ -509,9 +507,10 @@ DHa's remarks on GND vocabulary and richness of GND data:
 
 \dots
 
+
 \begin{itemize}
   \item
-    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, data sources}
+    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
   \item 
     uniform vs.\ distributed scenario?
     %
