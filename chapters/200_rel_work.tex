@@ -459,39 +459,64 @@ In the context of the Semantic Web \autocite{BernersLee2001,Marshall2003},
 linked data is one of several developments aimed at making data on the Web more machine-understandable.
 
 The main technologies underlying linked data are the following.
-%
-\begin{itemize}
-  \item
-    \emph{\glspl{URI}}:
-    
-    \par
-    A URI is a string that is assigned to a physical or logical resource
-    in order to identify that resource uniquely. URLs (Uniform Resource Locators)
-    are a special case of URIs which additionally ensure that a resource
-    can be located in a network and that information can be retrieved from it,
-    where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
-    URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
-  \item
-    the \emph{\gls{HTTP}}:
-    
-    \par
-    HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
-  \item
-    the \emph{\gls{RDF}}:
-    
-    \par
-    \gls{RDF} is \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
-    \autocite{RDFPrimer}.
-    Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
-    \gls{RDF} statements are \emph{triples} of the format \enquote{subject--predicate--object}
-    consisting of a resource, a property, and a resource (or literal).
-    Resources and properties are described using \glspl{URI}.
-    \gls{RDF} thus provides a simple and flexible data model that is particularly useful for the publication
-    and linking of data on the Web;
-    it has been a standard of the
-    World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
-\end{itemize}
-%
+%%
+%\begin{itemize}
+%  \item
+%    \emph{\glspl{URI}}:
+%    
+%    \par
+%    A URI is a string that is assigned to a physical or logical resource
+%    in order to identify that resource uniquely. URLs (Uniform Resource Locators)
+%    are a special case of URIs which additionally ensure that a resource
+%    can be located in a network and that information can be retrieved from it,
+%    where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
+%    URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
+%  \item
+%    the \emph{\gls{HTTP}}:
+%    
+%    \par
+%    HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
+%  \item
+%    the \emph{\gls{RDF}}:
+%    
+%    \par
+%    \gls{RDF} is \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
+%    \autocite{RDFPrimer}.
+%    Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
+%    \gls{RDF} statements are \emph{triples} of the format \enquote{subject--predicate--object}
+%    consisting of a resource, a property, and a resource (or literal).
+%    Resources and properties are described using \glspl{URI}.
+%    \gls{RDF} thus provides a simple and flexible data model that is particularly useful for the publication
+%    and linking of data on the Web;
+%    it has been a standard of the
+%    World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
+%\end{itemize}
+%%
+
+\paragraph{URIs}
+A \gls{URI} is a string that is assigned to a physical or logical resource
+in order to identify that resource uniquely. URLs (Uniform Resource Locators)
+are a special case of URIs which additionally ensure that a resource
+can be located in a network and that information can be retrieved from it,
+where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
+URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
+
+\paragraph{HTTP}
+The \gls{HTTP} is the fundamental protocol for data transfer and communication underlying the WWW.
+
+\paragraph{RDF}
+The \gls{RDF} \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
+\autocite{RDFPrimer}.
+Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
+RDF statements are \emph{triples} of the format \enquote{subject--predicate--object}
+consisting of a resource, a property, and a resource (or literal).
+Resources and properties are described using \glspl{URI}.
+RDF thus provides a simple and flexible data model that is particularly useful for the publication
+and linking of data on the Web;
+it has been a standard of the
+World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
+
+\par\medskip
 In the context of the Semantic Web, \gls{RDF} and associated technologies
 are important tools for the definition and use of ontologies.
 For a definition of the term \enquote{ontology} in this setting, we cite \textcite{Horrocks2011}:
@@ -503,48 +528,83 @@ i.e., knowledge that logically follows from the explicitly represented knowledge
 
 The following technologies associated with \gls{RDF} and ontologies
 are of interest for the purposes of this thesis:
-%
-\begin{itemize}
-  \item
-    \emph{RDF Schema (RDFS)} \autocite{RDFS}:
-    
-    \par
-    RDFS is a specific \gls{RDF} vocabulary which can be used for modelling
-    and thus serves as a very basic ontology language.
-    It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
-  \item
-    the \emph{Web Ontology Language OWL} \autocite{OWLPrimer}:
-    
-    \par
-    OWL is the ontology language recommended by the W3C.
-    It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
-    DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
-    as a formal ontology language in the sense mentioned above.
-    The members of the DL family vary regarding their expressive power and,
-    closely related, regarding the computational complexity of their basic reasoning problems.
-    OWL 2, which is the current version of OWL,
-    is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
-    in various inference machines that perform well on a wide range of real-world ontologies.
-    Besides these knowledge representation languages and support for reasoning,
-    OWL includes infrastructure for interaction with ontologies and interoperability
-    within the Web, such as Internationalized Resource Identifiers (IRIs),
-    \glsunset{XML}%
-    \gls{XML} schema datatypes, import mechanisms, and many more.
-  \item
-    \emph{SPARQL} (Simple Protocol And RDF Query Language) \autocite{SPARQL}:
-    
-    \par
-    SPARQL is a W3C-recommended query language for the Semantic Web.
-    More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
-    whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
-    However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
-    SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
-    answers are returned in \gls{RDF} or \gls{XML}.
-    Additionally, SPARQL exploits inference mechanisms,
-    i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
-    but are obtained involving certain sets of inference rules, based on OWL or other standards.
-\end{itemize}
+%%
+%\begin{itemize}
+%  \item
+%    \emph{RDF Schema (RDFS)} \autocite{RDFS}:
+%    
+%    \par
+%    RDFS is a specific \gls{RDF} vocabulary which can be used for modelling
+%    and thus serves as a very basic ontology language.
+%    It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
+%  \item
+%    the \emph{Web Ontology Language OWL} \autocite{OWLPrimer}:
+%    
+%    \par
+%    OWL is the ontology language recommended by the W3C.
+%    It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
+%    DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+%    as a formal ontology language in the sense mentioned above.
+%    The members of the DL family vary regarding their expressive power and,
+%    closely related, regarding the computational complexity of their basic reasoning problems.
+%    OWL 2, which is the current version of OWL,
+%    is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
+%    in various inference machines that perform well on a wide range of real-world ontologies.
+%    Besides these knowledge representation languages and support for reasoning,
+%    OWL includes infrastructure for interaction with ontologies and interoperability
+%    within the Web, such as Internationalized Resource Identifiers (IRIs),
+%    \glsunset{XML}%
+%    \gls{XML} schema datatypes, import mechanisms, and many more.
+%  \item
+%    \emph{SPARQL} (Simple Protocol And RDF Query Language) \autocite{SPARQL}:
+%    
+%    \par
+%    SPARQL is a W3C-recommended query language for the Semantic Web.
+%    More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
+%    whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
+%    However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
+%    SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
+%    answers are returned in \gls{RDF} or \gls{XML}.
+%    Additionally, SPARQL exploits inference mechanisms,
+%    i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
+%    but are obtained involving certain sets of inference rules, based on OWL or other standards.
+%\end{itemize}
+%%
 
+\paragraph{RDFS}
+\gls{RDFS} is a specific \gls{RDF} vocabulary which can be used for modelling
+and thus serves as a very basic ontology language.
+It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
+
+\paragraph{OWL}
+\glsunset{OWL}%
+\gls{OWL} is the ontology language recommended by the W3C.
+It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
+DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+as a formal ontology language in the sense mentioned above.
+The members of the DL family vary regarding their expressive power and,
+closely related, regarding the computational complexity of their basic reasoning problems.
+OWL 2, which is the current version of OWL,
+is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
+in various inference machines that perform well on a wide range of real-world ontologies.
+Besides these knowledge representation languages and support for reasoning,
+OWL includes infrastructure for interaction with ontologies and interoperability
+within the Web, such as Internationalized Resource Identifiers (IRIs),
+\glsunset{XML}%
+\gls{XML} schema datatypes, import mechanisms, and many more.
+
+\paragraph{SPARQL}
+The \gls{SPARQL} is a W3C-recommended query language for the Semantic Web.
+More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
+whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
+However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
+SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
+answers are returned in \gls{RDF} or \gls{XML}.
+Additionally, SPARQL exploits inference mechanisms,
+i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
+but are obtained involving certain sets of inference rules, based on OWL or other standards.
+
+\par\medskip
 \emph{Linked open data (LOD)} is linked data that is also \emph{open data},
 i.e., accessible and shareable by everyone \autocite{WikiLinkedData}.
 

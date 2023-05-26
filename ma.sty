@@ -103,10 +103,13 @@
 \newabbreviation[user1={LCNAF}]{LCNAF}{LCNAF}{Library of Congress Name Authority File}
 \newabbreviation[user1={NISO}]{NISO}{NISO}{National Information Standards Organization of the USA}
 \newabbreviation[user1={OAI}]{OAI}{OAI-PMH}{the Open Archives Initiative Protocol for Metadata Harvesting}
+\newabbreviation[user1={OWLPrimer}]{OWL}{OWL}{the Web Ontology Language recommended by the W3C}
 \newabbreviation[user1={DNB_RDA}]{RDA}{RDA}{Resource Description and Access}
 \newabbreviation[user1={RDFPrimer}]{RDF}{RDF}{Resource Description Framework}
+\newabbreviation[user1={RDFS}]{RDFS}{RDFS}{RDF Schema}
 \newabbreviation{SNA}{SNA}{social network analysis}
 \newabbreviation[user1={Bludau2020,Menzel2020,SoNAR}]{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research}}
+\newabbreviation[user1={SPARQL}]{SPARQL}{SPARQL}{Simple Protocol And RDF Query Language}
 \newabbreviation[user1={SRU}]{SRU}{SRU}{Search/Retrieval via URL}
 \newabbreviation[user1={RFC3986}]{URI}{URI}{Uniform Resource Identifier}
 \newabbreviation[user1={VIAF}]{VIAF}{VIAF}{Virtual International Authority File}
@@ -372,6 +375,9 @@
 %% ==== !DOESN'T WORK! =====
 %%\newcommand*{\paragraphformat}{\theparagraph\autodot\enskip}
 %\renewcommand*{\paragraphformat}{\theparagraph\autodot}
+
+% \paragraph with reduced preceding parskip
+\RedeclareSectionCommand[beforeskip=-1sp plus 1sp minus -1sp]{paragraph}
 
 % ===== Macros for TikZ pictures =====
 \newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
