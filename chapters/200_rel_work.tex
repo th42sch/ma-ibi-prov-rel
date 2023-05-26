@@ -462,7 +462,7 @@ The main technologies underlying linked data are the following.
 %
 \begin{itemize}
   \item
-    \emph{Uniform Resource Identifiers (URIs)} \autocite{RFC3986}:
+    \emph{\glspl{URI}}:
     
     \par
     A URI is a string that is assigned to a physical or logical resource
@@ -472,7 +472,7 @@ The main technologies underlying linked data are the following.
     where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
     URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
   \item
-    the \emph{Hypertext Transfer Protocol (HTTP)} \autocite{HTTP}:
+    the \emph{\gls{HTTP}}:
     
     \par
     HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
@@ -485,7 +485,7 @@ The main technologies underlying linked data are the following.
     Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
     \gls{RDF} statements are \emph{triples} of the format \enquote{subject--predicate--object}
     consisting of a resource, a property, and a resource (or literal).
-    Resources and properties are described using URIs.
+    Resources and properties are described using \glspl{URI}.
     \gls{RDF} thus provides a simple and flexible data model that is particularly useful for the publication
     and linking of data on the Web;
     it has been a standard of the
@@ -528,7 +528,8 @@ are of interest for the purposes of this thesis:
     Besides these knowledge representation languages and support for reasoning,
     OWL includes infrastructure for interaction with ontologies and interoperability
     within the Web, such as Internationalized Resource Identifiers (IRIs),
-    XML schema datatypes, import mechanisms, and many more.
+    \glsunset{XML}%
+    \gls{XML} schema datatypes, import mechanisms, and many more.
   \item
     \emph{SPARQL} (Simple Protocol And RDF Query Language) \autocite{SPARQL}:
     
@@ -538,7 +539,7 @@ are of interest for the purposes of this thesis:
     whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
     However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
     SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
-    answers are returned in \gls{RDF} or XML.
+    answers are returned in \gls{RDF} or \gls{XML}.
     Additionally, SPARQL exploits inference mechanisms,
     i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
     but are obtained involving certain sets of inference rules, based on OWL or other standards.
@@ -700,7 +701,7 @@ should be provided to users as a search entry.
 Hakelberg also recommends the further development of the \emph{Thesaurus of Provenance Terms}
 (T-PRO) \autocite{T-PRO}, which is a controlled vocabulary
 for the specification of provenances via single descriptors or chains thereof.
-In particular, the T-PRO descriptors need to be assigned URIs
+In particular, the T-PRO descriptors need to be assigned \glspl{URI}
 in order to make them reusable as linked open data. %(see Section~\ref{sec:linked_data+integration}).
 
 We draw the following insights from these observations.

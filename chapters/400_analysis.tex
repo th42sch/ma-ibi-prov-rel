@@ -134,9 +134,13 @@ and not all libraries use the most recent version. It is also not very widely sp
 outside the library community.
 
 % .............
-\paragraph{SRU}
+\paragraph{SRU.}
 
-\dots
+\gls{SRU} is a successor of \gls{Z39.50} and \gls{LoC} standard.
+It has the same function, which is the standardisation of search and retrieval
+across online databases. Being based on \gls{HTTP}
+and \gls{XML}, \gls{SRU} is more dynamic and more generic than \gls{Z39.50}.
+
 
 \url{https://en.wikipedia.org/wiki/Search/Retrieve_via_URL}, \url{https://www.loc.gov/standards/sru/}
 
@@ -154,7 +158,7 @@ outside the library community.
 
 \dots
 
-(21, XML, Turbomarc, MAB2 as a MARC \enquote{family member} \autocite[p.204]{Hider2008})
+(21, \gls{XML}, Turbomarc, MAB2 as a MARC \enquote{family member} \autocite[p.204]{Hider2008})
 
 % .............
 \paragraph{DC.}
@@ -319,7 +323,7 @@ We collect the following information for each data source.
   \item
     \emph{Data quality (from the \gls{SoNAR} grant proposal \autocite[p.\,19ff.]{SchneiderKempf2018}),
     if applicable:}~
-    use of persistent identifiers and URIs; adherence to standards for, e.g., time and date specification
+    use of persistent identifiers and \glspl{URI}; adherence to standards for, e.g., time and date specification
   \item
     \emph{features useful in the context of \gls{SoNAR} (see our discussion in Section~\ref{sec:insights_from_SoNAR}), if applicable:}~
     recording of temporal attributes or relations; recording of data provenance
@@ -344,8 +348,8 @@ the DNB's holdings comprise 43.7 million physical or digitally accessible units,
 which are represented by almost 26 million records in the German National Bibliography.
 
 Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the interfaces
-\gls{SRU} and \gls{OAI}, which support XML serialisations of the data formats
-MARC~21, \gls{RDF}, DNB Casual (an XML-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
+\gls{SRU} and \gls{OAI}, which support \gls{XML} serialisations of the data formats
+MARC~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
 Further data formats are available via an individual access
 to the \enquote{Data Shop}.
 The DNB's Linked Data Service provides open access to its bibliographic and authority data
