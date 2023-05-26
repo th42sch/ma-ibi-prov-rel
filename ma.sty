@@ -44,47 +44,76 @@
 %\linespread{1.04}
 
 % ===== Glossary style and abbreviations =====
+
+% ----- general settings -----
 \makeglossaries
 \glssetcategoryattribute{acronym}{indexonlyfirst}{true}
 \glssetcategoryattribute{abbreviation}{indexonlyfirst}{true}
 \renewcommand{\glsnamefont}[1]{\mybold{#1}}
 %\renewcommand\glstreepredesc{\quad}
-\setabbreviationstyle{long-short}
-\newabbreviation{ANSI}{ANSI}{American National Standards Institute \protect\autocite{ANSI}}
-\newabbreviation{B3KAT}{B3KAT}{the union catalogue of the German library networks BVB and KOBV \protect\autocite{B3KAT}}
-\newabbreviation{DC}{DC}{Dublin Core, also: the Dublin Core Metadata Element Set \protect\autocite{DC}}
-\newabbreviation{DCMI}{DCMI}{Dublin Core Metadata Initiative \protect\autocite{DCMI}}
-\newabbreviation{DNB}{DNB}{German National Library \protect\autocite{DNBCatalogue}}
-\newabbreviation{FRAD}{FRAD}{Functional Requirements for Authority Data \protect\autocite{FRAD2003}}
-\newabbreviation{FRBR}{FRBR}{Functional Requirements for Bibliographic Records \protect\autocite{FRBR1998}}
-\newabbreviation{FRSAD}{FRSAD}{Functional Requirements for Subject Authority Data \protect\autocite{FRSAD2010}}
-\newabbreviation{GND}{GND}{Integrated Authority File of the German National Library \protect\autocite{GND}}
-\newabbreviation{hbz}{hbz}{library network of the German states North Rhine-Westphalia and Rhineland-Palatinate \protect\autocite{hbz}}
-\newabbreviation{hebis}{hebis}{library network of the state of Hesse and the region of Rhine Hesse (Germany) \protect\autocite{hebis}}
+
+% ----- citations in first use/glossary -----
+\glssetcategoryattribute{abbreviation}{nohyperfirst}{true} % to avoid nested hyperlinks
+
+%\renewcommand*{\glsxtruserparen}[2]{% requires glossaries-extra v1.04+
+%  \glsxtrfullsep{#2}%
+%  \glsxtrparen
+%   {#1\ifglshasfield{\glsxtruserfield}{#2}{;
+%     \expandafter\autocite\expandafter{\glscurrentfieldvalue}}{}}%
+%}
+%
+\renewcommand*{\glsxtruserparen}[2]{% requires glossaries-extra v1.04+
+  \glsxtrfullsep{#2}%
+  \glsxtrparen
+   {#1}%
+   \ifglshasfield{\glsxtruserfield}{#2}{
+        \expandafter\autocite\expandafter{\glscurrentfieldvalue}}{}%
+}
+
+\glsdefpostdesc{abbreviation}{% requires glossaries-extra v1.31+
+ \ifglshasfield{\glsxtruserfield}{\glscurrententrylabel}%
+ {~\expandafter\autocite\expandafter{\glscurrentfieldvalue}}%
+ {}%
+}
+
+% ----- abbreviations ----
+\setabbreviationstyle{long-short-user}
+%\newabbreviation{ANSI}{ANSI}{American National Standards Institute \protect\autocite{ANSI}}
+\newabbreviation[user1={ANSI}]{ANSI}{ANSI}{American National Standards Institute}
+\newabbreviation[user1={B3KAT}]{B3KAT}{B3KAT}{the union catalogue of the German library networks BVB and KOBV}
+\newabbreviation[user1={DC}]{DC}{DC}{The Dublin Core Metadata Element Set, short: Dublin Core}
+\newabbreviation[user1={DCMI}]{DCMI}{DCMI}{Dublin Core Metadata Initiative}
+\newabbreviation[user1={DNBCatalogue}]{DNB}{DNB}{German National Library}
+\newabbreviation[user1={FRAD2003}]{FRAD}{FRAD}{Functional Requirements for Authority Data}
+\newabbreviation[user1={FRBR1998}]{FRBR}{FRBR}{Functional Requirements for Bibliographic Records}
+\newabbreviation[user1={FRSAD2010}]{FRSAD}{FRSAD}{Functional Requirements for Subject Authority Data}
+\newabbreviation[user1={GND}]{GND}{GND}{Integrated Authority File of the German National Library}
+\newabbreviation[user1={hbz}]{hbz}{hbz}{library network of the German states North Rhine-Westphalia and Rhineland-Palatinate}
+\newabbreviation[user1={hebis}]{hebis}{hebis}{library network of the state of Hesse and the region of Rhine Hesse (Germany)}
 \newabbreviation{HNA}{HNA}{historical network analysis}
-\newabbreviation{HTTP}{HTTP}{Hypertext Transfer Protocol \protect\autocite{HTTP}}
-\newabbreviation{IFLA}{IFLA}{International Federation of Library Associations and Institutions \protect\autocite{IFLA}}
-\newabbreviation{ISNI}{ISNI}{International Standard Name Identifier \protect\autocite{ISNI}}
-\newabbreviation{ISO}{ISO}{International Organization for Standardization \protect\autocite{ISO}}
+\newabbreviation[user1={HTTP}]{HTTP}{HTTP}{Hypertext Transfer Protocol}
+\newabbreviation[user1={IFLA}]{IFLA}{IFLA}{International Federation of Library Associations and Institutions}
+\newabbreviation[user1={ISNI}]{ISNI}{ISNI}{International Standard Name Identifier}
+\newabbreviation[user1={ISO}]{ISO}{ISO}{International Organization for Standardization}
 \newabbreviation{KB}{KB}{knowledge base}
-\newabbreviation{K10plus}{K10plus}{the union catalogue of the German library networks GBV and SWB \protect\autocite{K10plus}}
-\newabbreviation{KPE}{KPE}{Kalliope Union Catalogue \protect\autocite{KPE}}
-\newabbreviation{KVK}{KVK}{Karlsruhe Virtual Catalogue \protect\autocite{KVK}}
-\newabbreviation{LoC}{LoC}{Library of Congress \protect\autocite{LoC}}
-\newabbreviation{LCNAF}{LCNAF}{Library of Congress Name Authority File \protect\autocite{LCNAF}}
-\newabbreviation{NISO}{NISO}{National Information Standards Organization of the USA \protect\autocite{NISO}}
-\newabbreviation{OAI}{OAI-PMH}{the Open Archives Initiative Protocol for Metadata Harvesting \protect\autocite{OAI}}
-\newabbreviation{RDA}{RDA}{Resource Description and Access \protect\autocite{DNB_RDA}}
-\newabbreviation{RDF}{RDF}{Resource Description Framework  \protect\autocite{RDFPrimer}}
+\newabbreviation[user1={K10plus}]{K10plus}{K10plus}{the union catalogue of the German library networks GBV and SWB}
+\newabbreviation[user1={KPE}]{KPE}{KPE}{Kalliope Union Catalogue}
+\newabbreviation[user1={KVK}]{KVK}{KVK}{Karlsruhe Virtual Catalogue}
+\newabbreviation[user1={LoC}]{LoC}{LoC}{Library of Congress}
+\newabbreviation[user1={LCNAF}]{LCNAF}{LCNAF}{Library of Congress Name Authority File}
+\newabbreviation[user1={NISO}]{NISO}{NISO}{National Information Standards Organization of the USA}
+\newabbreviation[user1={OAI}]{OAI}{OAI-PMH}{the Open Archives Initiative Protocol for Metadata Harvesting}
+\newabbreviation[user1={DNB_RDA}]{RDA}{RDA}{Resource Description and Access}
+\newabbreviation[user1={RDFPrimer}]{RDF}{RDF}{Resource Description Framework}
 \newabbreviation{SNA}{SNA}{social network analysis}
-\newabbreviation{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research} \protect\autocite{Bludau2020,Menzel2020,SoNAR}}
-\newabbreviation{SRU}{SRU}{Search/Retrieval via URL \protect\autocite{SRU}}
-\newabbreviation[longplural={Uniform Resource Identifiers \protect\autocite{RFC3986}}]{URI}{URI}{Uniform Resource Identifier \protect\autocite{RFC3986}}
-\newabbreviation{VIAF}{VIAF}{Virtual International Authority File \protect\autocite{VIAF}}
-\newabbreviation{XML}{XML}{Extensible Markup Language \protect\autocite{XML}}
-\newabbreviation{Z39.50}{Z39.50}{ANSI/NISO Standard \protect\enquote{Information Retrieval: Application Service Definition and Protocol Specification} \protect\autocite{Z39.50}}
-\newabbreviation{ZDB}{ZDB}{German Union Catalogue of Serials \protect\autocite{ZDB}}
-\newabbreviation{ZEFYS}{ZEFYS}{the newspaper information system of Berlin State Library \protect\autocite{ZEFYS}}
+\newabbreviation[user1={Bludau2020,Menzel2020,SoNAR}]{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research}}
+\newabbreviation[user1={SRU}]{SRU}{SRU}{Search/Retrieval via URL}
+\newabbreviation[user1={RFC3986}]{URI}{URI}{Uniform Resource Identifier}
+\newabbreviation[user1={VIAF}]{VIAF}{VIAF}{Virtual International Authority File}
+\newabbreviation[user1={XML}]{XML}{XML}{Extensible Markup Language}
+\newabbreviation[user1={Z39.50}]{Z39.50}{Z39.50}{ANSI/NISO Standard \protect\enquote{Information Retrieval: Application Service Definition and Protocol Specification}}
+\newabbreviation[user1={ZDB}]{ZDB}{ZDB}{German Union Catalogue of Serials}
+\newabbreviation[user1={ZEFYS}]{ZEFYS}{ZEFYS}{the newspaper information system of Berlin State Library}
 
 % ===== Set up TikZ (Macros see below) =====
 \RequirePackage{pgfsys}
