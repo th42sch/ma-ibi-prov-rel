@@ -117,7 +117,21 @@ then $X$ is represented in the data of its manifestations only implicitly
 % .............
 \paragraph{Z39.50}
 
-\dots
+is a protocol for data communication between bibliographic databases.
+\glsunset{ISO}%
+\glsunset{ANSI}%
+\glsunset{NISO}%
+It is an \gls{ISO} standard as well as an \gls{ANSI}/\gls{NISO} standard.
+\glsunset{Z39.50}%
+\gls{Z39.50} is a set of rules developed specifically
+for translating search and retrieval commands between databases such as OPACs.
+Using \gls{Z39.50}, it is possible to issue commands specific to a local database
+and obtain results from a remote database that uses a poossibly different command set.
+This protocol can be implemented over the internet and similar networks.
+\gls{Z39.50} is widely used in the library domain for providing access to catalogues,
+for example, by the \gls{LoC}. Still, it is not fully implemented by all library systems
+and not all libraries use the most recent version. It is also not very widely spread
+outside the library community.
 
 % .............
 \paragraph{SRU}
@@ -340,7 +354,7 @@ are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 
 According to the detailed specifications on the MARC format by the DNB
 \autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
-geographic area codes, and countries conforms to ISO standards (8601, 639-1, 3166).
+geographic area codes, and countries conforms to \gls{ISO} standards (8601, 639-1, 3166).
 Since 2015, the DNB has been using MARC field 883
 for recording the metadata provenance for a selection of data fields
 \autocite{DNBwiki_MARC_883}.
