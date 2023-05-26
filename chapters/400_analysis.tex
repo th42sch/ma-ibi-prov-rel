@@ -129,7 +129,7 @@ Using Z39.50, it is possible to issue commands specific to a local database
 and obtain results from a remote database that uses a poossibly different command set.
 This protocol can be implemented over the internet and similar networks.
 Z39.50 is widely used in the library domain for providing access to catalogues,
-for example, by the \gls{LoC}. Still, it is not fully implemented by all library systems
+for example, by the \gls{LoC}. Still, it is not fully implemented by all library systems,
 and not all libraries use the most recent version. It is also not very widely spread
 outside the library community.
 
@@ -139,15 +139,18 @@ outside the library community.
 \gls{SRU} is a successor of \gls{Z39.50} and an \gls{LoC} standard.
 It has the same function, which is the standardisation of search and retrieval
 across online databases. 
-\gls{SRU} is based on \gls{HTTP}, \gls{XML}, and the \gls{CQL}, 
+SRU is based on \gls{HTTP}, \gls{XML}, and the \gls{CQL}, 
 a standard syntax for representing queries to information retrieval systems.
-Thanks to this technology, \gls{SRU} is more dynamic than \gls{Z39.50}
+Thanks to this technology, SRU is more dynamic than \gls{Z39.50}
 and less restricted to the library domain.
 
 % .............
 \paragraph{OAI-PMH}
 
-\dots
+The \gls{OAI} is a project devoted to interoperability standards in information agencies
+in general, including libraries.
+The \gls{OAI-PMH} is a standard developed by the OAI
+and is widely used in the library domain, albeit not as widely as \gls{Z39.50}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data Description Schemata}
@@ -348,7 +351,7 @@ the DNB's holdings comprise 43.7 million physical or digitally accessible units,
 which are represented by almost 26 million records in the German National Bibliography.
 
 Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the interfaces
-\gls{SRU} and \gls{OAI}, which support \gls{XML} serialisations of the data formats
+\gls{SRU} and \gls{OAI-PMH}, which support \gls{XML} serialisations of the data formats
 MARC~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
 Further data formats are available via an individual access
 to the \enquote{Data Shop}.
@@ -533,7 +536,7 @@ DHa's remarks on GND vocabulary and richness of GND data:
   \item
     FRBRoo?
   \item
-    \gls{RDF}, SPARQL, N-Quads?
+    \gls{RDF}, \gls{SPARQL}, N-Quads?
 \end{itemize}
 
 
