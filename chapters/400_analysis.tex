@@ -62,6 +62,8 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
   \qquad
   \includegraphics[height=60mm]{img/FRBR_Group2.png}
   
+  \todo[defer,inline]{Make better picture? (see draft)}
+  
   \caption[Basic FRBR entities and relations of Group~1 and Group~2]{%
     \parbox[t]{.85\linewidth}{%
       Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)
@@ -117,6 +119,7 @@ then $X$ is represented in the data of its manifestations only implicitly
 % .............
 \paragraph{Z39.50}
 
+\glsreset{Z39.50}
 is a protocol for data communication between bibliographic databases.
 \glsunset{ISO}%
 \glsunset{ANSI}%
@@ -159,7 +162,11 @@ and is widely used in the library domain, albeit not as widely as \gls{Z39.50}.
 % .............
 \paragraph{MARC}
 
-\dots
+\glsreset{MARC}
+\gls{MARC} \enquote{is the main data communication standard in use in libraries today}
+\autocite[p.198]{Hider2008}. It is a family of formats for the exchange of bibliographic
+and further data between library systems. MARC was developed by the \gls{LoC} in 1969
+and has been updated several times, the most recent version being MARC~21 (created in 1999). ***
 
 (21, \gls{XML}, Turbomarc, MAB2 as a MARC \enquote{family member} \autocite[p.204]{Hider2008})
 
@@ -352,17 +359,17 @@ which are represented by almost 26 million records in the German National Biblio
 
 Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the interfaces
 \gls{SRU} and \gls{OAI-PMH}, which support \gls{XML} serialisations of the data formats
-MARC~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
+\gls{MARC}~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
 Further data formats are available via an individual access
 to the \enquote{Data Shop}.
 The DNB's Linked Data Service provides open access to its bibliographic and authority data
 in RDF under the Creative Commons Zero (CC0 1.0) license. Instructions on how to use these interfaces
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 
-According to the detailed specifications on the MARC format by the DNB
+According to the detailed specifications on the \gls{MARC} format by the DNB
 \autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
 geographic area codes, and countries conforms to \gls{ISO} standards (8601, 639-1, 3166).
-Since 2015, the DNB has been using MARC field 883
+Since 2015, the DNB has been using \gls{MARC} field 883
 for recording the metadata provenance for a selection of data fields
 \autocite{DNBwiki_MARC_883}.
 
@@ -395,13 +402,13 @@ As of 31 December 2022, K10plus contains 80.8 million bibliographic records (\en
 with 235.4 million ownership records \autocite{GBV_K10plus_Statistik}.
 
 K10plus provides metadata freely (under the CC0 1.0 licence),
-mainly via the interfaces Z39.50 and SRU.
-Those support the data formats MARC~21, MARC-XML (and its variant Turbomarc),
+mainly via the interfaces \gls{Z39.50} and \gls{SRU}.
+Those support the data formats \gls{MARC}~21, \gls{MARC}-XML (and its variant Turbomarc),
 PICA+, PICA-XML, \gls{DC}, and MODS (and the legacy format MAB2).
 Detailed instructions on how to use these interfaces
 are given in the K10plus Wiki \autocite{K10plusWiki}.
 In addition, snapshots of K10plus data are provided regularly
-in MARC-XML and as linked open data (RDF-XML), but the information
+in \gls{MARC}-XML and as linked open data (RDF-XML), but the information
 on these in the K10plus Wiki is incomplete \autocite{K10plusWikiOD}.
 
 
