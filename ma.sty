@@ -117,6 +117,7 @@
 \newabbreviation[user1={SRU}]{SRU}{SRU}{Search/Retrieval via URL}
 \newabbreviation[user1={RFC3986}]{URI}{URI}{Uniform Resource Identifier}
 \newabbreviation[user1={VIAF}]{VIAF}{VIAF}{Virtual International Authority File}
+\newabbreviation[user1={WWW}]{WWW}{WWW}{World Wide Web}
 \newabbreviation[user1={XML}]{XML}{XML}{Extensible Markup Language}
 \newabbreviation[user1={Z39.50}]{Z39.50}{Z39.50}{ANSI/NISO Standard \protect\enquote{Information Retrieval: Application Service Definition and Protocol Specification}}
 \newabbreviation[user1={ZDB}]{ZDB}{ZDB}{German Union Catalogue of Serials}
@@ -150,7 +151,7 @@
 ]{biblatex}
 \addbibresource{bib/ma_jabref.bib}
 \setlength{\bibitemsep}{4pt}
-
+\RequirePackage{xurl}
 
 % \DefaultInheritance{override=true}
 
@@ -346,7 +347,7 @@
   linkcolor=linkblue,
   citecolor=linkblue,
   raiselinks=true,
-  breaklinks,
+%  breaklinks,
   unicode,
 }
 
