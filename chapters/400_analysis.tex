@@ -32,7 +32,7 @@ and communication of (bibliographic) data.
 Unless indicated otherwise, the discussion in Subsection~\ref{subsec:bib_standards}
 is a brief summary of \citeauthor{Wiesenmueller2015}'s introduction
 \autocite*[§§2,3]{Wiesenmueller2015}, and
-the information in Subsections~\ref{subsec:data_comm_prot} and~\ref{subsec:data_descr_schemata}
+the information in the remaining subsections
 is based on~\citeauthor{Hider2008}'s overview \autocite*[§10]{Hider2008}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -98,7 +98,7 @@ the US, the UK, Canada, Australia, and the German-speaking countries
 
 RDA and the application guidelines for the German-speaking area
 stipulate a special practice for recording FRBR Group-1 entities and relating 
-them to each other: Bibliographic records (\enquote{Titeldatensätze})
+them to each other: Bibliographic records (\enquote{Titel\-daten\-sätze})
 have a bibliographic level for describing a manifestation
 and an exemplar level for describing the related exemplars. The description of works and expressions
 is considered part of the description of a manifestation and thus recorded on the bibliographic level.
@@ -111,6 +111,28 @@ do not use a uniform way of linking, e.g., a work $X$ with its manifestations.
 In particular, if there is no authority record for $X$,
 then $X$ is represented in the data of its manifestations only implicitly 
 (and possibly ambiguously).
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Markup Languages}
+\label{subsec:markup}
+
+We briefly describe markup languages, which are repeatedly used in the technologies
+described in the following subsections.
+Markup languages are machine-readable languages used for the structuring and formatting of files.
+
+% .................
+\paragraph{HTML}
+The most prominent example is the \gls{HTML}, the core language of the \gls{WWW}.
+The markup features of HTML are also used to identify and describe certain elements of digital objects.
+In particular, HTML provides for meta tags, i.e., labels for metadata.
+One of the restrictions of HTML is its fixed set of labels, whose meanings cannot be changed.
+Further standards were developed to overcome this restriction,
+such as SGML and XML.
+
+% .................
+\paragraph{XML}
+\glsreset{XML}%
+The \gls{XML} is ...
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data Communication Protocols}
@@ -129,7 +151,7 @@ It is an \gls{ISO} standard as well as an \gls{ANSI}/\gls{NISO} standard.
 Z39.50 is a set of rules developed specifically
 for translating search and retrieval commands between databases such as OPACs.
 Using Z39.50, it is possible to issue commands specific to a local database
-and obtain results from a remote database that uses a poossibly different command set.
+and obtain results from a remote database that uses a possibly different command set.
 This protocol can be implemented over the internet and similar networks.
 Z39.50 is widely used in the library domain for providing access to catalogues,
 for example, by the \gls{LoC}. Still, it is not fully implemented by all library systems,
@@ -187,12 +209,12 @@ and the restricted compatibility with current computer technologies, among other
 \textcite[p.212]{Hider2008} give more details and further references.
 There have been several attempts to redeem some of these disadvantages,
 among them the development of new standards such as MODS (see below)
-and of XML schemas based on MARC~21 such as MARCXML and Turbomarc.
+and of \gls{XML} schemas based on MARC~21 such as MARCXML and Turbomarc.
 
 The problem of standard proliferation was not restricted to the
 variety of MARC dialects but also occurred within non-MARC formats.
 Attempts to solve this problem have been made via
-translation and unification. One tool for unification is Dublin Core; see below.
+translation and unification. One tool for unification is Dublin Core (DC); see below.
 
 % .............
 \paragraph{MAB}
@@ -212,7 +234,7 @@ in favour of \gls{MARC}~21 \autocite{MAB}.
 
 The \gls{MODS} is a standard developed by the \gls{LoC}
 in order to overcome the problems with \gls{MARC} mentioned above.
-MODS is based on XML and a subset of MARC fields;
+MODS is based on \gls{XML} and a subset of MARC fields;
 it can thus be used alongside MARC and as a \enquote{switching format
 between MARC and non-MARC schemas} \autocite[p.219]{Hider2008}.
 The LoC also maintains an analogous standard for authority data,
