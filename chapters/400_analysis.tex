@@ -125,7 +125,7 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
     
     % placeholders for separating line
     \node [above=2mm of $(G1E.north east)!0.50!(G2E.north west)$,draw=none,fill=none,inner sep=.2mm] (SepN) {};
-    \node [below=4mm of $(G1E.south east)!0.50!(G2E.south west)$,draw=none,fill=none,inner sep=.2mm] (SepS) {};
+    \node [below=5mm of $(G1E.south east)!0.50!(G2E.south west)$,draw=none,fill=none,inner sep=.2mm] (SepS) {};
     
     \begin{scope}[%
       every node/.style={draw=none,fill=none,inner sep=.2mm}
@@ -162,7 +162,7 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
     \end{scope}
     
     % draw separating line
-    \path[-,dashed] (SepN) edge (SepS);
+    \path[-,dash pattern={on 6pt off 3pt}] (SepN) edge (SepS);
 %        
   \end{tikzpicture}
   
@@ -171,7 +171,7 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
 %      Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)%
 %    }%
 %  }
-  \caption{Basic \gls{FRBR} entities and relations}
+  \caption[Basic \gls{FRBR} entities and relations]{Basic \gls{FRBR} entities and relations \autocite[following ][]{FRBRpic1,FRBRpic2}}
   \label{fig:FRBR}
 \end{figure}
 
