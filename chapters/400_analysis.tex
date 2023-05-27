@@ -50,37 +50,37 @@ These entities fall into three groups, of which we discuss the first
 two.
 Entities of Group~1 are \term{Work}, \term{Expression}, \term{Manifestation}, \term{Item},
 and their common superordinate concept \term{Endeavour};
-entities of Group~2 are \term{Person}, \term{Family}, \term{Corporate body},
+entities of Group~2 are \term{Person}, \term{CorporateBody},
 and their superordinate concept \term{Responsible\_entity}.
 Furthermore, \gls{FRBR} contains relations that link Group-1 entities with each other
 and with Group-2 entities, respectively.
 All these entities and relations are shown in Figure~\ref{fig:FRBR}.
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[height=60mm]{img/FRBR_Group1.png}
-  \qquad
-  \includegraphics[height=60mm]{img/FRBR_Group2.png}
-  
-  \todo[defer,inline]{Make better picture? (see draft)}
-  
-  \caption[Basic FRBR entities and relations of Group~1 and Group~2]{%
-    \parbox[t]{.85\linewidth}{%
-      Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)
-      \par
-      \begin{footnotesize}
-        \href{https://commons.wikimedia.org/wiki/File:FRBR-Group-1-entities-and-basic-relations.svg}{\enquote{Basic Group 1 entities and relations of the FRBR model (RDF version)}} and
-        \href{https://commons.wikimedia.org/wiki/File:FRBR-Group-2-entities-and-relations.svg}{\enquote{Basic Group 2 entities and relations of the FRBR model (RDF version)}}
-        by \href{https://commons.wikimedia.org/wiki/User:JakobVoss}{Jakob Voss} are licenced under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}.
-        \par
-      \end{footnotesize}
-    }%
-  }
-%  \label{fig:FRBR}
-\end{figure}
-
-\newlength{\manif}
-\settowidth{\manif}{\fns Manifestation}
+%\begin{figure}[ht]
+%  \centering
+%  \includegraphics[height=60mm]{img/FRBR_Group1.png}
+%  \qquad
+%  \includegraphics[height=60mm]{img/FRBR_Group2.png}
+%  
+%  \todo[defer,inline]{Make better picture? (see draft)}
+%  
+%  \caption[Basic FRBR entities and relations of Group~1 and Group~2]{%
+%    \parbox[t]{.85\linewidth}{%
+%      Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)
+%      \par
+%      \begin{footnotesize}
+%        \href{https://commons.wikimedia.org/wiki/File:FRBR-Group-1-entities-and-basic-relations.svg}{\enquote{Basic Group 1 entities and relations of the FRBR model (RDF version)}} and
+%        \href{https://commons.wikimedia.org/wiki/File:FRBR-Group-2-entities-and-relations.svg}{\enquote{Basic Group 2 entities and relations of the FRBR model (RDF version)}}
+%        by \href{https://commons.wikimedia.org/wiki/User:JakobVoss}{Jakob Voss} are licenced under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}.
+%        \par
+%      \end{footnotesize}
+%    }%
+%  }
+%%  \label{fig:FRBR}
+%\end{figure}
+%
+\newlength{\manif}\settowidth{\manif}{\fns Manifestation}%
+\newlength{\respe}\settowidth{\respe}{\fns ResponsibleEntity}%
 \begin{figure}[ht]
   \centering
   \begin{tikzpicture}[
@@ -88,32 +88,90 @@ All these entities and relations are shown in Figure~\ref{fig:FRBR}.
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
     every edge/.style={draw=black,thick}
   ]
+    % the 4 Group-1 entities
     \node                       (Work) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Work}}};
-    \node [below=10mm of Work]  (Expr) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Expression}}};
-    \node [below=10mm of Expr]  (Mani) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Manifestation}}};
-    \node [below=10mm of Mani]  (Item) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Item}}};
+    \node [below=15mm of Work]  (Expr) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Expression}}};
+    \node [below=15mm of Expr]  (Mani) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Manifestation}}};
+    \node [below=15mm of Mani]  (Item) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Item}}};
     
-    \node [above=10mm of Work,draw=none,fill=none,inner sep=0mm]  (Ende) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Endeavour}}};
-    \node [fit={(Ende) (Work) (Expr) (Mani) (Item)},fill=none] (G1E) {};
+    % their superterm Endeavour
+    \node [above=12mm of Work, draw=none,fill=none,inner sep=0mm] (Ende) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Endeavour}}};
+
+    % placeholders plus rectangle for Endeavour
+    \node [above left =1mm and 1mm of Work.north west,draw=none,fill=none,inner sep=.2mm] (WorkL) {};
+    \node [below right=0mm and 1mm of Item.south east,draw=none,fill=none,inner sep=.2mm] (ItemR) {};
+    \node [fit={(Ende) (WorkL) (ItemR)},fill=none] (G1E) {};
+    
+    % super-relations of Group-1 relations
+    \node [left =8mm of Ende.180,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[r]{\term{relatedEndeavour,}}{\term{part}}};
+    \node [right=8mm of Ende.0  ,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[l]{\term{relatedEndeavour,}}{\term{partOf}}};
+    
+    % the 2 Group-2 relations
+%    \node [right=98mm of Expr] (Pers) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{Person}}};
+%    \node [below= 8mm of Pers] (Corp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{CorporateBody}}};
+    \node [right=98mm of Item] (Corp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{CorporateBody}}};
+    \node [above= 8mm of Corp] (Pers) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{Person}}};
+
+    % their superterm ResponsibleEntity
+    \node [right=98mm of Ende, draw=none,fill=none,inner sep=0mm] (Resp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{ResponsibleEntity}}};
+
+    % placeholders plus rectangle for ResponsibleEntity
+    \node [above left =1mm and 0mm of Pers.north west,draw=none,fill=none,inner sep=.2mm] (PersL) {};
+    \node [below right=0mm and 0mm of Corp.south east,draw=none,fill=none,inner sep=.2mm] (CorpR) {};
+    \node [fit={(Resp) (PersL) (CorpR)},fill=none] (G2E) {};
+
+    % super-relations of Group-2 relations
+    \node [left=6mm of Resp.180,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[r]{\term{responsibleEntity/}}{\term{responsibleEntityOf}}};
+    
+    % placeholders for separating line
+    \node [above=2mm of $(G1E.north east)!0.50!(G2E.north west)$,draw=none,fill=none,inner sep=.2mm] (SepN) {};
+    \node [below=4mm of $(G1E.south east)!0.50!(G2E.south west)$,draw=none,fill=none,inner sep=.2mm] (SepS) {};
+    
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm}
+    ]
+      % Labels for groups
+      \node [above  left=0mm and 2mm of SepS] () {\small Group 1};
+      \node [above right=0mm and 2mm of SepS] () {\small Group 2};
       
-%    \path[->]
-%      (sw)    edge (nw)
-%      (nw)    edge (ridge)
-%      (ridge) edge (ne)
-%      (ne)    edge (se)
-%      (se)    edge (sw)
-%      (sw)    edge (ne)
-%      (ne)    edge (nw)
-%      (nw)    edge (se)
-%    ;
+      \path[->]
+        % the 3 main Group-1 relations
+        (Work) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{realization}} (Expr)
+        (Expr) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{embodiment}}  (Mani)
+        (Mani) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{exemplar}}    (Item)
+        
+        % and their inverses
+        (Expr) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{realizationOf}} (Work)
+        (Mani) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{embodimentOf}}  (Expr)
+        (Item) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{exemplarOf}}    (Mani)
+        
+        % Group-2 relations
+%        (Work) edge[out=5,in=150]  node[pos=.98,above left=1mm and 1mm,sloped] {\fns\mystrut\term{creator}}   (G2E)
+%        (G2E)  edge[out=160,in=-5] node[pos=.02,below left=1mm and 1mm,sloped] {\fns\mystrut\term{creatorOf}} (Work)
+        (Work.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{creator}}  ($(G2E.north west)!(Work.4)!(G2E.south west)$)
+        (Expr.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{realizer}} ($(G2E.north west)!(Expr.4)!(G2E.south west)$)
+        (Mani.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{producer}} ($(G2E.north west)!(Mani.4)!(G2E.south west)$)
+        (Item.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{owner}}    ($(G2E.north west)!(Item.4)!(G2E.south west)$)
+
+        % and their inverses
+        ($(G2E.north west)!(Work.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{creatorOf}}  (Work.356)
+        ($(G2E.north west)!(Expr.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{realizerOf}} (Expr.356)
+        ($(G2E.north west)!(Mani.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{producerOf}} (Mani.356)
+        ($(G2E.north west)!(Item.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{ownerOf}}    (Item.356)
+      ;
+    \end{scope}
+    
+    % draw separating line
+    \path[-,dashed] (SepN) edge (SepS);
 %        
   \end{tikzpicture}
   
-  \caption[Basic FRBR entities and relations of Group~1 and Group~2]{%
-    \parbox[t]{.85\linewidth}{%
-      Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)%
-    }%
-  }
+%  \caption[Basic FRBR entities and relations of Group~1 and Group~2]{%
+%    \parbox[t]{.85\linewidth}{%
+%      Basic \gls{FRBR} entities and relations of Group~1 (left) and Group~2 (right)%
+%    }%
+%  }
+  \caption{Basic \gls{FRBR} entities and relations}
   \label{fig:FRBR}
 \end{figure}
 
