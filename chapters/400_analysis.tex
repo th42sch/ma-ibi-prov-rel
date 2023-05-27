@@ -187,14 +187,30 @@ and the restricted compatibility with current computer technologies, among other
 \textcite[p.212]{Hider2008} give more details and further references.
 There have been several attempts to redeem some of these disadvantages,
 among them the development of new standards such as MODS (see below)
-and the standardisation of MARCXML.
+and of XML schemas based on MARC~21 such as MARCXML and Turbomarc.
 
-In addition to the fragmentation of MARC, several non-MARC formats
-started to proliferate. The problem
-of standard proliferation can be solved in two ways:
-by translation and unification. One tool for unification is Dublin Core, see below.
+The problem of standard proliferation was not restricted to the
+variety of MARC dialects but also occurred within non-MARC formats.
+Attempts to solve this problem have been made via
+translation and unification. One tool for unification is Dublin Core; see below.
 
-****** (Turbomarc, MAB2 as a MARC \enquote{family member} \autocite[p.204]{Hider2008})
+% .............
+\paragraph{MAB}
+
+The \gls{MAB}, translating as \enquote{machine data exchange format for libraries}
+is a legacy bibliographic data format that has been developed solely for the purpose of data exchange
+by the \gls{DNB}.
+Although \textcite[p.204]{Hider2008} list it as a dialect of \gls{MARC},
+it is in fact conceptually different from \gls{MARC},
+assigning exactly one bibliographic element to each data field
+and allowing a more flexible ordering of elements \cite{WikiMAB}.
+In 2013, the \gls{DNB} completely abandoned the delivery of its bibliographic and authority data in MAB
+in favour of \gls{MARC}~21 \cite{MAB}.
+
+% .............
+\paragraph{MODS}
+
+\dots
 
 % .............
 \paragraph{DC}
@@ -208,8 +224,6 @@ The 15 core elements are tailored towards the \enquote{primary metadata needs} a
 Applications of \gls{DC} include resource description,
 the combination of metadata vocabularies from different standards,
 and the provision of interoperability in the linked data context.
-In particular, 
-
 \gls{DC} is extended by the \emph{DCMI Metadata Terms}.
 
 
@@ -221,11 +235,6 @@ In particular,
 
 
 \todo[inline]{DC vs. MARC, \autocite[§10]{Hider2008}?}
-
-% .............
-\paragraph{MODS}
-
-\dots
 
 % .............
 \paragraph{RDF}
