@@ -506,10 +506,12 @@ and \mybold{Proveana}---the research database of the German Lost Art Foundation 
 
 We now provide a review of the following data sources from the previous list:
 \gls{DNB}, \gls{KVK}, \gls{K10plus}, \gls{ZDB}, \gls{KPE}, \gls{GND}, Wikidata, Proveana, and Europeana.
-The main goal of this analysis is to provide an exemplary overview of the features and specifics
-of these data sources, and to inform the model that we will develop in the subsequent chapter.
-In order to fulfil this purpose, it is not necessary to review all data sources listed above
-exhaustively.
+%The main goal of this analysis is to provide an exemplary overview of the features and specifics
+%of these data sources, and to inform the model that we will develop in the subsequent chapter.
+%In order to fulfil this purpose, it is not necessary to review all data sources listed above
+%exhaustively.
+
+\todo[inline]{adapt this list and provide another brief justification for the choice?}
 
 We collect the following information for each data source.
 %
@@ -549,16 +551,16 @@ which are represented by almost 26 million records in the German National Biblio
 
 Metadata can be obtained from the DNB freely (under the CC0 1.0 licence) via the interfaces
 \gls{SRU} and \gls{OAI-PMH}, which support \gls{XML} serialisations of the data formats
-\gls{MARC}~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and MODS.\todo{introduce all these abbreviations}
+\gls{MARC}~21, \gls{RDF}, DNB Casual (an \gls{XML}-based \gls{DC} format), and \gls{MODS}.
 Further data formats are available via an individual access
-to the \enquote{Data Shop}.
+to the DNB's \emph{Data Shop}.
 The DNB's Linked Data Service provides open access to its bibliographic and authority data
-in RDF under the Creative Commons Zero (CC0 1.0) license. Instructions on how to use these interfaces
+in \emph{RDF} under the same license. Instructions on how to interact with these interfaces
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 
 According to the detailed specifications on the \gls{MARC} format by the DNB
 \autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
-geographic area codes, and countries conforms to \gls{ISO} standards (8601, 639-1, 3166).
+geographic area codes, and countries conforms to the respective \gls{ISO} standards.
 Since 2015, the DNB has been using \gls{MARC} field 883
 for recording the metadata provenance for a selection of data fields
 \autocite{DNBwiki_MARC_883}.
