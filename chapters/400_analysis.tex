@@ -611,15 +611,25 @@ Hakelberg \autocite*[§4]{Hakelberg2016} reports the following.
 The catalogue systems of \gls{GBV} and \gls{SWB}, which are united in K10plus,
 support the recording and display
 of provenance features on the bibliographic as well as on the exemplar level of a record.
-However, the practice of provenance indexing differs greatly between the two network.
-Since 2014, the GBV has been advising the recording on the bibliographic level,
+However, the practice of provenance indexing differs greatly between the two networks.
+Since 2014, GBV has been advising the recording on the bibliographic level,
 in order to allow provenance research across libraries. The names of owners are linked
 to a local authority record which redirects to the respective record in \gls{GND}.
 The physical provenance features are documented via chains of terms from
-\gls{T-PRO} (see Section~\ref{sec:provenance_indexing}). ***
+\gls{T-PRO} (see Section~\ref{sec:provenance_indexing}). As of 2014,
+this standard was being tested and successively introduced in the participating libraries.
+Before 2014, provenance features were documented in free text in a data field for
+exemplar-specific comments on the exemplar level, using \gls{T-PRO} descriptors 
+and referring to local authority records that were \emph{not} directly linked to \gls{GND} records.
+In contrast, the \gls{SWB} libraries have always been using a dedicated data field
+on the exemplar level to record provenance features.
+This field provides subfields for the structured recording of T-PRO terms.
+However, most \gls{SWB} libraries have abandoned the creation of exemplar records altogether
+and needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
 
-
-\todo[inline]{discuss provenance indexing}
+In summary, provenance features are recorded within K10plus in a heterogeneous
+and incomplete way, and developers of a retrieval system that uses K10plus have to
+be aware of this problem.
 
 \todo[inline]{GND data accessible via the same interface? Prepare for GND section below}
 
