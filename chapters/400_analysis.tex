@@ -374,9 +374,6 @@ We have already introduced \gls{RDF} in Section~\ref{sec:linked_data+integration
 In the context of the following description of data sources,
 RDF is a very flexible data schema and the core technology for providing metadata as linked data.
 
-\todo[defer,inline]{if necessary, discuss PICA, BIBFRAME \url{https://en.wikipedia.org/wiki/BIBFRAME}}
-
-
 % -----------------------------------------------------------------
 \section{Data Sources}
 \label{sec:data_sources}
@@ -595,17 +592,16 @@ with 235.4 million ownership records \autocite{GBV_K10plus_Statistik}.
 
 K10plus provides metadata freely (under the CC0 1.0 licence),
 mainly via the interfaces \gls{Z39.50} and \gls{SRU}.
-Those support the data formats \gls{MARC}~21, \gls{MARC}-XML (and its variant Turbomarc),
-PICA+, PICA-XML, \gls{DC}, and MODS (and the legacy format MAB2).
-Detailed instructions on how to use these interfaces
+Those support the data formats \gls{MARC}~21, (including its XML variants),
+PICA+ and PICA-XML (a provider-specific internal data format loosely based on MARC~21),
+as well as \gls{DC}, \gls{MODS}, and the legacy format MAB2.
+Detailed instructions on how to interact with these interfaces
 are given in the K10plus Wiki \autocite{K10plusWiki}.
 In addition, snapshots of K10plus data are provided regularly
 in \gls{MARC}-XML and as linked open data (RDF-XML), but the information
 on these in the K10plus Wiki is incomplete \autocite{K10plusWikiOD}.
 
 
-
-\dots
 
 \todo[inline]{discuss provenance indexing}
 
