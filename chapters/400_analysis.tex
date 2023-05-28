@@ -395,15 +395,11 @@ persons, ownership, and social relationships.
 We first give an overview of eligible data sources (Subsection~\ref{subsec:collection_data_sources})
 and then select a few particularly relevant ones, for which we provide a detailed analysis
 (Subsection~\ref{subsec:analysis_data_sources}).
-It is impossible to provide a complete list of data sources,
-and it will be necessary to extend this list when 
-our model and method are implemented in a concrete tool in future work.
-However, given the scope of this thesis, we consider it appropriate to 
-collect prominent examples and then
-put a focus
-on data sources that have proven relevant in the context of the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR})
-and which are well-understood with respect to their state of provenance indexing
-in the German-speaking area \autocite[cf.][]{Hakelberg2016}.
+The choice of the latter was motivated by the insights from the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR})
+and Hakelberg's \autocite*[§4]{Hakelberg2016} overview of the state of provenance indexing with authority data
+in the German-speaking area. This analysis will have to be extended
+whenever the model and tool that we are going to develop in the following chapters
+is implemented in a concrete tool in future work.
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Collection of Data Sources}
@@ -512,7 +508,9 @@ and \mybold{Proveana}---the research database of the German Lost Art Foundation 
 \label{subsec:analysis_data_sources}
 
 We now provide a review of the following data sources from the previous list:
-\gls{DNB}, \gls{KVK}, \gls{K10plus}, \gls{ZDB}, \gls{KPE}, \gls{GND}, Wikidata, Proveana, and Europeana.
+\gls{DNB}, \gls{K10plus}, \gls{GND}, and Wikidata.
+%\gls{KVK}, \gls{ZDB}, \gls{KPE}, Proveana, Europeana.
+
 %The main goal of this analysis is to provide an exemplary overview of the features and specifics
 %of these data sources, and to inform the model that we will develop in the subsequent chapter.
 %In order to fulfil this purpose, it is not necessary to review all data sources listed above
@@ -566,7 +564,7 @@ in \emph{RDF} under the same license. Instructions on how to interact with these
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 There DNB website also reports on a project for the conversion of its data
 into the \gls{BIBFRAME} format, but the state of this project after 2014
-is left unclear \cite{DNBBIBFRAME}.
+is left unclear \autocite{DNBBIBFRAME}.
 
 \todo[quick,inline]{try conversion facility in DNB catalogue as described in \url{https://www.loc.gov/bibframe/implementation/register.html} and possibly elaborate}
 
@@ -580,16 +578,6 @@ Furthermore, the DNB's MARC~21 schema provides for the cataloguing of the follow
 titles (i.e., manifestations): production, publication, distribution, and manufacturing dates
 (including reproductions and reissues); notes on dates and times;
 chronological subject term (as full text); graduation year (for dissertations etc.).
-
-% .............
-\paragraph{WorldCat}
-
-\dots
-
-% .............
-\paragraph{KVK}
-
-\dots
 
 % .............
 \paragraph{K10plus}
@@ -616,22 +604,9 @@ In addition, snapshots of K10plus data are provided regularly
 in \gls{MARC}-XML and as linked open data (RDF-XML), but the information
 on these in the K10plus Wiki is incomplete \autocite{K10plusWikiOD}.
 
-
-
 \todo[inline]{discuss provenance indexing}
 
 \todo[inline]{GND data accessible via the same interface? Prepare for GND section below}
-
-
-% .............
-\paragraph{ZDB}
-
-\dots
-
-% .............
-\paragraph{KPE}
-
-\dots
 
 % .............
 \paragraph{GND}
@@ -671,24 +646,16 @@ DHa's remarks on GND vocabulary and richness of GND data:
     $\leadsto$ \mybold{look/read all this up!}
 \end{itemize}
 
-
 \dots
-
 
 % .............
 \paragraph{Wikidata}
 
 \dots
 
-% .............
-\paragraph{Proveana}
 
-\dots
+\todo[inline]{If there is time left, then also describe: Proveana, ZDB, KPE, Europeana, WorldCat, KVK}
 
-% .............
-\paragraph{Europeana}
-
-\dots
 
 \par\bigskip
 \todo[inline]{Take the following points into account ::}
