@@ -564,10 +564,10 @@ geographic area codes, and countries conforms to the respective \gls{ISO} standa
 Since 2015, the DNB has been using \gls{MARC} field 883
 for recording the metadata provenance for a selection of data fields
 \autocite{DNBwiki_MARC_883}.
-
-\todo[inline]{more comments on consequences of using RDA (works/expressions)?}
-
-\todo[inline]{temporal data restricted to year of publication?}
+Furthermore, the DNB's MARC~21 schema provides for the cataloguing of the following temporal data concerning
+titles (i.e., manifestations): production, publication, distribution, and manufacturing dates
+(including reproductions and reissues); notes on dates and times;
+chronological subject term (as full text); graduation year (for dissertations etc.).
 
 % .............
 \paragraph{WorldCat}
@@ -582,11 +582,11 @@ for recording the metadata provenance for a selection of data fields
 % .............
 \paragraph{K10plus}
 
-K10plus is the joint catalogue of the German library networks GBV and SWB.
+\gls{K10plus} is the joint catalogue of the German library networks GBV and SWB.
 Together, these two networks comprise more than 1400 national, regional,
 academic, and public libraries \autocite{BSZGBV,GBV_VZG},
-of which 838 participate in \gls{K10plus}, according to the list of participating institutions
-in the K10plus Wiki \autocite{K10plusWiki}. Thus, \gls{K10plus} comprises the data from
+of which 838 participate in K10plus, according to the list of participating institutions
+in the K10plus Wiki \autocite{K10plusWiki}. Thus, K10plus comprises the data from
 the majority of German academic institutions \autocite[cf.][]{BSZ_K10plus}.
 
 Cataloguing in K10plus adheres to the same standards as in the DNB.
@@ -751,6 +751,8 @@ DHa's remarks on GND vocabulary and richness of GND data:
 \begin{itemize}
   \item
     \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
+  \item
+    comment on consequences of using RDA in DNB, K10plus (and possibly others): link from manifestation to work/expression is often implicit or even ambiguous
   \item 
     uniform vs.\ distributed scenario?
     %
