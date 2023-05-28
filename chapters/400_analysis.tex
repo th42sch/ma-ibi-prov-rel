@@ -3,14 +3,17 @@
 \chapter{Analysis of Available Data Sources and Techniques}
 \label{chap:analysis}
 
-In order to devise a method for retrieving provenance relationships,
+In order to build a tool for retrieving provenance relationships,
 data sources need to be selected. It is the aim of this chapter
-to provide a background for this selection.
-We therefore review data sources that contain the relevant information
-as well as data formats and communication interfaces used in those.
+to provide information for this selection can be based later on.
+Furthermore, the abstract model of data sources, provenance queries, and answers
+that we will develop in the following chapter
+needs to incorporate the characteristics of the data models used in the appropriate data sources.
+We therefore review data sources that contain the relevant metadata
+as well as data formats and communication interfaces.
 Given the observation from the previous chapters
-that answering provenance queries can involve several data sources,
-we put a focus on data transfer and integration techniques,
+that answering provenance queries is likely to involve several data sources,
+we pay special attention to data transfer and integration techniques,
 including linked data.
 
 Before we start this review, we need to define the central term \emph{metadata}.
@@ -27,7 +30,7 @@ progressing digital transformation. In this thesis, we adopt their
 decision to use the term \emph{metadata} in the most general sense,
 \enquote{applying to all information resources} \autocite[p.13]{Hider2008}.
 
-\todo[defer,inline]{Give overview of the sections (and justify order of §§\ref{sec:data_models},\ref{sec:data_sources}}
+\todo[defer,inline]{Give overview of the sections (and justify order of §§\ref{sec:data_models}, \ref{sec:data_sources})}
 
 % -----------------------------------------------------------------
 \section{Data Formats and Communication Protocols}
@@ -97,12 +100,12 @@ These entities and the basic relations are shown in Figure~\ref{fig:FRBR}.
   ]
     % the 4 Group-1 entities
     \node                       (Work) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Work}}};
-    \node [below=15mm of Work]  (Expr) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Expression}}};
-    \node [below=15mm of Expr]  (Mani) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Manifestation}}};
-    \node [below=15mm of Mani]  (Item) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Item}}};
+    \node [below=12mm of Work]  (Expr) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Expression}}};
+    \node [below=12mm of Expr]  (Mani) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Manifestation}}};
+    \node [below=12mm of Mani]  (Item) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Item}}};
     
     % their superterm Endeavour
-    \node [above=12mm of Work, draw=none,fill=none,inner sep=0mm] (Ende) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Endeavour}}};
+    \node [above=11mm of Work, draw=none,fill=none,inner sep=0mm] (Ende) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Endeavour}}};
 
     % placeholders plus rectangle for Endeavour
     \node [above left =1mm and 1mm of Work.north west,draw=none,fill=none,inner sep=.2mm] (WorkL) {};
@@ -143,28 +146,28 @@ These entities and the basic relations are shown in Figure~\ref{fig:FRBR}.
       
       \path[->]
         % the 3 main Group-1 relations
-        (Work) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{realization}} (Expr)
-        (Expr) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{embodiment}}  (Mani)
-        (Mani) edge[out=195,in=165,looseness=2] node[left=1mm] {\fns\mystrut\term{exemplar}}    (Item)
+        (Work) edge[out=195,in=165,looseness=3] node[left=1mm] {\fns\mystrut\term{realization}} (Expr)
+        (Expr) edge[out=195,in=165,looseness=3] node[left=1mm] {\fns\mystrut\term{embodiment}}  (Mani)
+        (Mani) edge[out=195,in=165,looseness=3] node[left=1mm] {\fns\mystrut\term{exemplar}}    (Item)
         
         % and their inverses
-        (Expr) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{realizationOf}} (Work)
-        (Mani) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{embodimentOf}}  (Expr)
-        (Item) edge[out=15,in=345,looseness=2] node[right=1mm] {\fns\mystrut\term{exemplarOf}}    (Mani)
+        (Expr) edge[out=15,in=345,looseness=3] node[right=1mm] {\fns\mystrut\term{realizationOf}} (Work)
+        (Mani) edge[out=15,in=345,looseness=3] node[right=1mm] {\fns\mystrut\term{embodimentOf}}  (Expr)
+        (Item) edge[out=15,in=345,looseness=3] node[right=1mm] {\fns\mystrut\term{exemplarOf}}    (Mani)
         
         % Group-2 relations
 %        (Work) edge[out=5,in=150]  node[pos=.98,above left=1mm and 1mm,sloped] {\fns\mystrut\term{creator}}   (G2E)
 %        (G2E)  edge[out=160,in=-5] node[pos=.02,below left=1mm and 1mm,sloped] {\fns\mystrut\term{creatorOf}} (Work)
-        (Work.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{creator}}  ($(G2E.north west)!(Work.4)!(G2E.south west)$)
-        (Expr.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{realizer}} ($(G2E.north west)!(Expr.4)!(G2E.south west)$)
-        (Mani.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{producer}} ($(G2E.north west)!(Mani.4)!(G2E.south west)$)
-        (Item.4)   edge node[pos=.98,above left=.5mm and 1mm] {\fns\mystrut\term{owner}}    ($(G2E.north west)!(Item.4)!(G2E.south west)$)
+        (Work.4)   edge node[pos=.98,above left=.2mm and 1mm] {\fns\mystrut\term{creator}}  ($(G2E.north west)!(Work.4)!(G2E.south west)$)
+        (Expr.4)   edge node[pos=.98,above left=.2mm and 1mm] {\fns\mystrut\term{realizer}} ($(G2E.north west)!(Expr.4)!(G2E.south west)$)
+        (Mani.4)   edge node[pos=.98,above left=.2mm and 1mm] {\fns\mystrut\term{producer}} ($(G2E.north west)!(Mani.4)!(G2E.south west)$)
+        (Item.4)   edge node[pos=.98,above left=.2mm and 1mm] {\fns\mystrut\term{owner}}    ($(G2E.north west)!(Item.4)!(G2E.south west)$)
 
         % and their inverses
-        ($(G2E.north west)!(Work.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{creatorOf}}  (Work.356)
-        ($(G2E.north west)!(Expr.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{realizerOf}} (Expr.356)
-        ($(G2E.north west)!(Mani.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{producerOf}} (Mani.356)
-        ($(G2E.north west)!(Item.356)!(G2E.south west)$) edge node[pos=.02,below left=.5mm and 1mm] {\fns\mystrut\term{ownerOf}}    (Item.356)
+        ($(G2E.north west)!(Work.356)!(G2E.south west)$) edge node[pos=.02,below left=.2mm and 1mm] {\fns\mystrut\term{creatorOf}}  (Work.356)
+        ($(G2E.north west)!(Expr.356)!(G2E.south west)$) edge node[pos=.02,below left=.2mm and 1mm] {\fns\mystrut\term{realizerOf}} (Expr.356)
+        ($(G2E.north west)!(Mani.356)!(G2E.south west)$) edge node[pos=.02,below left=.2mm and 1mm] {\fns\mystrut\term{producerOf}} (Mani.356)
+        ($(G2E.north west)!(Item.356)!(G2E.south west)$) edge node[pos=.02,below left=.2mm and 1mm] {\fns\mystrut\term{ownerOf}}    (Item.356)
       ;
     \end{scope}
     
@@ -378,20 +381,26 @@ RDF is a very flexible data schema and the core technology for providing metadat
 \section{Data Sources}
 \label{sec:data_sources}
 
-We have searched the literature and the Web for data sources that contain information
-relevant for provenance research, i.e., works, expressions, manifestations, exemplars,
-persons, ownership, social relationships, and more. 
-We decided to put a slight focus on data sources from the German-speaking area, 
-aiming at a selection of data sources that is manageable in the context of a master's thesis,
-and influenced by the selection in the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR}).
-In the following, we will first give an overview of these data sources
-and then provide more information about some of them,
-including their scope and the technical infrastructure provided.
-This list is not exhaustive and needs to be extended
-as soon as our model is implemented in a concrete tool in future work.
+In this section, we provide information on data sources
+that provide metadata on objects and individuals
+relevant for provenance research, such as works, expressions, manifestations, exemplars,
+persons, ownership, and social relationships.
+We first give an overview of eligible data sources (Subsection~\ref{subsec:collection_data_sources})
+and then select a few particularly relevant ones, for which we provide a detailed analysis
+(Subsection~\ref{subsec:analysis_data_sources}).
+It is impossible to provide a complete list of data sources,
+and it will be necessary to extend this list when 
+our model and method are implemented in a concrete tool in future work.
+However, given the scope of this thesis, we consider it appropriate to 
+collect prominent examples and then
+put a focus
+on data sources that have proven relevant in the context of the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR})
+and which are well-understood with respect to their state of provenance indexing
+in the German-speaking area \autocite[cf.][]{Hakelberg2016}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Collection of Data Sources}
+\label{subsec:collection_data_sources}
 
 We have identified four categories of relevant data sources:
 library catalogues, special databases for provenance research, authority files, and knowledge bases.
@@ -486,6 +495,7 @@ and Proveana---the research database of the German Lost Art Foundation \autocite
 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Analysis of Data Sources}
+\label{subsec:analysis_data_sources}
 
 We now provide a review of the following data sources from the previous list:
 \gls{DNB}, \gls{KVK}, \gls{K10plus}, \gls{ZDB}, \gls{KPE}, \gls{GND}, Wikidata, Proveana, and Europeana.
