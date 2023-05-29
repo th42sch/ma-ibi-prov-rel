@@ -563,7 +563,7 @@ The DNB's Linked Data Service provides open access to its bibliographic and auth
 in \emph{RDF} under the same license. Instructions on how to interact with these interfaces
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 There DNB website also reports on a project for the conversion of its data
-into the \gls{BIBFRAME} format, but the state of this project after 2014
+into the \gls{BIBFRAME} format, but the state of this project beyond 2014
 is left unclear \autocite{DNBBIBFRAME}.
 
 \todo[quick,inline]{try conversion facility in DNB catalogue as described in \url{https://www.loc.gov/bibframe/implementation/register.html} and possibly elaborate}
@@ -595,6 +595,8 @@ As of 31 December 2022, K10plus contains 80.8 million bibliographic records (\en
 with 235.4 million ownership records \autocite{GBV_K10plus_Statistik}.
 Cataloguing adheres to the same standards and guidelines as in the DNB,
 including similar specifications for the recording of temporal data and the use of ISO standards for dates, times, etc.
+In addition, the structured variants of provenance indexing used in \gls{GBV} and \gls{SWB}
+(see below) enable the recording of ownership dates if available.
 
 K10plus provides metadata freely (under the CC0 1.0 licence),
 mainly via the interfaces \gls{Z39.50} and \gls{SRU}.
@@ -624,14 +626,15 @@ in order to allow provenance research across libraries. The names of owners are 
 to a local authority record which redirects to the respective record in \gls{GND}.
 \todo[ask]{clarify with DHa!}
 The physical provenance features are documented via chains of terms from
-\gls{T-PRO} (see Section~\ref{sec:provenance_indexing}). As of 2014,
+\gls{T-PRO} (see Section~\ref{sec:provenance_indexing}) [plus dates if available].
+As of 2014,
 this standard was being tested and successively introduced in the participating libraries.
 Before 2014, provenance features were documented in free text in a data field for
 exemplar-specific comments on the exemplar level, using \gls{T-PRO} descriptors 
 and referring to local authority records that were \emph{not} directly linked to \gls{GND} records.
 In contrast, the \gls{SWB} libraries have always been using a dedicated data field
 on the exemplar level to record provenance features.
-This field provides subfields for the structured recording of T-PRO terms.
+This field provides subfields for the structured recording of T-PRO terms [and dates].
 However, most \gls{SWB} libraries have abandoned the creation of exemplar records altogether
 and needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
 
