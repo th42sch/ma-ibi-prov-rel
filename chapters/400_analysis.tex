@@ -648,11 +648,18 @@ The \gls{GND}, is operated by the \gls{DNB}
 At present, the GND contains around 9 million authority records for persons, corporate bodies, congresses, geographic entities, specialised terms and works; these are supplemented, updated and used frequently} \autocite{DNB_cataloguing}. More detailed statistics can be found in the DNB's
 2021 annual report \autocite[p.49]{DNB_Jahresbericht_2021}.
 GND adheres to the same cataloguing standards and offers the same technical infrastructure
-as the DNB catalogue; in particular, GND data is accessible alongside DNB data
-via the same interfaces and data formats, including RDF.
+as the DNB catalogue; in particular, GND data is accessible under the CC0 1.0 license alongside national bibliographic data
+via the same interfaces and data formats, including several RDF serialisations.
 
-\todo[inline]{temporal data restricted to year of publication or years of birth and death, if available? No temporal attributes on relations (e.g., student, coauthor) $\Longrightarrow$ first review K10plus guidelines for cataloguing authority data!}
-
+The DNB's MARC~21 schema \autocite{DNB_MARC21}
+provides for the cataloguing of the following temporal data in authority records:
+biographical data (persons), date of publication (works), dates of existence (conferences, corporations),
+year of discovery, dates of activity (persons, corporations), years of effect of relationships
+between entities of different kinds. Examples for temporal data of the latter kind include
+the time interval during which a scholar was member of a university or during which a person was a student of another.
+There is, however, no guarantee as to whether temporal data of this kind is recorded exhaustively,
+and our tentative inspections of individual authority records suggest that some kinds of temporal data,
+such as the time of studentship, tend to be omitted by default.
 
 \todo[inline]{add insights from SoNAR (§~\ref{sec:HNA+SoNAR}) and DHa (see below)}
 
