@@ -660,35 +660,51 @@ biographical data (persons), date of publication (works), dates of existence (co
 year of discovery, dates of activity (persons, corporations), years of effect of relationships
 between entities of different kinds. Examples for temporal data of the latter kind include
 the time interval during which a scholar was member of a university or during which a person was a student of another.
-There is, however, no guarantee as to whether temporal data of this kind is recorded exhaustively,
-and our tentative inspections of individual authority records suggest that some kinds of temporal data,
-such as the time of studentship, tend to be omitted by default.
 
-\todo[inline]{add insights from SoNAR (§~\ref{sec:HNA+SoNAR}) and DHa (see below)}
+We have already learnt from the \gls{SoNAR} project (Section~\ref{sec:HNA+SoNAR}) 
+that the data in the GND incomplete for several reasons.
+Another reason is certainly connected with the individualisation guidelines
+in the DNB's guidelines for recording persons and families in the GND
+\autocite[part EH-P-16]{GND_Erfassungshilfen}, which specify the additional information
+that needs to be provided in order to disambiguate a person or family.
+These guidelines define two groups of features that can be used to individualise
+(i.e., disambiguate) a person, such as biographical data or relationships to other persons, among many others.
+Depending on the level of the respective authority record
+(which indicates the state and quality of the record), one or only a few of the many features
+from these two groups have to be recorded.
+Therefore, there is no guarantee that, for example, relationships to other people
+or temporal data of the kind mentioned above is recorded.
+In addition, relationships to other people are recorded in an unnormed way,
+using one of four very generic codes (e.g., acquaintance, professional relationship, familial relationship)
+and specifying the exact kind of relationship in free text.
+Similarly, professions may be recorded in free text or via a link to an authority record.
 
-DHa's remarks on GND vocabulary and richness of GND data:
+
+%\todo[inline]{add insights from SoNAR (§~\ref{sec:HNA+SoNAR}) and DHa (see below)}
 %
-\begin{itemize}
-  \item
-    \emph{Individualisierungsregeln}: relationships to other people are given in order to uniquely
-    identify the current person; there is no obligation to record relationships
-    (and GND does not claim to be an encyclopedia)
-  \item
-    relations are not normed:
-    e.g., field \enquote{Funktionsbezeichnung}: \$4 code \enquote{Eigenschaft der Beziehung},
-    specified by \$v \enquote{Freitext}
-  \item
-    professions are recorded in 678 \$b \enquote{biographische Anmerkung(en)} --
-    historically in free text,
-    more recently via link to the GND authority data for the respective profession (i.e., more standardised)
-  \item
-    Tp1 datasets: field 65 (6J?) \enquote{GND Systematik: eingeschr. Tätigkeit} (?),
-    query level 1 datasets?
-  \item
-    $\leadsto$ \mybold{look/read all this up!}
-\end{itemize}
-
-\dots
+%DHa's remarks on GND vocabulary and richness of GND data:
+%%
+%\begin{itemize}
+%  \item
+%    \emph{Individualisierungsregeln}: relationships to other people are given in order to uniquely
+%    identify the current person; there is no obligation to record relationships
+%    (and GND does not claim to be an encyclopedia)
+%  \item
+%    relations are not normed:
+%    e.g., field \enquote{Funktionsbezeichnung}: \$4 code \enquote{Eigenschaft der Beziehung},
+%    specified by \$v \enquote{Freitext}
+%  \item
+%    professions are recorded in 678 \$b \enquote{biographische Anmerkung(en)} --
+%    historically in free text,
+%    more recently via link to the GND authority data for the respective profession (i.e., more standardised)
+%  \item
+%    Tp1 datasets: field 65 (6J?) \enquote{GND Systematik: eingeschr. Tätigkeit} (?),
+%    query level 1 datasets?
+%  \item
+%    $\leadsto$ \mybold{look/read all this up!}
+%\end{itemize}
+%
+%\dots
 
 % .............
 \paragraph{Wikidata}
