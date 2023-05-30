@@ -721,7 +721,7 @@ just like \gls{RDF} triples (subject--predicate--object). Statements can have an
 \autocite[cf.][]{Wikidata_statements}. All items and properties have unique identifiers
 consisting of a \term{Q} or \term{P}, respectively, followed by a sequence of digits.
 These IDs are also part of the URL of the respective Wikidata page
-and of the URI of the item or property.
+and of the item's or property's URI.
 For example, the item representing the 
 Polish mathematician and astronomer Nicolaus Copernicus has the ID \term{Q619},
 and the statements about this item are listed on the respective Wikidata page \autocite[cf.][]{Wikidata_Copernicus}.
@@ -731,12 +731,12 @@ using the property \term{instance\_of} (\term{P31}) and the value \term{human}
 
 Data is recorded in Wikidata collaboratively,
 i.e., \enquote{[d]ata is entered and maintained by Wikidata editors, who decide on the rules of content creation and management. Automated bots also enter data into Wikidata}
-\autocite{Wikidata_introduction}.
+\autocite{Wikidata_intro}.
 Values such as times and dates are recorded conforming to the respective \gls{ISO} standard.
 
 The Wikidata page on data access \autocite{Wikidata_data_access} lists numerous ways to access data,
 all under the free CC0 license.
-There is a linked data interface for retrieving individual entries via URIs.
+For retrieving individual entries via URIs, there is a linked data interface.
 For retrieving a relatively small set of entries that are not known in advance,
 SPARQL queries can be posed against the Wikidata Query Service.
 For retrieving larger sets of entries, Wikidata offers the Linked Data Fragments endpoint,
