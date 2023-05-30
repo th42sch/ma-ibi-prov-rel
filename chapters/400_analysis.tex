@@ -709,46 +709,61 @@ Similarly, professions may be recorded in free text or via a link to an authorit
 % .............
 \paragraph{Wikidata}
 
-\dots
+Wikidata \autocite{Wikidata} is \enquote{a free, collaborative, multilingual, secondary database, collecting structured data to provide support for Wikipedia, Wikimedia Commons, the other wikis of the Wikimedia movement, and to anyone in the world} \autocite{Wikidata_intro}. Hence, there is no thematic restriction
+on the content of Wikidata.
 
+The main unit of information in Wikidata is the \emph{item}. Items \enquote{are used to represent all the \emph{things} in human knowledge, including topics, concepts, and objects} \autocite{Wikidata_items}.
+Currently, Wikidata contains more than 100 million items \autocite{Wikidata_data_access}.
+This number is two orders of magnitudes higher than the number of articles in Wikipedia
+because Wikidata stores structured information on \emph{all} Wikimedia projects \autocite[cf.][]{Wikidata_items}.
+Data on each item is stored in \emph{statements}, which have the form \emph{item--property--value}
+just like \gls{RDF} triples (subject--predicate--object). Statements can have annotations
+\autocite[cf.][]{Wikidata_statements}. All items and properties have unique identifiers
+consisting of a \term{Q} or \term{P}, respectively, followed by a sequence of digits.
+These IDs are also part of the URL of the respective Wikidata page
+and of the URI of the item or property.
+For example, the item representing the 
+Polish mathematician and astronomer Nicolaus Copernicus has the ID \term{Q619},
+and the statements about this item are listed on the respective Wikidata page \autocite[cf.][]{Wikidata_Copernicus}.
+The first statement in this list says that Copernicus is a human,
+using the property \term{instance\_of} (\term{P31}) and the value \term{human}
+(item \term{Q5}).
 
-\par\bigskip
-\todo[inline]{If there is time left, then also describe: Proveana, ZDB, KPE, Europeana, WorldCat, KVK}
+Data is recorded in Wikidata collaboratively,
+i.e., \enquote{[d]ata is entered and maintained by Wikidata editors, who decide on the rules of content creation and management. Automated bots also enter data into Wikidata}
+\autocite{Wikidata_introduction}.
+Values such as times and dates are recorded conforming to the respective \gls{ISO} standard.
 
+The Wikidata page on data access \autocite{Wikidata_data_access} lists numerous ways to access data,
+all under the free CC0 license.
+There is a linked data interface for retrieving individual entries via URIs.
+For retrieving a relatively small set of entries that are not known in advance,
+SPARQL queries can be posed against the Wikidata Query Service.
+For retrieving larger sets of entries, Wikidata offers the Linked Data Fragments endpoint,
+which requires computational power on the client side.
+Furthermore, there are two APIs mostly for editing Wikidata,
+as well as a recent changes stream and complete exports (dumps)
+\autocite[cf.][]{Wikidata_data_access}.
+
+Annotations of statements (see above) seem to be suitable for 
+recording metadata provenance and temporal attributes of relationships.
+It remains to investigate the use of annotations systematically
+in order to determine the extent to which metadata provenance and temporal attributes
+are recorded.
+
+%\par\bigskip
+%\todo[inline,defer]{If there is time left, then also describe: Proveana, ZDB, KPE, Europeana, WorldCat, KVK (see comments here)}
+%
+%\begin{itemize}
+%  \item
+%    \mybold{KVK} (\enquote{federated search}: shallower than in single catalogues,
+%    but (sufficient) information on all copies!);
+%    further catalogues?  
+%\end{itemize}
 
 \todo[inline]{Take the following points into account ::}
 
 \begin{itemize}
-  \item
-    \mybold{KVK} (\enquote{federated search}: shallower than in single catalogues,
-    but (sufficient) information on all copies!);
-    further catalogues?
-  \item
-    more from \gls{SoNAR} , see report on WP 2 (in particular details on p.23f.).
-    Get back to the discussion on \gls{GND} and further data sources in Section~\ref{sec:HNA+SoNAR}.
-  \item
-    see also the list by \autocite{Menzel2020}:
-
-    \blockquote{%
-      \begin{itemize}
-        \item
-          The Integrated Authority File (GND) represents and describes 8,295,047 entities (people, corporations, conferences, geographical areas, technical terms, and works);
-        \item
-          The German National Library (DNB) provides descriptions of bibliographic resources. The dataset has 19,926,573 records of books, magazines, newspapers, sheet music, music recordings, audio books etc.;
-        \item
-          The German Union Catalogue of Serials (ZDB) describes newspapers, magazines, serial titles, yearbooks, etc. and contains 1,908,334 records;
-        \item
-          The Kalliope Union Catalog (KPE) is a collection of personal papers, manuscripts, and publishers’ archives, which consists of 26,752 records;
-        \item
-          The Newspaper Information System (ZeFYS) represents 2,596,641 digitized pages of historical newspapers and full texts;
-        \item
-          The Exile Press represents German-language exile journals between 1933 and 1945 and consists of 5,336 digitized pages.
-      \end{itemize}
-    }
-  \item
-    further criteria: arity of relationships, data formats, temporal data?
-  \item
-    also clarify: does the structure of these data sources support the model to be developed?
   \item
     focus the following considerations on a narrow choice of these data sources;
     the general approach to be developed should be largely independent on that concrete choice
@@ -786,7 +801,9 @@ Similarly, professions may be recorded in free text or via a link to an authorit
 
 \begin{itemize}
   \item
-    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
+    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, linked data S-P-O, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
+  \item
+    also clarify: does the structure of these data sources support the model to be developed?
   \item
     comment on consequences of using RDA in DNB, K10plus (and possibly others): link from manifestation to work/expression is often implicit or even ambiguous
   \item 
