@@ -8,9 +8,10 @@
 see also \url{https://www.dfg.de/foerderung/grundlagen_rahmenbedingungen/forschungsdaten/empfehlungen/index.html}
 
 
-% command for excluding (appendix) section from toc
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+%% command for excluding (appendix) section from toc
+%\newcommand{\nocontentsline}[3]{}
+%\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+\newcommand{\tocless}{\relax}
 
 % Number also subsubsections
 \setcounter{secnumdepth}{\subsubsectionnumdepth}
@@ -38,9 +39,9 @@ DDC:\footnote{\url{https://deweysearchde.pansoft.de/webdeweysearch/mainClasses.h
   \item[020.0113]
     Computermodellierung in Bibliotheks- \& Informationswissenschaften
 \end{description}
-GND:\footnote{\url{https://gnd.network/Webs/gnd/DE/Home/home_node.html}} *********
 
-
+%GND:\footnote{\url{https://gnd.network/Webs/gnd/DE/Home/home_node.html}} *********
+\par\medskip
 2012 ACM Computing Classification System:\footnote{\url{https://dl.acm.org/ccs}}
 
 %\begin{CCSXML}
@@ -68,13 +69,46 @@ GND:\footnote{\url{https://gnd.network/Webs/gnd/DE/Home/home_node.html}} *******
     Information systems / Information retrieval / Retrieval tasks and goals / Information extraction
 \end{itemize}
 
-\par\bigskip
-**** CONTINUE ****
+%% ..................................................................
+%\subsubsection{Test1}
+%
+%Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+%
+%% ..................................................................
+%\subsubsection{Test2}
+%
+%Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+%
+%% ..................................................................
+%\tocless\subsubsection{Test1}
+%
+%Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+%
+%% ..................................................................
+%\tocless\subsubsection{Test2}
+%
+%Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-%1.1.3. Welchen Regeln oder Richtlinien (HU) zum Umgang mit den in der Abschlussarbeit erhobenen Forschungsdaten folgen Sie für den DMP? Bitte referenzieren Sie diese hier inklusive Version bzw. Veröffentlichungsjahr.
-%2. Inhaltliche Einordnung
-%NB: Bitte beschreiben Sie jeden Datensatztyp oder Datensammlung einzeln in dem jeweiligen Kapitel, wo sinnvoll.
-%2.1. Datensatz
+% ..................................................................
+\tocless\subsubsection{Welchen Regeln oder Richtlinien (HU) zum Umgang mit den in der Abschlussarbeit erhobenen Forschungsdaten folgen Sie für den DMP? Bitte referenzieren Sie diese hier inklusive Version bzw. Veröffentlichungsjahr.}
+
+Institut für Bibliotheks- und Informationswissenschaft:
+Leitlinie zum Umgang mit Forschungsdaten in Abschlussarbeiten.
+Beschlossen im Institutsrat des IBI am 08.12.2021, in Kraft getreten am 01.02.2022.%
+\footnote{\url{https://www.ibi.hu-berlin.de/de/studium/rundumdasstudium/fdm-fuer-studierende}}
+
+% ------------------------------------------------------------------
+\tocless\section{Inhaltliche Einordnung}
+
+\mybold{NB: Bitte beschreiben Sie jeden Datensatztyp oder Datensammlung einzeln in dem jeweiligen Kapitel, wo sinnvoll.}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\tocless\subsection{Datensatz}
+
+% ..................................................................
+\tocless\subsubsection{Um welche Arten von Daten handelt es sich? Bitte in wenigen Zeilen kurz beschreiben.}
+
+
 %2.1.1 Um welche Arten von Daten handelt es sich? Bitte in wenigen Zeilen kurz beschreiben.
 %2.2 Datenursprung
 %2.2.1 Werden die Daten selbst erzeugt oder nachgenutzt?
