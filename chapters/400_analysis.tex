@@ -563,10 +563,9 @@ The DNB's Linked Data Service provides open access to its bibliographic and auth
 in \emph{RDF} under the same license. Instructions on how to interact with these interfaces
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
 There DNB website also reports on a project for the conversion of its data
-into the \gls{BIBFRAME} format, but the state of this project beyond 2014
-is left unclear \autocite{DNBBIBFRAME}.
-
-\todo[quick,inline]{try conversion facility in DNB catalogue as described in \url{https://www.loc.gov/bibframe/implementation/register.html} and possibly elaborate}
+into the \gls{BIBFRAME} format \autocite[cf.][]{DNBBIBFRAME}:
+for title records, the DNB OPAC provides a download button for the BIBFRAME format.
+The state of this project beyond 2014 is left unclear.
 
 According to the detailed specifications on the \gls{MARC} format by the DNB
 \autocite{DNB_MARC21,DNB_MARCXML}, the recording of dates and times, languages,
@@ -609,11 +608,14 @@ In addition, snapshots of K10plus data are provided regularly
 in \gls{MARC}-XML and as linked open data (\gls{RDF}-XML), but the information
 on these in the K10plus Wiki is incomplete \autocite{K10plusWikiOD}.
 
-K10plus includes the \gls{GND} (discussed below) and uses it as the central authority file for verbal subject indexing.
-Records that are added or changed on either side are synchronised via an \gls{OAI-PMH} interface
-within minutes \autocite[cf.][]{K10plusHandbuchNormdaten}.
-Further authority data used by the K1plus include the \gls{BK} and the \gls{RVK},
-according to the K10plus Wiki \autocite{K10plusWikiNormdaten}.
+K10plus uses the \gls{GND} as the central authority file for disambiguating
+persons, corporate bodies, works, subject terms, 
+and further entities (see below for more details on the GND.).
+For this purpose, K10plus includes 
+copies of all \gls{GND} records, which are synchronised via an \gls{OAI-PMH} interface
+within minutes after modification \autocite[cf.][]{K10plusHandbuchNormdaten}.
+K10plus furthermore uses authority data from the \gls{BK} and the \gls{RVK},
+cf.\ the K10plus Wiki \autocite{K10plusWikiNormdaten}.
 
 Concerning the state of provenance indexing in the library networks \gls{GBV} and \gls{SWB},
 Hakelberg \autocite*[§4]{Hakelberg2016} reports the following.
@@ -623,8 +625,7 @@ of provenance features on the bibliographic as well as on the exemplar level of 
 However, the practice of provenance indexing differs greatly between the two networks.
 Since 2014, GBV has been advising the recording on the bibliographic level,
 in order to allow provenance research across libraries. The names of owners are linked
-to a local authority record which redirects to the respective record in \gls{GND}.
-\todo[ask]{clarify with DHa!}
+to the local authority record that represents, and redirects to, the respective record in \gls{GND}.
 The physical provenance features are documented via chains of terms from
 \gls{T-PRO} (see Section~\ref{sec:provenance_indexing}) [plus dates if available].
 As of 2014,
