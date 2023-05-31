@@ -11,9 +11,19 @@
     %
     \begin{itemize}
       \item
-        uniform: formulate provenance query as a \gls{SPARQL} query and pose that against the graph
+        uniform: 
+        
+        data source graph is generated explicitly (using data integration techniques)
+        and updated in fixed intervals
+                
+        provenance query is formulated as a \gls{SPARQL} query and posed against the graph
       \item
-        distributed: decompose query into single \gls{SPARQL} (sub)queries and pose them against several data sources,
+        distributed: 
+        
+        data source graph is implicit; data sources are queried \enquote{on the fly}
+        (this is the preferred scenario here; see delineation from SoNAR in §\ref{sec:HNA+SoNAR})
+        
+        decompose query into single \gls{SPARQL} (sub)queries and pose them against several data sources,
         potentially iteratively;
         data sources need to be identified upfront.
         $\leadsto$ demonstrate this for example query/ies!
@@ -21,5 +31,3 @@
     \end{itemize}
     %
 \end{itemize}
-
-
