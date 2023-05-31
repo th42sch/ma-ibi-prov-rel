@@ -789,33 +789,37 @@ are recorded.
 We have collected 20 data sources and reviewed four of them in detail.
 These four have in common that they provide their metadata as linked data (among other formats),
 and the three bibliographic data sources adhere to the FRBR entity-relationship model.
-From this observation, we conclude that entities and relationships---%
+From this commonality, we conclude that entities and relationships---%
 in mathematical terms, constants and unary and binary relations---%
 should play a central role in the model of queries, answers, and data sources
-that we are going to develop next. That means that a graph-based type of model,
+that we are going to develop next. This means that a graph-based type of model,
 which also features in the \gls{SoNAR} project,
 is suitable. In case relationships of higher arity turn out to be needed,
 for example when representing the  provenance of an \gls{SPO} statement,
 those can always be represented by several binary relations via reification
 \autocite[cf.][p.339f.]{Doan2012}.
 
+The choice of the reviewed data sources was motivated by the insights from
+the \gls{SoNAR} project and Hakelberg's thesis \autocite{Hakelberg2016}.
+For the abstract model to be developed next,
+the choice of concrete data sources is largely unimportant
+because the model should be independent on the contents or specific data models of the sources.
+The same holds for the general method for answering queries that we are going to develop based on our model.
+However, future implementations of our method will have to take the specifics
+of the data sources into account.
+For this reason, it will be necessary to review further data sources,
+compare them quantitatively with respect to the extent and quality of their data,
+and find structured ways for dealing with the problems concerning the data quality
+reported above, such as the ambiguous links to works and expressions in RDA-based
+catalogues, the heterogeneous and partly unstructured recording of provenance,
+and the bias and incompleteness of the \gls{GND}.
+The latter problem might be alleviated by using Wikidata
+(sacrificing the strict quality control of the GND),
+and a promising candidate for an alternative provenance database is Proveana.
 
-\dots
 
 
 \begin{itemize}
-  \item
-    focus the following considerations on a narrow choice of these data sources;
-    the general approach to be developed should be largely independent on that concrete choice
-  \item 
-    in-depth analysis of data sources (e.g., overlap and differences) is worthwhile
-    but must be deferred to future work
-  \item
-    \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, linked data S-P-O, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
-  \item
-    also clarify: does the structure of these data sources support the model to be developed?
-  \item
-    comment on consequences of using RDA in DNB, K10plus (and possibly others): link from manifestation to work/expression is often implicit or even ambiguous
   \item 
     uniform vs.\ distributed scenario?
     %
@@ -827,9 +831,6 @@ those can always be represented by several binary relations via reification
         uniform: data source graph is generated explicitly (using data integration techniques)
         and updated in fixed intervals
     \end{itemize}
-    %
-  \item
-    further analysis: compare \enquote{coverage} of data sources, e.g., of GND and Wikidata
 \end{itemize}
 
 
