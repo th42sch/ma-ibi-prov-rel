@@ -718,8 +718,9 @@ Currently, Wikidata contains more than 100 million items \autocite{Wikidata_data
 This number is two orders of magnitudes higher than the number of articles in Wikipedia
 because Wikidata stores structured information on \emph{all} Wikimedia projects,
 including the large media file repository Wikimedia Commons \autocite[cf.][]{Wikidata_items}.
-Data on each item is stored in \emph{statements}, which have the form \emph{item--property--value}
-just like \gls{RDF} triples (subject--predicate--object). Statements can have annotations
+Data on each item is stored in \emph{statements}, which have the same \gls{SPO}
+form as \gls{RDF}, here called \emph{item--property--value}.
+Statements can have annotations
 \autocite[cf.][]{Wikidata_statements}. All items and properties have unique identifiers
 consisting of a \term{Q} or \term{P}, respectively, followed by a sequence of digits.
 These IDs are also part of the URL of the respective Wikidata page
@@ -763,17 +764,6 @@ are recorded.
 %    further catalogues?  
 %\end{itemize}
 
-\todo[inline]{Take the following points into account ::}
-
-\begin{itemize}
-  \item
-    focus the following considerations on a narrow choice of these data sources;
-    the general approach to be developed should be largely independent on that concrete choice
-  \item 
-    in-depth analysis of data sources (e.g., overlap and differences) is worthwhile
-    but must be deferred to future work
-\end{itemize}
-
 %\todo{section on Data Integration and Further Techniques :: }
 %% -----------------------------------------------------------------
 %\section{Data Integration and Further Techniques}
@@ -793,13 +783,33 @@ are recorded.
 %\end{itemize}
 
 % -----------------------------------------------------------------
-\section{Implications on Modelling}
+\section{Conclusions}
 \label{sec:implications_on_modelling}
+
+We have collected 20 data sources and reviewed four of them in detail.
+These four have in common that they provide their metadata as linked data (among other formats),
+and the three bibliographic data sources adhere to the FRBR entity-relationship model.
+From this observation, we conclude that entities and relationships---%
+in mathematical terms, constants and unary and binary relations---%
+should play a central role in the model of queries, answers, and data sources
+that we are going to develop next. That means that a graph-based type of model,
+which also features in the \gls{SoNAR} project,
+is suitable. In case relationships of higher arity turn out to be needed,
+for example when representing the  provenance of an \gls{SPO} statement,
+those can always be represented by several binary relations via reification
+\autocite[cf.][p.339f.]{Doan2012}.
+
 
 \dots
 
 
 \begin{itemize}
+  \item
+    focus the following considerations on a narrow choice of these data sources;
+    the general approach to be developed should be largely independent on that concrete choice
+  \item 
+    in-depth analysis of data sources (e.g., overlap and differences) is worthwhile
+    but must be deferred to future work
   \item
     \mybold{constants plus unary and binary relationships suffice (?) -- evidence: FRBR, DC(?), works on graph techniques in HNA, linked data S-P-O, data sources (e.g., DNB, GND (linked data services?), K10plus?)}
   \item
