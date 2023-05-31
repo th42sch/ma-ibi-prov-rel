@@ -16,8 +16,8 @@ neither should they depend on concrete objects, concepts, or relationships
 Instead, we will develop an abstract model that formalises
 the notions of a query, data source, and answer.
 This model can then be instantiated with a multitude of concrete queries and data sources,
-and it specifies how future implementations need to proceed in order to
-provide answers.
+and it constitutes the basis of the method for finding answers
+that we will develop in the next chapter.
 
 As a basis for our abstract model, we choose standard concepts and techniques
 from graph theory.
@@ -26,8 +26,11 @@ see standard textbooks \autocite[e.g.,][]{Diestel2012}.
 Graphs and graph techniques are widely applied in various areas such as 
 computer science, linguistics, physics and chemistry,
 social sciences, and biology \autocite{WikiGraphTheoryApplications}.
-In particular,\todo[quick]{also refer to SNA \autocite{Galety2022}}
-they are used to represent large knowledge bases \autocite[e.g.,][]{Ehrlinger2016}
+They are also the foundation of social networks \autocite{Galety2022}
+and therefore highly relevant for historical research, e.g.,
+in the \gls{SoNAR} project, as we have seen in Section~\ref{sec:HNA+SoNAR}.
+Graphs
+are used to represent large knowledge bases \autocite[e.g.,][]{Ehrlinger2016}
 and are a fundamental ingredient of \gls{RDF}.
 Furthermore, the basic definition of a graph is conceptually simple,
 and graph theory provides a plethora of well-understood concepts
@@ -79,12 +82,10 @@ In the following sections, we introduce our model
 by defining the underlying notion of a graph and the abstract notions of data sources, queries, and answers
 (Sections~\ref{sec:labelled_digraphs} and~\ref{sec:modelling}).
 We also discuss decision procedures related to query answering in Section~\ref{sec:decision_problems}.
-Up to that point, the model remains very basic, which is a deliberate choice
-in order to make it conceptually comprehensible.
-In particular, although
-the definitions are elementary and self-contained from a mathematical point of view,
-we provide additional explanations and illustrations for the sake of readers with little or no background in
-mathematics.
+Up to that point, the model remains conceptually simple
+and is based on elementary and self-contained mathematical definitions.
+In addition, we provide additional explanations and illustrations
+for the sake of readers with little or no background in mathematics.
 In order to obtain a more flexible and comprehensive model, we discuss our modelling decisions
 in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\ref{sec:possible_extensions}.
 
