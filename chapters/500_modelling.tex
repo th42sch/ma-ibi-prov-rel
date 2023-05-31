@@ -151,10 +151,10 @@ may be labelled, among others, with the concepts \term{Person}, \term{Scientist}
 and \term{Physicist}.
 The labels of an edge specify the \emph{relations} of which the pair of nodes
 represented by that edge is an instance.
-For example, if a person $p_1$ has a student $p_2$ and, in later life, 
-collaborates with $p_2$, then this can be represented via an edge from $p_1$ to $p_2$
+For example, if a person $P_1$ has a student $P_2$ and also 
+collaborates with $P_2$, then this can be represented via an edge from $P_1$ to $P_2$
 with the label $\{\term{has\_student},\term{collaborates\_with}\}$
-(and/or an edge from $b$ to $p$ with the label $\{\term{is\_student\_of},\term{collaborates\_with}\}$).
+(and/or an edge from $P_2$ to $P_1$ with the label $\{\term{is\_student\_of},\term{collaborates\_with}\}$).
 These considerations lead us to a straightforward extension
 of the notion of a directed graph:
 a \emph{labelled directed graph}.
