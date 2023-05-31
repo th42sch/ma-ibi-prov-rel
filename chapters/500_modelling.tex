@@ -38,7 +38,14 @@ and algorithms. By utilising graph theory, our application scenario
 can benefit from these concepts, algorithms \autocite{Diestel2012,Even2012},
 and implementations \autocite{PythonGraphLibraries,JGraphT}.
 
-\todo[quick,inline]{refer to the technique of QA by \enquote{pattern matching}, so called e.g. in \autocite{DellaValle2011}}
+The main idea of our abstract model is the following.
+Both queries and data sources are represented as graphs
+(typically a rather small graph for the query and a very large graph for the data source).
+Answers to the query are those parts of the graph that have the same structure
+as the query. In other words, answers are found using a \emph{pattern matching} technique
+known from querying \gls{RDF} graphs via \gls{SPARQL} \autocite{DellaValle2011}
+and from database theory *****
+
 
 \todo[defer,inline]{Delineate from classical database theory (text snippets commented out)? This argument should be a logical consequence of the requirement analysis in the previous chapter(s)!}
 
@@ -84,9 +91,9 @@ by defining the underlying notion of a graph and the abstract notions of data so
 We also discuss decision procedures related to query answering in Section~\ref{sec:decision_problems}.
 Up to that point, the model remains conceptually simple
 and is based on elementary and self-contained mathematical definitions.
-In addition, we provide additional explanations and illustrations
+We provide additional explanations and illustrations
 for the sake of readers with little or no background in mathematics.
-In order to obtain a more flexible and comprehensive model, we discuss our modelling decisions
+In order to obtain a more flexible and comprehensive model, we discuss the underlying modelling decisions
 in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\ref{sec:possible_extensions}.
 
 % -------------------------------------------------------------------
