@@ -92,10 +92,10 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
 \section{Labelled Directed Graphs}
 \label{sec:labelled_digraphs}
 
-%\begin{figure}[ht]
-\begin{wrapfigure}[6]{o}{5.2cm}
+\begin{figure}[ht]
+%\begin{wrapfigure}[6]{o}{5.2cm}
   \centering
-  \vspace*{-.7\baselineskip}
+%  \vspace*{-.7\baselineskip}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -122,18 +122,18 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
   \end{tikzpicture}
   \caption{A directed graph}
   \label{fig:example_graph_abstract}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
-The basic components of a graph are nodes and edges. Edges link nodes, and they can be directed
-or undirected. Graphs are easy to visualise; nodes are typically represented as circles
+The basic components of a graph are nodes and edges. Edges link nodes and can be directed
+or undirected. Graphs are easy to visualise; nodes are represented as circles
 or rectangles, and edges as arrows (directed) or lines (undirected).
 Figure~\ref{fig:example_graph_abstract} gives an abstract example of a directed graph.
 
 For our purposes,
 nodes represent objects or literals. Objects include, e.g., works, expressions, manifestations, items,
 persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
-Edges represent relationships between those objects or literals, and those relationships are typically directed:
+Edges represent relationships between objects or literals, which are typically directed:
 e.g., \term{has\_owner} points \emph{from} an item
 \emph{to} a person or corporate body,
 whereas \term{is\_owner\_of} points into the opposite direction.
