@@ -9,8 +9,9 @@ to provide information for this selection can be based later on.
 Furthermore, the abstract model of data sources, provenance queries, and answers
 that we will develop in the following chapter
 needs to incorporate the characteristics of the data models used in the appropriate data sources.
-For this purpose, we review data sources that contain the relevant metadata (Section~\ref{sec:data_sources})
-as well as data formats and communication interfaces used in these sources (Section~\ref{sec:data_models}).
+For this purpose, we review data sources that contain the relevant metadata (Section~\ref{sec:data_sources}),
+as well as bibliographic standards, data formats, and communication interfaces
+relevant for these sources (Sections~\ref{sec:bib_standards} and~\ref{sec:data_models}).
 Given the observation from the previous chapters
 that answering provenance queries is likely to involve several data sources,
 we pay special attention to data transfer and integration techniques,
@@ -33,21 +34,14 @@ decision to use the term \emph{metadata} in the most general sense,
 \enquote{applying to all information resources} \autocite[p.13]{Hider2008}.
 
 % -----------------------------------------------------------------
-\section{Data Formats and Communication Protocols}
-\label{sec:data_models}
+\section{Standards for the Description of Bibliographic Resources}
+\label{sec:bib_standards}
 
-In order to identify data sources in the following section,
-we first need to describe relevant standards and formats for the description
-and communication of (bibliographic) data.
-Unless indicated otherwise, the discussion in Subsection~\ref{subsec:bib_standards}
+The following discussion
 is a brief summary of \citeauthor{Wiesenmueller2015}'s introduction
-\autocite*[§§2,3]{Wiesenmueller2015}, and
-the information in the remaining subsections
-is based on~\citeauthor{Hider2008}'s overview \autocite*[§10]{Hider2008}.
+\autocite*[§§2,3]{Wiesenmueller2015},
+unless indicated otherwise.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Standards for the Description of Bibliographic Resources}
-\label{subsec:bib_standards}
 % .............
 \paragraph{FRBR}
 
@@ -217,6 +211,18 @@ do not use a uniform way of linking, e.g., a work $X$ with its manifestations.
 In particular, if there is no authority record for $X$,
 then $X$ is represented in the data of its manifestations only implicitly 
 (and possibly ambiguously).
+
+
+% -----------------------------------------------------------------
+\section{Data Formats and Communication Protocols}
+\label{sec:data_models}
+
+In order to identify data sources in the following section,
+we first need to describe relevant standards and formats for the description
+and communication of (bibliographic) data.
+The following discussion 
+is based on~\citeauthor{Hider2008}'s overview \autocite*[§10]{Hider2008},
+unless indicated otherwise
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Markup Languages}
