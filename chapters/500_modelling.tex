@@ -42,7 +42,7 @@ The main idea of our abstract model is the following.
 Both queries and data sources are represented as graphs
 (typically a rather small graph for the query and a very large graph for the data source).
 Answers to the query are those parts of the graph that have the same structure
-as the query. In more formal words, answers are found using a \emph{pattern matching} technique
+as the query. In more formal words, answers are found using \emph{pattern matching} techniques
 known from querying \gls{RDF} graphs via \gls{SPARQL} \autocite{DellaValle2011}
 and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
 
@@ -78,15 +78,29 @@ and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
 In the following sections, we introduce our model
-by defining the underlying notion of a graph and the abstract notions of data sources, queries, and answers
-(Sections~\ref{sec:labelled_digraphs} and~\ref{sec:modelling}).
-We also discuss decision procedures related to query answering in Section~\ref{sec:decision_problems}.
+by defining 
+the basic terminology (Section~\ref{sec:terminology}),
+the specific notion of a graph (Sections~\ref{sec:labelled_digraphs},
+and the abstract notions of data sources, queries, and answers
+(Section~\ref{sec:modelling}).
+We also discuss decision procedures related to query answering (Section~\ref{sec:decision_problems}).
 Up to that point, the model remains conceptually simple
 and is based on elementary and self-contained mathematical definitions.
 We provide additional explanations and illustrations
 for the sake of readers with little or no background in mathematics.
 In order to obtain a more flexible and comprehensive model, we discuss the underlying modelling decisions
 in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\ref{sec:possible_extensions}.
+
+
+% -------------------------------------------------------------------
+\section{Basic Notions}
+\label{sec:terminology}
+
+*****
+
+\todo[think,inline]{Refer to description logic terminology regarding the terms \enquote{object}, \enquote{concept}, \enquote{relation}, \emph{instance}, etc.? Distinguish clearly between \enquote{relation} and \enquote{relationship}.}
+
+
 
 % -------------------------------------------------------------------
 \section{Labelled Directed Graphs}
@@ -125,10 +139,10 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
 \end{figure}
 %\end{wrapfigure}
 
-The basic components of a graph are nodes and edges. Edges link nodes and can be directed
+Graphs consists of nodes and edges. Edges link nodes and can be directed
 or undirected. Graphs are easy to visualise; nodes are represented as circles
 or rectangles, and edges as arrows (directed) or lines (undirected).
-Figure~\ref{fig:example_graph_abstract} gives an abstract example of a directed graph.
+Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
 
 For our purposes,
 nodes represent objects or literals. Objects include, e.g., works, expressions, manifestations, items,
@@ -146,7 +160,7 @@ and one or several labels to each node and each edge:
 The name of a node specifies the \emph{object} that is represented by that node.
 The labels of a node specify the \emph{concepts}
 of which that node is an \emph{instance}.
-For example, a node representing the physicist Albert Einstein
+For example, a node representing the physicist Albert Einstein (object)
 may be labelled, among others, with the concepts \term{Person}, \term{Scientist},
 and \term{Physicist}.
 The labels of an edge specify the \emph{relations} of which the pair of nodes
@@ -158,30 +172,6 @@ with the label $\{\term{has\_student},\term{collaborates\_with}\}$
 These considerations lead us to a straightforward extension
 of the notion of a directed graph:
 a \emph{labelled directed graph}.
-
-\todo[think,inline]{Refer to the literature for labelled graphs? Refer to description logic terminology regarding the terms \enquote{object}, \enquote{concept}, \enquote{relation}, \emph{instance}, etc.? Distinguish clearly between \enquote{relation} and \enquote{relationship}.}
-
-In order to visualise a labelled directed graph,
-node names are written into the respective node,
-and node and edge labels are written next to the node or edge.
-Multiple labels of the same node or edge are delimited with commas.
-An example is given in Figure~\ref{fig:example_graph}.
-The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
-concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
-Gotha Research Library \emph{(FB Gotha)}.
-It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
-a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
-and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
-For the sake of this example, the owners are additionally labelled with the profession
-\term{Scientist}, which is implicit in the real data.
-The ten edges represent the \gls{FRBR} relationships between work and item,
-the creator relationship between work and author,
-the owner relationship between exemplar and two owners,
-student and collaboration relationships between the owners,
-and the converses of these relationships.
-For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
-by omitting the \gls{FRBR} entities \enquote{Expression} and \enquote{Manifestation}
-that should occur between the nodes labelled \enquote{Work} and \enquote{Item}.
 
 \newcommand{\tikzexagraph}[1][]{%
   \node [#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
@@ -229,6 +219,29 @@ that should occur between the nodes labelled \enquote{Work} and \enquote{Item}.
     concerning an exemplar of Copernicus' \emph{De revolutionibus} and some of its owners}
   \label{fig:example_graph}
 \end{figure}
+
+In order to visualise a labelled directed graph,
+node names are written into the respective node,
+and node and edge labels are written next to the node or edge.
+Multiple labels of the same node or edge are delimited with commas.
+An example is given in Figure~\ref{fig:example_graph}.
+The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
+concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
+Gotha Research Library \emph{(FB Gotha)}.
+It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
+a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
+and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
+For the sake of this example, the owners are additionally labelled with the profession
+\term{Scientist}, which is implicit in the real data.
+The ten edges represent the \gls{FRBR} relationships between work and item,
+the creator relationship between work and author,
+the owner relationship between exemplar and two owners,
+student and collaboration relationships between the owners,
+and the converses of these relationships.
+For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
+by omitting the \gls{FRBR} entities \enquote{Expression} and \enquote{Manifestation}
+that should occur between the nodes labelled \enquote{Work} and \enquote{Item}.
+
 
 As we will see in the following, labelled directed graphs can be used in our setting
 to represent (combinations of) data sources as well as queries.
@@ -768,5 +781,8 @@ to the graph from Figure~\ref{fig:example_graph}.
     Edge weights;
 
     E.g. R029, 30, 61: explorative (for every node/edge the available attributes) vs. ??? (ask query knowing those attributes)
+    
+  \item
+    Discuss further SoNAR insights, e.g., substitute relationships
     
 \end{itemize}
