@@ -96,20 +96,112 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
 \section{Basic Notions}
 \label{sec:terminology}
 
-*****
+We start by introducing the basic terminology that we are going to use
+in the following, which consists of the standard terms from conceptual
+modelling \autocite{***}.\todo{cite}
 
-\todo[think,inline]{Refer to description logic terminology regarding the terms \enquote{object}, \enquote{concept}, \enquote{relation}, \emph{instance}, etc.? Distinguish clearly between \enquote{relation} and \enquote{relationship}.}
+\paragraph{Objects}
+An \emph{object} is a specific entity,
+for example, the work \enquote{Graph Theory} by Reinhard Diestel,
+its expression in English,
+its manifestation as the 4th edition by Springer,
+a specific copy, or the person Reinhard Diestel.
 
+\paragraph{Concepts}
+A \emph{concept} is a class of objects,
+such as the entities \term{Work}, \term{Expression}, etc.\
+from the \gls{FRBR} model (see Section~\ref{sec:bib_standards}).
 
+We determine that names for concepts and objects start with an uppercase letter.
+
+\paragraph{Relations}
+An \emph{$n$-ary relation} is a set of $n$-tuples of objects;
+for example, the binary relation \term{creator}
+consists of pairs of objects including $(\term{Graph\_Theory},\term{Reinhard\_Diestel})$
+if we assume for the sake of simplicity that \term{Graph\_Theory}
+is the unambiguous name of said work. 
+
+Constants and concepts are in fact nullary and unary relations,
+but it is more intuitive to use those separate terms,
+As we have already argued in Section~\ref{sec:implications_on_modelling},
+we will hardly need to deal with relations of arity beyond 2;
+therefore we will mostly discuss binary relations
+and refer to them as \emph{relations} when no confusion may arise.
+
+To distinguish relations from concepts and objects,
+we determine that their names start with a lowercase letter.
+
+\paragraph{Converses of relations}
+The \emph{converse} of a relation $R$ is the relation obtained from $R$
+by swapping the components in each pair,
+e.g., the converse \term{creator\_of} of \term{creator}
+contains the pairs $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$.
+
+\paragraph{Instances}
+An \emph{instance} of a concept or relation
+is an object or a pair of objects from that set;
+e.g., \term{Reinhard\_Diestel} is an instance of \term{Person},
+and $(\term{Graph\_Theory},\term{Reinhard\_Diestel})$ is an instance of
+\term{creator}.
+
+\paragraph{Relationships}
+Instances of relations are also called \emph{relationships}.
+
+\paragraph{Literals}
+A \emph{literal} is a fixed value, such as a year, date, or identifier.
+
+%%
+%\begin{itemize}
+%  \item
+%    An \emph{object} is a specific entity,
+%    for example, the work \enquote{Graph Theory} by Reinhard Diestel,
+%    its manifestation as the 4th edition in English,
+%    a specific copy, or the person Reinhard Diestel.
+%  \item
+%    A \emph{concept} is a class of objects,
+%    such as the entities \term{Work}, \term{Expression}, etc.\
+%    from the \gls{FRBR} model (see Section~\ref{sec:bib_standards}).
+%    
+%    We determine that names for concepts and objects start with an uppercase letter.
+%  \item
+%    An \emph{$n$-ary relation} is a set of $n$-tuples of objects;
+%    for example, the binary relation \term{autor\_of}
+%    consists of pair of objects including $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$
+%    if we assume for the sake of simplicity that \term{Graph\_Theory}
+%    is the unambiguous name of said work. 
+%    
+%    Constants and concepts are in fact nullary and unary relations,
+%    but it is more intuitive to use those separate terms,
+%    As we have already argued in Section~\ref{sec:implications_on_modelling},
+%    we will hardly need to deal with relations of arity beyond 2;
+%    therefore we will mostly discuss binary relations
+%    and refer to them as \emph{relations} when no confusion may arise.
+%    
+%    To distinguish relations from concepts and objects,
+%    we determine that their names start with a lowercase letter.
+%  \item
+%    An \emph{instance} of a concept or relation
+%    is an object or a pair of objects from that set;
+%    e.g., \term{Reinhard\_Diestel} is an instance of \term{Person},
+%    and $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$ is an instance of
+%    \term{author\_of}.
+%  \item
+%    Instances of relations are also called \emph{relationships}.
+%  \item 
+%    A \emph{literal} is a fixed value, such as a year, date, or identifier.
+%\end{itemize}
+%
+
+\todo[quick,inline]{Distinguish clearly between \enquote{relation} and \enquote{relationship} in the this and the remaining chapters.}
 
 % -------------------------------------------------------------------
 \section{Labelled Directed Graphs}
 \label{sec:labelled_digraphs}
 
-\begin{figure}[ht]
-%\begin{wrapfigure}[6]{o}{5.2cm}
+%\begin{figure}[ht]
+\begin{wrapfigure}[6]{o}{5.2cm}
   \centering
-%  \vspace*{-.7\baselineskip}
+  \vspace*{-.7\baselineskip}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -136,8 +228,8 @@ in Section~\ref{sec:modelling_discussion} and possible extensions in Section~\re
   \end{tikzpicture}
   \caption{A directed graph}
   \label{fig:example_graph_abstract}
-\end{figure}
-%\end{wrapfigure}
+%\end{figure}
+\end{wrapfigure}
 
 Graphs consists of nodes and edges. Edges link nodes and can be directed
 or undirected. Graphs are easy to visualise; nodes are represented as circles
@@ -145,25 +237,28 @@ or rectangles, and edges as arrows (directed) or lines (undirected).
 Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
 
 For our purposes,
-nodes represent objects or literals. Objects include, e.g., works, expressions, manifestations, items,
-persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
-Edges represent relationships between objects or literals, which are typically directed:
-e.g., \term{has\_owner} points \emph{from} an item
-\emph{to} a person or corporate body,
-whereas \term{is\_owner\_of} points into the opposite direction.
+nodes represent objects or literals. 
+%Objects include, e.g., works, expressions, manifestations, items,
+%persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
+Edges represent relations, which are directed by the above definition 
+(as the order of components in a pair matters).
+For example, an edge representing the relation
+\term{creator} points \emph{from} a person or corporate body
+\emph{to} a work,
+whereas is converse \term{creator\_of} points into the opposite direction.
 Therefore we use \emph{directed} graphs.
-Symmetric relationships, such as \term{collaborates\_with},
-can be represented via two edges in both directions.
+Symmetric relations, such as \term{relatedEndeavour},
+can be represented via pairs of edges pointing in both directions.
 
 Furthermore, we want to assign a unique name to each node of a graph
 and one or several labels to each node and each edge:
-The name of a node specifies the \emph{object} that is represented by that node.
-The labels of a node specify the \emph{concepts}
-of which that node is an \emph{instance}.
+The name of a node specifies the object that is represented by that node.
+The labels of a node specify the concepts
+of which that node is an instance.
 For example, a node representing the physicist Albert Einstein (object)
 may be labelled, among others, with the concepts \term{Person}, \term{Scientist},
 and \term{Physicist}.
-The labels of an edge specify the \emph{relations} of which the pair of nodes
+The labels of an edge specify the relations of which the pair of nodes
 represented by that edge is an instance.
 For example, if a person $P_1$ has a student $P_2$ and also 
 collaborates with $P_2$, then this can be represented via an edge from $P_1$ to $P_2$
