@@ -9,14 +9,16 @@ to provide information for this selection can be based later on.
 Furthermore, the abstract model of data sources, provenance queries, and answers
 that we will develop in the following chapter
 needs to incorporate the characteristics of the data models used in the appropriate data sources.
-We therefore review data sources that contain the relevant metadata
-as well as data formats and communication interfaces.
+For this purpose, we review data sources that contain the relevant metadata (Section~\ref{sec:data_sources})
+as well as data formats and communication interfaces used in these sources (Section~\ref{sec:data_models}).
 Given the observation from the previous chapters
 that answering provenance queries is likely to involve several data sources,
 we pay special attention to data transfer and integration techniques,
 including linked data.
+At the end of this chapter (Section~\ref{sec:implications_on_modelling}),
+we draw conclusions from the review that inform our model and method in the following chapters.
 
-Before we start this review, we need to define the central term \emph{metadata}.
+Before we start the review, we need to define the central term \emph{metadata}.
 For this purpose, we follow \citeauthor{Hider2008}'s \autocite*{Hider2008} definition and reflection:
 The term \emph{metadata} is used in multiple ways.
 The most general use is according to its literal meaning, \enquote{data about data}.
@@ -29,8 +31,6 @@ these two meanings can no longer be clearly distinguished in view of the
 progressing digital transformation. In this thesis, we adopt their
 decision to use the term \emph{metadata} in the most general sense,
 \enquote{applying to all information resources} \autocite[p.13]{Hider2008}.
-
-\todo[defer,inline]{Give overview of the sections (and justify order of §§\ref{sec:data_models}, \ref{sec:data_sources})}
 
 % -----------------------------------------------------------------
 \section{Data Formats and Communication Protocols}
@@ -185,7 +185,7 @@ These entities and the basic relations are shown in Figure~\ref{fig:FRBR}.
   \label{fig:FRBR}
 \end{figure}
 
-The \gls{IFLA} also developed
+Beside FRBR, the \gls{IFLA} developed
 a conceptual entity-relationship model for authority data,
 the \gls{FRAD},
 as well as a continuation of FRBR,
@@ -414,67 +414,67 @@ contained in the respective data sources, and we list examples.
 \paragraph{Library Catalogues}
 %
 %Library catalogues 
-Catalogues contain the following information relevant for provenance research.
+Catalogues contain the information relevant for provenance research, such as
 %
 \begin{itemize}
   \item
-    bibliographic entities (works, manifestations, expressions, exemplars)
+    bibliographic entities (works, manifestations, expressions, exemplars);
   \item
-    relations between these entities (e.g., \term{isManifestationOf})
+    relations between these entities (e.g., \term{isManifestationOf});
   \item
-    attributes for these entities (e.g., year of publication)
+    attributes for these entities (e.g., year of publication);
   \item
-    people and corporate bodies and relations such as authorship
+    people and corporate bodies and relations such as authorship;
   \item
-    provenance entries (including, e.g., owners, the ownership relation, and further attributes such as the year of ownership)
+    provenance entries (including, e.g., owners, the ownership relation, and further attributes such as the year of ownership);
   \item
-    (implicitly) the current ownership
+    (implicitly) the current ownership;
   \item
-    (ideally) references to entries in authority files for all these types of entities
+    (ideally) references to entries in authority files for all these types of entities.
 \end{itemize}
 %
-Examples of relevant library catalogues include:
+Examples of relevant library catalogues include
 %
 \begin{itemize}
   \item
     catalogues of national libraries, which often aim at collecting literature exhaustively
-    and which are most likely to make metadata available in interoperable formats;
+    and which are most likely to make metadata available in interoperable formats,
     in particular: \\
-    \mybold{the catalogues of \gls{DNB}, \gls{LoC}, and the British Library} \autocite{DNBCatalogue,LoCcatalogue,BLcatalogue}
+    \mybold{the catalogues of \gls{DNB}, \gls{LoC}, and the British Library} \autocite{DNBCatalogue,LoCcatalogue,BLcatalogue};
   \item
-    meta-catalogues that enable a federated search in several catalogues;
+    meta-catalogues that enable a federated search in several catalogues,
     in particular: \\
     \glsunset{KVK}%
-    \mybold{WorldCat} and the \mybold{\glsentrylong{KVK} (\gls{KVK})} \autocite{WorldCat,KVK}
+    \mybold{WorldCat} and the \mybold{\glsentrylong{KVK} (\gls{KVK})} \autocite{WorldCat,KVK};
   \item
-    catalogues of (German) library networks;
+    catalogues of (German) library networks,
     in particular: \\
     \glsunset{B3KAT}
     \glsunset{hbz}%
     \glsunset{hebis}%
     \mybold{\gls{K10plus}, \gls{B3KAT},}
-    and the \mybold{union catalogues of \gls{hbz} and \gls{hebis}} \autocite{K10plus,B3KAT,hbz,hebis}
+    the \mybold{union catalogues of \gls{hbz} and \gls{hebis}} \autocite{K10plus,B3KAT,hbz,hebis};
   \item
-    catalogues of single libraries, if not covered by any of the above
+    catalogues of single libraries, if not covered by any of the above;
   \item
-    special catalogues, e.g., those used for historical research in the \gls{SoNAR} project; %\todo{explain; relate to SoNAR or loot research}
+    special catalogues, e.g., those used for historical research in the \gls{SoNAR} project, %\todo{explain; relate to SoNAR or loot research}
     in particular: \\
-    \mybold{\gls{ZDB}, \gls{KPE}, \gls{ZEFYS}, ExilePress} \autocite{ZDB,KPE,ZEFYS,ExilePress}
+    \mybold{\gls{ZDB}, \gls{KPE}, \gls{ZEFYS}, ExilePress} \autocite{ZDB,KPE,ZEFYS,ExilePress}.
 \end{itemize}
 
 % .............
 \paragraph{Authority Files}
 %
 Authority files
-contain the following information relevant for provenance research.
+contain information relevant for provenance research, such as
 %
 \begin{itemize}
   \item
-    entities such as persons, corporate bodies, places, works
+    entities such as persons, corporate bodies, places, works;
   \item
-    relations such as social relations, family relations, professional relations
+    relations such as social relations, family relations, professional relations;
   \item
-    attributes for the entities such as their profession
+    attributes for the entities such as their profession;
 \end{itemize}
 %
 They are usually subject to a strict quality control.
@@ -507,18 +507,18 @@ and \mybold{Proveana}---the research database of the German Lost Art Foundation 
 \subsection{Analysis of Data Sources}
 \label{subsec:analysis_data_sources}
 
-We now provide a review of the following data sources from the previous list:
+We now provide a review of four data sources from the previous list, namely
 \gls{DNB}, \gls{K10plus}, \gls{GND}, and Wikidata.
 %\gls{KVK}, \gls{ZDB}, \gls{KPE}, Proveana, Europeana.
-
+%
 %The main goal of this analysis is to provide an exemplary overview of the features and specifics
 %of these data sources, and to inform the model that we will develop in the subsequent chapter.
 %In order to fulfil this purpose, it is not necessary to review all data sources listed above
 %exhaustively.
-
-\todo[inline]{adapt this list and provide another brief justification for the choice?}
-
-We collect the following information for each data source.
+%
+%\todo[inline]{adapt this list and provide another brief justification for the choice?}
+%
+For each data source, we collect the following information.
 %
 \begin{itemize}
   \item
@@ -532,10 +532,10 @@ We collect the following information for each data source.
     if applicable:}~
     use of persistent identifiers and \glspl{URI}; adherence to standards for, e.g., time and date specification
   \item
-    \emph{features useful in the context of \gls{SoNAR} (see our discussion in Section~\ref{sec:insights_from_SoNAR}), if applicable:}~
+    \emph{Features useful in the context of \gls{SoNAR} (see our discussion in Section~\ref{sec:insights_from_SoNAR}), if applicable:}~
     recording of temporal attributes or relations; recording of data provenance
   \item
-    further features specific to the respective data source, if applicable
+    Further features specific to the respective data source, if applicable
 \end{itemize}
 
 % .............
