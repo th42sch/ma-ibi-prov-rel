@@ -7,25 +7,28 @@
   \item
     develop method for answering queries in the model just defined
   \item
-    uniform vs.\ distributed scenario:
+    online vs.\ off{}line scenario:
     %
     \begin{itemize}
       \item
-        uniform: 
+        off{}line: 
         
         data source graph is generated explicitly (using data integration techniques)
         and updated in fixed intervals
                 
-        provenance query is formulated as a \gls{SPARQL} query and posed against the graph
+        at runtime: provenance query is formulated as a \gls{SPARQL} query and posed against the graph
       \item
-        distributed: 
+        online: 
         
         data source graph is implicit; data sources are queried \enquote{on the fly}
         (this is the preferred scenario here; see delineation from SoNAR in §\ref{sec:HNA+SoNAR})
         
-        decompose query into single \gls{SPARQL} (sub)queries and pose them against several data sources,
+        data sources need to be defined and
+        interactions with them programmed in advance
+        
+        at runtime: decompose query into single \gls{SPARQL} (sub)queries and pose them against several data sources,
         potentially iteratively;
-        data sources need to be identified upfront.
+        compose final answer from the partial answers
         $\leadsto$ demonstrate this for example query/ies!
         
     \end{itemize}
