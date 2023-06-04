@@ -653,7 +653,10 @@ support the recording and display
 of provenance features at the bibliographic as well as the exemplar level of a record.
 However, the practice of provenance indexing differs greatly between the two networks.
 Since 2014, GBV has been advising the recording at the bibliographic level,
-in order to allow provenance research across libraries. The names of owners are linked
+in order to allow provenance research across libraries. The respective data field
+is structured similarly to the new MARC~21 field 361 (see Subsection~\ref{subsec:data_descr_schemata})
+and thus keeps all information on the same provenance linked together.
+Furthermore, the names of owners are linked
 to the local authority record that represents, and redirects to, the respective record in \gls{GND}.
 The physical provenance features are documented via chains of terms from
 \gls{T-PRO} (see Section~\ref{sec:provenance_indexing}) [plus dates if available].
@@ -667,7 +670,7 @@ at the exemplar level to record provenance features.
 This field provides subfields for the structured recording of T-PRO terms [and dates].
 However, most \gls{SWB} libraries have abandoned the creation of exemplar records altogether
 and thus needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
-These systems would have to be included in the data sources to be accessed by a comprehensive retrieval system
+These systems should therefore be included in the data sources to be accessed by a comprehensive retrieval system
 for provenance relationships.
 
 In summary, provenance features are recorded within K10plus in a heterogeneous
