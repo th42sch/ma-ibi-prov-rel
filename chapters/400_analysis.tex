@@ -304,7 +304,7 @@ and is widely used in the library domain, albeit not as widely as \gls{Z39.50}.
 
 \glsreset{MARC}
 \gls{MARC} \enquote{is the main data communication standard in use in libraries today}
-\autocite[p.198]{Hider2008}. It is a family of formats for the exchange of bibliographic
+\autocite[p.198]{Hider2008}. It is a family of formats for the \emph{exchange} of bibliographic
 and further data between library systems, which is being extensively used by libraries around the world. 
 MARC was developed by the \gls{LoC} in 1969
 and has been updated several times.
@@ -329,10 +329,23 @@ There have been several attempts to redeem some of these disadvantages,
 among them the development of new standards such as MODS (see below)
 and of \gls{XML} schemas based on MARC~21 such as MARCXML and Turbomarc.
 
-The problem of standard proliferation was not restricted to the
+The problem of the proliferation of standard was not restricted to the
 variety of MARC dialects but also occurred within non-MARC formats.
 Attempts to solve this problem have been made via
 translation and unification. One tool for unification is Dublin Core (DC); see below.
+
+Until recently, MARC~21 had separate data fields for the recording of provenance features, owners,
+and further information belonging to a provenance. As a consequence,
+in data obtained via MARC~21, the important connection between features, owners,
+and further information is not available.
+For this reason, the MARC Steering Group approved, in May 2023, a proposal
+%by the D-A-CH Working Group on Provenance, Task Group on MARC, in cooperation with the German National Library and the Committee on Data Formats
+for introducing a new data field for
+\enquote{Ownership and Custodial History in Structured Form} \autocite{MARC361proposql,MARC361approval}.
+This data field allows the structured recording of provenance information
+by providing subfields for all the constituents of the same provenance.
+However, it is realistic to assume that this new field
+will be implemented in the relevant systems with some delay.
 
 % .............
 \paragraph{MAB}
@@ -450,25 +463,31 @@ Examples of relevant library catalogues include
     in particular: \\
     \mybold{the catalogues of \gls{DNB}, \gls{LoC}, and the British Library} \autocite{DNBCatalogue,LoCcatalogue,BLcatalogue};
   \item
-    meta-catalogues that enable a federated search in several catalogues,
+    meta-catalogues that enable a federated search in many catalogues,
     in particular: \\
     \glsunset{KVK}%
     \mybold{WorldCat} and the \mybold{\glsentrylong{KVK} (\gls{KVK})} \autocite{WorldCat,KVK};
   \item
-    catalogues of (German) library networks,
-    in particular: \\
+    catalogues of large library networks, which combine the holdings of the participating libraries,
+    in particular (for Germany): \\
     \glsunset{B3KAT}
     \glsunset{hbz}%
     \glsunset{hebis}%
     \mybold{\gls{K10plus}, \gls{B3KAT},}
     the \mybold{union catalogues of \gls{hbz} and \gls{hebis}} \autocite{K10plus,B3KAT,hbz,hebis};
   \item
-    catalogues of single libraries, if not covered by any of the above;
+    catalogues and local systems of single libraries, if not covered by any of the above;
   \item
     special catalogues, e.g., those used for historical research in the \gls{SoNAR} project, %\todo{explain; relate to SoNAR or loot research}
     in particular: \\
     \mybold{\gls{ZDB}, \gls{KPE}, \gls{ZEFYS}, ExilePress} \autocite{ZDB,KPE,ZEFYS,ExilePress}.
 \end{itemize}
+
+Clearly, the integration of catalogues of the first three groups is preferable to the integration of catalogues of single libraries
+because it would allow for an interaction with as few systems as possible while giving access to a large
+combination of holdings. However, sometimes relevant information is recorded only in local library systems,
+e.g., provenance entries in some of the \gls{SWB} libraries; see the description of \gls{K10plus} below.
+In these cases, it is unavoidable to include these local systems.
 
 % .............
 \paragraph{Authority Files}
@@ -482,7 +501,7 @@ contain information relevant for provenance research, such as
   \item
     relations such as social relations, family relations, professional relations;
   \item
-    attributes for the entities such as their profession;
+    attributes for the entities such as their profession.
 \end{itemize}
 %
 They are usually subject to a strict quality control.
@@ -514,6 +533,8 @@ and \mybold{Proveana}---the research database of the German Lost Art Foundation 
 % - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Analysis of Data Sources}
 \label{subsec:analysis_data_sources}
+
+\todo[defer,inline]{DISCUSS HeBIS? 68.. fields, unstructured; provenance feature cannot be linked to owner in case of several provenance entries}
 
 We now provide a review of four data sources from the previous list, namely
 \gls{DNB}, \gls{K10plus}, \gls{GND}, and Wikidata.
@@ -629,7 +650,7 @@ Concerning the state of provenance indexing in the library networks \gls{GBV} an
 Hakelberg \autocite*[§4]{Hakelberg2016} reports the following.
 The catalogue systems of \gls{GBV} and \gls{SWB}, which are united in K10plus,
 support the recording and display
-of provenance features on the bibliographic as well as on the exemplar level of a record.
+of provenance features at the bibliographic as well as at the exemplar level of a record.
 However, the practice of provenance indexing differs greatly between the two networks.
 Since 2014, GBV has been advising the recording on the bibliographic level,
 in order to allow provenance research across libraries. The names of owners are linked
@@ -641,11 +662,13 @@ this standard was being tested and successively introduced in the participating 
 Before 2014, provenance features were documented in free text in a data field for
 exemplar-specific comments on the exemplar level, using \gls{T-PRO} descriptors 
 and referring to local authority records that were \emph{not} directly linked to \gls{GND} records.
-In contrast, the \gls{SWB} libraries have always been using a dedicated data field
+In contrast, the \gls{SWB} libraries have been, and still are, using a dedicated data field
 on the exemplar level to record provenance features.
 This field provides subfields for the structured recording of T-PRO terms [and dates].
 However, most \gls{SWB} libraries have abandoned the creation of exemplar records altogether
-and needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
+and thus needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
+These systems would have to be included in the data sources to be accessed by a comprehensive retrieval system
+for provenance relationships.
 
 In summary, provenance features are recorded within K10plus in a heterogeneous
 and incomplete way, and developers of a retrieval system that uses K10plus have to
@@ -727,7 +750,7 @@ This number is two orders of magnitudes higher than the number of articles in Wi
 because Wikidata stores structured information on \emph{all} Wikimedia projects,
 including the large media file repository Wikimedia Commons \autocite[cf.][]{Wikidata_items}.
 Data on each item is stored in \emph{statements}, which have the same \gls{SPO}
-form as \gls{RDF}, here called \emph{item--property--value}.
+form as \gls{RDF}, in Wikidata terms: \emph{item--property--value}.
 Statements can have annotations
 \autocite[cf.][]{Wikidata_statements}. All items and properties have unique identifiers
 consisting of a \term{Q} or \term{P}, respectively, followed by a sequence of digits.
