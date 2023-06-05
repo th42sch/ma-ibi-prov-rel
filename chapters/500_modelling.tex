@@ -9,13 +9,13 @@ data sources that are to be consulted in order to answer a query,
 and answers given to a query.
 In order to obtain a generic approach, we aim at providing rigorous definitions
 for these central concepts, and we seek intensional rather than extensional definitions.
-In particular, those definitions should not depend on concrete example queries or data sources
+In particular, those definitions should not depend on specific example queries or data sources
 such as the ones discussed in Chapters~\ref{chap:prototype_queries} and~\ref{chap:analysis};
 neither should they depend on concrete objects, concepts, or relations
 (such as \enquote{Copernicus}, \enquote{exemplar}, or \enquote{student}).
 Instead, we will develop an abstract model that formalises
 the notions of a query, data source, and answer.
-This model can then be instantiated with a multitude of concrete queries and data sources,
+This model can then be instantiated with a multitude of specific queries and data sources,
 and it constitutes the basis of the method for finding answers
 that we will develop in the next chapter.
 
@@ -479,7 +479,7 @@ Data sources correspond exactly to our notion of a graph.
 In our model, we assume that there is always a \emph{single} data source against which a query is posed and evaluated.
 When the model is applied to real-word queries and data sources,
 the abstract notion of a data source is instantiated by the union of
-all available concrete data sources (such as catalogues, authority files, knowledge bases),
+all available actual data sources (such as catalogues, authority files, knowledge bases),
 including mappings between them if applicable.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -839,7 +839,7 @@ to the graph from Figure~\ref{fig:example_graph}.
   \item
     data provenance
   \item
-    concrete values (\enquote{year of publication})
+    literals (\enquote{year of publication})
   \item
     attributes on relationships:
     %
