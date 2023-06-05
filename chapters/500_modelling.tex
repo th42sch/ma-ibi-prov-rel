@@ -266,15 +266,17 @@ These considerations lead us to a straightforward extension
 of the notion of a directed graph:
 a \emph{labelled directed graph}.
 
+\newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
+\newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
 \newcommand{\tikzexagraph}[1][]{%
-  \node [#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
-  \node [below=21mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-  \node [above right=4mm and 50mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
-  \node [above right=9.5mm and 50mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-  \node [below right=9.5mm and 50mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
+  \node [text width=\derevnode,below=24mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+  \node [text width=\copernode,above right=4mm and 45mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
+  \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+  \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
   \begin{scope}[%
-    every node/.style={draw=none,fill=none,inner sep=.2mm}
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
   ]
     \path[->]
 %      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (item1)
@@ -287,7 +289,7 @@ a \emph{labelled directed graph}.
 %      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
 %      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
 %      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
-      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\term{exemplar}} (item1)
+      (work1)   edge[bend right=10] node[pos=.3,left=1mm]      {\fns\term{exemplar}} (item1)
       (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{exemplarOf}}      (work1)
       (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{creator}}    (person1)
       (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{creatorOf}} (work1)
@@ -312,7 +314,7 @@ a \emph{labelled directed graph}.
   \centering
   \begin{tikzpicture}[
     >=Latex,
-    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
     every edge/.style={draw=black,thick}
   ]
     \tikzexagraph
@@ -514,8 +516,8 @@ can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'
 \newcommand{\tikzexaquery}{%
   \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
   \node [ansvar,below=14mm of work1]           (x)     {\fns\mystrut$x$};
-  \node [anovar,above right=6.4mm and 24mm of x] (y)     {\fns\mystrut$y$};
-  \node [anovar,below right=6.4mm and 24mm of x] (z)     {\fns\mystrut$z$};
+  \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
+  \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
   
   \begin{scope}[%
     every node/.style={draw=none,fill=none,inner sep=.2mm}
@@ -533,7 +535,7 @@ can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'
       
     \node[above=.5mm of derev] () {\fns\term{Work}};
     \node[left=.5mm of x]      () {\fns\term{Item}};
-    \node[above=.5mm of y]     () {\fns\term{Scientist}};
+    \node[above right=2mm and -5mm of y]     () {\fns\term{Scientist}};
     
   \end{scope}
 }
@@ -622,16 +624,16 @@ the required node named \term{De\_revolutionibus}.
   \begin{tabular}{@{}c@{\hspace{10mm}}c@{}}
     \begin{tikzpicture}[
       >=Latex,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
       \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
       \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
       \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm}
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
       ]
         \path[->]
 %          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
@@ -652,16 +654,16 @@ the required node named \term{De\_revolutionibus}.
     &
     \begin{tikzpicture}[
       >=Latex,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
       \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
       \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
       \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm}
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
       ]
         \path[->]
 %          (derev) edge[bend right=10] node[left=1mm]         {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
@@ -686,16 +688,16 @@ the required node named \term{De\_revolutionibus}.
     (a) & (b) \\[6pt]
     \begin{tikzpicture}[
       >=Latex,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node                                   (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [below=16mm of work1]             (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
       \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
       \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
       \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm}
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
       ]
         \path[->]
           (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
@@ -715,7 +717,7 @@ the required node named \term{De\_revolutionibus}.
     &
     \begin{tikzpicture}[
       >=Latex,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
       \node                                   (derev) {\fns\mystrut$\term{ABC}$};
@@ -724,7 +726,7 @@ the required node named \term{De\_revolutionibus}.
       \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
       \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm}
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
       ]
         \path[->]
 %          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
@@ -795,7 +797,7 @@ to the graph from Figure~\ref{fig:example_graph}.
     every edge/.style={draw=black,thick}
   ]
     \tikzexaquery
-    \tikzexagraph[right=64mm of derev]
+    \tikzexagraph[right=69mm of derev]
     
     \begin{scope}[%
       every node/.style={draw=none,fill=none,inner sep=.2mm},
