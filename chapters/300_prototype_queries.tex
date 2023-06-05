@@ -59,7 +59,7 @@ in \exaquery{2} can be instantiated with the seminal work \emph{De revolutionibu
 (short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
 by the astronomer Nicolaus Copernicus (1473–1543).
 Together with the additional specification that the owner of the book is a scientist,
-we obtain the following query.
+we thus obtain the following query.
 %
 \begin{enumerate}
   \item[\exaquery{2$'$}]
@@ -88,19 +88,9 @@ with more specific questions, which in turn can inform possible extensions of th
 \label{sec:manual_answering}
 
 In order to demonstrate how a researcher could proceed (manually) when answering a query,
-we take Pattern~\exaquery{2} and fix work $W$ to be the seminal work \emph{De revolutionibus orbium coelestium}
-(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
-by the astronomer Nicolaus Copernicus (1473–1543).
-We thus consider the following query.
-%
-\begin{enumerate}
-  \item[\exaquery{2$'$}]
-%    Which exemplars of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
-    Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
-\end{enumerate}
-%
-When answering \exaquery{2$'$}, an obvious way to proceed is the following:
-first, our researcher finds exemplars of \emph{De revolutionibus} 
+we consider the query~\exaquery{2$'$} from above.
+An obvious way to proceed is the following.
+First, our researcher finds exemplars of \emph{De revolutionibus} 
 in online catalogues of libraries and library networks. For each such exemplar, they then inspect the provenance entries
 that name owners who were people (not corporate bodies). Finally, our researcher will have to find those names in databases such as
 authority files or Wikidata and, for each entry, explore the specified profession (\enquote{scientist})
@@ -154,7 +144,7 @@ Therefore, the retrieved data can only be regarded as a \emph{candidate answer}
 which entails the hypothesis that the found exemplar was passed from Hommel to Thau.
 Our researcher can now engage in further research in order to verify that hypothesis.
 
-\todo[think,inline]{Discuss instances of \exaquery{1}, \exaquery{3}--\exaquery{9}, and their differences (extend remarks from Section~\ref{sec:background})?}
+\todo[think,inline]{Discuss specifics of \exaquery{1}, \exaquery{3}--\exaquery{9} (extend remarks from Section~\ref{sec:background})?}
 
 % -----------------------------------------------------------------
 \section{The Quality of Query Answers}
