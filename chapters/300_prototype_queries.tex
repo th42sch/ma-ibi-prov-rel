@@ -101,7 +101,7 @@ of \emph{De revolutionibus} \autocite{OPACDeRev}.
 %\footnote{%
 %  \url{https://opac.uni-erfurt.de/DB=1/CMD?ACT=SRCHA&IKT=1016&SRT=YOP&TRM=tit+de+revolutionibus+and+per+kopernikus+and+jah+15**+and+bbg+a*}%
 %}
-One of those bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners  \autocite{OPACDeRevPPN}:
+One of those bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners \autocite{OPACDeRevPPN}; see also Figure~\ref{fig:OPAC_derev_provenance}:
 %\footnote{%
 %  \url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}%
 %}
@@ -124,19 +124,36 @@ One of those bears the signature \sig{Druck~4°~00466}, and its provenance entri
   \item
     Landesbibliothek Gotha: stamp
 \end{itemize}
-%
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{img/opac_derev_prov.png}
+  \caption{University of Erfurt OPAC search result for exemplar \sig{Druck~4°~00466} of \enquote{De Revolutionibus} with provenance entries, screenshot of 05/06/2023}
+  \label{fig:OPAC_derev_provenance}
+\end{figure}
+
 Our researcher can immediately decide that they can ignore the second entry (no name given) and the last three entries (corporate bodies).
-For the remaining four entries, our researcher follows the links given in the OPAC to the \gls{GND}.
+For the persons named in the remaining four entries, our researcher finds the corresponding \gls{GND} records, which involves manual disambiguation in the case of Tilesius
+\autocite{GNDTilesius,GNDHommel,GNDThau,GNDErnstII}.
 %\footnote{%
 %  \url{https://katalog.dnb.de/EN/home.html?v=plist}%
 %}
 On inspection of these \gls{GND} entries, it turns out that Ernest II was a regent and very probably not a scientist,
 and that the other three people---Tilesius, Hommel, and Thau---had professions such as theologian,
-mathematician, and astronomer, which qualifies them as scientists. Furthermore, Hommel's entry
-contains a reference to Thau via the relation \term{student}
+mathematician, and astronomer, which qualifies them as scientists. Furthermore, Hommel's entry \todo{include screenshot}
+contains a reference to Thau via the relation \term{student}, see Figure~\ref{fig:GND_Hommel}
 (and Thau's entry contains the inverse reference to Hommel).
 From this reference, our researcher can conclude that two scientists in the teacher-student relation
 have both possessed the exemplar. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{img/gnd_hommel_1.png}
+  $\big[\vdots\big]$
+  \includegraphics[width=\linewidth]{img/gnd_hommel_2.png}
+  \caption{GND entry for Johann Hommel, screenshot of 05/06/2023}
+  \label{fig:GND_Hommel}
+\end{figure}
 
 Unfortunately, the data available does not imply that Hommel passed the exemplar (directly) to Thau;
 furthermore, the provenance entry for Thau raises doubts as to whether Thau was really an owner of the exemplar.
