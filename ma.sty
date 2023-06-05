@@ -169,6 +169,7 @@
 %  maxnames=3, minnames=1, nohashothers=false,
 %  uniquename=full,
   isbn=false,
+  urldate=edtf,date=edtf
 ]{biblatex}
 \addbibresource{bib/ma_jabref.bib}
 \setlength{\bibitemsep}{4pt}
@@ -505,3 +506,10 @@
 \newcommand{\subquestion}[1]{\textsf{\textbf{{\boldmath SQ#1}}}}
 \newcommand{\hmph}[1]{\textsf{\textbf{{\boldmath H#1}}}}
 
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip4\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }%
+}
