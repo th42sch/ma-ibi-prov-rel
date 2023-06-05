@@ -165,7 +165,7 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
 %    We determine that names for concepts and objects start with an uppercase letter.
 %  \item
 %    An \emph{$n$-ary relation} is a set of $n$-tuples of objects;
-%    for example, the binary relation \term{autor\_of}
+%    for example, the binary relation \term{creator}
 %    consists of pair of objects including $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$
 %    if we assume for the sake of simplicity that \term{Graph\_Theory}
 %    is the unambiguous name of said work. 
@@ -184,7 +184,7 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
 %    is an object or a pair of objects from that set;
 %    e.g., \term{Reinhard\_Diestel} is an instance of \term{Person},
 %    and $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$ is an instance of
-%    \term{author\_of}.
+%    \term{creatorOf}.
 %  \item
 %    Instances of relations are also called \emph{relationships}.
 %  \item 
@@ -243,7 +243,7 @@ Edges represent relations, which are directed by the above definition
 For example, an edge representing the relation
 \term{creator} points \emph{from} a person or corporate body
 \emph{to} a work,
-whereas is converse \term{creator\_of} points into the opposite direction.
+whereas is converse \term{creatorOf} points into the opposite direction.
 Therefore we use \emph{directed} graphs.
 Symmetric relations, such as \term{relatedEndeavour},
 can be represented via pairs of edges pointing in both directions.
@@ -260,8 +260,8 @@ The labels of an edge specify the relations of which the pair of nodes
 represented by that edge is an instance.
 For example, if a person $P_1$ has a student $P_2$ and also 
 collaborates with $P_2$, then this can be represented via an edge from $P_1$ to $P_2$
-with the label $\{\term{has\_student},\term{collaborates\_with}\}$
-(and/or an edge from $P_2$ to $P_1$ with the label $\{\term{is\_student\_of},\term{collaborates\_with}\}$).
+with the label $\{\term{student},\term{collaboratesWith}\}$
+(and/or an edge from $P_2$ to $P_1$ with the label $\{\term{studentOf},\term{collaborator}\}$).
 These considerations lead us to a straightforward extension
 of the notion of a directed graph:
 a \emph{labelled directed graph}.
@@ -277,16 +277,26 @@ a \emph{labelled directed graph}.
     every node/.style={draw=none,fill=none,inner sep=.2mm}
   ]
     \path[->]
-      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (item1)
-      (item1)   edge[bend right=10] node[pos=.8,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
-      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
-      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
-      (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
-      (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
-      (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
-      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
-      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
-      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
+%      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (item1)
+%      (item1)   edge[bend right=10] node[pos=.8,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
+%      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
+%      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
+%      (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
+%      (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+%      (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
+%      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+%      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
+%      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
+      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\term{exemplar}} (item1)
+      (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{exemplarOf}}      (work1)
+      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{creator}}    (person1)
+      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{creatorOf}} (work1)
+      (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person2)
+      (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{ownerOf}}   (item1)
+      (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person3)
+      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{ownerOf}}   (item1)
+      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} (person3)
+      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}} (person2)
     ;
       
     \node[above=.5mm of work1]   () {\fns\term{Work}};
@@ -331,8 +341,6 @@ of \gls{FRBR} relations and others between \term{Work}, \term{Item}, and \term{P
 For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
 by omitting the \gls{FRBR} entities \term{Expression} and \term{Manifestation}
 that should occur between the nodes labelled \term{Work} and \term{Item}.
-
-\todo[quick,inline]{Unify typestting of terms (i.e., \term{Term} instead of \enquote{Term}); unify (FRBR) relation names (e.g., \term{has\_creator} vs.\ \term{creator})}
 
 As we will see in the following, labelled directed graphs can be used in our setting
 to represent (combinations of) data sources as well as queries.
@@ -435,9 +443,9 @@ There are, among others, the following node names and labels:
     The node at the bottom right has the two labels \term{Person} and \term{Astronomer}.
   \item 
     The edge from the node named \term{Johann\_Hommel} to the node named \term{Valentin\_Thau}
-    has the two labels \term{has\_student} and \term{collaborates\_with},
+    has the two labels \term{student} and \term{collaborator},
     and the edge pointing into the converse direction has the labels
-    \term{is\_student\_of} and \term{collaborates\_with}.
+    \term{studentOf} and \term{collaborator}.
 \end{itemize}
 %
 %%
@@ -513,10 +521,14 @@ can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'
     every node/.style={draw=none,fill=none,inner sep=.2mm}
   ]
     \path[->]
-      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
-      (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
-      (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+%      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%      (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%      (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+      (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+      (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+      (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+      (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
     ;
       
     \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -597,7 +609,7 @@ while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not:
 Subgraph~(a) is identical to the query graph with the only exception that it
 contains proper objects instead of variables in the node names;
 Subgraph~(b) is the same graph but extended with additional information;
-Subgraph~(c) lacks the edge labelled \term{has\_student} between the two owners;
+Subgraph~(c) lacks the edge labelled \term{student} between the two owners;
 Subgraph~(d) resembles the structure of the query but does not contain
 the required node named \term{De\_revolutionibus}.
 
@@ -622,10 +634,14 @@ the required node named \term{De\_revolutionibus}.
         every node/.style={draw=none,fill=none,inner sep=.2mm}
       ]
         \path[->]
-          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
-          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
-          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+%          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
         ;
           
         \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -648,11 +664,16 @@ the required node named \term{De\_revolutionibus}.
         every node/.style={draw=none,fill=none,inner sep=.2mm}
       ]
         \path[->]
-          (derev) edge[bend right=10] node[left=1mm]         {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
-          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{is\_exemplar\_of}}                       (derev)
-          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
-          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+%          (derev) edge[bend right=10] node[left=1mm]         {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{is\_exemplar\_of}}                       (derev)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge[bend right=10] node[left=1mm]         {\fns\term{exemplar}} (x)
+          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{exemplarOf}}                       (derev)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
         ;
           
         \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -677,10 +698,10 @@ the required node named \term{De\_revolutionibus}.
         every node/.style={draw=none,fill=none,inner sep=.2mm}
       ]
         \path[->]
-          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
-          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
-          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
         ;
         \path[every edge/.style={draw=none}]
           (y) edge node[right=1mm] {\rule{\student}{0pt}} (z)
@@ -706,10 +727,14 @@ the required node named \term{De\_revolutionibus}.
         every node/.style={draw=none,fill=none,inner sep=.2mm}
       ]
         \path[->]
-          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
-          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
-          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
-          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+%          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
         ;
           
         \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -845,7 +870,7 @@ to the graph from Figure~\ref{fig:example_graph}.
     %
     \begin{itemize}
       \item
-        sketch idea: e.g., provide year for relationship \term{has\_owner} -- example: \enquote{passed on to} requires descending year numbers \emph{and} no successor with intermediate year number
+        sketch idea: e.g., provide year for relationship \term{owner} -- example: \enquote{passed on to} requires descending year numbers \emph{and} no successor with intermediate year number
       \item
         solution: quads instead of triples (in \gls{RDF} speak); add attributes to the graph model? (Markus Krötzsch's work?)
       \item
