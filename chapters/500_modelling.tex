@@ -826,7 +826,24 @@ to the graph from Figure~\ref{fig:example_graph}.
   \label{fig:example_hmph}
 \end{figure}
 
-\todo[inline]{NOW DEFINE \enquote{ANSWER}!}
+We can now use homomorphisms to define the notion of an answer to a query.
+%
+\begin{definition}
+  Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
+  and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
+  %
+  \begin{enumerate}
+    \item
+      An \emph{answer to $G$ in $G'$} is a pair $(h,G'')$
+      where $h$ is a homomorphism $h : G \to G'$
+      and $G''$ is the subgraph of $G'$ induced by $h(V)$.
+    \item
+      The set of all answers to $G$ in $G'$ is called the \emph{answer set} for $G$ in $G'$
+      and denoted $\ans(G,G')$.
+  \end{enumerate}
+\end{definition}
+%
+Remarks on this definition *****
 
 % ------------------------------------------------------------------
 \section{Decision Procedures}
