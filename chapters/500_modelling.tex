@@ -294,10 +294,9 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 
 \newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
 \newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
-\newcommand{\tikzexagraph}[1][]{%
+\newcommand{\tikzexagraphMinusCopernicus}[1][]{%
   \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
   \node [text width=\derevnode,below=24mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-  \node [text width=\copernode,above right=4mm and 45mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
   \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
   \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
@@ -317,8 +316,6 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 %      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
       (work1)   edge[bend right=10] node[pos=.3,left=1mm]      {\fns\term{exemplar}} (item1)
       (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{exemplarOf}}      (work1)
-      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{creator}}    (person1)
-      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{creatorOf}} (work1)
       (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person2)
       (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{ownerOf}}   (item1)
       (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person3)
@@ -329,12 +326,28 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
       
     \node[above=.5mm of work1]   () {\fns\term{Work}};
     \node[below=.5mm of item1]   () {\fns\term{Item}};
-    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
     \node[right=.5mm of person2] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Mathematician}}};
     \node[right=.5mm of person3] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Astronomer}}};
     
   \end{scope}      
-}
+}%
+\newcommand{\tikzexagraph}[1][]{%
+  \tikzexagraphMinusCopernicus[#1]
+
+  \node [text width=\copernode,above right=4mm and 45mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
+
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+  ]
+    \path[->]
+      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{creator}}   (person1)
+      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{creatorOf}} (work1)
+    ;
+  
+    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
+  \end{scope}      
+
+}%
 %
 \begin{figure}[ht]
   \centering
@@ -488,10 +501,10 @@ Data sources correspond exactly to our notion of a graph.
 %
 \begin{definition}
   \label{def:data_source}
-  \scalebox{0.965}[1]{A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
-  over \namespace.}
-%  A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
-%  over \namespace.
+%  \scalebox{0.965}[1]{A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
+%  over \namespace.}
+  A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
+  over \namespace.
 \end{definition}
 %
 In our model, we assume that there is always a \emph{single} data source against which a query is posed and evaluated.
@@ -521,7 +534,7 @@ can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}
 
 \newcommand{\tikzexaquery}{%
   \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-  \node [ansvar,below=14mm of work1]           (x)     {\fns\mystrut$x$};
+  \node [ansvar,below=14mm of derev]           (x)     {\fns\mystrut$x$};
   \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
   \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
   
@@ -797,6 +810,20 @@ Figure~\ref{fig:example_hmph} shows a homomorphism $h$ (dashed lines)
 from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
 to the graph from Figure~\ref{fig:example_graph}.
 
+\newcommand{\tikzhmph}{%
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left},
+    every edge/.style={densely dashed,draw=black!70,thick}
+  ]
+    \path[->]
+      (derev) edge[out= 20,in=160]               node[below=.6mm]         {\fns$h$} (work1)
+      (x)     edge[out=270,in=200]               node[above=.4mm]         {\fns$h$} (item1)
+      (y)     edge[out= 30,in=150,looseness=.19] node[above=.4mm,pos=.25] {\fns$h$} (person2)
+      (z)     edge[out=340,in=200,looseness=.8]  node[above=.4mm,pos=.60] {\fns$h$} (person3)
+    ;
+  \end{scope}
+}
+
 \begin{figure}[ht]
   \centering
   \begin{tikzpicture}[
@@ -806,22 +833,9 @@ to the graph from Figure~\ref{fig:example_graph}.
   ]
     \tikzexaquery
     \tikzexagraph[right=69mm of derev]
-    
-    \begin{scope}[%
-      every node/.style={draw=none,fill=none,inner sep=.2mm,align=left},
-      every edge/.style={densely dashed,draw=black!70,thick}
-    ]
-      \path[->]
-        (derev) edge[out= 20,in=160]               node[below=.6mm]         {\fns$h$} (work1)
-        (x)     edge[out=270,in=200]               node[above=.4mm]         {\fns$h$} (item1)
-        (y)     edge[out= 30,in=150,looseness=.19] node[above=.4mm,pos=.25] {\fns$h$} (person2)
-        (z)     edge[out=340,in=200,looseness=.8]  node[above=.4mm,pos=.60] {\fns$h$} (person3)
-      ;
-      
-    \end{scope}
+    \tikzhmph      
   \end{tikzpicture}
   %  
-  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges?}
   \caption{An example homomorphism}
   \label{fig:example_hmph}
 \end{figure}
@@ -829,6 +843,7 @@ to the graph from Figure~\ref{fig:example_graph}.
 We can now use homomorphisms to define the notion of an answer to a query.
 %
 \begin{definition}
+  \label{def:query_answer}
   Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
   and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
   %
@@ -843,7 +858,47 @@ We can now use homomorphisms to define the notion of an answer to a query.
   \end{enumerate}
 \end{definition}
 %
-Remarks on this definition *****
+We make the following remarks concerning Definition~\ref{def:query_answer}.
+
+%
+%\begin{itemize}
+%  \item
+    The \emph{subgraph of $G'$ induced by $h(V)$} in Point~1 is the graph $G'' = (V'', E'', \Nmc'', \Lmc'')$
+    where $V'' = h(V)$ and $E'', \Nmc'', \Lmc''$ are the restrictions of $E,\Nmc,\Lmc$ to $V''$.
+    
+%  \item
+    The answer corresponding to the homomorphism $h$ depicted in Figure~\ref{fig:example_hmph}
+    consists of $h$ and 
+    the graph on the right-hand side after removal of the node \term{Nicolaus\_Copernicus} and the two adjacent edges.
+    This situation is shown in Figure~\ref{fig:example_answer}.
+    
+%  \item
+    Every homomorphism determines an answer. If no homomorphism $h : G \to G'$ exists,
+    then there is no answer to $G$ in $G'$, i.e., $\ans(G,G') =  \emptyset$.
+    
+%  \item
+    From a mathematical point of view, it would suffice to simply equate answers with homomorphisms
+    because $G''$ can be reconstructed from $G$ and $h$. However, we decided to make $G''$ explicit
+    because we expect that this subgraph is the minimal \enquote{section} of the data that a researcher will want to inspect.
+%\end{itemize}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+    every edge/.style={draw=black,thick}
+  ]
+    \tikzexaquery
+    \tikzexagraphMinusCopernicus[right=69mm of derev]
+    \tikzhmph
+  \end{tikzpicture}
+  %  
+  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges? Gray out query and say so in the text?}
+  \caption{An example answer consisting of the homomorphism $h$ and the graph $G''$ on the right-hand side}
+  \label{fig:example_answer}
+\end{figure}
+
 
 % ------------------------------------------------------------------
 \section{Decision Procedures}
