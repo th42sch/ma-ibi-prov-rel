@@ -42,8 +42,8 @@ The main idea of our abstract model is the following.
 Both queries and data sources are represented as graphs
 (typically a rather small graph for the query and a very large graph for the data source).
 Answers to the query are those parts of the graph that have the same structure
-as the query. In more formal words, answers are found using \emph{pattern matching} techniques
-known from querying \gls{RDF} graphs via \gls{SPARQL} \autocite{DellaValle2011}
+as the query. In more formal words, answers are found using \emph{pattern matching} techniques,
+which are well-known from querying \gls{RDF} graphs via \gls{SPARQL} \autocite{DellaValle2011}
 and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
 
 %\todo[defer,inline]{Delineate from classical database theory (text snippets commented out)? This argument %should be a logical consequence of the requirement analysis in the previous chapter(s)!}
@@ -77,10 +77,12 @@ and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
 %%
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
+\todo[defer,inline]{Adapt the following paragraph when this chapter is finished.}
+
 In the following sections, we introduce our model
 by defining 
 the basic terminology (Section~\ref{sec:terminology}),
-the specific notion of a graph (Sections~\ref{sec:labelled_digraphs},
+the specific notion of a graph (Section~\ref{sec:labelled_digraphs}),
 and the abstract notions of data sources, queries, and answers
 (Section~\ref{sec:modelling}).
 We also discuss decision procedures related to query answering (Section~\ref{sec:decision_problems}).
@@ -229,8 +231,10 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
 %\end{figure}
 \end{wrapfigure}
 
+Before we develop the technical definitions,
+we provide the underlying intuitions.
 Graphs consists of nodes and edges. Edges link nodes and can be directed
-or undirected. Graphs are easy to visualise; nodes are represented as circles
+or undirected. Graphs are easy to visualise: nodes are drawn as circles
 or rectangles, and edges as arrows (directed) or lines (undirected).
 Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
 
@@ -238,33 +242,55 @@ For our purposes,
 nodes represent objects or literals. 
 %Objects include, e.g., works, expressions, manifestations, items,
 %persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
-Edges represent relations, which are directed by the above definition 
-(as the order of components in a pair matters).
-For example, an edge representing the relation
-\term{creator} points \emph{from} a person or corporate body
-\emph{to} a work,
-whereas is converse \term{creatorOf} points into the opposite direction.
-Therefore we use \emph{directed} graphs.
-Symmetric relations, such as \term{relatedEndeavour},
-can be represented via pairs of edges pointing in both directions.
+Directed edges represent relations, 
+for example, 
+the relation \term{creator} is represented by a set of directed edges
+pointing \emph{from} nodes representing persons or corporate bodies
+edges representing the relation
+\emph{to} nodes representing the corresponding works;
+the converse relation \term{creatorOf} is represented by the same set of edges 
+with their direction reversed.
+Since relations such as \term{creator} are not symmetric,
+direction matters and we use \emph{directed} graphs. 
+Symmetric relations such as \term{relatedEndeavour}
+can be represented via pairs of edges pointing into both directions.
 
 Furthermore, we want to assign a unique name to each node of a graph
 and one or several labels to each node and each edge:
 The name of a node specifies the object that is represented by that node.
 The labels of a node specify the concepts
 of which that node is an instance.
-For example, a node representing the physicist Albert Einstein (object)
+For example, a node representing the physicist Albert Einstein
 may be labelled, among others, with the concepts \term{Person}, \term{Scientist},
 and \term{Physicist}.
 The labels of an edge specify the relations of which the pair of nodes
 represented by that edge is an instance.
 For example, if a person $P_1$ has a student $P_2$ and also 
 collaborates with $P_2$, then this can be represented via an edge from $P_1$ to $P_2$
-with the label $\{\term{student},\term{collaboratesWith}\}$
-(and/or an edge from $P_2$ to $P_1$ with the label $\{\term{studentOf},\term{collaborator}\}$).
+labelled with both \term{student} and \term{collaboratesWith}
+(and/or an edge from $P_2$ to $P_1$ labelled with both \term{studentOf} and \term{collaborator}).
 These considerations lead us to a straightforward extension
 of the notion of a directed graph:
 a \emph{labelled directed graph}.
+
+In order to visualise a labelled directed graph,
+node names are written into the respective node,
+and node and edge labels are written next to the node or edge.
+Multiple labels of the same node or edge are delimited with commas.
+An example is given in Figure~\ref{fig:example_graph}.
+The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
+concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
+Gotha Research Library \emph{(FB Gotha)}.
+It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
+a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
+and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
+For the sake of this example, the owners are additionally labelled with the profession
+\term{Scientist}, which is implicit in the actual data.
+The ten edges represent relationships that are instances
+of \gls{FRBR} relations and others between \term{Work}, \term{Item}, and \term{Person}.
+For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
+by omitting the \gls{FRBR} entities \term{Expression} and \term{Manifestation}
+that should occur between the nodes labelled \term{Work} and \term{Item}.
 
 \newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
 \newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
@@ -325,25 +351,6 @@ a \emph{labelled directed graph}.
   \label{fig:example_graph}
 \end{figure}
 
-In order to visualise a labelled directed graph,
-node names are written into the respective node,
-and node and edge labels are written next to the node or edge.
-Multiple labels of the same node or edge are delimited with commas.
-An example is given in Figure~\ref{fig:example_graph}.
-The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
-concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
-Gotha Research Library \emph{(FB Gotha)}.
-It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
-a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
-and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
-For the sake of this example, the owners are additionally labelled with the profession
-\term{Scientist}, which is implicit in the real data.
-The ten edges represent relationships that are instances
-of \gls{FRBR} relations and others between \term{Work}, \term{Item}, and \term{Person}.
-For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
-by omitting the \gls{FRBR} entities \term{Expression} and \term{Manifestation}
-that should occur between the nodes labelled \term{Work} and \term{Item}.
-
 As we will see in the following, labelled directed graphs can be used in our setting
 to represent (combinations of) data sources as well as queries.
 They allow us to draw on standard notions from graph theory and query answering
@@ -358,10 +365,12 @@ in order to define admissible query answers and to devise methods for obtaining 
 The above explanations can be cast into a rigorous mathematical definition,
 which uses sets to represent nodes, a binary relation over the set of nodes
 to represent edges, and functions over the nodes and edges to represent
-names and labels. In order for the range of those functions to be well-defined,
-the definition of a labelled directed graph is relative to a namespace which
-contains all the names of objects, concepts and relations that are relevant.
-The contents of this namespace is arbitrary and may consist,
+names and labels. In order for the ranges%
+\footnote{The \emph{range} or \emph{codomain} of a function is the set of values that can occur as images of that function.}
+of those functions to be well-defined,
+we give a definition of a labelled directed graph that is relative to a \emph{namespace},
+which contains all the names of objects, concepts and relations that are relevant.
+This namespace is a parameter that can be freely chosen; it may consist,
 for example, of all the names found in the relevant data sources.
 The following definition introduces the notions of a namespace and a
 labelled directed graph.
@@ -395,9 +404,7 @@ labelled directed graph.
   \begin{itemize}
     \item
       $V$ is a set, whose members are called \emph{nodes};\footnote{%
-        In classical graph theory, nodes are called \emph{vertices}; thus the set of
-        nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
-        and the more modern term \enquote{node} for brevity.%
+        We use the standard denotation $V$ (from \enquote{vertex}) for the set of nodes.%
       }      
     \item 
       $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
@@ -412,7 +419,7 @@ labelled directed graph.
   \end{itemize}
 \end{definition}
 %
-Definition~1 formalises the following commitments regarding names and labels.
+Definition~1 captures the following commitments regarding names and labels.
 %%
 %\begin{itemize}
 %  \item
@@ -424,7 +431,7 @@ Definition~1 formalises the following commitments regarding names and labels.
 %    the effect of an edge having no labels can be achieved by simply omitting the edge.
 %\end{itemize}
 %
-(1) Every node has a unique name, and no two nodes have the same name (the latter being ensured by injectivity).
+(1) Every node has a unique name, and no two nodes have the same name (the latter is ensured by injectivity).
 (2) A node can have an arbitrary number of labels, including no label (in case the node belongs to no concept).
 (3) An edge can have an arbitrary number of labels, but that number must not be zero --
 the effect of an edge having no labels can be achieved by simply omitting that edge.
@@ -491,27 +498,25 @@ When the model is applied to real-word queries and data sources,
 the abstract notion of a data source is instantiated by the union of
 all available actual data sources (such as catalogues, authority files, knowledge bases),
 including mappings between them if applicable.
+We will discuss this point in more detail in Chapter~\ref{chap:retrieval}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Queries}
 
-In order to model queries based on the same notion of a graph, we need to distinguish
+In order to model queries based on graphs, we need to distinguish
 two special groups of nodes that act as placeholders (1) for the object(s) after which the query asks
 and (2) for further objects that are mentioned in the query without being named explicitly.
 For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answering}:
 %
-\begin{enumerate}
-  \item[\exaquery{2$'$}]
-%    Which exemplars of work $W$ were passed from one of its owners to a collaborator of theirs?
-    Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
-\end{enumerate}
+\Qtwoprime
 %
 To model this query, we do not only need a node representing the work \emph{De revolutionibus},
 but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
 and two nodes representing the owner and their student (Group~2).
-Since these three individuals are not known, we need to use \emph{variables} for naming them.
+Since these three individuals are not known when the query is formulated,
+we need to use \emph{variables} for naming them.
 Query~\exaquery{2$'$}
-can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
+can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
 \newcommand{\tikzexaquery}{%
   \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
@@ -530,7 +535,7 @@ can then be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'
       (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
       (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
       (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
-      (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
+      (y)     edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm] {\fns\term{student}} (z)      
     ;
       
     \node[above=.5mm of derev] () {\fns\term{Work}};
@@ -571,8 +576,8 @@ and we call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variabl
 of this query.
 From now on, we fix two sets \VARANS and \VARANON
 of \emph{answer variables} and \emph{anonymous variables}, respectively,
-and we assume that they both contain a countably infinite number of elements---%
-which simply ensures that there is an unlimited supply of variables.
+and we assume that they both contain a countably infinite number of elements
+(which ensures that there is an unlimited supply of variables).
 We furthermore require that these two sets are disjoint with each other
 and with any set \NO of object names.
 Thus, according to Definition~\ref{def:data_source},
@@ -600,7 +605,7 @@ Based on the representation of both data sources and queries as graphs,
 we can now define the notion of an answer to a query 
 with respect to a data source. For this purpose, it is important to realise
 that, typically, a query is a small graph and a data source is a large graph,
-and that finding answers simply means finding small parts of the large graph
+and that finding answers means finding small parts of the large graph
 that have the same structure as the small graph.
 For the example query given in Figure~\ref{fig:graph_for_exa_query2'},
 this means that every subgraph of the data source consisting of four nodes
@@ -610,7 +615,7 @@ Figure~\ref{fig:example_answers}~(a,\,b) constitute answers,
 while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not:
 Subgraph~(a) is identical to the query graph with the only exception that it
 contains proper objects instead of variables in the node names;
-Subgraph~(b) is the same graph but extended with additional information;
+Subgraph~(b) is the same graph as~(a) but extended with an additional edge and additional node labels;
 Subgraph~(c) lacks the edge labelled \term{student} between the two owners;
 Subgraph~(d) resembles the structure of the query but does not contain
 the required node named \term{De\_revolutionibus}.
@@ -753,10 +758,10 @@ the required node named \term{De\_revolutionibus}.
 \end{figure}
 
 In order to identify subgraphs of a given graph that have the same structure as another given graph,
-we use the notion of a homomorphism.
+we use the standard notion of a homomorphism.
 A homomorphism is a function that maps some object to another
 while preserving the structure of the former.
-We therefore need to define a variant of homomorphisms that maps queries
+We therefore need to define a variant of homomorphism that maps queries
 to data sources. This variant is given in the following.
 %
 \begin{definition}
@@ -782,8 +787,10 @@ Property~\hmph{1} requires that a homomorphism maps each node in $G$ that is nam
 to that node in $G'$ which is named with the same object.
 Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
 Properties~\hmph{2} and~\hmph{3} require that homomorphisms preserve node and edge labels;
-more precisely, the image of a node (or edge) under $h$ must have \emph{at least}
-the same labels (and may have additional labels).
+more precisely, the subset relation entails that the image of a node (or edge) under $h$
+must have \emph{at least} the same labels (and may have additional labels).
+Furthermore, the graph $G'$ may have additional nodes that are not among the images
+of the homomorphism.
 
 Figure~\ref{fig:example_hmph} shows a homomorphism $h$ (dashed lines)
 from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
@@ -793,14 +800,14 @@ to the graph from Figure~\ref{fig:example_graph}.
   \centering
   \begin{tikzpicture}[
     >=Latex,
-    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
     every edge/.style={draw=black,thick}
   ]
     \tikzexaquery
     \tikzexagraph[right=69mm of derev]
     
     \begin{scope}[%
-      every node/.style={draw=none,fill=none,inner sep=.2mm},
+      every node/.style={draw=none,fill=none,inner sep=.2mm,align=left},
       every edge/.style={densely dashed,draw=black!70,thick}
     ]
       \path[->]
@@ -812,7 +819,8 @@ to the graph from Figure~\ref{fig:example_graph}.
       
     \end{scope}
   \end{tikzpicture}
-  
+  %  
+  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges?}
   \caption{An example homomorphism}
   \label{fig:example_hmph}
 \end{figure}
@@ -889,6 +897,8 @@ to the graph from Figure~\ref{fig:example_graph}.
         $\leadsto$ manual inspection is necessary anyway; attributes may still help hide false answers
     \end{itemize}
     %
+  \item
+    disjunctions, e.g., on edges (\enquote{student or collaborator} in \exaquery{2}) $\leadsto$ PEQs?
   \item
     Discuss \gls{SoNAR} requirements R0xx:
     
