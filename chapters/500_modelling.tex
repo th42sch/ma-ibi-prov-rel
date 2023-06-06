@@ -314,14 +314,17 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 %      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
 %      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
 %      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
-      (work1)   edge[bend right=10] node[pos=.3,left=1mm]      {\fns\term{exemplar}} (item1)
-      (item1)   edge[bend right=10] node[pos=.7,right=1mm]     {\fns\term{exemplarOf}}      (work1)
-      (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person2)
-      (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{ownerOf}}   (item1)
-      (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{owner}}      (person3)
-      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{ownerOf}}   (item1)
-      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} (person3)
-      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}} (person2)
+      ($(work1.270)+(-0.08,0)$)   edge node[pos=.3,left=.2mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
+      ($(item1.90)+(0.08,0)$)     edge node[pos=.7,right=.2mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
+      
+      ($(item1.0)+(0,0.4)$)      edge node[pos=.5,sloped, above=.4mm] {\fns\term{owner}}   ($(person2.180)+(0,0.08)$)
+      ($(person2.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{ownerOf}} ($(item1.0)+(0,0.24)$)
+
+      ($(item1.0)+(0,-0.24)$)     edge node[pos=.5,sloped, above=.4mm] {\fns\term{owner}}   ($(person3.180)+(0,0.08)$)
+      ($(person3.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{ownerOf}} ($(item1.0)+(0,-0.4)$)
+      
+      ($(person2.270)+(-0.08,0)$) edge node[pos=.46,left=.2mm]         {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} ($(person3.90)+(-0.08,0)$)
+      ($(person3.90)+(0.08,0)$)   edge node[pos=.54,right=.2mm]        {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}}  ($(person2.270)+(0.08,0)$)
     ;
       
     \node[above=.5mm of work1]   () {\fns\term{Work}};
@@ -340,8 +343,8 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
     every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
   ]
     \path[->]
-      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{creator}}   (person1)
-      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{creatorOf}} (work1)
+      ($(work1.0)+(0,0.08)$)      edge node[pos=.5,sloped, above=.4mm] {\fns\term{creator}}   ($(person1.180)+(0,0.08)$)
+      ($(person1.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{creatorOf}} ($(work1.0)+(0,-0.08)$)
     ;
   
     \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
@@ -532,14 +535,19 @@ we need to use \emph{variables} for naming them.
 Query~\exaquery{2$'$}
 can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
-\newcommand{\tikzexaquery}{%
-  \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-  \node [ansvar,below=14mm of derev]           (x)     {\fns\mystrut$x$};
-  \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
-  \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
+\newcommand{\tikzexaquery}[1][1]{%
+  \begin{scope}[%
+    opacity=#1,fill opacity=#1
+  ]
+    \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+    \node [ansvar,below=14mm of derev]           (x)     {\fns\mystrut$x$};
+    \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
+    \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
+  \end{scope}
   
   \begin{scope}[%
-    every node/.style={draw=none,fill=none,inner sep=.2mm}
+    every node/.style={draw=none,fill=none,inner sep=.2mm},
+    opacity=#1,fill opacity=#1
   ]
     \path[->]
 %      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
@@ -870,7 +878,7 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
     The answer corresponding to the homomorphism $h$ depicted in Figure~\ref{fig:example_hmph}
     consists of $h$ and 
     the graph on the right-hand side after removal of the node \term{Nicolaus\_Copernicus} and the two adjacent edges.
-    This situation is shown in Figure~\ref{fig:example_answer}.
+    This situation is shown in Figure~\ref{fig:example_answer} with the query greyed out.
     
 %  \item
     Every homomorphism determines an answer. If no homomorphism $h : G \to G'$ exists,
@@ -889,12 +897,12 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
     every edge/.style={draw=black,thick}
   ]
-    \tikzexaquery
+    \tikzexaquery[.5]
     \tikzexagraphMinusCopernicus[right=69mm of derev]
     \tikzhmph
   \end{tikzpicture}
   %  
-  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges? Gray out query and say so in the text?}
+  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges?}
   \caption{An example answer consisting of the homomorphism $h$ and the graph $G''$ on the right-hand side}
   \label{fig:example_answer}
 \end{figure}
