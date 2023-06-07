@@ -453,7 +453,7 @@
 
 \theoremstyle{myplain}
 \newtheorem{theorem}[definition]{Theorem}
-\newtheorem{corollary}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
 
 %\surroundwithmdframed[outerlinewidth=1pt,
 %  innerlinewidth=0pt,
@@ -465,7 +465,19 @@
   linecolor=black!50,
   innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
   leftline=false,rightline=false
-]{definition,theorem,corollary}
+]{definition}
+\surroundwithmdframed[%
+  linewidth=1pt,
+  linecolor=black!50,
+  innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]{theorem}
+\surroundwithmdframed[%
+  linewidth=1pt,
+  linecolor=black!50,
+  innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]{corollary}
 
 
 % ===== todonotes styles =====
@@ -519,5 +531,5 @@
 }
 
 \newcommand{\ans}{\textsf{ans}\xspace}
-\newcommand{\problem}[1]{\textsf{#1}}
-\newcommand{\CC}[1]{\textsf{#1}}
+\newcommand{\problem}[1]{\textup{\textsf{#1}}}
+\newcommand{\CC}[1]{\textup{\textsf{#1}}}

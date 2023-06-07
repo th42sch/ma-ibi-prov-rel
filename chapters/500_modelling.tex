@@ -935,7 +935,7 @@ More formally:
 \begin{center}
   \begin{tabular}{ll}
     \hline\rule{0pt}{12pt}%
-    Input:  & a query $G$ and a data source $G'$ over some namespace \namespace \\
+    Input:  & a query $G$ and a data source $G'$ over some namespace \namespace \\[2pt]
     Output: & $\ans(G,G')$ \\[1pt]
     \hline
   \end{tabular}
@@ -955,7 +955,7 @@ is limited by $n^k$, where $n$ is the size of the input (e.g., nodes and edges i
 and $k$ is a constant. Problems for which an algorithm with such guaranteed time bounds exists
 are called \emph{solvable in polynomial time}.
 
-To check whether a computation problem is computable and tractable,
+In order to check whether a computation problem is computable and tractable,
 is it usual to resort to a slightly more abstract level,
 considering the \emph{decision problem} associated to the computation problem.
 Typically, \emph{decidability} (i.e., computability) and tractability of
@@ -971,7 +971,7 @@ In the case of our computation problem, the associated decision problem is the f
     \hline\rule{0pt}{12pt}%
     Input:  & a query $G$ over \namespace, a data source $G'$ over \namespace, \\
             & a function $h$ from $G$ to $G'$, and a subgraph $G''$ of $G'$ \\[2pt]
-    Output: & \enquote{yes} if $(h,G'') \in \ans(G,G')$; \enquote{no} otherwise \\[1pt]
+    Output: & \enquote{yes} if $(h,G'') \in \ans(G,G')$;\quad \enquote{no} otherwise \\[1pt]
     \hline
   \end{tabular}
 \end{center}
