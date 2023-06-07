@@ -311,7 +311,7 @@ In a similar spirit, we will not study visualisation;
 however, our envisaged retrieval system can be used \emph{along with} visualisation tools
 and provide entry points to a large network.
 
-The construction of a uniform data source \emph{(graph)} that integrates all the available data
+The construction of a uniform (graph) database that integrates all the available data
 from the heterogeneous repositories appears to be an integral part of \gls{SoNAR},
 according to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} discussion.
 The obvious advantages include the interaction with a single database,
@@ -320,29 +320,21 @@ independently of the single repositories, and thus full control over the data.
 Furthermore, inconsistencies
 between the repositories can be resolved a-priori (at creation time),
 and the created database is independent on possible changes in the data models of the repositories.
-However, the static nature of the uniform database also has disadvantages:
+However, the static nature of this database also has disadvantages:
 a data model has to be fixed upfront, and ultimately needs to be adapted when
 the models of the repositories change or new repositories are added;
 regular updates are necessary when the contents of the repositories changes;
 finally, as we have learnt above,
 a large graph database uses a large amount of memory and requires a highly performant
 database system.
-
 As a result of this discussion,
-we want our approach to exploit the benefits of a dynamic solution.
-More precisely, while our abstract model will centre around a single data source (graph)
-that represents the combination of the distributed repositories,
-our method will abstain from constructing that graph explicitly and, instead,
-answer queries \enquote{in place} over the original repositories.
-This way, our approach will not depend on hosting capacities,
-and it will always have direct access to the current content of the repositories.
-On the downside, our approach will depend on external web services provided by the repositories,
-and it will be sensitive to changes in their data models.
-Our dynamic approach also requires that inconsistencies are resolved
-a posteriori, i.e., every time a query answer is retrieved.
-As a final advantage, the dynamic approach is flexible
-in the sense that it can be applied to a static integrated data source as well,
-thus benefiting from the advantages of the static approach.
+we do not want to commit our approach to a \emph{static} scenario
+in the sense just described.
+Instead, we want to include the possibility of a \emph{dynamic} scenario,
+where the single graph database that encompasses the distributed repositories
+is just an abstract notion and queries are answered
+\emph{in place} over the original repositories.
+We will extend this discussion in Chapter~\ref{chap:retrieval}.
 
 A feature that we miss in the reports and publications of \gls{SoNAR} is a rigorous definition of admissible queries
 that specifies exactly which queries are in the scope and which are not.

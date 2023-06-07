@@ -37,10 +37,24 @@
         compose final answer from the partial answers
         $\leadsto$ demonstrate this for example query/ies!
       \item
-        discuss pros and cons
-      \item
         don't commit to online scenario (check mentions of \enquote{method} in text and rephrase if necessary)
-    \end{itemize}
+      \item
+        discuss pros and cons; connect to discussion in §\ref{sec:HNA+SoNAR}; reuse:
+        
+        More precisely, while our abstract model will centre around a single data source (graph)
+        that represents the combination of the distributed repositories,
+        our method will abstain from constructing that graph explicitly and, instead,
+        answer queries \enquote{in place} over the original repositories.
+        This way, our approach will not depend on hosting capacities,
+        and it will always have direct access to the current content of the repositories.
+        On the downside, our approach will depend on external web services provided by the repositories,
+        and it will be sensitive to changes in their data models.
+        Our dynamic approach also requires that inconsistencies are resolved
+        a posteriori, i.e., every time a query answer is retrieved.
+        As a final advantage, the dynamic approach is flexible
+        in the sense that it can be applied to a static integrated data source as well,
+        thus benefiting from the advantages of the static approach.
+  \end{itemize}
     %
   \item
     get back to Section~\ref{sec:quality_of_answers}:
