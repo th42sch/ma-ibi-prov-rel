@@ -15,12 +15,16 @@
       \item
         off{}line: 
         
-        data source graph is generated explicitly (using data integration techniques)
+        data source graph is generated explicitly (using data integration techniques, e.g., LD)
         and updated in fixed intervals
                 
         at runtime: provenance query is formulated as a \gls{SPARQL} query and posed against the graph
+        
+        learn from SoNAR insights
+        
+        reduction to SQL? use DB systems
       \item
-        online (preferred!):
+        online (preferred?):
         
         data source graph is implicit; data sources are queried \enquote{on the fly}
         (this is the preferred scenario here; see delineation from SoNAR in §\ref{sec:HNA+SoNAR})
@@ -32,6 +36,10 @@
         potentially iteratively;
         compose final answer from the partial answers
         $\leadsto$ demonstrate this for example query/ies!
+      \item
+        discuss pros and cons
+      \item
+        don't commit to online scenario (check mentions of \enquote{method} in text and rephrase if necessary)
     \end{itemize}
     %
   \item
