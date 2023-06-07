@@ -253,7 +253,7 @@ with their direction reversed.
 Since relations such as \term{creator} are not symmetric,
 direction matters and we use \emph{directed} graphs. 
 Symmetric relations such as \term{relatedEndeavour}
-can be represented via pairs of edges pointing into both directions.
+can be represented via pairs of edges pointing in both directions.
 
 Furthermore, we want to assign a unique name to each node of a graph
 and one or several labels to each node and each edge:
@@ -469,7 +469,7 @@ There are, among others, the following node names and labels:
   \item 
     The edge from the node named \term{Johann\_Hommel} to the node named \term{Valentin\_Thau}
     has the two labels \term{student} and \term{collaborator},
-    and the edge pointing into the converse direction has the labels
+    and the edge pointing in the reverse direction has the labels
     \term{studentOf} and \term{collaborator}.
 \end{itemize}
 %
@@ -910,11 +910,109 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
   \label{fig:example_answer}
 \end{figure}
 
+So far, we have built a model that captures data sources and query patterns such as \exaquery{Q2}.
+In this model, answering queries amounts to finding homomorphisms between graphs.
+The two natural next steps consist in examining the computational properties
+of the problem of finding homomorphisms
+and in extending the model to capture further query patterns.
+We will realise these two steps in the following sections.
 
 % ------------------------------------------------------------------
-\section{Decision Procedures}
+\section{Computational Properties}
 \label{sec:decision_problems}
 \label{sec:decision_procedures}
+\label{sec:computational_properties}
+
+As already indicated, the problem of finding homomorphisms is well-understood in the contexts of
+database theory and classical logic. In particular, the favourable computational properties of this problem
+are exploited in successful database systems. We review these in the following,
+building on fundamental principles of complexity theory \autocite{Arora2009}.
+
+The computation problem of query answering in which we are interested according to our model can be 
+phrased as follows: Given a query and data source, compute all answers.
+More formally:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \hline\rule{0pt}{12pt}%
+    Input:  & a query $G$ and a data source $G'$ over some namespace \namespace \\
+    Output: & $\ans(G,G')$ \\[1pt]
+    \hline
+  \end{tabular}
+\end{center}
+
+For the implementation of a retrieval tool that is designed to answer questions,
+it is crucial to verify that this problem can be solved at all (i.e., is \emph{computable})
+and efficiently so (i.e., is \emph{tractable}).%
+Here, computability means that there is some algorithm
+which, given an arbitrary input $(G,G')$, returns the correct answer set $\ans(G,G')$
+after a finite amount of time.
+Tractability means that there is even an algorithm whose runtime is strongly limited
+depending on the size of its input.
+Usually a \emph{polynomial} upper bound on the amount of time is
+considered sufficient for tractability; that is, the runtime of the algorithm
+is limited by $n^k$, where $n$ is the size of the input (e.g., nodes and edges in the input graphs)
+and $k$ is a constant. Problems for which an algorithm with such guaranteed time bounds exists
+are called \emph{solvable in polynomial time}.
+
+To check whether a computation problem is computable and tractable,
+is it usual to resort to a slightly more abstract level,
+considering the \emph{decision problem} associated to the computation problem.
+Typically, \emph{decidability} (i.e., computability) and tractability of
+the decision problem imply those of the computation problem;
+hence it suffices to consider these.
+
+The associated decision problem additionally considers a candidate output as an input
+and asks whether that candidate is in fact a valid output.
+In the case of our computation problem, the associated decision problem is the following.
+
+\begin{center}
+  \begin{tabular}{ll}
+    \hline\rule{0pt}{12pt}%
+    Input:  & a query $G$ over \namespace, a data source $G'$ over \namespace, \\
+            & a function $h$ from $G$ to $G'$, and a subgraph $G''$ of $G'$ \\[2pt]
+    Output: & \enquote{yes} if $(h,G'') \in \ans(G,G')$; \enquote{no} otherwise \\[1pt]
+    \hline
+  \end{tabular}
+\end{center}
+
+We denote it with \problem{QA}.
+
+\problem{QA} is strongly related to the decision problem associated to
+answering (conjunctive) queries over relational databases.
+This problem has been studied from a computational point of view in seminal papers
+by \textcite{Vardi1982} and \textcite{Chandra1977} with the following main result.
+%
+\begin{theorem}
+  \textup{\autocite{Vardi1982}}~
+  Answers to conjunctive queries over relational databases
+  can be decided in time polynomial with respect to the size of the database.
+\end{theorem}
+%
+This result means that the problem is decidable
+and, furthermore, tractable if the size of the query is neglected.
+Given that queries are typically very small compared to the size of the data,
+tractability under this assumption is sufficient for practical purposes;
+in fact, it is the basis for the success of modern (relational) database engines.
+As a side remark, if this assumption is dropped and the complexity with respect
+to the joint size of both the database and the query is considered,
+then it follows from \citeauthor{Chandra1977}'s \autocite*{Chandra1977}
+results that the problem 
+is intractable (under the usual reasonable complexity-theoretic assumptions).
+
+The strong relationship between our decision problem \problem{QA}
+and the classical problem of answering conjunctive queries%
+\footnote{In more precise terms: both problems are mutually reducible in polynomial time,
+which can be shown very easily using standard knowledge from graph theory and first-order logic.}
+implies decidability and tractability (w.r.t.\ to the size of the data)
+of \problem{QA}:
+%
+\begin{corollary}
+  \problem{QA} is decidable
+  in time polynomial with respect to the size of the data source.
+\end{corollary}
+%
+
 
 \todo[think,inline]{Formulate decision problem, discuss (data) complexity \& algorithms. (Reduction to FO/SQL?)}
 

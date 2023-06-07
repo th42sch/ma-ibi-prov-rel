@@ -448,7 +448,13 @@
 {}  % Theorem head spec (can be left empty, meaning ‘normal’)
 
 \theoremstyle{mydefinition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}{Definition}[chapter]
+%\numberwithin{definition}{chapter}
+
+\theoremstyle{myplain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Theorem}
+
 %\surroundwithmdframed[outerlinewidth=1pt,
 %  innerlinewidth=0pt,
 %  middlelinewidth=0pt,
@@ -459,10 +465,7 @@
   linecolor=black!50,
   innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
   leftline=false,rightline=false
-]{definition}
-\numberwithin{definition}{chapter}
-
-\theoremstyle{myplain}
+]{definition,theorem,corollary}
 
 
 % ===== todonotes styles =====
@@ -516,3 +519,5 @@
 }
 
 \newcommand{\ans}{\textsf{ans}\xspace}
+\newcommand{\problem}[1]{\textsf{#1}}
+\newcommand{\CC}[1]{\textsf{#1}}
