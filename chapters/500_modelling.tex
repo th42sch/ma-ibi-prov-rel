@@ -1450,16 +1450,62 @@ carry over directly.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Answer Variables for Sets of Objects}
 
-Query patterns~\exaquery{3} and~\exaquery{8} include references to \emph{sets} of objects:
+Query pattern~\exaquery{3} contains a reference to a \emph{set} of objects:
 %
 \begin{enumerate}
   \item[\exaquery{3}]
     What are the relationships between the recipients of manifestation $Y$ of work $X$?
 \end{enumerate}
 %
-It is tempting to model~\exaquery{8} according to the basic model,
-as shown in Figure~\ref{fig:modelling_Q8}.
-However, if 
+If we use the substitute information \enquote{ownership} for \enquote{reception},
+then the expected answer to \exaquery{3} is a set of owners,
+together with the relationships between them---%
+or, more precisely, the subgraph of the data source induced by the set of all owners.
+In order to capture this idea,
+our basic model needs to be extended such that 
+query graphs may contain variable nodes that represent sets of objects.
+For the visualisation of query graphs, a new kind of node needs to be added;
+Figure~\ref{fig:modelling_Q8} depicts the graph for \exaquery{3}
+using a boldface letter $x$ for the \emph{set variable} and
+a light pink octagon for the corresponding \emph{set node}.
+The notion of a homomorphism needs to be extended such that
+every set node in the query graph $G$ is mapped to a set of nodes in $G'$,
+under preservation conditions analogous to~\hmph{2} and~\hmph{3}.
+While all these extensions are straightforward,
+their effect on the complexity of query answering is not obvious.
+Since the number of subsets of a set is exponential in the number of its
+elements, it is possible that there is no longer an algorithm
+that requires only polynomial time (with respect to the size of the data).
+This question remains to be investigated.
+
+\begin{figure}[ht]
+  \centering
+%  \begin{tikzpicture}[
+%    >=Latex,baseline=0pt,
+%    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%    every edge/.style={draw=black,thick}
+%  ]
+%    \node [anovar]                  (y2) {\fns\mystrut$y_2$};
+%    \node [ansvar,right=28mm of y2] (x2) {\fns\mystrut$x_2$};
+%
+%    \begin{scope}[%
+%      every node/.style={draw=none,fill=none,inner sep=.2mm},
+%    ]
+%      \path[->]
+%        (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}\mybold{{\boldmath\,:\,$x_3$}}} (x2)
+%      ;
+%        
+%      \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
+%      \node[above=.5mm of x2] ()                 {\fns\term{Person}};
+%    \end{scope}
+%  \end{tikzpicture}
+  ****** TODO ******
+
+  \caption{A graph representing example query pattern \exaquery{8}}
+  \label{fig:modelling_Q8}
+\end{figure}
+
+
 
 \dots
 
