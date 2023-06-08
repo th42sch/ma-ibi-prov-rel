@@ -341,19 +341,22 @@
 \colorlet{ansvar}{yellow!50!white}
 \colorlet{anovar}{orange!30!white}
 
-%\colorlet{Econnred}{red!50}
-%\colorlet{Econnblue}{blue!20}
-%\colorlet{Econngreen}{green!10}
-%\colorlet{Econniso}{black}
-%
-\colorlet{Econnred}{red!7}
-\colorlet{Econnblue}{blue!25}
-\colorlet{Econngreen}{green!50!black}
-\colorlet{Econniso}{white}
+\colorlet{lightgreen}{green!20!white}
 
-\colorlet{ctableone}{white}
-\colorlet{ctabletwo}{lightblue}
-\colorlet{ctablehead}{medblue}
+
+%%\colorlet{Econnred}{red!50}
+%%\colorlet{Econnblue}{blue!20}
+%%\colorlet{Econngreen}{green!10}
+%%\colorlet{Econniso}{black}
+%%
+%\colorlet{Econnred}{red!7}
+%\colorlet{Econnblue}{blue!25}
+%\colorlet{Econngreen}{green!50!black}
+%\colorlet{Econniso}{white}
+%
+%\colorlet{ctableone}{white}
+%\colorlet{ctabletwo}{lightblue}
+%\colorlet{ctablehead}{medblue}
 
 
 %\definecolor{solblue}{HTML}{268BD2}
@@ -411,8 +414,8 @@
 \newcommand{\tikztabtwo}[3][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1.6pt]\mystrut#3\\[-1.5pt]\end{tabular}}
 \newcommand{\tikztabthree}[4][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1.6pt]\mystrut#3\\[-1.6pt]\mystrut#4\\[-1.5pt]\end{tabular}}
 \newcommand{\tikzpb}[3][]{\parbox{#2}{#1{}#3{}#1}}
-\tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm]
-\tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm]
+\tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm,minimum size=6.6mm]
+\tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm,minimum size=8mm]
 
 \newcommand{\tikzinlinenode}[2][]{%
   \begin{tikzpicture}[

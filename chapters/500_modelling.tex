@@ -786,6 +786,7 @@ We therefore need to define a variant of homomorphism that maps queries
 to data sources. This variant is given in the following.
 %
 \begin{definition}
+  \label{def:hmph}
   Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
   and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
   A \emph{homomorphism from $G$ to $G'$} is a map $h : V \to V'$ that satisfies the following properties.
@@ -1004,7 +1005,8 @@ As a side remark, if this assumption is dropped and the complexity with respect
 to the joint size of both the database and the query is considered,
 then it follows from \citeauthor{Chandra1977}'s \autocite*{Chandra1977}
 results that the problem 
-is intractable (under the usual reasonable complexity-theoretic assumptions).
+is intractable (under the usual reasonable complexity-theoretic assumptions)
+already in the presence of binary relations.
 
 The strong relationship between our decision problem \problem{QA}
 and the classical problem of answering conjunctive queries
@@ -1055,6 +1057,266 @@ and which we will expand in Chapter~\ref{chap:retrieval}.
 % ------------------------------------------------------------------
 \section{Discussion of the Basic Model and Extensions}
 \label{sec:modelling_discussion}
+
+In Section~\ref{sec:modelling}, we have developed a basic model
+that is conceptually simple and easy to implement.
+We have shown how the exemplary query pattern \exaquery{2}
+can be modelled, and we have indicated how implementations can be obtained.
+What is missing is a wider analysis of the scope and suitability
+of this model for capturing queries and data sources relevant
+for provenance research.
+It is clear that this analysis cannot be performed comprehensively
+within the scope of a master's thesis.
+However, we can estimate the extent of generality of our model
+by relating it to the exemplary query patterns \exaquery{1}--\exaquery{9}.
+In doing so, we will understand the limitations of the model
+and be able to sketch possible extensions.
+This is the aim of this section.
+
+In the following discussion, we will continue to use \exaquery{1}--\exaquery{9}
+as \emph{patterns}. That is, we will abstain from instantiating the variables $X$ and $Y$
+because the considerations are independent of the specific instantiations.
+As a consequence, the drawn graphs will contain nodes labelled with uppercase letters $X,Y$
+as well as lowercase letters $x,y$ (or similar).
+Only the latter type of nodes represents answer variables and anonymous variables;
+the former represents specific objects, for which $X$ and $Y$ are used as placeholders.
+We continue to distinguish these types of nodes by their shape and colour as in Figure~\ref{fig:graph_for_exa_query2'},
+using blue rectangles for objects, yellow circles for answer variables, and orange diamonds 
+for anonymous variables.
+
+The basic model that we have so far developed captures not just the query pattern \exaquery{2}
+but also \exaquery{4}, as well as \exaquery{1} and \exaquery{5} if the year(s) are left out.
+%More precisely,
+%if we substitute the variable $X$ in \exaquery{1} with \enquote{Les Pensées De Pope} by Alexander Pope (***--***),
+%in \exaquery{4} with the private library of Prince Albert of Saxe-Coburg and Gotha (1819–1861)
+%and in \exaquery{arg1}
+%
+%
+%, the following queries, which are instances of these three patterns
+%(without years) can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
+%%
+%\begin{enumerate}
+%  \item[\exaquery{1$'$}]
+%    Who read \enquote{Les Pensées De Pope} by Alexander Pope,
+%    and in which manifestation?
+%  \item[\exaquery{4$'$}]
+%    Which exemplars from the private library of Prince Albert of Saxe-Coburg and Gotha (1819–1861)
+%    were passed on by Prince Albert to a family member?
+%  \item[\exaquery{5$'$}]
+%    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$?
+%%    between 1933 and 1945?
+%\end{enumerate}
+That is, the following query patterns can be modelled as shown in Figure~\ref{fig:modelling_Q145}
+(the superscript \enquote{{\boldmath $-$}} indicates that the year has been left out).
+%
+\begin{enumerate}
+  \item[\exaquery{1$^-$}]
+    Who read
+    work $X$, and
+    in which manifestation?
+%    and in which year?
+  \item[\exaquery{4\phantom{$^-$}}]
+    Which exemplars from collection $X$ were passed on by its owner to a family member?
+  \item[\exaquery{5$^-$}]
+    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$?
+%    between 1933 and 1945?
+\end{enumerate}
+
+%\newcommand{\tikzexaquery}[1][1]{%
+%  \begin{scope}[%
+%    opacity=#1,fill opacity=#1
+%  ]
+%    \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+%    \node [ansvar,below=14mm of derev]           (x)     {\fns\mystrut$x$};
+%    \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
+%    \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
+%  \end{scope}
+%  
+%  \begin{scope}[%
+%    every node/.style={draw=none,fill=none,inner sep=.2mm},
+%    opacity=#1,fill opacity=#1
+%  ]
+%    \path[->]
+%%      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%%      (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%%      (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%%      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+%      (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+%      (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+%      (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+%      (y)     edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm] {\fns\term{student}} (z)      
+%    ;
+%      
+%    \node[above=.5mm of derev] () {\fns\term{Work}};
+%    \node[left=.5mm of x]      () {\fns\term{Item}};
+%    \node[above right=2mm and -5mm of y]     () {\fns\term{Scientist}};
+%    
+%  \end{scope}
+%}
+%
+\begin{figure}[ht]
+  \centering
+  \begin{tabular}{@{}c@{\hspace*{12mm}}c@{\hspace*{8mm}}c@{}}
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                           (X)  {\fns\mystrut$~~~~X~~~~$};
+      \node [anovar,below=16mm of X]  (y1) {\fns\mystrut$y_1$};
+      \node [ansvar,below=16mm of y1] (x1) {\fns\mystrut$x_1$};
+      \node [anovar,below=16mm of x1] (y2) {\fns\mystrut$y_2$};
+      \node [ansvar,right=22mm of y2] (x2) {\fns\mystrut$x_2$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (X)  edge                    node[right=1mm]          {\fns\term{realization}} (y1)
+          (y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (x1)
+          (x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (y2)
+          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (x2)
+        ;
+          
+        \node[right=.5mm of X]  ()                 {\fns\term{Work}};
+        \node[right=.5mm of y1] ()                 {\fns\term{Expression}};
+        \node[right=.5mm of x1] ()                 {\fns\term{Manifestation}};
+        \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
+        \node[above=.5mm of x2] ()                 {\fns\term{Person}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                          (X)  {\fns\mystrut$~~~~X~~~~$};
+      \node [ansvar,below=22mm of X]                 (x)  {\fns\mystrut$x$};
+      \node [anovar,above right=7.4mm and 20mm of x] (y1) {\fns\mystrut$y_1$};
+      \node [anovar,below right=7.4mm and 20mm of x] (y2) {\fns\mystrut$y_2$};
+      
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (X)  edge                                       node[right=1mm,pos=.4]   {\fns\term{part}}         (x)
+          (x)  edge                                       node[sloped, above=.6mm] {\fns\term{owner}}        (y1)
+          (x)  edge                                       node[sloped, below=.6mm] {\fns\term{owner}}        (y2)
+          (y1) edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm]          {\fns\term{familyMember}} (y2)
+        ;
+          
+        \node[right=.5mm of X] () {\fns\term{Collection}};
+        \node[below=.5mm of x] () {\fns\term{Item}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                          (X) {\fns\mystrut$~~~~X~~~~$};
+      \node [ansvar,below=16mm of X] (x) {\fns\mystrut$x$};
+      \node [right=25mm of x]        (Y) {\fns\mystrut$~~~~Y~~~~$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (X) edge node[right=1mm,pos=.4]   {\fns\term{holds}}    (x)
+          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}} (Y)
+        ;
+          
+        \node[right=.5mm of X] () {\fns\term{Library}};
+        \node[below=.5mm of x] () {\fns\term{Item}};
+        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[4mm]
+    \rule{0pt}{16pt}
+    \exaquery{1$^-$}
+    &
+    \exaquery{4}
+    &
+    \exaquery{5$^-$}
+  \end{tabular}
+    
+  \caption{Graphs representing example query patterns \exaquery{1$^-$},\exaquery{4}, and \exaquery{5$^-$}}
+  \label{fig:modelling_Q145}
+\end{figure}
+
+In order to capture~\exaquery{1} and~\exaquery{5} fully, i.e., include the year of reading in~\exaquery{1}
+or of acquisition in~\exaquery{5},
+it is necessary to extend the model in a way that relationships can have attributes.
+This is straightforward in the graph representation for both graphs and queries, as the attributes can be added to
+the respective edge labels. This is shown in Figure~\ref{fig:attributes_on_relships}
+for the two respective edges of~\exaquery{1} and~\exaquery{5}.
+More formally speaking, the notion of a graph (Definition~\ref{def:ld_graph})
+needs to be extended such that the labelling function \Lmc maps each edge to a set
+that consists not necessarily only of relation names (for relationships without attributes),
+but which may also contain pairs of relation names and literals/objects (for relationships with attributes).
+The notion of a homomorphism (Definition~\ref{def:hmph}) does not need to be changed,
+as the current formulation of Condition~\hmph{3}) continues to ensure that edge labels are preserved.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tabular}{@{}c@{\hspace*{20mm}}c@{}}
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [anovar]                  (y2) {\fns\mystrut$y_2$};
+      \node [ansvar,right=34mm of y2] (x2) {\fns\mystrut$x_2$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}\mybold{:1742}} (x2)
+        ;
+          
+        \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
+        \node[above=.5mm of x2] ()                 {\fns\term{Person}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [ansvar]          (x) {\fns\mystrut$x$};
+      \node [right=37mm of x] (Y) {\fns\mystrut$~~~~Y~~~~$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}\mybold{:1935}} (Y)
+        ;
+          
+        \node[below=.5mm of x] () {\fns\term{Item}};
+        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[4mm]
+    \rule{0pt}{16pt}
+    \exaquery{1}
+    &
+    \exaquery{5}
+  \end{tabular}
+
+  \caption{Capturing attributes on relationships}
+  \label{fig:attributes_on_relships}
+\end{figure}
+
+Via this extension, we have in fact introduced ternary relations: e.g., \term{owner} in \exaquery{1}
+is a relation between items, persons, and literals (year numbers).
+As the computational properties discussed in Section~\ref{sec:computational_properties}
+hold for relations of higher arity as well, this modest extension of the model can be implemented
+along with the basic model.
 
 \todo[think,inline]{Relate this \enquote{machinery} to the example queries. In particular:}
 %
