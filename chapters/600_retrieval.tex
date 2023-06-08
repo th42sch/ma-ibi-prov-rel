@@ -9,11 +9,30 @@
   \item
     data source $=$ union of all available data sources (see §\ref{subsec:data_sources})
   \item
-    online vs.\ off{}line scenario:
+    distinguish \emph{dynamic} and \emph{static} method -- continue discussion
+    from Sections~\ref{subsec:insights_from_SoNAR} and~\ref{sec:computational_properties}
+  \item
+    for each of the two methods, develop/discuss:
     %
     \begin{itemize}
       \item
-        off{}line: 
+        preparatory steps
+      \item
+        QA algorithm (pseudocode?) and possibilities for implementation
+      \item
+        advantages (see below and Section~\ref{subsec:insights_from_SoNAR})
+      \item
+        disadvantages (dito)
+      \item
+        caveats
+    \end{itemize}
+    %
+  \item
+    dynamic vs.\ static method:
+    %
+    \begin{itemize}
+      \item
+        static: 
         
         data source graph is generated explicitly (using data integration techniques, e.g., LD)
         and updated in fixed intervals
@@ -24,7 +43,7 @@
         
         reduction to SQL? use DB systems
       \item
-        online (preferred?):
+        dynamic (preferred??):
         
         data source graph is implicit; data sources are queried \enquote{on the fly}
         (this is the preferred scenario here; see delineation from SoNAR in §\ref{sec:HNA+SoNAR})
@@ -37,7 +56,7 @@
         compose final answer from the partial answers
         $\leadsto$ demonstrate this for example query/ies!
       \item
-        don't commit to online scenario (check mentions of \enquote{method} in text and rephrase if necessary)
+        don't commit to dynamic method (check mentions of \enquote{method}/\enquote{scenario}/\enquote{online}\enquote{off{}line} in text and rephrase if necessary)
       \item
         discuss pros and cons; connect to discussion in §\ref{sec:HNA+SoNAR}; reuse:
         
