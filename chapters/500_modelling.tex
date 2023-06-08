@@ -1084,30 +1084,12 @@ We continue to distinguish these types of nodes by their shape and colour as in 
 using blue rectangles for objects, yellow circles for answer variables, and orange diamonds 
 for anonymous variables.
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{The Basic Model}
+
 The basic model that we have so far developed captures not just the query pattern \exaquery{2}
-but also \exaquery{4}, as well as \exaquery{1} and \exaquery{5} if the year(s) are left out.
-%More precisely,
-%if we substitute the variable $X$ in \exaquery{1} with \enquote{Les Pensées De Pope} by Alexander Pope (***--***),
-%in \exaquery{4} with the private library of Prince Albert of Saxe-Coburg and Gotha (1819–1861)
-%and in \exaquery{arg1}
-%
-%
-%, the following queries, which are instances of these three patterns
-%(without years) can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
-%%
-%\begin{enumerate}
-%  \item[\exaquery{1$'$}]
-%    Who read \enquote{Les Pensées De Pope} by Alexander Pope,
-%    and in which manifestation?
-%  \item[\exaquery{4$'$}]
-%    Which exemplars from the private library of Prince Albert of Saxe-Coburg and Gotha (1819–1861)
-%    were passed on by Prince Albert to a family member?
-%  \item[\exaquery{5$'$}]
-%    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$?
-%%    between 1933 and 1945?
-%\end{enumerate}
-That is, the following query patterns can be modelled as shown in Figure~\ref{fig:modelling_Q145}
-(the superscript \enquote{{\boldmath $-$}} indicates that the year has been left out).
+but also \exaquery{4}, as well as \exaquery{1} and \exaquery{5} if we leave out the year(s) for the moment, i.e.,
+the following query patterns.
 %
 \begin{enumerate}
   \item[\exaquery{1$^-$}]
@@ -1121,7 +1103,13 @@ That is, the following query patterns can be modelled as shown in Figure~\ref{fi
     Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$?
 %    between 1933 and 1945?
 \end{enumerate}
-
+%
+In the case of \exaquery{1}, the relation \term{reads} is most certainly not recorded in provenance entries
+in any bibliographic data source. Therefore, we need to resort to the \emph{substitute information}
+(see Section~\ref{sec:HNA+SoNAR}) provided by the \term{owner} relation.
+Now these two query patterns
+can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
+%(the superscript \enquote{{\boldmath $-$}} indicates that the year has been left out).
 %\newcommand{\tikzexaquery}[1][1]{%
 %  \begin{scope}[%
 %    opacity=#1,fill opacity=#1
@@ -1246,18 +1234,29 @@ That is, the following query patterns can be modelled as shown in Figure~\ref{fi
   \label{fig:modelling_Q145}
 \end{figure}
 
-In order to capture~\exaquery{1} and~\exaquery{5} fully, i.e., include the year of reading in~\exaquery{1}
-or of acquisition in~\exaquery{5},
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Relations with Attributes and Relations of Higher Arity}
+
+The full wording of \exaquery{1} and~\exaquery{5} includes references to years
+as attributes of relationships.
+%
+\begin{enumerate}
+  \item[\exaquery{1}]
+    Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
+    work $X$, in which manifestation and \emph{in which year}?
+  \item[\exaquery{5}]
+    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$
+    \emph{between 1933 and 1945}?
+\end{enumerate}
+%
+In~\exaquery{5}, the year is specified as an attribute of the \term{provider} relation
+while, in~\exaquery{1}, it acts as an additional answer variable that represents
+an attribute of the \term{owner} relation.
+In order to capture~\exaquery{1} and~\exaquery{5} fully,
 it is necessary to extend the model in a way that relationships can have attributes.
 This is straightforward in the graph representation for both graphs and queries, as the attributes can be added to
 the respective edge labels. This is shown in Figure~\ref{fig:attributes_on_relships}
 for the two respective edges of~\exaquery{1} and~\exaquery{5}.
-More formally speaking, the notion of a graph (Definition~\ref{def:ld_graph})
-needs to be extended such that the labelling function \Lmc maps each edge to a set
-that consists not necessarily only of relation names (for relationships without attributes),
-but which may also contain pairs of relation names and literals/objects (for relationships with attributes).
-The notion of a homomorphism (Definition~\ref{def:hmph}) does not need to be changed,
-as the current formulation of Condition~\hmph{3}) continues to ensure that edge labels are preserved.
 
 \begin{figure}[ht]
   \centering
@@ -1268,13 +1267,13 @@ as the current formulation of Condition~\hmph{3}) continues to ensure that edge 
       every edge/.style={draw=black,thick}
     ]
       \node [anovar]                  (y2) {\fns\mystrut$y_2$};
-      \node [ansvar,right=34mm of y2] (x2) {\fns\mystrut$x_2$};
+      \node [ansvar,right=28mm of y2] (x2) {\fns\mystrut$x_2$};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm},
       ]
         \path[->]
-          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}\mybold{:1742}} (x2)
+          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}\mybold{{\boldmath\,:\,$x_3$}}} (x2)
         ;
           
         \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
@@ -1294,7 +1293,7 @@ as the current formulation of Condition~\hmph{3}) continues to ensure that edge 
         every node/.style={draw=none,fill=none,inner sep=.2mm},
       ]
         \path[->]
-          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}\mybold{:1935}} (Y)
+          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}\mybold{\,:\,1935}} (Y)
         ;
           
         \node[below=.5mm of x] () {\fns\term{Item}};
@@ -1312,33 +1311,56 @@ as the current formulation of Condition~\hmph{3}) continues to ensure that edge 
   \label{fig:attributes_on_relships}
 \end{figure}
 
+On the formal side, the notion of a graph (Definition~\ref{def:ld_graph})
+needs to be extended such that the labelling function \Lmc maps each edge to a set
+that consists not necessarily only of relation names (for relationships without attributes),
+but which may also contain pairs of relation names and literals/objects/variables (for relationships with attributes).
+The notion of a homomorphism (Definition~\ref{def:hmph}) does not need to be changed,
+as the current formulation of Condition~\hmph{3} continues to ensure that edge labels are preserved.
+
 Via this extension, we have in fact introduced ternary relations: e.g., \term{owner} in \exaquery{1}
 is a relation between items, persons, and literals (year numbers).
 As the computational properties discussed in Section~\ref{sec:computational_properties}
 hold for relations of higher arity as well, this modest extension of the model can be implemented
 along with the basic model.
 
-\todo[think,inline]{Relate this \enquote{machinery} to the example queries. In particular:}
+Ternary relations are also necessary to model \exaquery{9} (and the supporting data):
 %
-\begin{itemize}
-  \item
-    Comment on Boolean queries if necessary.
-  \item
-    Discuss specific requirements for modelling \exaquery{1} and \exaquery{3}: 
-    %
-    \begin{itemize}
-      \item 
-        \exaquery{1} seems to require answer variables representing sets (the owners)
-        and an appropriate extension of the definition of a homomorphism;
-      \item 
-        the same holds for \exaquery{3}; additionally the answer should include the relationships
-        between the images of the answer variables (the relationships between the owners),
-        i.e., some sort of spanned subgraph
-      \item[$\leadsto$]
-        extensions needed; description or sketch of these and other extensions in the next section
-    \end{itemize}
-    %
-\end{itemize}
+\begin{enumerate}
+  \item[\exaquery{9}]
+    Where did person $X$ acquire exemplars and did they know the previous owners?
+    \todo{check globally: \enquote{exemplar} vs.\ \enquote{item}}
+\end{enumerate}
+%
+In this case, the relation \term{acquires} needs to involve persons, exemplars, and sellers,
+and this constellation can no longer be visualised as a graph in a straightforward way.
+A possible extension is the notion of a \emph{hypergraph} \autocite[§7.1]{Voloshin2009},
+which allows edges of arbitrary arity.
+While the mathematical object can be defined analogously to standard graphs,
+it does no longer lend itself to intuitive visualisations.
+As already mentioned, the notion of a homomorphism and the computational properties
+carry over directly.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Answer Variables for Sets of Objects}
+
+\dots
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Further Extensions}
+
+\dots
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Substitute Information}
+
+\dots
+
+
+
+
+
+\dots
 
 \todo[think,inline]{TODO: Discuss further extensions:}
 %
