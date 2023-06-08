@@ -951,9 +951,15 @@ Tractability means that there is even an algorithm whose runtime is strongly lim
 depending on the size of its input.
 Usually a \emph{polynomial} upper bound on the amount of time is
 considered sufficient for tractability; that is, the runtime of the algorithm
-is limited by $n^k$, where $n$ is the size of the input (e.g., nodes and edges in the input graphs)
-and $k$ is a constant. Problems for which an algorithm with such guaranteed time bounds exists
+is bounded by $c \cdot n^k$, where $n$ is the size of the input (e.g., nodes and edges in the input graphs)
+and $c$ and $k$ are some constants. Problems for which an algorithm with such guaranteed time bounds exists
 are called \emph{solvable in polynomial time}.
+A polynomial time bound on an algorithm provides the guarantee that its runtime as a function of the input size
+increases moderately for all inputs, as opposed to, e.g., an exponential function.
+Therefore, problems with a polynomial-time algorithms are generally considered tractable.
+However, this is still an abstract notion, given that the constants $c$ and $k$ can be arbitrary.
+It remains for practical purposes to find an optimal algorithm with $c$ and $k$ as small as possible,
+and which performs particularly well on those inputs that occur in the application at hand.
 
 In order to check whether a computation problem is computable and tractable,
 is it usual to resort to a slightly more abstract level,
@@ -971,7 +977,7 @@ In the case of our computation problem, the associated decision problem is the f
     \hline\rule{0pt}{12pt}%
     Input:  & a query $G$ over \namespace, a data source $G'$ over \namespace, \\
             & a function $h$ from $G$ to $G'$, and a subgraph $G''$ of $G'$ \\[2pt]
-    Output: & \enquote{yes} if $(h,G'') \in \ans(G,G')$;\quad \enquote{no} otherwise \\[1pt]
+    Output: & \YES if $(h,G'') \in \ans(G,G')$;\quad \NOO otherwise \\[1pt]
     \hline
   \end{tabular}
 \end{center}
@@ -984,12 +990,13 @@ This problem has been studied from a computational point of view in seminal pape
 by \textcite{Vardi1982} and \textcite{Chandra1977} with the following main result.
 %
 \begin{theorem}
+  \label{thm:cplx_CQA}
   \textup{\autocite{Vardi1982}}~
   Answers to conjunctive queries over relational databases
   can be decided in time polynomial with respect to the size of the database.
 \end{theorem}
 %
-This result means that the problem is decidable
+This result means that the decision problem associated with answering conjunctive queries is decidable
 and, furthermore, tractable if the size of the query is neglected.
 Given that queries are typically very small compared to the size of the data,
 tractability under this assumption is sufficient for practical purposes;
@@ -1001,21 +1008,50 @@ results that the problem
 is intractable (under the usual reasonable complexity-theoretic assumptions).
 
 The strong relationship between our decision problem \problem{QA}
-and the classical problem of answering conjunctive queries%
-\footnote{In more precise terms: both problems are mutually reducible in polynomial time,
-which can be shown very easily using standard knowledge from graph theory and first-order logic.}
-implies decidability and tractability (w.r.t.\ to the size of the data)
-of \problem{QA}:
+and the classical problem of answering conjunctive queries
+implies that Theorem~\ref{thm:cplx_CQA} carries over directly to \problem{QA}.
+In more precise terms, both problems are mutually \emph{reducible} in polynomial time,
+which can be shown very easily using standard knowledge from graph theory and first-order logic.
+Without immersing into the technical definitions for standard notions in complexity theory,
+we note that polynomial-time reducibility between the two problems
+means that an algorithm for one of them
+cqn be turned into an algorithm for the other which uses only a polynomial
+(i.e., relatively small) additional amount of time.
+
+We therefore obtain the following decidability and complexity result
+for our problem \problem{QA}.
 %
 \begin{corollary}
+  \label{cor:cplx_QA}
   \problem{QA} is decidable
   in time polynomial with respect to the size of the data source.
 \end{corollary}
 %
-
-
-\todo[think,inline]{Formulate decision problem, discuss (data) complexity \& algorithms. (Reduction to FO/SQL?)}
-
+As a consequence of Corollary~\ref{cor:cplx_QA}, 
+there is an algorithm for deciding \problem{QA},
+and thus also for computing the answer set $\ans(G,G')$
+for a given query $G$ and data source $G'$ in time polynomial
+with respect to the size of $G'$.
+The polynomial time bound ensures that the growth of runtime
+as a function of the input size is guaranteed to be bounded by a function
+of moderate growth, independently of the specific input.
+However, as explained above,
+the existence of a polynomial-time algorithm does not immediately imply that there
+is an algorithm that performs well for the purposes of our envisaged application,
+which is the implementation of a retrieval system.
+Fortunately, the close relationship to conjunctive query answering over databases
+comes to our aid: 
+given the existence of a (very straightforward) polynomial-time reduction
+of \problem{QA} to conjunctive query answering,
+%there are two options for obtaining an algorithm that is efficient in practice.
+\problem{QA} can be solved by either re-implementing one of the existing
+successful polynomial-time algorithms for conjunctive query answering
+or by implementing the reduction feeding its output directly into a relational database system,
+using the latter as a \enquote{black box}.
+These two options correspond well to the
+distinction between an online and off{}line scenario
+that we have indicated in Section~\ref{subsec:insights_from_SoNAR},
+and on which we will elaborate further in Chapter~\ref{chap:retrieval}.
 
 % ------------------------------------------------------------------
 \section{Discussion of the Modelling Decisions}
