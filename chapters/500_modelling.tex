@@ -1146,116 +1146,196 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
 %
 \begin{figure}[ht]
   \centering
-  \begin{tabular}{@{}c@{\hspace*{8mm}}c@{\hspace*{4mm}}c@{\hspace*{8mm}}c@{}}
-    \begin{tikzpicture}[
-      >=Latex,baseline=0pt,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
-      every edge/.style={draw=black,thick}
-    ]
-      \node                           (X)  {\fns\mystrut$~~~~X~~~~$};
-      \node [anovar,below=16mm of X]  (y1) {\fns\mystrut$y_1$};
-      \node [ansvar,below=16mm of y1] (x1) {\fns\mystrut$x_1$};
-      \node [anovar,below=16mm of x1] (y2) {\fns\mystrut$y_2$};
-      \node [ansvar,right=22mm of y2] (x2) {\fns\mystrut$x_2$};
-  
-      \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm},
-      ]
-        \path[->]
-          (X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (y1)
-          (y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (x1)
-          (x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (y2)
-          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (x2)
-        ;
-          
-        \node[right=.5mm of X]  ()                 {\fns\term{Work}};
-        \node[right=.5mm of y1] ()                 {\fns\term{Expression}};
-        \node[right=.5mm of x1] ()                 {\fns\term{Manifestation}};
-        \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
-        \node[above=.5mm of x2] ()                 {\fns\term{Person}};
-      \end{scope}
-    \end{tikzpicture}
-    &
-    \begin{tikzpicture}[
-      >=Latex,baseline=0pt,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
-      every edge/.style={draw=black,thick}
-    ]
-      \node                                          (X)  {\fns\mystrut$~~~~X~~~~$};
-      \node [ansvar,below=22mm of X]                 (x)  {\fns\mystrut$x$};
-      \node [anovar,above right=7.4mm and 20mm of x] (y1) {\fns\mystrut$y_1$};
-      \node [anovar,below right=7.4mm and 20mm of x] (y2) {\fns\mystrut$y_2$};
-      
-      \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm},
-      ]
-        \path[->]
-          (X)  edge                                       node[right=1mm,pos=.4]   {\fns\term{part}}         (x)
-          (x)  edge                                       node[sloped, above=.6mm] {\fns\term{owner}}        (y1)
-          (x)  edge                                       node[sloped, below=.6mm] {\fns\term{owner}}        (y2)
-          (y1) edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm]          {\fns\term{familyMember}} (y2)
-        ;
-          
-        \node[right=.5mm of X] () {\fns\term{Collection}};
-        \node[below=.5mm of x] () {\fns\term{Item}};
-      \end{scope}
-    \end{tikzpicture}
-    &
-    \begin{tikzpicture}[
-      >=Latex,baseline=0pt,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
-      every edge/.style={draw=black,thick}
-    ]
-      \node                          (X) {\fns\mystrut$~~~~X~~~~$};
-      \node [ansvar,below=16mm of X] (x) {\fns\mystrut$x$};
-      \node [right=25mm of x]        (Y) {\fns\mystrut$~~~~Y~~~~$};
-  
-      \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm},
-      ]
-        \path[->]
-          (X) edge node[right=1mm,pos=.4]   {\fns\term{holds}}    (x)
-          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}} (Y)
-        ;
-          
-        \node[right=.5mm of X] () {\fns\term{Library}};
-        \node[below=.5mm of x] () {\fns\term{Item}};
-        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
-      \end{scope}
-    \end{tikzpicture}
-    &
-    \begin{tikzpicture}[
-      >=Latex,baseline=0pt,
-      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
-      every edge/.style={draw=black,thick}
-    ]
-      \node [ansvar]                 (x) {\fns\mystrut$x$};
-      \node [anovar,below=16mm of x] (y) {\fns\mystrut$y$};
-      \node [right=25mm of y]        (X) {\fns\mystrut$~~~~X~~~~$};
-  
-      \begin{scope}[%
-        every node/.style={draw=none,fill=none,inner sep=.2mm},
-      ]
-        \path[->]
-          (x) edge[shorten >= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{holds}} (y)
-          (y) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}} (X)
-        ;
-          
-        \node[right=.5mm of x] () {\fns\term{Library}};
-        \node[below=.5mm of y] () {\fns\term{Item}};
+%  \begin{tabular}{@{}c@{\hspace*{8mm}}c@{\hspace*{4mm}}c@{\hspace*{8mm}}c@{}}
+%    \begin{tikzpicture}[
+%      >=Latex,baseline=0pt,
+%      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%      every edge/.style={draw=black,thick}
+%    ]
+%      \node                           (X)  {\fns\mystrut$~~~~X~~~~$};
+%      \node [anovar,below=16mm of X]  (y1) {\fns\mystrut$y_1$};
+%      \node [ansvar,below=16mm of y1] (x1) {\fns\mystrut$x_1$};
+%      \node [anovar,below=16mm of x1] (y2) {\fns\mystrut$y_2$};
+%      \node [ansvar,right=22mm of y2] (x2) {\fns\mystrut$x_2$};
+%  
+%      \begin{scope}[%
+%        every node/.style={draw=none,fill=none,inner sep=.2mm},
+%      ]
+%        \path[->]
+%          (X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (y1)
+%          (y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (x1)
+%          (x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (y2)
+%          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (x2)
+%        ;
+%          
+%        \node[right=.5mm of X]  ()                 {\fns\term{Work}};
+%        \node[right=.5mm of y1] ()                 {\fns\term{Expression}};
+%        \node[right=.5mm of x1] ()                 {\fns\term{Manifestation}};
+%        \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
+%        \node[above=.5mm of x2] ()                 {\fns\term{Person}};
+%      \end{scope}
+%    \end{tikzpicture}
+%    &
+%    \begin{tikzpicture}[
+%      >=Latex,baseline=0pt,
+%      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%      every edge/.style={draw=black,thick}
+%    ]
+%      \node                                          (X)  {\fns\mystrut$~~~~X~~~~$};
+%      \node [ansvar,below=22mm of X]                 (x)  {\fns\mystrut$x$};
+%      \node [anovar,above right=7.4mm and 20mm of x] (y1) {\fns\mystrut$y_1$};
+%      \node [anovar,below right=7.4mm and 20mm of x] (y2) {\fns\mystrut$y_2$};
+%      
+%      \begin{scope}[%
+%        every node/.style={draw=none,fill=none,inner sep=.2mm},
+%      ]
+%        \path[->]
+%          (X)  edge                                       node[right=1mm,pos=.4]   {\fns\term{part}}         (x)
+%          (x)  edge                                       node[sloped, above=.6mm] {\fns\term{owner}}        (y1)
+%          (x)  edge                                       node[sloped, below=.6mm] {\fns\term{owner}}        (y2)
+%          (y1) edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm]          {\fns\term{familyMember}} (y2)
+%        ;
+%          
+%        \node[right=.5mm of X] () {\fns\term{Collection}};
+%        \node[below=.5mm of x] () {\fns\term{Item}};
+%      \end{scope}
+%    \end{tikzpicture}
+%    &
+%    \begin{tikzpicture}[
+%      >=Latex,baseline=0pt,
+%      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%      every edge/.style={draw=black,thick}
+%    ]
+%      \node                          (X) {\fns\mystrut$~~~~X~~~~$};
+%      \node [ansvar,below=16mm of X] (x) {\fns\mystrut$x$};
+%      \node [right=25mm of x]        (Y) {\fns\mystrut$~~~~Y~~~~$};
+%  
+%      \begin{scope}[%
+%        every node/.style={draw=none,fill=none,inner sep=.2mm},
+%      ]
+%        \path[->]
+%          (X) edge node[right=1mm,pos=.4]   {\fns\term{holds}}    (x)
+%          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}} (Y)
+%        ;
+%          
+%        \node[right=.5mm of X] () {\fns\term{Library}};
+%        \node[below=.5mm of x] () {\fns\term{Item}};
 %        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
-      \end{scope}
-    \end{tikzpicture}
-    \\[4mm]
-    \rule{0pt}{16pt}
-    \exaquery{1$^-$}
-    &
-    \exaquery{4}
-    &
-    \exaquery{5$^-$}
-    &
-    \exaquery{8}
-  \end{tabular}
+%      \end{scope}
+%    \end{tikzpicture}
+%    &
+%    \begin{tikzpicture}[
+%      >=Latex,baseline=0pt,
+%      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%      every edge/.style={draw=black,thick}
+%    ]
+%      \node [ansvar]                 (x) {\fns\mystrut$x$};
+%      \node [anovar,below=16mm of x] (y) {\fns\mystrut$y$};
+%      \node [right=25mm of y]        (X) {\fns\mystrut$~~~~X~~~~$};
+%  
+%      \begin{scope}[%
+%        every node/.style={draw=none,fill=none,inner sep=.2mm},
+%      ]
+%        \path[->]
+%          (x) edge[shorten >= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{holds}} (y)
+%          (y) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}} (X)
+%        ;
+%          
+%        \node[right=.5mm of x] () {\fns\term{Library}};
+%        \node[below=.5mm of y] () {\fns\term{Item}};
+%%        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
+%      \end{scope}
+%    \end{tikzpicture}
+%    \\[4mm]
+%    \rule{0pt}{16pt}
+%    \exaquery{1$^-$}
+%    &
+%    \exaquery{4}
+%    &
+%    \exaquery{5$^-$}
+%    &
+%    \exaquery{8}
+%  \end{tabular}
+  \begin{tikzpicture}[
+    >=Latex,baseline=0pt,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    % ----- Q1- main nodes
+    \node                             (Q1X)  {\fns\mystrut$~~~~X~~~~$};
+    \node [anovar,below=16mm of Q1X]  (Q1y1) {\fns\mystrut$y_1$};
+    \node [ansvar,below=16mm of Q1y1] (Q1x1) {\fns\mystrut$x_1$};
+    \node [anovar,below=16mm of Q1x1] (Q1y2) {\fns\mystrut$y_2$};
+    \node [ansvar,right=22mm of Q1y2] (Q1x2) {\fns\mystrut$x_2$};
+
+    % ----- Q4 main nodes
+    \node [right=44mm of Q1X]                        (Q4X)  {\fns\mystrut$~~~~X~~~~$};
+    \node [ansvar,below=22mm of Q4X]                 (Q4x)  {\fns\mystrut$x$};
+    \node [anovar,above right=7.4mm and 20mm of Q4x] (Q4y1) {\fns\mystrut$y_1$};
+    \node [anovar,below right=7.4mm and 20mm of Q4x] (Q4y2) {\fns\mystrut$y_2$};
+
+    % ----- Q5- main nodes
+    \node [right=56mm of Q4X]        (Q5X) {\fns\mystrut$~~~~X~~~~$};
+    \node [ansvar,below=14mm of Q5X] (Q5x) {\fns\mystrut$x$};
+    \node [right=25mm of Q5x]        (Q5Y) {\fns\mystrut$~~~~Y~~~~$};
+
+    % ----- Q8 main nodes
+    \node [ansvar,below=34mm of Q5X] (Q8x) {\fns\mystrut$x$};
+    \node [anovar,below=14mm of Q8x] (Q8y) {\fns\mystrut$y$};
+    \node [right=25mm of Q8y]        (Q8X) {\fns\mystrut$~~~~X~~~~$};
+
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm},
+    ]
+      \path[->]
+        % ----- Q1- edges
+        (Q1X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (Q1y1)
+        (Q1y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (Q1x1)
+        (Q1x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (Q1y2)
+        (Q1y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (Q1x2)
+
+        % ----- Q4 edges
+        (Q4X)  edge                                       node[right=1mm,pos=.4]   {\fns\term{part}}         (Q4x)
+        (Q4x)  edge                                       node[sloped, above=.6mm] {\fns\term{owner}}        (Q4y1)
+        (Q4x)  edge                                       node[sloped, below=.6mm] {\fns\term{owner}}        (Q4y2)
+        (Q4y1) edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm]          {\fns\term{familyMember}} (Q4y2)
+
+        % ----- Q5- edges
+        (Q5X) edge node[right=1mm,pos=.4]   {\fns\term{holds}}    (Q5x)
+        (Q5x) edge node[above=.6mm,pos=.46] {\fns\term{provider}} (Q5Y)
+
+        % ----- Q8 edges
+        (Q8x) edge[shorten >= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{holds}} (Q8y)
+        (Q8y) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}} (Q8X)
+      ;
+        
+      % ----- Q1- node labels
+      \node[right=.5mm of Q1X]  ()                 {\fns\term{Work}};
+      \node[right=.5mm of Q1y1] ()                 {\fns\term{Expression}};
+      \node[right=.5mm of Q1x1] ()                 {\fns\term{Manifestation}};
+      \node[below right=-.5mm and .5mm of Q1y2] () {\fns\term{Item}};
+      \node[above=.5mm of Q1x2] ()                 {\fns\term{Person}};
+
+      % ----- Q4 node labels
+      \node[right=.5mm of Q4X] () {\fns\term{Collection}};
+      \node[below=.5mm of Q4x] () {\fns\term{Item}};
+
+      % ----- Q5- node labels
+      \node[right=.5mm of Q5X] () {\fns\term{Library}};
+      \node[below=.5mm of Q5x] () {\fns\term{Item}};
+      \node[below=.5mm of Q5Y] () {\fns\term{ResponsibleEntity}};
+
+      % ----- Q8 node labels
+      \node[right=.5mm of Q8x] () {\fns\term{Library}};
+      \node[below=.5mm of Q8y] () {\fns\term{Item}};
+      
+      % ----- labels with query numbers
+      \node[below=6mm of $(Q1y2)!.6!(Q1x2)$] () {\exaquery{1$^-$}};
+      \node[below=7mm of $(Q4x)!.4!(Q4y2)$]  () {\exaquery{4}};
+      \node[below=7mm of $(Q5x)!.4!(Q5Y)$]   () {\exaquery{5$^-$}};
+      \node[below=6mm of $(Q8y)!.4!(Q8X)$]   () {\exaquery{8}};
+    \end{scope}
+  \end{tikzpicture}
     
   \caption{Graphs representing example query patterns \exaquery{1$^-$},\exaquery{4}, \exaquery{5$^-$}, and \exaquery{8}}
   \label{fig:modelling_Q145}
@@ -1327,11 +1407,11 @@ for the two respective edges of~\exaquery{1} and~\exaquery{5}.
         \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
       \end{scope}
     \end{tikzpicture}
-    \\[4mm]
-    \rule{0pt}{16pt}
+    \\
+%    \rule{0pt}{16pt}
     \exaquery{1}
     &
-    \exaquery{5}
+    \exaquery{5}~~~~~
   \end{tabular}
 
   \caption{Capturing attributes on relationships}
