@@ -1102,6 +1102,8 @@ the following query patterns.
   \item[\exaquery{5$^-$}]
     Which items from the holdings of library $X$ were acquired from bookseller $Y$?
 %    between 1933 and 1945?
+  \item[\exaquery{8}\phantom{$^-$}]
+    Which libraries own the items once owned by person $X$?
 \end{enumerate}
 %
 In the case of \exaquery{1}, the relation \term{reads} is most certainly not recorded in provenance entries
@@ -1144,7 +1146,7 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
 %
 \begin{figure}[ht]
   \centering
-  \begin{tabular}{@{}c@{\hspace*{12mm}}c@{\hspace*{8mm}}c@{}}
+  \begin{tabular}{@{}c@{\hspace*{8mm}}c@{\hspace*{4mm}}c@{\hspace*{8mm}}c@{}}
     \begin{tikzpicture}[
       >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -1160,7 +1162,7 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
         every node/.style={draw=none,fill=none,inner sep=.2mm},
       ]
         \path[->]
-          (X)  edge                    node[right=1mm]          {\fns\term{realization}} (y1)
+          (X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (y1)
           (y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (x1)
           (x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (y2)
           (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (x2)
@@ -1221,6 +1223,29 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
         \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
       \end{scope}
     \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [ansvar]                 (x) {\fns\mystrut$x$};
+      \node [anovar,below=16mm of x] (y) {\fns\mystrut$y$};
+      \node [right=25mm of y]        (X) {\fns\mystrut$~~~~X~~~~$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (x) edge[shorten >= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{holds}} (y)
+          (y) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}} (X)
+        ;
+          
+        \node[right=.5mm of x] () {\fns\term{Library}};
+        \node[below=.5mm of y] () {\fns\term{Item}};
+%        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
+      \end{scope}
+    \end{tikzpicture}
     \\[4mm]
     \rule{0pt}{16pt}
     \exaquery{1$^-$}
@@ -1228,9 +1253,11 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
     \exaquery{4}
     &
     \exaquery{5$^-$}
+    &
+    \exaquery{8}
   \end{tabular}
     
-  \caption{Graphs representing example query patterns \exaquery{1$^-$},\exaquery{4}, and \exaquery{5$^-$}}
+  \caption{Graphs representing example query patterns \exaquery{1$^-$},\exaquery{4}, \exaquery{5$^-$}, and \exaquery{8}}
   \label{fig:modelling_Q145}
 \end{figure}
 
@@ -1342,6 +1369,17 @@ carry over directly.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Answer Variables for Sets of Objects}
+
+Query patterns~\exaquery{3} and~\exaquery{8} include references to \emph{sets} of objects:
+%
+\begin{enumerate}
+  \item[\exaquery{3}]
+    What are the relationships between the recipients of manifestation $Y$ of work $X$?
+\end{enumerate}
+%
+It is tempting to model~\exaquery{8} according to the basic model,
+as shown in Figure~\ref{fig:modelling_Q8}.
+However, if 
 
 \dots
 
