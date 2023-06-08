@@ -77,8 +77,8 @@ As Hakelberg \autocite*[§4]{Hakelberg2016} explains,
 libraries even within the same network often use diverse representations
 for the same type of provenance entry, and the differences are considerable:
 for example, some \gls{GBV} libraries record their provenance entries
-in data fields at the bibliographic level,
-while others use the exemplar level.
+in data fields at the bibliographic level (\enquote{Titelebene}, describing a manifestation),
+while others use the exemplar level (\enquote{Exemplarebene}, describing held exemplars of the manifestation).
 These deviations lead to large differences in the presentation
 of the holdings in the online catalogue,
 which hinders the retrieval of relevant items and historical holdings.
@@ -153,18 +153,18 @@ which were obtained in personal communication with researchers.%
     What are the relationships between the recipients of manifestation $Y$ of work $X$?
 %    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
   \item[\exaquery{4}]
-    Which exemplars from a collection $X$ were passed on by its owner to a family member?
+    Which items from a collection $X$ were passed on by its owner to a family member?
   \item[\exaquery{5}]
-    Which exemplars from the holdings of library $X$ were acquired from bookseller $Y$
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$
     between 1933 and 1945?
   \item[\exaquery{6}]
     Who participated in the sale of collection $X$?
   \item[\exaquery{7}]
-    Via which paths did exemplars from collection $X$ enter library $Y$?
+    Via which paths did items from collection $X$ enter library $Y$?
   \item[\exaquery{8}]
-    Which libraries own the exemplars once owned by person $X$?
+    Which libraries own the items once owned by person $X$?
   \item[\exaquery{9}]
-    Where did person $X$ acquire exemplars and did they know the previous owners?
+    Where did person $X$ acquire items and did they know the previous owners?
 \end{enumerate}
 %
 In these examples, variables $X,Y$ are used as placeholders for arbitrary works,
@@ -209,7 +209,7 @@ An important difference between Queries~\exaquery{2} and~\exaquery{3} is the fol
 While \exaquery{2} fixes a relation between persons (\enquote{student})
 and asks for works in whose context this relation has instances,
 \exaquery{3} does not fix a particular relation but asks for the entire context of
-the work or a manifestation or exemplar thereof.
+the manifestation.
 
 Query \exaquery{4} is very similar in structure to \exaquery{2}.
 Query \exaquery{5} is important in the context of research on Nazi loot.
