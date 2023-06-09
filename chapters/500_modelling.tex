@@ -1283,7 +1283,7 @@ but which may also contain pairs of relation names and literals/objects/variable
 The notion of a homomorphism (Definition~\ref{def:hmph}) does not need to be changed,
 as the current formulation of Condition~\hmph{3} continues to ensure that edge labels are preserved.
 
-Via this extension, we have in fact introduced ternary relations: e.g., \term{owner} in \exaquery{1}
+Binary relations with attributes are in fact a special case of ternary relations: e.g., \term{owner} in \exaquery{1}
 is a relation between items, persons, and literals (year numbers).
 As the computational properties discussed in Section~\ref{sec:computational_properties}
 hold for relations of higher arity as well, this modest extension of the model can be implemented
@@ -1304,6 +1304,19 @@ While the mathematical object can be defined analogously to standard graphs,
 it does no longer lend itself to intuitive visualisations.
 As already mentioned, the notion of a homomorphism and the computational properties
 carry over directly.
+
+Another use case for relations of higher arity is the inclusion of metadata provenance,
+i.e., information on the origins of a unit of data (such as a concept membership or relationship).
+In our scenario, it makes sense to distinguish two kinds of
+metadata provenance. The first is information provided by some data sources such as the \gls{GND}
+(see Section~\ref{subsec:SoNAR_reports}), referring to original data sources one whose grounds
+the respective data unit was entered.
+The second is the a reference to the data source from which the data unit entered
+the federated data source $G'$ against which the query $G$ is evaluated
+(see Sections~\ref{subsec:insights_from_SoNAR} and~\ref{subsec:data_provenance}).
+Both kinds of provenance information are reflected only in the data source
+and not in the query, and they play a role only in the retrieved answers,
+enabling users to consult the original data sources for further research.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Answer Variables for Sets of Objects}
@@ -1395,12 +1408,6 @@ This question remains to be investigated.
 \todo[think,inline]{TODO: Discuss further extensions:}
 %
 \begin{itemize}
-  \item
-    relations of arbitrary arity
-  \item
-    data provenance
-  \item
-    literals (\enquote{year of publication})
   \item
     attributes on relationships:
     %
