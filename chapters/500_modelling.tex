@@ -1201,6 +1201,7 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Relations with Attributes and Relations of Higher Arity}
+\label{subsec:attributes+n-ary}
 
 The full wording of \exaquery{1} and~\exaquery{5} includes references to years
 as attributes of relationships.
@@ -1426,6 +1427,7 @@ There are some types of information that should be captured in our model
 or by our general approach,
 given the specifics of the example query patterns
 and the insights from the SoNAR project.
+We briefly discuss them and their effects on modelling.
 
 \paragraph{Substitute information.}
 
@@ -1478,7 +1480,33 @@ have to build this small subgraph into their query.
 Supporting users in constructing queries is again a matter of user interaction,
 not of the modelling.
 
-\paragraph{Temporal information.}
+\paragraph{Temporal constraints.}
+
+In Subsection~\ref{subsec:attributes+n-ary}, we have already sketched one way of handling
+temporal information in our model of queries and data graphs.
+However, there are more complex kinds of temporal information,
+as can be seen, for example, in the full versions of Query Pattern~\exaquery{5}:
+%
+\begin{enumerate}
+  \item[\exaquery{5}]
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$
+    \emph{between 1933 and 1945}?
+\end{enumerate}
+%
+In order to capture this query, the syntax for query graphs needs to be extended in a way that
+constraints can be formulated as attributes of relationships,
+for example, 
+by replacing the edge label \enquote{\term{provider}\mybold{\,:\,1935}}
+on the right-hand side of Figure~\ref{fig:attributes_on_relships}
+with \enquote{\term{provider}\mybold{\,:\,$\geqslant$\,1933 \& $\leqslant$\,1945}.}
+
+\enquote{passed on to}
+
+The notion of a homomorphism needs to be adapted to preserve these constraints,
+which is rather straightforward.
+The computational properties need to be reexamined, but it is realistic to hope
+that they do not deteriorate because constraints of this kind are also part of
+modern database query languages such as SQL.
 
 \dots
 
