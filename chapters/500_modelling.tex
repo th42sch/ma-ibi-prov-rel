@@ -1493,42 +1493,78 @@ as can be seen, for example, in the full versions of Query Pattern~\exaquery{5}:
     \emph{between 1933 and 1945}?
 \end{enumerate}
 %
-In order to capture this query, the syntax for query graphs needs to be extended in a way that
+In order to capture this query, the syntax for labels in query graphs needs to be extended in a way that
 constraints can be formulated as attributes of relationships,
 for example, 
 by replacing the edge label \enquote{\term{provider}\mybold{\,:\,1935}}
 on the right-hand side of Figure~\ref{fig:attributes_on_relships}
 with \enquote{\term{provider}\mybold{\,:\,$\geqslant$\,1933 \& $\leqslant$\,1945}.}
 
-\enquote{passed on to}
+Temporal constraints can also be useful for modelling relations
+that are not explicit in the data, such as \enquote{passed on to}, which occurs in~\exaquery{2} and~\exaquery{4}.
+Our approach so far was to consider each pair of owners as a candidate for an instance of this relation,
+with the risk of returning a large number of spurious answers
+(see also the discussion in Section~\ref{sec:manual_vs_automated}).
+With temporal constraints, it is possible to narrow down the spurious answers:
+if dates of ownership are given, then a pair $(y_1,y_2)$ of owners
+is a candidate only if the ownership of $y_1$ predates that of $y_2$.
+This can be expressed using attributes of the \term{owner} relation
+and a \enquote{$<$} constraint between the attributes of the \term{owner} labels
+of the edges pointing to $y_1$ and $y_2$.
 
-The notion of a homomorphism needs to be adapted to preserve these constraints,
-which is rather straightforward.
-The computational properties need to be reexamined, but it is realistic to hope
+In order to incorporate such constraints,
+the first step should be to devise a rigorous definition of the form of constraints that are allowed.
+The next step is to find a useful form of visualisation.
+Finally, the notion of a homomorphism needs to be extended to preserve constraints,
+which is quite straightforward.
+The computational properties need to be re-examined, but it is realistic to hope
 that they do not deteriorate because constraints of this kind are also part of
-modern database query languages such as SQL.
+modern database query languages such as SQL \autocite{SQL}.
 
-\dots
+\paragraph{Disjunctions in labels.}
+
+It is conceivable that a researcher wants to formulate a query that contains a disjunction,
+for example, the following variant of \exaquery{4}.
+%
+\begin{enumerate}
+  \item[\exaquery{4$'$}]
+    Which items from a collection $X$ were passed on by its owner to \emph{a child or a student}?
+\end{enumerate}
+%
+This example uses a disjunction of the relations \term{child} and \term{student}.
+It should be quite straightforward to extend the syntax for labels in query graphs
+and the notion of a homomorphism in order to represent and preserve this kind of constraints.
+The computational properties are not affected by adding disjunction,
+as Vardi's result (Theorem~\ref{thm:cplx_CQA}) applies in fact to arbitrary queries formulated in first-order logic.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Problematic Queries}
 
-\dots
+So far, we have not addressed Query Patterns~\exaquery{6} and~\exaquery{7} in this chapter:
+%
+\begin{enumerate}
+  \item[\exaquery{6}]
+    Who participated in the sale of collection $X$?
+  \item[\exaquery{7}]
+    Via which paths did items from collection $X$ enter library $Y$?
+\end{enumerate}
+%
+The reason is that they contain complex features which need to be resolved outside the scope of our model:
+The participation in a sale (\exaquery{6}) is a very general notion that needs to be specified
+\emph{before} formulating the query and attempting to match it to the available data.
+The paths of ownership featuring in \exaquery{7} are a complex notion that cannot be captured by a simple query;
+instead, the query should simply ask for owners, and the paths need to be reconstructed manually
+\emph{after} the retrieval system has returned the answers.
 
-
-In contrast to Requirements \SonarR{016}--\SonarR{018},
-most of the other requirements that 
-we listed in Section~\ref{subsec:SoNAR_reports}
-because they relate to the topic of this thesis
-are of a rather exploratory nature
-(in particular, \SonarR{029}, \SonarR{030}, and \SonarR{061}).
-They are therefore outside the scope of our model for query answering.
-The issue of exploration should be dealt with in a separate
+We also have not yet discussed the requirements identified by the SoNAR report
+and listed in Section~\ref{subsec:SoNAR_reports},
+other than \SonarR{016}--\SonarR{018}.
+Most of these remaining requirements are of a rather exploratory nature
+(in particular, \SonarR{029}, \SonarR{030}, and \SonarR{061}),
+and they therefore need to be discussed apart from the topic of modelling.
+The topic of exploration should be dealt with in a separate
 thesis or paper.
 
-
-
-\dots
 
 \todo[think,inline]{TODO: Discuss further extensions:}
 %
