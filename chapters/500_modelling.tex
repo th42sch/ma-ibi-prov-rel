@@ -1427,7 +1427,9 @@ or by our general approach,
 given the specifics of the example query patterns
 and the insights from the SoNAR project.
 
-The first type is that of \mybold{substitute information}, which was discussed
+\paragraph{Substitute information.}
+
+This type of information was discussed
 in the SoNAR report \autocite{Fangerau2022}, see Section~\ref{subsec:SoNAR_reports}.
 As we have already mentioned in several places in this chapter.
 Query Patterns~\exaquery{1}--\exaquery{9} use several relationships
@@ -1460,10 +1462,14 @@ because, depending on the ontology language used,
 query answering is not guaranteed to retain its favourable computational properties
 in the presence of ontologies \autocite{Lutz2016,Xiao2018,Barcelo2019}.
 
-\mybold{Complex relationships} have already been mentioned in
-Sections~\ref{subsec:insights_from_SoNAR} and~\ref{sec:manual_vs_automated}.
+\paragraph{Complex relationships.}
+
+Relationships between two objects that cannot be described using a single relation name
+have already been mentioned as \enquote{indirect relationships}
+in the context of SoNAR (Section~\ref{sec:HNA+SoNAR})
+and in our discussion of manual versus automated query answering (Section~\ref{sec:manual_vs_automated}).
 For example, the relationship \enquote{$P_1$ and $P_2$ are students of the same scholar}
-between two persons $P_1$ and $P_2$ is not explicit in the data.
+between two persons $P_1$ and $P_2$ does not correspond to a single relation.
 Instead, it is represented in the data graph 
 via two \term{student}-edges that point from the nodes representing $P_1$ and $P_2$
 to a unique node representing some other person (the scholar).
@@ -1471,6 +1477,8 @@ Whenever a user wants to query such a complex relationship, they will
 have to build this small subgraph into their query.
 Supporting users in constructing queries is again a matter of user interaction,
 not of the modelling.
+
+\paragraph{Temporal information.}
 
 \dots
 
