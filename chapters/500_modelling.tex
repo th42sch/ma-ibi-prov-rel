@@ -1373,13 +1373,25 @@ then the expected answer to \exaquery{3} is a set of owners,
 together with the relationships between them---%
 or, more precisely, the subgraph of the data source induced by the set of all owners.
 In order to capture this idea,
-our basic model needs to be extended such that 
-query graphs may contain variable nodes that represent sets of objects.
-For the visualisation of query graphs, a new kind of node needs to be added;
-Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}
-using an overlined $x$ for the \emph{set variable} and
-a yellow octagon for the corresponding \emph{set node}.
-The notion of a homomorphism needs to be extended such that
+our basic model needs to be extended by \emph{set variables} representing sets of objects
+and \emph{set nodes} corresponding to set variables.
+In the case of \exaquery{3}, the set node acts nearly as an answer variable
+because the query asks for the relationships between the set of owners.
+In order to distinguish set variables and nodes from ordinary variables and nodes in the visualisation,
+we use overlined letters and octagonal shapes.
+Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}.
+
+Query pattern \exaquery{Q9} (see above) also requires a set variable
+that represents the \enquote{previous owners}. In contrast to \exaquery{3},
+the query does not ask for the relationships between the objects in that set
+but for the relationships from these objects to person $X$.
+These relationships are automatically included in each induced subgraph that is part of a query answer,
+and they need to be evaluated manually by the user
+in order to answer the yes/no question involving the relationship \term{know},
+which is very likely not recorded explicitly in data sources.
+
+In order to capture set variables,
+the notion of a homomorphism needs to be extended such that
 every set node in the query graph $G$ is mapped to a set of nodes in $G'$,
 under preservation conditions analogous to~\hmph{2} and~\hmph{3}.
 While all these extensions are straightforward,
