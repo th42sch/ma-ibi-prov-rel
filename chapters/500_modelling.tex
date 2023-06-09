@@ -1204,24 +1204,29 @@ can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
 
 The full wording of \exaquery{1} and~\exaquery{5} includes references to years
 as attributes of relationships.
+In the case of \exaquery{5}, we restrict ourselves to a variant that names
+a specific year rather than an interval.
+We will get back to intervals in Subsection~\ref{subsec:further_information}.
+That is, we consider the following two query patterns (with the temporal reference highlighted).
 %
 \begin{enumerate}
-  \item[\exaquery{1}]
+  \item[\exaquery{1\phantom{$^\star$}}]
     Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
     work $X$, in which manifestation and \emph{in which year}?
-  \item[\exaquery{5}]
+  \item[\exaquery{5$^\star$}]
     Which items from the holdings of library $X$ were acquired from bookseller $Y$
-    \emph{between 1933 and 1945}?
+%    \emph{between 1933 and 1945}?
+    \emph{in 1935}?
 \end{enumerate}
 %
-In~\exaquery{5}, the year is specified as an attribute of the \term{provider} relation
+In~\exaquery{5$^\star$}, the year is specified as an attribute of the \term{provider} relation
 while, in~\exaquery{1}, it acts as an additional answer variable that represents
 an attribute of the \term{owner} relation.
-In order to capture~\exaquery{1} and~\exaquery{5} fully,
+In order to capture~\exaquery{1} and~\exaquery{5$^\star$} fully,
 it is necessary to extend the model in a way that relationships can have attributes.
 This is straightforward in the graph representation for both graphs and queries, as the attributes can be added to
 the respective edge labels. This is shown in Figure~\ref{fig:attributes_on_relships}
-for the two respective edges of~\exaquery{1} and~\exaquery{5}.
+for the two respective edges of~\exaquery{1} and~\exaquery{5$^\star$}.
 
 \begin{figure}[ht]
   \centering
@@ -1269,7 +1274,7 @@ for the two respective edges of~\exaquery{1} and~\exaquery{5}.
 %    \rule{0pt}{16pt}
     \exaquery{1}
     &
-    \exaquery{5}~~~~~
+    \exaquery{5$^\star$}~~~~~
   \end{tabular}
 
   \caption{Capturing attributes on relationships}
@@ -1413,6 +1418,57 @@ The computational properties are unaffected because
 query answering with unlabelled edges can be reduced to the basic query answering problem
 by adding a fresh relation name to all unlabelled edges in $G'$ and all edges in $G$.
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Further Types of Information}
+\label{subsec:further_information}
+
+There are some types of information that should be captured in our model
+or by our general approach,
+given the specifics of our example query patterns
+and the insights from the SoNAR project.
+
+The first type is that of \mybold{substitute information}, which occurred
+in the SoNAR report \autocite{Fangerau2022}, see Section~\ref{subsec:SoNAR_reports}.
+As we have already mentioned in several places in this chapter.
+Query Patterns~\exaquery{1}--\exaquery{9} use several relationships
+that are typically not recorded in data sources explicitly, such as
+\enquote{read}, \enquote{recipient of}, \enquote{passed on to},
+\enquote{once owned}, or \enquote{knows}.
+Furthermore, \exaquery{4} and \exaquery{2$'$}
+use the relation \enquote{family member} and the concept \enquote{scientist},
+which are superordinate to terms that are used in data sources
+(such as \enquote{child} or \enquote{astronomer}).
+
+Whenever one of these terms occurs in a query,
+the answer set will inevitably be empty.
+This problem cannot be addressed at the level of the modelling,
+but rather at the levels of (a) the interaction between user and retrieval system
+or (b) the retrieval method.
+Option~(a) refers to way the system supports users in formulating their queries.
+Independently of the problem of missing relations or concepts, users should be able to 
+select terms from the supply of terms available in the data source(s).
+If a term that the user wants to use is missing, then the user has no other choice than
+to select an alternative \enquote{substitute} term.
+In this case, the user should be made aware of the effect of overapproximation
+described in Section~\ref{sec:quality_of_answers}.
+Option~(b) refers to using semantic technologies such as ontologies
+in the retrieval method (and of course in the support for formulating queries).
+Given that ontologies are generally useful in data integration \autocite[§12]{Doan2012},
+it would be promising to include them in our method.
+From the modelling perspective, it remains to proceed with caution
+because, depending on the ontology language used,
+query answering is not guaranteed to retain its favourable computational properties
+in the presence of ontologies \autocite{Xiao2018}.
+
+
+\dots
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Problematic Queries}
+
+\dots
+
+
 In contrast to Requirements \SonarR{016}--\SonarR{018},
 most of the other requirements that 
 we listed in Section~\ref{subsec:SoNAR_reports}
@@ -1422,18 +1478,6 @@ are of a rather exploratory nature
 They are therefore outside the scope of our model for query answering.
 The issue of exploration should be dealt with in a separate
 thesis or paper.
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Further Extensions}
-
-\dots
-
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Substitute Information}
-
-\dots
-
-
 
 
 
