@@ -1390,7 +1390,7 @@ and they need to be evaluated manually by the user
 in order to answer the yes/no question involving the relationship \term{know},
 which is very likely not recorded explicitly in data sources.
 
-In order to capture set variables,
+In order to capture set variables in our definition of query answers,
 the notion of a homomorphism needs to be extended such that
 every set node in the query graph $G$ is mapped to a set of nodes in $G'$,
 under preservation conditions analogous to~\hmph{2} and~\hmph{3}.
@@ -1400,6 +1400,18 @@ Since the number of subsets of a set is exponential in the number of its
 elements, it is possible that there is no longer an algorithm
 that requires only polynomial time (with respect to the size of the data).
 This question remains to be investigated.
+
+Finally, when our basic model is extended with set variables,
+it can express Requirements \SonarR{016}--\SonarR{018} from the 
+SoNAR report \autocite{Fangerau2022}, which are listed in Section~\ref{subsec:SoNAR_reports},
+as queries.
+The only additional feature required is the use of unlabelled edges in queries
+in order to capture the (deliberately) unspecified relation \enquote{connected to}.
+That addition is minor: homomorphisms simply need to be required to map unlabelled
+edges in the query graph $G'$ to arbitrary edges in the data source graph $G$.
+The computational properties are unaffected because 
+query answering with unlabelled edges can be reduced to the basic query answering problem
+by adding a fresh relation name to all unlabelled edges in $G'$ and all edges in $G$.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Further Extensions}
