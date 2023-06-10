@@ -144,7 +144,7 @@ In the dynamic setting, where the graph is implicit in this collection of reposi
 it is necessary that the details of accessing each single repository
 have been implemented.
 In the static setting, the graph needs to be built from the repositories
-and stored in memory, in a database system, or on some suitable storage medium.
+and stored in memory, in \pgls{RDBMS}, or on some suitable storage medium.
 As a final step, a list of terms (objects, concepts, relations) available in the graph
 needs to be compiled. Ideally, each term should be annotated with the data source(s)
 from which it originates, in order to trace it back for disambiguation and
@@ -188,9 +188,44 @@ Graphical SQL query builders exist in the form of online tools or standalone app
 \autocite[e.g.,][]{VisualSQL,SQLeo}, see also the reviews on dedicated webpages
 \autocite[e.g.,][]{ChartioVisualSQL,FinOnlBestVisualQueryBuilders}.
 
-
 % ...............................
 \paragraph{Query Processing.}
+
+In the Query Processing Phase, the system evaluates the query against the
+graph that represents the combination of repositories.
+In the technical terms of our model, the system finds all homomorphisms from the query graph
+to the data graph and stores them along with the induced subgraphs.
+
+In the static setting, where the data graph has been built and stored during the
+configuration phase, the system has full control over the data.
+Concerning the implementation of query answering,
+the static setting leaves several options:
+the most ambitious one is certainly the implementation of a dedicated new
+algorithm, which inevitably requires extensive optimisations in order to perform
+well on large amounts of data.
+A second option is the re-implementation of existing algorithms
+for query answering in \glspl{RDBMS}, exploiting the strong relationship
+between our query answering problem and the classical query answering problem
+(see Section~\ref{sec:computational_properties}).
+This \enquote{glass-box} approach to reusing existing implementations promises
+full control over the algorithm and thus allows optimisations tailored
+towards our specific query answering problem.
+Furthermore, numerous implementations are available \autocite[cf.][]{WikiSQLRDBMSs}.
+However, the downside is that a highly optimised, and thus highly complex,
+codebase needs to be adapted to our retrieval system, which is a
+highly non-trivial task. In addition, not all systems make their code freely available.
+A third option is the use of an existing \gls{RDBMS} as a \enquote{black box},
+which requires the storage of the data graph as a database in the Configuration Phase,
+the translation of each query into an SQL query,
+the invocation of the database engine,
+and the retranslation of the retrieved set of tuples
+into an answer set according to our formalism, i.e.,
+the reconstruction of homomorphisms and subgraphs from those tuples.
+The implementation effort is restricted to realising these translations,
+but it is not possible to add specific optimisations.
+
+In the dynamic setting, \dots
+
 
 \dots
 
