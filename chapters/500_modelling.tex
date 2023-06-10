@@ -293,9 +293,9 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 
 \newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
 \newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
-\newcommand{\tikzexagraphMinusCopernicus}[1][]{%
+\newcommand{\tikzexagraphMinusCopernicus}[3][]{%
   \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
-  \node [text width=\derevnode,below=24mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+  \node [text width=\derevnode,below=25mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
   \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
   \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
   
@@ -313,8 +313,8 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 %      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
 %      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
 %      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
-      ($(work1.270)+(-0.08,0)$)   edge node[pos=.3,left=.2mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
-      ($(item1.90)+(0.08,0)$)     edge node[pos=.7,right=.2mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
+      ($(work1.270)+(-0.08,0)$)   edge node[pos=#2,left=.2mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
+      ($(item1.90)+(0.08,0)$)     edge node[pos=#3,right=.2mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
       
       ($(item1.0)+(0,0.4)$)      edge node[pos=.5,sloped, above=.4mm] {\fns\term{owner}}   ($(person2.180)+(0,0.08)$)
       ($(person2.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{ownerOf}} ($(item1.0)+(0,0.24)$)
@@ -333,8 +333,8 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
     
   \end{scope}      
 }%
-\newcommand{\tikzexagraph}[1][]{%
-  \tikzexagraphMinusCopernicus[#1]
+\newcommand{\tikzexagraph}[3][]{%
+  \tikzexagraphMinusCopernicus[#1]{#2}{#3}
 
   \node [text width=\copernode,above right=4mm and 45mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
 
@@ -358,7 +358,7 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
     every edge/.style={draw=black,thick}
   ]
-    \tikzexagraph
+    \tikzexagraph{.5}{.5}
   \end{tikzpicture}
   
   \caption{A labelled directed graph that represents data
@@ -539,9 +539,9 @@ can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}
     opacity=#1,fill opacity=#1
   ]
     \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-    \node [ansvar,below=14mm of derev]           (x)     {\fns\mystrut$x$};
-    \node [anovar,above right=6.4mm and 20mm of x] (y)     {\fns\mystrut$y$};
-    \node [anovar,below right=6.4mm and 20mm of x] (z)     {\fns\mystrut$z$};
+    \node [ansvar,below=17mm of derev]           (x)     {\fns\mystrut$x$};
+    \node [anovar,above right=6.0mm and 20mm of x] (y)     {\fns\mystrut$y$};
+    \node [anovar,below right=6.0mm and 20mm of x] (z)     {\fns\mystrut$z$};
   \end{scope}
   
   \begin{scope}[%
@@ -824,11 +824,21 @@ to the graph from Figure~\ref{fig:example_graph}.
     every edge/.style={densely dashed,draw=black!70,thick}
   ]
     \path[->]
-      (derev) edge[out= 20,in=160]               node[below=.6mm]         {\fns$h$} (work1)
-      (x)     edge[out=270,in=200]               node[above=.4mm]         {\fns$h$} (item1)
-      (y)     edge[out= 30,in=150,looseness=.19] node[above=.4mm,pos=.25] {\fns$h$} (person2)
-      (z)     edge[out=340,in=200,looseness=.8]  node[above=.4mm,pos=.60] {\fns$h$} (person3)
+%      (derev) edge[out= 20,in=160]               node[below=.6mm]         {\fns$h$} (work1)
+%      (x)     edge[out=270,in=200]               node[above=.4mm]         {\fns$h$} (item1)
+%      (y)     edge[out= 30,in=150,looseness=.19] node[above=.4mm,pos=.25] {\fns$h$} (person2)
+%      (z)     edge[out=340,in=200,looseness=.8]  node[above=.4mm,pos=.60] {\fns$h$} (person3)
+      (derev) edge                               node[above=.4mm,pos=.56] {\fns$h$} (work1)
+      (y.0)   edge[shorten <= -1.5pt]            node[above=.4mm,pos=.16] {\fns$h$} ($(person2.north west)!(y.0)!(person2.south west)$)
     ;
+    
+    \draw[->,densely dashed,draw=black!70,thick,rounded corners=2mm]
+      (x.south) |- node[above=.4mm,pos=.835] {\fns$h$} (item1.194)
+    ; 
+
+    \draw[->,densely dashed,draw=black!70,thick,rounded corners=2mm]
+      ($(z.south) + (0, 1.5pt)$) |- node[above=.4mm,pos=.60] {\fns$h$} (person3.196)
+    ; 
   \end{scope}
 }
 
@@ -840,11 +850,11 @@ to the graph from Figure~\ref{fig:example_graph}.
     every edge/.style={draw=black,thick}
   ]
     \tikzexaquery
-    \tikzexagraph[right=69mm of derev]
+    \tikzexagraph[right=69mm of derev]{.28}{.72}
     \tikzhmph      
   \end{tikzpicture}
   %  
-  \caption{An example homomorphism}
+  \caption{A homomorphism from \exaquery{2$'$} to the graph from Figure~\ref{fig:example_graph}}
   \label{fig:example_hmph}
 \end{figure}
 
@@ -898,15 +908,11 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
     every edge/.style={draw=black,thick}
   ]
     \tikzexaquery[.5]
-    \tikzexagraphMinusCopernicus[right=69mm of derev]
+    \tikzexagraphMinusCopernicus[right=69mm of derev]{.28}{.72}
     \tikzhmph
   \end{tikzpicture}
-  %  
-  \todo[defer,inline]{Use straight lines (with 90° angles) for all edges? see URLs in comments here}
-  % https://tex.stackexchange.com/questions/478165/how-to-draw-tikz-paths-composed-only-of-horizontal-vertical-and-diagonal-segmen (LAST ANSWER)
-  % https://github.com/Qrrbrbirlbel/tikz-extensions
-  % https://tex.stackexchange.com/questions/45347/vertical-and-horizontal-lines-in-pgf-tikz
-  \caption{An example answer consisting of the homomorphism $h$ and the graph $G''$ on the right-hand side}
+  %
+  \caption{An answer consisting of the homomorphism $h$ and the graph $G''$ on the right-hand side}
   \label{fig:example_answer}
 \end{figure}
 
