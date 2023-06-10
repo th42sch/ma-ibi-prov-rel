@@ -22,16 +22,29 @@ programming paradigms, languages, libraries, or data structures;
 instead, it represents a high-level specification
 for a detailed future implementation.
 
-Our method will consist of a \emph{preparatory phase} that
-needs to be carried out before users can interact with the system,
-and a \emph{runtime phase} that consists of three subphases, which are
-traversed consecutively and, ideally, in an iterative way.
-We describe these phases in Section~\ref{sec:phases}.
+In the discussion of the insights from the \gls{SoNAR} project
+in Section~\ref{subsec:insights_from_SoNAR},
+we have suggested a distinction between a dynamic and a static setting.
+The method that we are going to develop should be flexible
+and support both settings.
+For this purpose, we make this distinction more explicit.
+The \emph{static setting} resembles the setting used in the SoNAR project:
+a large uniform data source \emph{(graph)} is constructed
+from the various identified data sources \emph{(repositories)},
+using a uniform data model and that integrates the heterogeneous data models
+of the repositories in some way. This graph is 
+used as the sole source for computing query answers.
+In contrast, the \emph{dynamic setting} foregoes
+the explicit construction of a uniform graph and instead
+regards a collection of remote repositories as a representation of that
+graph. In order to answer a query, the system identifies
+suitable repositories, computes partial answers using the repositories' interfaces,
+and composes the final answer from the partial answers.
 
-We have already broached the distinction between a dynamic and a static setting
-in the discussion of the insights from the \gls{SoNAR} project
-in Section~\ref{subsec:insights_from_SoNAR}. 
-We will take a closer look at these two settings in Section~\ref{sec:dynamic_vs_static}.
+Our method will consist of two main phases, the second of which is divided
+into three subphases.
+We describe these phases in Section~\ref{sec:phases}.
+In Section~\ref{sec:dynamic_vs_static}, we take a closer look at the two settings.
 Finally, we will discuss several aspects of the system's interaction with its users
 in Section~\ref{sec:user_interaction}.
 
@@ -39,10 +52,10 @@ in Section~\ref{sec:user_interaction}.
 \section{The Main Phases}
 \label{sec:phases}
 
-\newlength{\mainphases}\settowidth{\mainphases}{\fns \textbf{Preparatory Phase}~}%
+\newlength{\mainphases}\settowidth{\mainphases}{\fns \textbf{Configuration Phase}~}%
 \newlength{\subphases}\settowidth{\subphases}{\fns Answer Presentation~}%
 %\begin{figure}[ht]
-\begin{wrapfigure}[15]{o}{5.2cm}
+\begin{wrapfigure}[16]{o}{5.2cm}
   \centering
   \begin{tikzpicture}[
     >=Latex,
@@ -59,12 +72,9 @@ in Section~\ref{sec:user_interaction}.
       \node [below=10mm of QP] (AP) {\fns\mystrut Answer Presentation};
     \end{scope}
 
-%    % separate node for 'Runtime Phase'
-%    \node [above=10mm of QF,fill=none,draw=none] (rp) {\fns\mystrut\textbf{Runtime Phase}};
-%
     % frames for the 2 main phases
     \begin{scope}[
-      every node/.append style={text width=\mainphases,align=center,fill=none}
+      every node/.append style={fill=none}
     ]      
       \node [fit={($(QF.north west) + (-0.3, 1.0)$) ($(AP.south east) + (0.7, -0.55)$)},inner sep=0mm] (RPF) {};
       \node [fit={($(QF.north west) + (-0.3, 1.5)$) ($(QF.north east) + (0.7, 2.1)$)},inner sep=0mm]  (PPF) {};
@@ -75,7 +85,7 @@ in Section~\ref{sec:user_interaction}.
       every node/.append style={draw=none,fill=none}
     ]      
       
-      \node [right=0mm of PPF.west]                     (PP) {\fns\mystrut\textbf{Preparatory Phase}};
+      \node [right=0mm of PPF.west]                     (PP) {\fns\mystrut\textbf{Configuration Phase}};
       \node [below right=0mm and 0mm of RPF.north west] (RP) {\fns\mystrut\textbf{Runtime Phase}};
     \end{scope}
 
@@ -100,24 +110,47 @@ in Section~\ref{sec:user_interaction}.
 \end{wrapfigure}
 %\end{figure}
 
-As already indicated, we distinguish between a \emph{preparatory phase}
-and a \emph{runtime phase}.
-The latter is divided into three subphases as shown in Figure~\ref{fig:method_phases}.
-In the \emph{query formulation} phase, the system supports the user 
+
+Our method consists of a \emph{Configuration Phase}, which
+needs to be carried out before users can interact with the system,
+and a \emph{Runtime Phase}, where the actual user interaction takes place.
+The latter is divided into three subphases as shown in Figure~\ref{fig:method_phases},
+which are traversed consecutively.
+In the \emph{Query Formulation} phase, the system supports the user 
 in constructing their query.
-In the \emph{query processing} phase, the system evaluates the query
+In the \emph{Query Processing} phase, the system evaluates the query
 and computes answers.
-In the \emph{answer presentation} phase, the system allows the user to
+In the \emph{Answer Presentation} phase, the system allows the user to
 navigate through the computed answers.
-Since the explorative approach was highlighted
-in the context of the \gls{SoNAR} scenario (see Section~\ref{subsec:SoNAR_reports}),
+Given the significance of an explorative approach to historical research
+(see Section~\ref{subsec:SoNAR_reports}),
 it is very likely that the answers presented by the system will 
 result in the user wanting to reformulate their original query.
 In fact, query answers can be seen as one means of support
 for formulating a query in the first place.
-For this reason, we prefer to view the runtime phase as an iterative process,
-which we indicate via the looping arrow in Figure~\ref{fig:method_phases}.
+For this reason, we prefer to understand the Runtime Phase as an iterative process,
+which we indicate by the looping arrow in Figure~\ref{fig:method_phases}.
 
+We now describe these phases in more detail.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Configuration Phase}
+
+The Configuration Phase consists of the steps that need to be taken
+in order for the system to be able to interact with the user in the runtime phase.
+The first step is the selection of data sources that should be incorporated.
+This choice can 
+
+\dots
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Runtime Phase}
+
+The Runtime Phase is the phase in which the system receives queries from the user,
+computes answers, and presents them to the user. It is thus divided into
+three subphases.
+
+\dots
 
 
 
