@@ -172,6 +172,12 @@ integrated lookup functionality, i.e., the entry for a system
 in the original repository could be displayed in the system
 without switching to another application.
 
+In the dynamic setting, it is possible to let the user
+restrict the selection of repositories and thus the list of available terms.
+This initial step is not useful in the static setting
+because the graph encompasses all repositories selected in the configuration phases,
+and a recomputation would certainly consume too much time.
+
 If ternary relations or relations of higher arity play a significant role,
 then a visualisation is no longer feasible, as explained in Section~\ref{subsec:attributes+n-ary}.
 In this case, it is possible to resort to a (technical and non-graphical)
@@ -182,13 +188,6 @@ Graphical SQL query builders exist in the form of online tools or standalone app
 \autocite[e.g.,][]{VisualSQL,SQLeo} and are reviewed on dedicated webpages
 \autocite[e.g.,][]{ChartioVisualSQL}.
 
-In the dynamic setting, it is possible to let the user
-restrict the selection of repositories and thus the list of available terms.
-This initial step is not useful in the static setting
-because the graph encompasses all repositories selected in the configuration phases,
-and a recomputation would certainly consume too much time.
-
-\dots
 
 % ...............................
 \paragraph{Query Processing.}
