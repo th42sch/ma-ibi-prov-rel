@@ -1,11 +1,60 @@
 % !TeX spellcheck = en_GB
 % =================================================================
-\chapter{Automated Retrieval of Provenance Relationships}
+%\chapter{Automated Retrieval of Provenance Relationships}
+\chapter{A Method for Retrieving Provenance Relationships}
 \label{chap:retrieval}
+\label{chap:method}
+
+In the previous chapter, 
+we have developed a model for answering provenance queries.
+It is the vision of this thesis that, ultimately,
+this model is implemented 
+in a retrieval system
+that answers provenance queries conforming to our model.
+The primary user group for that system consists of provenance researchers
+and historians who want to investigate, for example, the history of
+items and collections or the social networks of historically important figures.
+
+In this chapter, we design a method that serves
+as a the general basis for a retrieval system.
+This method abstracts away from specific details such as 
+programming paradigms, languages, libraries, or data structures;
+instead, it represents a high-level specification
+for a detailed future implementation.
+
+Our method will consist of a \emph{preparatory phase} that
+needs to be carried out before users can interact with the system,
+and a \emph{runtime phase} that consists of three subphases, which are
+traversed consecutively and, ideally, in an iterative way.
+We describe these phases in Section~\ref{sec:phases}.
+
+We have already broached the distinction between a dynamic and a static setting
+in \ref{***}. 
+We will take a closer look at these two settings in Section~\ref{sec:dynamic_vs_static}.
+Finally, we will discuss several aspects of the system's interaction with its users
+in Section~\ref{sec:user_interaction}.
+
+% -------------------------------------------------------------------
+\section{The Main Phases}
+\label{sec:phases}
+
+\dots
+
+% -------------------------------------------------------------------
+\section{Dynamic versus Static Setting}
+\label{sec:dynamic_vs_static}
+
+\dots
+
+% -------------------------------------------------------------------
+\section{User Interaction Aspects}
+\label{sec:user_interaction}
+
+\dots
+
+
 
 \begin{itemize}
-  \item
-    develop method for answering queries in the model just defined
   \item
     data source $=$ union of all available data sources (see §\ref{subsec:data_sources})
   \item
