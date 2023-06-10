@@ -135,6 +135,7 @@ We now describe these phases in more detail.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Configuration Phase}
+\label{subsec:configuration_phase}
 
 The Configuration Phase consists of the steps that need to be taken
 in order for the system to be able to interact with the user in the Runtime Phase.
@@ -224,10 +225,26 @@ the reconstruction of homomorphisms and subgraphs from those tuples.
 The implementation effort is restricted to realising these translations,
 but it is not possible to add specific optimisations.
 
-In the dynamic setting, \dots
-
-
-\dots
+In the dynamic setting, where the data graph is implicit,
+the system needs to interact with the repositories in real time via their interfaces.
+For this purpose, it is important to keep track of the repository (or repositories)
+from which each term originates, as indicated in Subsection~\ref{subsec:configuration_phase}.
+Using this kind of provenance information, the query needs to be decomposed into
+smaller queries, and each of these needs to be answered against the respective repository.
+The obtained answers need to be combined to a answer set for the original query.
+Although the abstract description of this procedure sounds very simple,
+at least two parts of it require a substantial amount of work:
+First, it remains to find a rigorous definition of a decomposition and re-composition
+that provides the guarantee that the answer set obtained via this procedure 
+coincides with the definition of an answer set with respect to the abstract notion
+of a data graph.
+Second, the evaluation of the smaller queries
+requires either a uniform standard (such as \gls{SPARQL}, see Section~\ref{subsec:LOD_basic_concepts})
+or a dedicated algorithm for each single repository and data format.
+%
+%In both settings, 
+%
+%Section~\ref{subsec:further_information}
 
 % ...............................
 \paragraph{Answer Presentation.}
