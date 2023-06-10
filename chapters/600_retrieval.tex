@@ -20,7 +20,7 @@ as a the general basis for a retrieval system.
 This method abstracts away from specific details such as 
 programming paradigms, languages, libraries, or data structures;
 instead, it represents a high-level specification
-for a detailed future implementation.
+for future implementations.
 
 In the discussion of the insights from the \gls{SoNAR} project
 in Section~\ref{subsec:insights_from_SoNAR},
@@ -137,11 +137,17 @@ We now describe these phases in more detail.
 \subsection{Configuration Phase}
 
 The Configuration Phase consists of the steps that need to be taken
-in order for the system to be able to interact with the user in the runtime phase.
-The first step is the selection of data sources that should be incorporated.
-This choice can 
-
-\dots
+in order for the system to be able to interact with the user in the Runtime Phase.
+The first step is the selection of repositories that are available 
+throughout the Runtime Phase.
+In the dynamic setting, where the graph is implicit in this collection of repositories,
+it is necessary that the details of accessing each single repository
+have been implemented.
+In the static setting, the graph needs to be built from the repositories
+and stored in memory, in a database system, or on some suitable storage medium.
+As a final step, a list of terms (objects, concepts, relations) available in the graph
+needs to be compiled. Ideally, each term should be annotated with the data source(s)
+from which it originates.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Runtime Phase}
@@ -150,13 +156,26 @@ The Runtime Phase is the phase in which the system receives queries from the use
 computes answers, and presents them to the user. It is thus divided into
 three subphases.
 
+% ...............................
+\paragraph{Query Formulation.}
+
+\dots
+
+% ...............................
+\paragraph{Query Processing.}
+
+\dots
+
+% ...............................
+\paragraph{Answer Presentation.}
+
 \dots
 
 
 
 
 % -------------------------------------------------------------------
-\section{Dynamic versus Static Setting}
+\section{The Dynamic versus the Static Setting}
 \label{sec:dynamic_vs_static}
 
 \dots
