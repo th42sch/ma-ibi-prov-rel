@@ -55,11 +55,11 @@ in Section~\ref{sec:user_interaction}.
 \newlength{\mainphases}\settowidth{\mainphases}{\fns \textbf{Configuration Phase}~}%
 \newlength{\subphases}\settowidth{\subphases}{\fns Answer Presentation~}%
 %\begin{figure}[ht]
-\begin{wrapfigure}[16]{o}{5.2cm}
+\begin{wrapfigure}[16]{o}{5.0cm}
   \centering
   \begin{tikzpicture}[
     >=Latex,
-    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightgreen,thick,inner sep=1.5mm},
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=white,thick,inner sep=1.5mm},
     every edge/.style={draw=black,thick}
   ]
     
@@ -74,7 +74,8 @@ in Section~\ref{sec:user_interaction}.
 
     % frames for the 2 main phases
     \begin{scope}[
-      every node/.append style={fill=none}
+      on background layer,
+      every node/.append style={fill=lightgreen}
     ]      
       \node [fit={($(QF.north west) + (-0.3, 1.0)$) ($(AP.south east) + (0.7, -0.55)$)},inner sep=0mm] (RPF) {};
       \node [fit={($(QF.north west) + (-0.3, 1.5)$) ($(QF.north east) + (0.7, 2.1)$)},inner sep=0mm]  (PPF) {};
