@@ -313,23 +313,23 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 %      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
 %      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
 %      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
-      ($(work1.270)+(-0.08,0)$)   edge node[pos=#2,left=.2mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
-      ($(item1.90)+(0.08,0)$)     edge node[pos=#3,right=.2mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
+      ($(work1.270)+(-0.08,0)$)   edge node[pos=#2,left=.5mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
+      ($(item1.90)+(0.08,0)$)     edge node[pos=#3,right=.5mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
       
-      ($(item1.0)+(0,0.4)$)      edge node[pos=.5,sloped, above=.4mm] {\fns\term{owner}}   ($(person2.180)+(0,0.08)$)
-      ($(person2.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{ownerOf}} ($(item1.0)+(0,0.24)$)
+      ($(item1.0)+(0,0.4)$)      edge node[pos=.5,sloped, above=.7mm] {\fns\term{owner}}   ($(person2.180)+(0,0.08)$)
+      ($(person2.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{ownerOf}} ($(item1.0)+(0,0.24)$)
 
-      ($(item1.0)+(0,-0.24)$)     edge node[pos=.5,sloped, above=.4mm] {\fns\term{owner}}   ($(person3.180)+(0,0.08)$)
-      ($(person3.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{ownerOf}} ($(item1.0)+(0,-0.4)$)
+      ($(item1.0)+(0,-0.24)$)     edge node[pos=.5,sloped, above=.7mm] {\fns\term{owner}}   ($(person3.180)+(0,0.08)$)
+      ($(person3.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{ownerOf}} ($(item1.0)+(0,-0.4)$)
       
-      ($(person2.270)+(-0.08,0)$) edge node[pos=.46,left=.2mm]         {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} ($(person3.90)+(-0.08,0)$)
-      ($(person3.90)+(0.08,0)$)   edge node[pos=.54,right=.2mm]        {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}}  ($(person2.270)+(0.08,0)$)
+      ($(person2.270)+(-0.08,0)$) edge node[pos=.46,left=.5mm]         {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} ($(person3.90)+(-0.08,0)$)
+      ($(person3.90)+(0.08,0)$)   edge node[pos=.54,right=.5mm]        {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}}  ($(person2.270)+(0.08,0)$)
     ;
       
-    \node[above=.5mm of work1]   () {\fns\term{Work}};
-    \node[below=.5mm of item1]   () {\fns\term{Item}};
-    \node[right=.5mm of person2] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Mathematician}}};
-    \node[right=.5mm of person3] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Astronomer}}};
+    \node[above=.7mm of work1]   () {\fns\term{Work}};
+    \node[below=.7mm of item1]   () {\fns\term{Item}};
+    \node[right=.7mm of person2] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Mathematician}}};
+    \node[right=.7mm of person3] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Astronomer}}};
     
   \end{scope}      
 }%
@@ -342,11 +342,11 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
     every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
   ]
     \path[->]
-      ($(work1.0)+(0,0.08)$)      edge node[pos=.5,sloped, above=.4mm] {\fns\term{creator}}   ($(person1.180)+(0,0.08)$)
-      ($(person1.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.4mm] {\fns\term{creatorOf}} ($(work1.0)+(0,-0.08)$)
+      ($(work1.0)+(0,0.08)$)      edge node[pos=.5,sloped, above=.7mm] {\fns\term{creator}}   ($(person1.180)+(0,0.08)$)
+      ($(person1.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{creatorOf}} ($(work1.0)+(0,-0.08)$)
     ;
   
-    \node[right=.5mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
+    \node[right=.7mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
   \end{scope}      
 
 }%
@@ -525,14 +525,6 @@ and (2) for further objects that are mentioned in the query without being named 
 For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answering}:
 %
 \Qtwoprime
-%
-To model this query, we do not only need a node representing the work \emph{De revolutionibus},
-but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
-and two nodes representing the owner and their student (Group~2).
-Since these three individuals are not known when the query is formulated,
-we need to use \emph{variables} for naming them.
-Query~\exaquery{2$'$}
-can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
 \newcommand{\tikzexaquery}[1][1]{%
   \begin{scope}[%
@@ -553,20 +545,21 @@ can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}
 %      (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
 %      (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
 %      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
-      (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
-      (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
-      (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
-      (y)     edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm] {\fns\term{student}} (z)      
+      (derev) edge node[left=.7mm]           {\fns\term{exemplar}} (x)
+      (x)     edge node[sloped, above=.7mm] {\fns\term{owner}}         (y)
+      (x)     edge node[sloped, below=.5mm]      {\fns\strut\term{owner}}   (z)
+      (y)     edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm,pos=.4] {\fns\term{student}} (z)      
     ;
       
-    \node[above=.5mm of derev] () {\fns\term{Work}};
+    \node[above=.9mm of derev] () {\fns\term{Work}};
     \node[left=.5mm of x]      () {\fns\term{Item}};
-    \node[above right=2mm and -5mm of y]     () {\fns\term{Scientist}};
+    \node[above=.3mm of y]     () {\fns\term{Scientist}};
     
   \end{scope}
 }
 %
 \begin{figure}[ht]
+%\begin{wrapfigure}[10]{o}{5.4cm}
   \centering
   \begin{tikzpicture}[
     >=Latex,
@@ -578,7 +571,18 @@ can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}
   
   \caption{Graph representation of Query \exaquery{2$'$}}
   \label{fig:graph_for_exa_query2'}
+%\end{wrapfigure}
 \end{figure}
+
+To model this query, we do not only need a node representing the work \emph{De revolutionibus},
+but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
+and two nodes representing the owner and their student (Group~2).
+Since these three individuals are not known when the query is formulated,
+we need to use \emph{variables} for naming them.
+Query~\exaquery{2$'$}
+can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
+
+
 
 The nodes of this graph fall into three groups:
 %
