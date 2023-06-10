@@ -39,7 +39,94 @@ in Section~\ref{sec:user_interaction}.
 \section{The Main Phases}
 \label{sec:phases}
 
-\dots
+As already indicated, we distinguish between a \emph{preparatory phase}
+and a \emph{runtime phase}.
+The latter is divided into three phases as shown in Figure~\ref{fig:method_phases}.
+In the \emph{query formulation} phase, the system supports the user 
+in constructing their query.
+In the \emph{query processing} phase, the system evaluates the query
+and computes answers.
+In the \emph{answer presentation} phase, the system allows the user to
+navigate through the computed answers.
+Since the explorative approach was highlighted
+in the context of the \gls{SoNAR} scenario (see Section~\ref{subsec:SoNAR_reports}),
+it is very likely that the answers presented by the system will 
+result in the user wanting to reformulate their original query.
+In fact, query answers can be seen as one means of support
+for formulating a query in the first place.
+For this reason, we prefer to view the runtime phase as an iterative process,
+which we indicate via the looping arrow in Figure~\ref{fig:method_phases}.
+
+\newlength{\mainphases}\settowidth{\mainphases}{\fns Preparatory Phase}%
+\newlength{\subphases}\settowidth{\subphases}{\fns Answer Presentation~}%
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightgreen,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    
+    % the 3 subphases of Runtime
+    \begin{scope}[
+      every node/.append style={text width=\subphases,align=center}
+    ]
+      \node                    (QF) {\fns\mystrut Query Formulation};
+      \node [below=12mm of QF] (QP) {\fns\mystrut Query Processing};
+      \node [below=12mm of QP] (AP) {\fns\mystrut Answer Presentation};
+    \end{scope}
+  
+%    % their superterm Endeavour
+%    \node [above=11mm of Work, draw=none,fill=none,inner sep=0mm] (Ende) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\manif}{\term{Endeavour}}};
+%
+%    % placeholders plus rectangle for Endeavour
+%    \node [above left =1mm and 1mm of Work.north west,draw=none,fill=none,inner sep=.2mm] (WorkL) {};
+%    \node [below right=0mm and 1mm of Item.south east,draw=none,fill=none,inner sep=.2mm] (ItemR) {};
+%    \node [fit={(Ende) (WorkL) (ItemR)},fill=none] (G1E) {};
+%    
+%    % super-relations of Group-1 relations
+%    \node [left =8mm of Ende.180,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[r]{\term{relatedEndeavour,}}{\term{part}}};
+%    \node [right=8mm of Ende.0  ,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[l]{\term{relatedEndeavour,}}{\term{partOf}}};
+%    
+%    % the 2 Group-2 relations
+%%    \node [right=98mm of Expr] (Pers) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{Person}}};
+%%    \node [below= 8mm of Pers] (Corp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{CorporateBody}}};
+%    \node [right=98mm of Item] (Corp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{CorporateBody}}};
+%    \node [above= 8mm of Corp] (Pers) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{Person}}};
+%
+%    % their superterm ResponsibleEntity
+%    \node [right=98mm of Ende, draw=none,fill=none,inner sep=0mm] (Resp) {\fns\mystrut\tikzpb[\hspace*{\fill}]{\respe}{\term{ResponsibleEntity}}};
+%
+%    % placeholders plus rectangle for ResponsibleEntity
+%    \node [above left =1mm and 0mm of Pers.north west,draw=none,fill=none,inner sep=.2mm] (PersL) {};
+%    \node [below right=0mm and 0mm of Corp.south east,draw=none,fill=none,inner sep=.2mm] (CorpR) {};
+%    \node [fit={(Resp) (PersL) (CorpR)},fill=none] (G2E) {};
+%
+%    % super-relations of Group-2 relations
+%    \node [left=6mm of Resp.180,draw=none,fill=none,inner sep=0mm] () {\fns\tikztabtwo[r]{\term{responsibleEntity/}}{\term{responsibleEntityOf}}};
+%    
+%    % placeholders for separating line
+%    \node [above=2mm of $(G1E.north east)!0.50!(G2E.north west)$,draw=none,fill=none,inner sep=.2mm] (SepN) {};
+%    \node [below=5mm of $(G1E.south east)!0.50!(G2E.south west)$,draw=none,fill=none,inner sep=.2mm] (SepS) {};
+    
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm}
+    ]
+      
+      \path[->]
+        % the 3 main Group-1 relations
+        (QF) edge (QP)
+        (QP) edge (AP)
+      ;
+    \end{scope}
+  \end{tikzpicture}
+  
+  \caption{Main phases of the retrieval method}
+  \label{fig:method_phases}
+\end{figure}
+
+
+
 
 % -------------------------------------------------------------------
 \section{Dynamic versus Static Setting}
