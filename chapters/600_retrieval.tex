@@ -250,10 +250,36 @@ or a dedicated algorithm for each single repository and data format.
 % ...............................
 \paragraph{Answer Presentation}
 
-\dots
+In the Answer Presentation Phase, the computed answer set is presented to the user.
+Given the importance of exploration (see Sections~\ref{subsec:SoNAR_reports} and~\ref{subsec:insights_from_SoNAR})
+and the derived decision to include the respective subgraph of the data as a \enquote{witness} in answers,
+a visual presentation is to be favoured. This visual presentation should allow for means to navigate through the subgraph
+and explore its context in the data graph, i.e., the exploration should not be restricted to the subgraph alone.
 
+Furthermore, the size of an answer set can vary greatly: for \enquote{overspecified} queries, the answer set can be empty,
+and for very vaguely specified queries, the answer set can be even larger than the data graph.
+For example, if the a query \exaquery{2$'$} is modified to ask for a scientist who passed the item on
+to someone who was a student and family member at the same time, and if the owners of the item
+do not include two persons in those two relationships, then the answer set will be empty.
+The other extreme occurs, for example, if the query asks for pairs of owners that are collaborators of each other,
+which is a symmetric relationship. If the data contains $n$ owners of the item and those are all in a mutual collaboration relationship,
+then the answer set consists of $n^2 - n$ answers because there are $n \cdot (n-1)$ pairs of owners.
+The use of unlabelled edges (or nodes), which was mentioned as a useful extension of the model in Section~\ref{subsec:set_variables},
+can have a similar effect.%
+\footnote{%
+  In the theoretical worst case, there are pairs of query graphs and data graphs
+  where each possible mapping from the nodes of the former
+  to those of the latter is a homomorphism. The number of such mappings is $n^m$,
+  where $n,m$ are the numbers of nodes in the data graph and the query graph, respectively.
+  Given the dominating size of the data, this upper bound is prohibitively large even for very small queries.%
+}
+In order to cope with the wide range of possible sizes of answer sets,
+ways to present answer sets in a structured way,
+allowing the user to group and filter answers, have to be found.
 
-
+Since we are advocating an iterative runtime phase where query answers can help users (re)formulate their queries,
+the presentation of query answers should include an assistant for marking unexpected or missing answers.
+Ideally, that assistant could suggests changes to the user's query based on these marks.
 
 % -------------------------------------------------------------------
 \section{The Dynamic versus the Static Setting}
