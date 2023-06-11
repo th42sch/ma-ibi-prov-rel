@@ -29,13 +29,13 @@ The method that we are going to develop should be flexible
 and support both settings.
 For this purpose, we make this distinction more explicit.
 The \emph{static setting} resembles the setting used in the SoNAR project:
-a large uniform data source \emph{(graph)} is constructed
-from the various identified data sources \emph{(repositories)},
+a large uniform data source \emph{(data graph)} is constructed
+from the various identified data sources \emph{(remote repositories)},
 using a uniform data model and that integrates the heterogeneous data models
-of the repositories in some way. This graph is 
+of the remote repositories in some way. This data graph is 
 used as the sole source for computing query answers.
 In contrast, the \emph{dynamic setting} foregoes
-the explicit construction of a uniform graph and instead
+the explicit construction of a uniform data graph and instead
 regards a collection of remote repositories as a representation of that
 graph. In order to answer a query, the system identifies
 suitable repositories, computes partial answers using the repositories' interfaces,
@@ -141,15 +141,16 @@ We now describe these phases in more detail.
 
 The Configuration Phase consists of the steps that need to be taken
 in order for the system to be able to interact with the user in the Runtime Phase.
-The first step is the selection of repositories that are available 
+The first step is the selection of remote repositories that are available 
 throughout the Runtime Phase.
-In the dynamic setting, where the graph is implicit in this collection of repositories,
+In the dynamic setting, where the data graph is implicit in this collection of repositories,
 it is necessary that the details of accessing each single repository
 have been implemented.
-In the static setting, the graph needs to be built from the repositories
+In the static setting, the data graph needs to be built from the remote repositories
 and stored in memory, in \pgls{RDBMS}, or on some suitable storage medium.
-As a final step, a list of terms (objects, concepts, relations) available in the graph
-needs to be compiled in both settings. Ideally, each term should be annotated with the data source(s)
+As a final step, a list of terms (objects, concepts, relations) available in the data graph
+needs to be compiled in both settings. Ideally, each term should be annotated with the remote repository
+(or repositories)
 from which it originates, in order to trace it back for disambiguation and
 other purposes.
 
@@ -172,11 +173,11 @@ that allows the user to create nodes, draw edges between them,
 and pick node names, node labels, and edge labels from the list of available terms.
 For disambiguation purposes, it would be helpful to have an
 integrated lookup functionality, i.e., the entry for a system
-in the original repository could be displayed in the system
+in the original remote repository could be displayed in the system
 without switching to another application.
 
 In the dynamic setting, it is possible to let the user
-restrict the selection of repositories and thus the list of available terms.
+restrict the selection of remote repositories and thus the list of available terms.
 This initial step is not useful in the static setting
 because it would require a time-consuming recomputation
 of the data graph (which is part of the Configuration Phase).
@@ -195,7 +196,7 @@ Graphical SQL query builders exist in the form of online tools or standalone app
 \paragraph{Query Processing}
 
 In the Query Processing Phase, the system evaluates the query against the
-graph that represents the combination of repositories.
+data graph.
 In the technical terms of our model, the system finds all homomorphisms from the query graph
 to the data graph and stores them along with the induced subgraphs.
 
@@ -227,7 +228,7 @@ the reconstruction of homomorphisms and subgraphs from those tuples.
 The implementation effort is restricted to realising these translations,
 but it is not possible to add specific optimisations.
 
-In the dynamic setting, where the data graph is implicit,
+In the dynamic setting, where the data graph is implicit in the collection of remote repositories,
 the system needs to interact with the repositories in real time via their interfaces.
 For this purpose, it is important to keep track of the repository (or repositories)
 from which each term originates, as indicated in Subsection~\ref{subsec:configuration_phase}.
@@ -242,7 +243,7 @@ coincides with the definition of an answer set with respect to the abstract noti
 of a data graph.
 Second, the evaluation of the smaller queries
 requires either a uniform standard (such as \gls{SPARQL}, see Section~\ref{subsec:LOD_basic_concepts})
-or a dedicated algorithm for each single repository and data format.
+or a dedicated algorithm for each single remote repository and data format.
 %
 %In both settings, 
 %
@@ -287,7 +288,7 @@ Ideally, that assistant could suggests changes to the user's query based on thes
 \label{sec:dynamic_vs_static}
 
 We deliberately developed our method in a way that it can be applied
-in both the dynamic and static settings.
+in both the dynamic and the static setting.
 Both settings have advantages and disadvantages,
 and we have already learnt about some of them for the static setting
 from the SoNAR project (see Section~\ref{subsec:SoNAR_reports}).
@@ -298,14 +299,13 @@ thus providing future system developers with a basis for choosing a setting.
 
 The most important advantage of the static setting is the interaction with a single, fixed data source
 and a single data model during the Runtime Phase.
-The data source is self-hosted, allowing the system full control over the data
+The data graph is self-hosted, allowing the system full control over the data
 and the method of accessing it.
 By using a static data source, access to the data in the Runtime Phase is
-unaffected by unforeseen unavailabilities of an external repositories
-or changes of external data models.
+unaffected by any unforeseen unavailability of an remote repository
+or by changes to the external data models.
 Furthermore, possible inconsistencies between repositories
-can be resolved in the Configuration Phase, after the federated
-data source has been built. Hiding this process from the Runtime Phase
+can be resolved in the Configuration Phase, after the data graph has been built. Hiding this process from the Runtime Phase
 should contribute to a better user experience.
 Finally, as we have seen, the static setting also offers more freedom for implementations of
 query answering, although only the \enquote{black-box} approach seems feasible.
@@ -314,9 +314,9 @@ query answering, although only the \enquote{black-box} approach seems feasible.
 
 In the static setting, the federated data graph requires a large amount of memory
 and a highly performant implementation of query answering.
-The graph also needs to be updated regularly in order to incorporate changes
-to the external repositories.
-If it is desirable to give the user the opportunity to select external repositories 
+The data graph also needs to be updated regularly in order to incorporate changes
+to the remote repositories.
+If it is desirable to give the user the opportunity to select repositories 
 that are relevant for his*her query during the Runtime Phase, 
 then additional efforts are necessary, including annotations of the data
 with their provenance and incorporating appropriate filters into the implementation
