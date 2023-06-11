@@ -237,7 +237,7 @@ smaller queries, and each of these needs to be answered against the respective r
 The obtained answers need to be combined to a answer set for the original query.
 Although the abstract description of this procedure sounds very simple,
 at least two parts of it require a substantial amount of work:
-First, it remains to find a rigorous definition of a decomposition and re-composition
+First, it remains to find a rigorous definition of a decomposition and recomposition
 that provides the guarantee that the answer set obtained via this procedure 
 coincides with the definition of an answer set with respect to the abstract notion
 of a data graph.
@@ -313,7 +313,7 @@ query answering, although only the \enquote{black-box} approach seems feasible.
 \paragraph{Disadvantages of the Static Setting}
 
 In the static setting, the federated data graph requires a large amount of memory
-and a highly performant implementation of query answering.
+and a highly performant, scaleable implementation of query answering.
 The data graph also needs to be updated regularly in order to incorporate changes
 to the remote repositories.
 If it is desirable to give the user the opportunity to select repositories 
@@ -324,11 +324,39 @@ of query answering.
 
 \paragraph{Advantages of the Dynamic Setting}
 
-\dots
+In the dynamic setting, our method does not depend on hosting capacities
+such as a large amount of memory or a highly scalable query answering implementation.
+Furthermore, by accessing the remote repositories directly,
+the method will always have access to their current content.
+Finally, it is relatively easy to implement support for 
+a restriction of the repositories used for answering a particular query,
+which can improve user experience by helping restrict the set of terms to choose from.
 
 \paragraph{Disadvantages of the Dynamic Setting}
 
-\dots
+On the downside, the dynamic setting depends on the web services provided by the remote repositories,
+which means that there is no control over the data nor over the time required
+by the interaction with the system.
+In the dynamic setting, the Runtime Phase is also sensitive to changes in the data models
+or interfaces of the remote repositories.
+If inconsistencies occur between the data in distinct repositories,
+then they need to be resolved in the Runtime Phase, too.
+This can be done autonomously by the system during the Query Processing Phase
+or through interaction with the user during the Answer Presentation Phase.
+Both cases are problematic because neither the system nor the user
+can be expected to have sufficient knowledge of the external repositories
+to take the necessary decisions.
+An open problem of the dynamic setting is the decomposition of the query
+into smaller queries to be posed to the single repositories
+and the subsequent recomposition of the partial answers.
+As already mentioned above, it remains to find a
+formal framework with rigorous guarantees.
+It is conceivable that these guarantees can only be achieved by an iterative approach,
+which would require a larger amount of interaction with the remote repositories.
+Finally, this distributed query answering would require either an implementation
+of several query answering routines specific to the respective repository,
+or a restriction to repositories offering a standardised query answering interface,
+such as a \gls{SPARQL} endpoint.
 
 \paragraph{Difficulties Faced by Both Settings}
 
