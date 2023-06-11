@@ -217,7 +217,8 @@ the most ambitious one is certainly the implementation of a dedicated new
 algorithm, which inevitably requires extensive optimisations in order to perform
 well on large amounts of data.
 A second option is the re-implementation of existing algorithms
-for query answering in \glspl{RDBMS}, exploiting the strong relationship
+for query answering in \glspl{RDBMS} or graph databases (such as GraphDB \autocite{GraphDB}),
+exploiting the strong relationship
 between our query answering problem and the classical query answering problem
 (see Section~\ref{sec:computational_properties}).
 This \enquote{glass-box} approach to reusing existing implementations promises
@@ -227,15 +228,16 @@ Furthermore, numerous implementations are available \autocite[cf.][]{WikiSQLRDBM
 However, the downside is that a highly optimised, and thus highly complex,
 codebase needs to be adapted to our retrieval system, which is a
 highly non-trivial task. In addition, not all systems make their code freely available.
-A third option is the use of an existing \gls{RDBMS} as a \enquote{black box},
-which requires the storage of the data graph as a database in the Configuration Phase,
-the translation of each query into an \gls{SQL} query,
-the invocation of the database engine,
-and the retranslation of the retrieved set of tuples
-into an answer set according to our formalism, i.e.,
-the reconstruction of homomorphisms and subgraphs from those tuples.
+A third option is the use of an existing \gls{RDBMS} or graph database engine
+as a \enquote{black box},
+which requires the transfer of the data graph into that external system in the Configuration Phase,
+the translation of each query into an \gls{SQL} or \gls{SPARQL} query,
+the invocation of the external engine,
+and the retranslation of the retrieved set of answers
+into an answer set in our formalism, i.e.,
+the reconstruction of homomorphisms and subgraphs.
 The implementation effort is restricted to realising these translations,
-but it is not possible to add specific optimisations.
+and it is not possible to add specific optimisations.
 
 In the dynamic setting, where the data graph is implicit in the collection of remote repositories,
 the system needs to interact with the repositories in real time via their interfaces.
@@ -278,10 +280,10 @@ then the answer set consists of $n^2 - n$ answers because there are $n \cdot (n-
 The use of unlabelled edges (or nodes), which was mentioned as a useful extension of the model in Section~\ref{subsec:set_variables},
 can have a similar effect.%
 \footnote{%
-  In the theoretical worst case, there are pairs of query graphs and data graphs
-  where each possible mapping from the nodes of the former
-  to those of the latter is a homomorphism. The number of such mappings is $n^k$,
-  where $n,k$ are the numbers of nodes in the data graph and the query graph, respectively.
+  In the theoretical worst case, there are pairs $(G,G')$ of query and data graphs
+  where each possible mapping from the nodes in $G$
+  to the nodes in $G'$ is a homomorphism. The number of such mappings is $n^k$,
+  where $n,k$ are the numbers of nodes in $G$ and $G'$, respectively.
   Given the dominating size of the data, this upper bound is prohibitively large even for very small queries.%
 }
 In order to cope with the wide range of possible sizes of answer sets,
