@@ -263,21 +263,21 @@ to someone who was a student and family member at the same time, and if the owne
 do not include two persons in those two relationships, then the answer set will be empty.
 The other extreme occurs, for example, if the query asks for pairs of owners that are collaborators of each other,
 which is a symmetric relationship. If the data contains $n$ owners of the item and those are all in a mutual collaboration relationship,
-then the answer set consists of $n^2 - n$ answers because there are $n \cdot (n-1)$ pairs of owners.
+then the answer set consists of $n^2 - n$ answers because there are $n \cdot (n-1)$ pairs of distinct owners.
 The use of unlabelled edges (or nodes), which was mentioned as a useful extension of the model in Section~\ref{subsec:set_variables},
 can have a similar effect.%
 \footnote{%
   In the theoretical worst case, there are pairs of query graphs and data graphs
   where each possible mapping from the nodes of the former
-  to those of the latter is a homomorphism. The number of such mappings is $n^m$,
-  where $n,m$ are the numbers of nodes in the data graph and the query graph, respectively.
+  to those of the latter is a homomorphism. The number of such mappings is $n^k$,
+  where $n,k$ are the numbers of nodes in the data graph and the query graph, respectively.
   Given the dominating size of the data, this upper bound is prohibitively large even for very small queries.%
 }
 In order to cope with the wide range of possible sizes of answer sets,
 ways to present answer sets in a structured way,
 allowing the user to group and filter answers, have to be found.
 
-Since we are advocating an iterative runtime phase where query answers can help users (re)formulate their queries,
+Since we are advocating an iterative runtime phase where query answers can help users (re)for\-mu\-late their queries,
 the presentation of query answers should include an assistant for marking unexpected or missing answers.
 Ideally, that assistant could suggests changes to the user's query based on these marks.
 
