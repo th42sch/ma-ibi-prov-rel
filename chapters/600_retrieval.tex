@@ -239,11 +239,11 @@ but it is not possible to add specific optimisations.
 
 In the dynamic setting, where the data graph is implicit in the collection of remote repositories,
 the system needs to interact with the repositories in real time via their interfaces.
-For this purpose, it is important to keep track of the repository (or repositories)
+For this purpose, it is important to keep track of the repositories
 from which each term originates, as indicated in Subsection~\ref{subsec:configuration_phase}.
-Using this kind of provenance information, the query needs to be decomposed into
+Using this information, the query needs to be decomposed into
 smaller queries, and each of these needs to be answered against the respective repository.
-The obtained answers need to be combined to a answer set for the original query.
+The obtained answers need to be combined to an answer set for the original query.
 Although the abstract description of this procedure sounds very simple,
 at least two parts of it require a substantial amount of work:
 First, it remains to find a rigorous definition of a decomposition and recomposition
@@ -261,11 +261,11 @@ or a dedicated algorithm for each single remote repository and data format.
 % ...............................
 \paragraph{Answer Presentation}
 
-In the Answer Presentation Phase, the computed answer set is presented to the user.
+In the Answer Presentation Phase, the answer set is shown to the user.
 Given the importance of exploration (see Sections~\ref{subsec:SoNAR_reports} and~\ref{subsec:insights_from_SoNAR})
-and the derived decision to include the respective subgraph of the data as a \enquote{witness} in answers,
+and the resulting decision that answers include the respective subgraph of the data as a \enquote{witness},
 a visual presentation is to be favoured. This visual presentation should allow for means to navigate through the subgraph
-and explore its context in the data graph, i.e., the exploration should not be restricted to the subgraph alone.
+and beyond, i.e., to explore its context in the data graph.
 
 Furthermore, the size of an answer set can vary greatly: for \enquote{overspecified} queries, the answer set can be empty,
 and for very vaguely specified queries, the answer set can be even larger than the data graph.
@@ -307,10 +307,10 @@ thus providing future system developers with a basis for deciding on one setting
 \paragraph{Advantages of the Static Setting}
 
 The most important advantage of the static setting is the interaction with a single, fixed data source
-and a single data model during the Runtime Phase.
+and data model during the Runtime Phase.
 The data graph is self-hosted, allowing the system full control over the data
-and the method of accessing it.
-By using a static data source, access to the data in the Runtime Phase is
+and the method of access.
+Thanks to the static nature, data access during the Runtime Phase is
 unaffected by any unforeseen unavailability of an remote repository
 or by changes to the external data models.
 Furthermore, possible inconsistencies between repositories
@@ -355,6 +355,7 @@ or through interaction with the user during the Answer Presentation Phase.
 Both cases are problematic because neither the system nor the user
 can be expected to have sufficient knowledge of the external repositories
 to take the necessary decisions.
+
 An open problem of the dynamic setting is the decomposition of the query
 into smaller queries to be posed to the single repositories
 and the subsequent recomposition of the partial answers.
