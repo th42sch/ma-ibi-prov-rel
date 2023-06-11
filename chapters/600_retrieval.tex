@@ -194,10 +194,10 @@ of the data graph (as part of the Configuration Phase).
 If ternary relations or relations of higher arity play a significant role,
 then a visualisation is no longer feasible, as explained in Section~\ref{subsec:attributes+n-ary}.
 In this case, it is possible to resort to a (more technical)
-SQL-like syntax. The system should then support non-computer scientist users via 
+\gls{SQL}-like syntax. The system should then support non-computer scientist users via 
 a graphical query editor allowing to pick, arrange, and link
 the basic ingredients of queries as blocks.
-There are numerous online and standalone graphical SQL query builders
+There are numerous online and standalone graphical \gls{SQL} query builders
 \autocite[e.g.,][]{VisualSQL,SQLeo}, see also the reviews on dedicated webpages
 \autocite[e.g.,][]{ChartioVisualSQL,FinOnlBestVisualQueryBuilders}.
 
@@ -229,7 +229,7 @@ codebase needs to be adapted to our retrieval system, which is a
 highly non-trivial task. In addition, not all systems make their code freely available.
 A third option is the use of an existing \gls{RDBMS} as a \enquote{black box},
 which requires the storage of the data graph as a database in the Configuration Phase,
-the translation of each query into an SQL query,
+the translation of each query into an \gls{SQL} query,
 the invocation of the database engine,
 and the retranslation of the retrieved set of tuples
 into an answer set according to our formalism, i.e.,
