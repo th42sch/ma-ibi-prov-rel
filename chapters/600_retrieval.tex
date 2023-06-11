@@ -308,11 +308,19 @@ can be resolved in the Configuration Phase, after the federated
 data source has been built. Hiding this process from the Runtime Phase
 should contribute to a better user experience.
 Finally, as we have seen, the static setting also offers more freedom for implementations of
-query answering, although only the \enquote{black-box} approach seems really feasible.
+query answering, although only the \enquote{black-box} approach seems feasible.
 
 \paragraph{Disadvantages of the Static Setting}
 
-\dots
+In the static setting, the federated data graph requires a large amount of memory
+and a highly performant implementation of query answering.
+The graph also needs to be updated regularly in order to incorporate changes
+to the external repositories.
+If it is desirable to give the user the opportunity to select external repositories 
+that are relevant for his*her query during the Runtime Phase, 
+then additional efforts are necessary, including annotations of the data
+with their provenance and incorporating appropriate filters into the implementation
+of query answering.
 
 \paragraph{Advantages of the Dynamic Setting}
 
