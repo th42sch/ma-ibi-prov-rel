@@ -43,9 +43,10 @@ and composes the final answer from the partial answers.
 
 Our method will consist of two main phases, the second of which is divided
 into three subphases.
-We describe these phases in Section~\ref{sec:phases}.
-In Section~\ref{sec:dynamic_vs_static}, we take a closer look at the two settings.
-Finally, we will discuss several aspects of the system's interaction with its users
+We describe these phases in Section~\ref{sec:phases},
+addressing special requirements of the dynamic or static setting.
+In Section~\ref{sec:dynamic_vs_static}, we compare the two settings.
+Finally, we will discuss aspects of the system's interaction with its users
 in Section~\ref{sec:user_interaction}.
 
 % -------------------------------------------------------------------
@@ -148,7 +149,7 @@ have been implemented.
 In the static setting, the graph needs to be built from the repositories
 and stored in memory, in \pgls{RDBMS}, or on some suitable storage medium.
 As a final step, a list of terms (objects, concepts, relations) available in the graph
-needs to be compiled. Ideally, each term should be annotated with the data source(s)
+needs to be compiled in both settings. Ideally, each term should be annotated with the data source(s)
 from which it originates, in order to trace it back for disambiguation and
 other purposes.
 
@@ -177,8 +178,8 @@ without switching to another application.
 In the dynamic setting, it is possible to let the user
 restrict the selection of repositories and thus the list of available terms.
 This initial step is not useful in the static setting
-because the graph encompasses all repositories selected in the configuration phases,
-and a recomputation would certainly consume too much time.
+because it would require a time-consuming recomputation
+of the data graph (which is part of the Configuration Phase).
 
 If ternary relations or relations of higher arity play a significant role,
 then a visualisation is no longer feasible, as explained in Section~\ref{subsec:attributes+n-ary}.
