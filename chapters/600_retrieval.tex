@@ -286,7 +286,47 @@ Ideally, that assistant could suggests changes to the user's query based on thes
 \section{The Dynamic versus the Static Setting}
 \label{sec:dynamic_vs_static}
 
+We deliberately developed our method in a way that it can be applied
+in both the dynamic and static settings.
+Both settings have advantages and disadvantages,
+and we have already learnt about some of them for the static setting
+from the SoNAR project (see Section~\ref{subsec:SoNAR_reports}).
+We now discuss the advantages and disadvantages of both settings,
+thus providing future system developers with a basis for choosing a setting.
+
+\paragraph{Advantages of the Static Setting}
+
+The most important advantage of the static setting is the interaction with a single, fixed data source
+and a single data model during the Runtime Phase.
+The data source is self-hosted, allowing the system full control over the data
+and the method of accessing it.
+By using a static data source, access to the data in the Runtime Phase is
+unaffected by unforeseen unavailabilities of an external repositories
+or changes of external data models.
+Furthermore, possible inconsistencies between repositories
+can be resolved in the Configuration Phase, after the federated
+data source has been built. Hiding this process from the Runtime Phase
+should contribute to a better user experience.
+Finally, as we have seen, the static setting also offers more freedom for implementations of
+query answering, although only the \enquote{black-box} approach seems really feasible.
+
+\paragraph{Disadvantages of the Static Setting}
+
 \dots
+
+\paragraph{Advantages of the Dynamic Setting}
+
+\dots
+
+\paragraph{Disadvantages of the Dynamic Setting}
+
+\dots
+
+\paragraph{Difficulties Faced by Both Settings}
+
+\dots
+
+
 
 % -------------------------------------------------------------------
 \section{User Interaction Aspects}
