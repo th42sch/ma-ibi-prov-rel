@@ -374,70 +374,6 @@ such as a \gls{SPARQL} endpoint.
 
 \begin{itemize}
   \item
-    for each of the two settings, develop/discuss:
-    %
-    \begin{itemize}
-      \item
-        preparatory steps
-      \item
-        QA algorithm (pseudocode?) and possibilities for implementation
-      \item
-        advantages (see below and Section~\ref{subsec:insights_from_SoNAR})
-      \item
-        disadvantages (dito)
-      \item
-        caveats
-    \end{itemize}
-    %
-  \item
-    dynamic vs.\ static setting:
-    %
-    \begin{itemize}
-      \item
-        static: 
-        
-        data source graph is generated explicitly (using data integration techniques, e.g., LD)
-        and updated in fixed intervals
-                
-        at runtime: provenance query is formulated as a \gls{SPARQL} query and posed against the graph
-        
-        learn from SoNAR insights
-        
-        reduction to SQL? use DB systems
-      \item
-        dynamic (preferred??):
-        
-        data source graph is implicit; data sources are queried \enquote{on the fly}
-%        (this is the preferred scenario here; see delineation from SoNAR in §\ref{sec:HNA+SoNAR})
-        
-        data sources need to be defined and
-        interactions with them programmed in advance
-        
-        at runtime: decompose query into single \gls{SPARQL} (sub)queries and pose them against several data sources,
-        potentially iteratively;
-        compose final answer from the partial answers
-        $\leadsto$ demonstrate this for example query/ies!
-      \item
-        don't commit to dynamic method % (check mentions of \enquote{method}/\enquote{scenario}/\enquote{online}\enquote{off{}line} in text and rephrase if necessary)
-      \item
-        discuss pros and cons; connect to discussion in §\ref{sec:HNA+SoNAR}; reuse:
-        
-        More precisely, while our abstract model will centre around a single data source (graph)
-        that represents the combination of the distributed repositories,
-        our method will abstain from constructing that graph explicitly and, instead,
-        answer queries \enquote{in place} over the original repositories.
-        This way, our approach will not depend on hosting capacities,
-        and it will always have direct access to the current content of the repositories.
-        On the downside, our approach will depend on external web services provided by the repositories,
-        and it will be sensitive to changes in their data models.
-        Our dynamic approach also requires that inconsistencies are resolved
-        a posteriori, i.e., every time a query answer is retrieved.
-        As a final advantage, the dynamic approach is flexible
-        in the sense that it can be applied to a static integrated data source as well,
-        thus benefiting from the advantages of the static approach.
-  \end{itemize}
-    %
-  \item
     get back to Section~\ref{sec:quality_of_answers}:
     %
     \begin{itemize}
@@ -457,8 +393,6 @@ such as a \gls{SPARQL} endpoint.
         \emph{hypothesising}
     \end{itemize}
     %
-  \item
-    get back to SoNAR discussion (Section~\ref{subsec:insights_from_SoNAR}) (?)
   \item
     get back to substitute information (from SoNAR and Section~\ref{sec:quality_of_answers})
     \todo[inline]{move discussion of substitute information from §\ref{subsec:further_information} to §\ref{chap:retrieval}?}
