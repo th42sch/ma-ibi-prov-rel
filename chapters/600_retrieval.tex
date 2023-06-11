@@ -45,9 +45,10 @@ Our method will consist of two main phases, the second of which is divided
 into three subphases.
 We describe these phases in Section~\ref{sec:phases},
 addressing special requirements of the dynamic or static setting.
-In Section~\ref{sec:dynamic_vs_static}, we compare the two settings.
-Finally, we will discuss aspects of the system's interaction with its users
-in Section~\ref{sec:user_interaction}.
+In Section~\ref{sec:dynamic_vs_static}, we compare the 
+advantages and disadvantages of the two settings.
+%Finally, we will discuss aspects of the system's interaction with its users
+%in Section~\ref{sec:user_interaction}.
 
 % -------------------------------------------------------------------
 \section{The Main Phases}
@@ -116,23 +117,22 @@ in Section~\ref{sec:user_interaction}.
 Our method consists of a \emph{Configuration Phase}, which
 needs to be carried out before users can interact with the system,
 and a \emph{Runtime Phase}, where the actual user interaction takes place.
-The latter is divided into three subphases as shown in Figure~\ref{fig:method_phases},
-which are traversed consecutively.
+The latter is divided into three consecutive subphases as shown in Figure~\ref{fig:method_phases}.
 In the \emph{Query Formulation} phase, the system supports the user 
 in constructing their query.
 In the \emph{Query Processing} phase, the system evaluates the query
 and computes answers.
 In the \emph{Answer Presentation} phase, the system allows the user to
 navigate through the computed answers.
-Given the significance of an explorative approach to historical research
+Given the significance of \emph{exploration} in historical research
 (see Section~\ref{subsec:SoNAR_reports}),
-it is very likely that the answers presented by the system will 
-result in the user wanting to reformulate their original query.
+the answers presented by the system may
+prompt the user to reformulate their original query.
 In fact, query answers can be seen as one means of support
 for formulating a query in the first place.
 For this reason, we prefer to understand the Runtime Phase as an iterative process,
 which we indicate by the looping arrow in Figure~\ref{fig:method_phases}.
-
+%
 We now describe these phases in more detail.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -165,30 +165,39 @@ three subphases.
 \paragraph{Query Formulation}
 
 In the Query Formulation Phase, the user builds the query
-to be answered. The system should support the user by providing a query editor.
-Since we deliberately developed a graph-based model
-for facilitating intuitive visual representations,
+to be answered. The system should provide support via a query editor.
+Since we opted for a graph-based model
+that facilitates intuitive visual representations,
 it makes perfect sense to offer a graphical interface
 that allows the user to create nodes, draw edges between them,
 and pick node names, node labels, and edge labels from the list of available terms.
 For disambiguation purposes, it would be helpful to have an
-integrated lookup functionality, i.e., the entry for a system
+integrated lookup functionality, i.e., the entry for a term
 in the original remote repository could be displayed in the system
 without switching to another application.
+
+In this phase, the system should also provide support 
+for substitute information and indirect relationships
+(see Section~\ref{subsec:further_information}),
+i.e., for finding terms to substitute for terms that are not recorded in the data,
+and for constructing subgraphs of the query graphs that represent indirect
+relationships. For example, suggestions for the former
+and \enquote{templates} for the latter could be deposited in the system
+either through the implementation or during the Configuration Phase.
 
 In the dynamic setting, it is possible to let the user
 restrict the selection of remote repositories and thus the list of available terms.
 This initial step is not useful in the static setting
 because it would require a time-consuming recomputation
-of the data graph (which is part of the Configuration Phase).
+of the data graph (as part of the Configuration Phase).
 
 If ternary relations or relations of higher arity play a significant role,
 then a visualisation is no longer feasible, as explained in Section~\ref{subsec:attributes+n-ary}.
-In this case, it is possible to resort to a (technical and non-graphical)
-SQL-like syntax, and the system can support non-computer scientist users by 
-offering a graphical query editor that allows to pick, arrange, and link
+In this case, it is possible to resort to a (more technical)
+SQL-like syntax. The system should then support non-computer scientist users via 
+a graphical query editor allowing to pick, arrange, and link
 the basic ingredients of queries as blocks.
-Graphical SQL query builders exist in the form of online tools or standalone applications
+There are numerous online and standalone graphical SQL query builders
 \autocite[e.g.,][]{VisualSQL,SQLeo}, see also the reviews on dedicated webpages
 \autocite[e.g.,][]{ChartioVisualSQL,FinOnlBestVisualQueryBuilders}.
 
@@ -389,40 +398,40 @@ and implementers. This need is probably best served
 by the format of a web application that is hosted and maintained
 on a central server.
 
-% -------------------------------------------------------------------
-\section{User Interaction Aspects}
-\label{sec:user_interaction}
-
-\dots
-
-
-
-\begin{itemize}
-  \item
-    get back to Section~\ref{sec:quality_of_answers}:
-    %
-    \begin{itemize}
-      \item
-        missing vs.\ spurious answers
-      \item
-        overapproximation
-      \item
-        \emph{reasoning}: ontologies and related technology -- also explain why
-        missing knowledge cannot be added upfront, e.g., like this:
-        
-        Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
-        because that would massively inflate the data,
-        as most terms have several superordinate concepts or relations and,
-        furthermore, implicit knowledge is not restricted to taxonomic knowledge.
-      \item
-        \emph{hypothesising}
-    \end{itemize}
-    %
-  \item
-    get back to substitute information (from SoNAR and Section~\ref{sec:quality_of_answers})
-    \todo[inline]{move discussion of substitute information from §\ref{subsec:further_information} to §\ref{chap:retrieval}?}
-  \item
-    indirect relationships
-  \item
-    ternary relations: quads instead of triples (in \gls{RDF} speak); add attributes to the graph model? (Markus Krötzsch's work?)
-\end{itemize}
+%% -------------------------------------------------------------------
+%\section{User Interaction Aspects}
+%\label{sec:user_interaction}
+%
+%\dots
+%
+%
+%
+%\begin{itemize}
+%  \item
+%    get back to Section~\ref{sec:quality_of_answers}:
+%    %
+%    \begin{itemize}
+%      \item
+%        missing vs.\ spurious answers
+%      \item
+%        overapproximation
+%      \item
+%        \emph{reasoning}: ontologies and related technology -- also explain why
+%        missing knowledge cannot be added upfront, e.g., like this:
+%        
+%        Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
+%        because that would massively inflate the data,
+%        as most terms have several superordinate concepts or relations and,
+%        furthermore, implicit knowledge is not restricted to taxonomic knowledge.
+%      \item
+%        \emph{hypothesising}
+%    \end{itemize}
+%    %
+%  \item
+%    get back to substitute information (from SoNAR and Section~\ref{sec:quality_of_answers})
+%    \todo[inline]{move discussion of substitute information from §\ref{subsec:further_information} to §\ref{chap:retrieval}?}
+%  \item
+%    indirect relationships
+%  \item
+%    ternary relations: quads instead of triples (in \gls{RDF} speak); add attributes to the graph model? (Markus Krötzsch's work?)
+%\end{itemize}
