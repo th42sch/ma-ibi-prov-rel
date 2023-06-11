@@ -292,8 +292,8 @@ in both the dynamic and the static setting.
 Both settings have advantages and disadvantages,
 and we have already learnt about some of them for the static setting
 from the SoNAR project (see Section~\ref{subsec:SoNAR_reports}).
-We now discuss the advantages and disadvantages of both settings,
-thus providing future system developers with a basis for choosing a setting.
+We now discuss the advantages, disadvantages, and common challenges of both settings,
+thus providing future system developers with a basis for deciding on one setting.
 
 \paragraph{Advantages of the Static Setting}
 
@@ -358,11 +358,36 @@ of several query answering routines specific to the respective repository,
 or a restriction to repositories offering a standardised query answering interface,
 such as a \gls{SPARQL} endpoint.
 
-\paragraph{Difficulties Faced by Both Settings}
+\paragraph{Challenges for Both Settings}
 
-\dots
+In both settings, inconsistencies between the remote repositories need to be dealt with.
+For example, if two data sources give different years for the date of birth of the same person
+or for the ownership entry for the same person in the same item,
+then they will both induce different answers to queries that involve these specific
+pieces of data.
+The easiest way for implementers is to present all answers to the user
+and let them decide which answers they trust.
+However, this variant is not user-friendly because it tends to inflate answer sets
+and leaves the decision about which is the correct piece of data to the user.
+It would be more beneficial to user experience 
+if the system were able to recognise (potential) inconsistencies
+and if domain experts could be involved in resolving those.
+The topic of inconsistencies should be studied in more depth;
+a first step should be a rigorous definition of what constitutes an inconsistency.
 
+Another challenge is the system's reaction to changes in the data models
+used by the remote repositories. Every single repository and data model
+requires an implementation effort, and changes require a modification
+of the existing implementation. This fact is independent on the setting,
+but it affects different phases of the method (the Configuration Phase
+in the static setting and mostly the Query Processing Phase in the dynamic setting).
 
+From both challenges, we conclude that the retrieval system 
+cannot simply be shipped to the user as a standalone application
+but will require constant maintenance by both domain experts
+and implementers. This need is probably best served
+by the format of a web application that is hosted and maintained
+on a central server.
 
 % -------------------------------------------------------------------
 \section{User Interaction Aspects}
