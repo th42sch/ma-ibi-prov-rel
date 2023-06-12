@@ -334,9 +334,9 @@ variety of MARC dialects but also occurred within non-MARC formats.
 Attempts to solve this problem have been made via
 translation and unification. One tool for unification is Dublin Core (DC); see below.
 
-Until recently, MARC~21 had separate data fields for the recording of provenance features, owners,
+Until recently, MARC~21 had separate data fields for the recording of provenance marks, owners,
 and further information belonging to a provenance. As a consequence,
-in data obtained via MARC~21, the important connection between features, owners,
+in data obtained via MARC~21, the important connection between provenance marks, owners,
 and further information is not available.
 For this reason, the MARC Steering Group approved, in May 2023, a proposal
 %by the D-A-CH Working Group on Provenance, Task Group on MARC, in cooperation with the German National Library and the Committee on Data Formats
@@ -539,7 +539,7 @@ and \mybold{Proveana}---the research database of the German Lost Art Foundation 
 \subsection{Analysis of Data Sources}
 \label{subsec:analysis_data_sources}
 
-%\todo[defer,inline]{DISCUSS HeBIS? 68.. fields, unstructured; provenance feature cannot be linked to owner in case of several provenance entries}
+%\todo[defer,inline]{DISCUSS HeBIS? 68.. fields, unstructured; provenance mark cannot be linked to owner in case of several provenance entries}
 
 We now provide a review of four data sources from the previous list, namely
 \gls{DNB}, \gls{K10plus}, \gls{GND}, and Wikidata.
@@ -658,7 +658,7 @@ Concerning the state of provenance indexing in the library networks \gls{GBV} an
 Hakelberg \autocite*[§4]{Hakelberg2016} reports the following.
 The catalogue systems of \gls{GBV} and \gls{SWB}, which are united in K10plus,
 support the recording and display
-of provenance features at the bibliographic as well as the exemplar level of a record.
+of provenance marks at the bibliographic as well as the exemplar level of a record.
 However, the practice of provenance indexing differs greatly between the two networks.
 Since 2014, GBV has been advising the recording at the bibliographic level,
 in order to allow provenance research across libraries. The respective data field
@@ -666,22 +666,22 @@ is structured similarly to the new MARC~21 field 361 (see Subsection~\ref{subsec
 and thus keeps all information on the same provenance linked together.
 Furthermore, the names of owners are linked
 to the local authority record that represents, and redirects to, the respective record in \gls{GND}.
-The physical provenance features are documented via chains of terms from
+The physical provenance marks are documented via chains of terms from
 \gls{T-PRO} (see Section~\ref{sec:provenance_indexing}) [plus dates if available].
 As of 2014,
 this standard was being tested and successively introduced in the participating libraries.
-Before 2014, provenance features were documented in free text in a data field for
+Before 2014, provenance marks were documented in free text in a data field for
 exemplar-specific comments at the exemplar level, using \gls{T-PRO} descriptors 
 and referring to local authority records that were \emph{not} directly linked to \gls{GND} records.
 In contrast, the \gls{SWB} libraries have been, and still are, using a dedicated data field
-at the exemplar level to record provenance features.
+at the exemplar level to record provenance marks.
 This field provides subfields for the structured recording of T-PRO terms [and dates].
 However, most \gls{SWB} libraries have abandoned the creation of exemplar records altogether
 and thus needed to resort to using isolated local systems for provenance indexing \autocite[cf.][]{Hakelberg2016}.
 These systems should therefore be included in the data sources to be accessed by a comprehensive retrieval system
 for provenance relationships.
 
-In summary, provenance features are recorded within K10plus in a heterogeneous
+In summary, provenance marks are recorded within K10plus in a heterogeneous
 and incomplete way, and developers of a retrieval system that uses K10plus have to
 be aware of this problem.
 
