@@ -281,30 +281,52 @@ by prospectively retrieving potentially interesting constellations.
 The described goal leads to the following
 central research question for this thesis.
 %
-\begin{quote}
-  \begin{itshape}
-    How can provenance relationships be modelled and automatically retrieved?
-  \end{itshape}
-\end{quote}
+%\begin{quote}
+%  \begin{itshape}
+%    How can provenance relationships be modelled and automatically retrieved?
+%  \end{itshape}
+%\end{quote}
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\RQ\phantom{\mybold{1}}]
+  %    \begin{mdframed}[roundcorner=10pt]
+        \mybold{How can provenance relationships be modelled and automatically retrieved?}
+  %    \end{mdframed}
+  \end{enumerate}
+\end{mdframed}
 %
 This question implies several subordinate questions:
 %
-\begin{enumerate}
-  \item[\subquestion{1}]
-    \emph{Which data sources are available for answering provenance queries?}
-%  \item[\subquestion{2}]
-%    \emph{What are the overlap and differences between the contents of these data sources?}
-%    \todo{Restrict or omit later!}
-  \item[\subquestion{2}]
-    \emph{Which techniques and tools are available for the integration
-    of data from heterogeneous sources?}
-  \item[\subquestion{3}]
-    \emph{Based on the structure of the identified data sources,
-    how can data sources, queries, and answers be modelled in an abstract framework?}
-  \item[\subquestion{4}]
-    \emph{What is a suitable method for retrieving provenance relationships
-    in that framework?}
-\end{enumerate}
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\subquestion{1}]
+      \emph{Which data sources are available for answering provenance queries?}
+  %  \item[\subquestion{2}]
+  %    \emph{What are the overlap and differences between the contents of these data sources?}
+  %    \todo{Restrict or omit later!}
+    \item[\subquestion{2}]
+      \emph{Which techniques and tools are available for integrating
+      data from heterogeneous sources?}
+    \item[\subquestion{3}]
+      \emph{Based on the structure of the identified data sources,
+      how can data sources, queries, and query answers be modelled in an abstract framework?}
+    \item[\subquestion{4}]
+      \emph{What is a suitable method for retrieving provenance relationships
+      in that framework?}
+  \end{enumerate}
+\end{mdframed}
 
 
 % -----------------------------------------------------------------
@@ -314,29 +336,44 @@ This question implies several subordinate questions:
 In order to answer our research questions, we will proceed as follows.
 
 In Chapter~\ref{chap:rel_work}, we review existing work 
-and connect it with our research questions.\todo[defer]{be more precise}
+and connect it with our research questions.
+Our literature review will cover works on research infrastructures
+for (social/historical) network analysis,
+data integration techniques in general and in the library domain,
+and provenance indexing.
+
 In Chapter~\ref{chap:prototype_queries}, we revisit
 the exemplary queries from Section~\ref{sec:background},
 demonstrate a manual attempt at answering them,
 and discuss the expected quality of query answers and difficulties with this manual process.
-This discussion is used as a point of reference for the subsequent considerations.
-\todo[defer]{possibly adapt this paragraph later}
+This discussion will inform the subsequent developments.
 
 In order to answer Questions~\subquestion{1} and~\subquestion{2}, we review
-data sources, data models, and data integration techniques in Chapter~\ref{chap:analysis}.
-Based on the results of this analysis, we develop an abstract model of
-data sources, queries, and answers in Chapter~\ref{chap:modelling}.
+data sources, techniques, and tools in Chapter~\ref{chap:analysis}.
+This review will cover standards for the description of bibliographic resources,
+data communication protocols, data description and exchange formats,
+and a range of data sources.
+
+Based on the insights from the previous two reviews,
+we answer Question~\subquestion{3} in Chapter~\ref{chap:modelling} by
+developing an abstract model of
+data sources, queries, and query answers.
 This mathematical model subsumes the previous examples
 while being vastly more general: it gives a formal description of how to
 build admissible queries, without restricting their contents
 (i.e., the specific names, attributes, concepts, and relations used)
-or their complexity. Using this model, we hope to provide a means
-for library science, which is the origin of the research question,
-to benefit from established methods from mathematics and computer science.
+or their complexity. 
 
-Based on our model and the insights from the preceding analysis,
-we develop in Chapter~\ref{chap:retrieval}
-a method for answering queries that can serve as the basis of a retrieval system
+Based on our model and the insights from the reviews,
+we answer Question~\subquestion{4} in Chapter~\ref{chap:retrieval} by
+developing a method for formulating queries, retrieving query answers,
+and presenting them to the user.
+This model should serve as the basis for a future implementation of a retrieval system
 as indicated in the previous section.
+
 Finally, we draw conclusions in Chapter~\ref{chap:conclusion}.
 
+Our central research question originates from library and information science (LIS).
+With the development of our model and method,
+we hope to provide a means for LIS to benefit 
+from established methods from mathematics and computer science.
