@@ -165,16 +165,16 @@ Therefore, the retrieved data can only be regarded as a \emph{candidate answer}
 which entails the hypothesis that the found exemplar was passed from Hommel to Thau.
 Our researcher can now engage in further research in order to verify that hypothesis.
 
-\todo[think,inline]{Discuss specifics of \exaquery{1}, \exaquery{3}--\exaquery{9} (extend remarks from Section~\ref{sec:background})?}
+%\todo[think,inline]{Discuss specifics of \exaquery{1}, \exaquery{3}--\exaquery{9} (extend remarks from Section~\ref{sec:background})?}
 
 % -----------------------------------------------------------------
 \section{The Quality of Query Answers}
 \label{sec:quality_of_answers}
 
-Our simple example already illustrates that the quality of query answers
+Our example illustrates that the quality of query answers
 strongly depends on the quality of the underlying data,
 regardless of whether answers are obtained manually or automatically. 
-In particular, missing or spurious data will lead to missing or spurious answers.
+In particular, \emph{missing or spurious data} will lead to \emph{missing or spurious answers}.
 Before we begin to deal with automated query answering,
 we need to analyse the sources of missing or spurious data and their effects on the answers obtained.
 
@@ -198,28 +198,36 @@ and relations (such as \term{student}).
   \item
     In the example, there is no information available in the \gls{GND} on whether any of the persons involved is indeed
     a \emph{scientist}. Instead, \gls{GND} provides information on more specific professions,
-    e.g., for Thau and Hommel (theologian, mathematician, and astronomer).
+    e.g., for Thau and Hommel (theologian, mathematician, and astronomer).%
+    \footnote{%
+      A search in the \gls{GND} catalogue
+      reveals that \gls{GND} does have an entry for the subject term \term{Wissenschaftler} (scientist) \autocite{GNDScientist},
+      but this term is used only sporadically: its 46 subordinate terms do not include, for example,
+      \term{Mathematiker}, \term{Astronom}, or \term{Theologe} (mathematician, astronomer, theologian)  \autocite{GNDScientistSub}.%
+    }
     The information that they were scientists has to be \emph{derived} based on \emph{general knowledge
     of the world}.
-    Indeed, a search in the \gls{GND} catalogue
-    reveals that \gls{GND} does have an entry for the subject term \term{Wissenschaftler} (scientist) \autocite{GNDScientist}
-    which, however, is used only sporadically: its 46 subordinate terms do not include, for example,
-    \term{Mathematiker}, \term{Astronom}, or \term{Theologe} (mathematician, astronomer, theologian)  \autocite{GNDScientistSub}.
     
     The same effect can occur with relations instead of concepts:
-    if \exaquery{2} were to ask for family members instead of students
-    but the data only supported more specific relations
+    Query Pattern~\exaquery{2} asks for family members.
+    If the data only supports more specific relations
     such as \term{sister} or \term{father}, then relationships using
-    \term{familyMember} would need to be derived.
+    \term{familyMember} would again need to be derived.
     Unfortunately, the cataloguing rules for \gls{GND} authority datasets do not require
     that relationships are recorded exhaustively nor using a normed vocabulary;
     see Section~\ref{sec:data_sources} for more details.
     
     In summary, terms can be missing in the data sources because
-    they have not been recorded or because they are implicit in more specific terms.
-    If the query uses such missing terms, then the answer set is always empty
-    unless the person or machine determining the answers makes derivations based on their
-    knowledge of the world.
+    they are implicit in more specific terms.
+    If the query uses such missing terms, then the answer set is always empty.
+    
+    There are at least two possible remedies:
+    the person or machine determining the answers can either make derivations based on their
+    knowledge of the world, or they can use \emph{substitute information},
+    which has been addressed in the context of the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR},
+    in the form of more specific terms.
+    In the second case, we will still have to expect missing answers
+    if the selection of more specific terms is not exhaustive.
 
 %    Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
 %    because that would massively inflate the data,
@@ -227,10 +235,14 @@ and relations (such as \term{student}).
 %    furthermore, implicit knowledge is not restricted to taxonomic knowledge.
 %    \todo[think,inline]{Explain this further? A case for ontologies!}
   \item
-    In the example, there is no information available on whether any of the owners of the exemplar
-    \emph{passed it on} to another owner. Similarly,
-    attempts to answer instances of Query Pattern~\exaquery{1} will have to deal
-    with the problem that there is no information available as to who \emph{read} books.
+    In the above example for \exaquery{2$'$}, there is no information available on whether any of the owners of the exemplar
+    \emph{passed it on} to another owner. The exact same problem affects Query Pattern~\exaquery{4}.
+    Analogously,
+    attempts to answer instances of Query Patterns~\exaquery{1}, \exaquery{3}, \exaquery{8}, and~\exaquery{9}
+    will have to deal
+    with the problem that there is no information available as to who \emph{read} books,
+    who was a \emph{recipient} of a manifestation, who owned an item \emph{once} (i.e., \emph{before} another owner),
+    or who \emph{knows} some other person.
     
     More generally speaking, terms can be missing in the data sources
     because they are not recorded at all, as a consequence of either a general lack of evidence
@@ -238,13 +250,18 @@ and relations (such as \term{student}).
     for example, relationships such as who actually \emph{read} a book are very hard to confirm,
     or terms may not be part of the fixed vocabulary for a data field in a source.
     If the query uses such terms, then the answer set is always empty, as in Case~1.
+    
+    As a possible remedy, the use of substitute information can be helpful in this case as well:
+    for example, the relation \term{owner} could be used as a substitute for
+    \enquote{read}, \enquote{recipient of}, or \enquote{owned once},
+    or any familial, social, or professional relation could be used as a substitute for \enquote{knows}.
   \item    
-    In the example, it is possible that single owners of the exemplar or single relationships between owners
+    In the above example for \exaquery{2$'$}, it is possible that single owners of the exemplar or single relationships between owners
     have not been recorded because no evidence has been found yet.
     More generally, concept memberships or relationships can be missing sporadically,
     which may lead to missing answers.
   \item
-    In the example, if Hommel is erroneously recorded as the owner, then the answer obtained on the grounds
+    In the same example, if Hommel is erroneously recorded as the owner, then the answer obtained on the grounds
     of that record is spurious.
     More generally, spurious concept memberships or relationships may lead to spurious answers.
 \end{enumerate}
