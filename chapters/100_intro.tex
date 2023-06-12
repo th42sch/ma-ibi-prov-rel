@@ -20,22 +20,27 @@ in 1998,
 provenance research has received increased attention.%
 \footnote{%
   This paragraph is a brief summary of the introductory chapter in \citeauthor{Zuschlag2022}'s
-  Introduction to Provenance Research \autocite*[§1]{Zuschlag2022}.%
+  Introduction to Provenance Research \autocite[§1]{Zuschlag2022}.%
 }
 
 Regarding the holdings of university and research libraries,
 particularly interesting provenances are those related to the change of
-owners when an item such as a copy of a book is passed on or distributed \autocite[p.\,2]{Hakelberg2016}.
+owners when an item such as a copy of a book is passed on or distributed. %\autocite[p.\,2]{Hakelberg2016}.
 Provenances can be reconstructed on the basis of \emph{provenance marks} that 
 are present in the item and which indicate ownership,
 such as stamps, bookplates (ex libris), or handwritten signatures.
 Provenance marks are essential for retracing
 the \enquote{history} of a (book) item
-or the extent of library holdings that have been scattered in the meantime \autocite[p.\,2]{Hakelberg2016}.
+or the extent of library holdings that have been scattered in the meantime.% \autocite[p.\,2]{Hakelberg2016}.%
+\footnote{%
+  This paragraph is a brief summary of the introductory section 
+  in \citeauthor{Hakelberg2016}'s master's thesis on the 
+  status and the perspectives of provenance indexing with authority data \autocite[§1.1]{Hakelberg2016}.%
+}
 
 In order to enable provenance research,
-libraries index the provenances of their historical holdings
-in their catalogues.
+libraries record the provenances of their historical holdings
+in their electronic catalogues.
 A \emph{provenance entry} for an item usually consists of a reference to an entity such as a person, corporate body, or collection,
 together with a provenance mark.
 The identification and disambiguation of entities and frequently occurring provenance marks
@@ -45,42 +50,35 @@ is achieved via links to records in authority files such as the
 %\footnote{%
 %  \url{https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd.html}%
 %}
-The indexed provenance data makes it possible, for example,
+Provenance entries make it possible, for example,
 to query and reconstruct the items owned or held by a single person,
 to query the whereabouts of relevant items,
 or to retrace the distribution of all indexed exemplars derived from a given work.
 
-Nowadays, provenance entries are recorded in electronic catalogues.
-German university and research libraries typically do not
-maintain their own individual catalogue; rather they are provided with a central
-catalogue by the library network in which they participate.%
-\footnote{%
-  There are six library networks \emph{(Bibliotheksverbünde)} for scientific libraries
-  in Germany %\url{https://de.wikipedia.org/wiki/Bibliotheksverbund\#Deutschland}%
-  \autocite{WikiBibliotheksverbundDeutschland}.
-}
-These central catalogues are equipped with an underlying database
-and standardised data formats for internal representation and data export.
-\glsunset{GBV}%
-\glsunset{SWB}%
-For example, the German library networks \gls{GBV} and \gls{SWB} maintain and use the common catalogue (database)
+Nowadays, provenance entries are an established part of 
+many electronic catalogues,
+and are taken into account by the underlying data formats.
+For example, the union catalogue 
 \glsunset{K10plus}%
 \gls{K10plus},
-which internally uses the data format PICA \autocite{PICA}
-and allows for exports in the data formats
-\glsunset{MARC}%
-\gls{MARC}~21, MAB2, and Pica+ \autocite{K10plusExportformate}.
-Despite the use of a uniform data format,
+which is
+the central database maintained and used by the libraries in the
+\glsunset{GBV}%
+\glsunset{SWB}%
+German library networks \gls{GBV} and \gls{SWB},
+provides a dedicated data field for recording provenance entries in a structured way,
+plus several multi-purpose data fields which can also take provenance entries.
+Despite the uniform data format,
 there are several possibilities to record provenance entries.
 As Hakelberg \autocite*[§4]{Hakelberg2016} explains,
 libraries even within the same network often use diverse representations
 for the same type of provenance entry, and the differences are considerable:
 for example, some \gls{GBV} libraries record their provenance entries
 in data fields at the bibliographic level (\enquote{Titelebene}, describing a manifestation),
-while others use the exemplar level (\enquote{Exemplarebene}, describing held exemplars of the manifestation).
+while others use data fields at the exemplar level (\enquote{Exemplarebene}, describing held exemplars of the manifestation).
 These deviations lead to large differences in the presentation
 of the holdings in the online catalogue,
-which hinders the retrieval of relevant items and historical holdings.
+hindering the retrieval of relevant items and historical collections.
 
 Data about persons and corporate bodies are recorded
 in Germany- or worldwide authority files and further databases,
