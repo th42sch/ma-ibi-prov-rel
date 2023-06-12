@@ -151,13 +151,13 @@ which were obtained in personal communication with researchers.%
     Where did person $X$ acquire items and did they know the previous owners?
 \end{enumerate}
 %
-In these examples, variables $X,Y$ are used as placeholders for arbitrary works,
-manifestations, collections, etc. Therefore, \exaquery{1}--\exaquery{9} are actually
-query \emph{patterns}, each of which represents a set of possible queries
-that can be obtained by instantiating the variables with specific objects.
+In these examples, variables $X,Y$ are used as abstract placeholders for specific objects
+such as works, manifestations, collections, etc. Therefore, \exaquery{1}--\exaquery{9} are actually
+query \emph{patterns}, each of which represents a huge set of possible queries
+obtained by instantiating each variable with any such object.
 For the introductory purposes of this chapter,
-we continue to use the placeholders and refer to \exaquery{1}--\exaquery{9}
-simply as \emph{queries}. We will get back this distinction in Chapter~\ref{chap:prototype_queries}.
+we continue to use the abstract placeholders but refer to \exaquery{1}--\exaquery{9}
+simply as \emph{queries}. % We will get back this distinction in Chapter~\ref{chap:prototype_queries}.
 
 Query~\exaquery{1} addresses works as well as their manifestations
 (e.g., editions of the same work in various languages).
@@ -179,26 +179,26 @@ main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
 that are now held by the Gotha Research Library of the University of Erfurt
 have been owned, by several scholars
 from the circle around the author,
-some of which were in the teacher-student relation.
-This information can be concluded
-from the accounts of Gingerich~\autocite[p.\,69]{Gingerich2002}
-and Salatowsky and Lotze~\autocite[p.\,142]{Salatowsky2015},
-but it can also be obtained by looking up the entry and its owners in the electronic catalogue of the library,
-following the links to the \gls{GND} entries of the owners,
-and inspecting the relationships between the owners in \gls{GND};
-see Chapter~\ref{chap:prototype_queries} for a more detailed derivation.
-%\footnote{\url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}, field \enquote{Provenance(s)}}
+some of which were in the teacher-student relation
+\autocites[see, e.g.,][p.\,69]{Gingerich2002}[p.\,142]{Salatowsky2015}.
+The ownership part of this information is recorded in the library's catalogue,
+and the relationships between the owners are contained in the
+\gls{GND}.
+Hence, researchers can answer Queries~\exaquery{2} and~\exaquery{3} manually
+by inspecting the item's entry in the library's catalogue,
+following the links to the GND entries of the owners,
+and inspecting those entries for personal relationships.
 
-An important difference between Queries~\exaquery{2} and~\exaquery{3} is the following.
-While \exaquery{2} fixes a relation between persons (\enquote{student})
-and asks for works in whose context this relation has instances,
-\exaquery{3} does not fix a particular relation but asks for the entire context of
-the manifestation.
-
-Query \exaquery{4} is very similar in structure to \exaquery{2}.
-Query \exaquery{5} is important in the context of research on Nazi loot.
-
-\todo[inline]{Discuss \emph{all} of \exaquery{1}--\exaquery{9}?}
+%An important difference between Queries~\exaquery{2} and~\exaquery{3} is the following.
+%While \exaquery{2} fixes a relation between persons (\enquote{student})
+%and asks for works in whose context this relation has instances,
+%\exaquery{3} does not fix a particular relation but asks for the entire context of
+%the manifestation.
+%
+%Query \exaquery{4} is very similar in structure to \exaquery{2}.
+%Query \exaquery{5} is important in the context of research on Nazi loot.
+%
+%\todo[inline]{Discuss \emph{all} of \exaquery{1}--\exaquery{9}?}
 
 \todo[inline]{Discuss SNA/HNA and general significance of relations; see intro report SoNAR AP~2}
 
