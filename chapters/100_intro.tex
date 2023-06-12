@@ -159,35 +159,49 @@ For the introductory purposes of this chapter,
 we continue to use the abstract placeholders but refer to \exaquery{1}--\exaquery{9}
 simply as \emph{queries}. % We will get back this distinction in Chapter~\ref{chap:prototype_queries}.
 
-Query~\exaquery{1} addresses works as well as their manifestations
-(e.g., editions of the same work in various languages).
-Answering this query would help trace the reception
+%Query~\exaquery{1} addresses works as well as their manifestations
+%(e.g., editions of the same work in various languages).
+%Answering this query would help trace the reception
+%of the same work over several eras.
+%For example, Duchess Luise Dorothea of Saxe-Gotha-Altenburg
+%read French editions of English works by John Milton and Alexander Pope.%
+%\footnote{See, for example, the provenance entries of the respective exemplars in the Research Library Gotha \autocite{OPACLuiseDorotheaMiltonPope}.}
+%Obviously, there is a difference between the action \enquote{read}
+%used in this query and the relation \enquote{owned} represented by
+%provenance (entries). We neglect this difference for the moment
+%and will get back to it in Chapter~\ref{chap:prototype_queries}.
+%
+Queries \exaquery{1}--\exaquery{9} are examples for a multitude of queries that arise
+in the context of disciplines such as history, the social sciences, cultural studies, or law,
+or in an interdisciplinary context.
+For example, answers to
+Query~\exaquery{1} can help trace the reception
 of the same work over several eras.
-For example, Duchess Luise Dorothea of Saxe-Gotha-Altenburg
-read French editions of English works by John Milton and Alexander Pope.%
-\footnote{See, for example, the provenance entries of the respective exemplars in the Research Library Gotha \autocite{OPACLuiseDorotheaMiltonPope}.}
-Obviously, there is a difference between the action \enquote{read}
-used in this query and the relation \enquote{owned} represented by
-provenance (entries). We neglect this difference for the moment
-and will get back to it in Chapter~\ref{chap:prototype_queries}.
+Queries~\exaquery{2}--\exaquery{4}
+aim at exploring the network
+that spans between the recipients of a work or collection.
+Queries~\exaquery{5}--\exaquery{8} are relevant for research on Nazi loot and restitution.
 
-Queries~\exaquery{2} and~\exaquery{3}
-aim at highlighting the network
-that spans between the recipients of a work.
-For example, one of the two exemplars of Nicolaus Copernicus's
-main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
-that are now held by the Gotha Research Library of the University of Erfurt
-have been owned, by several scholars
-from the circle around the author,
-some of which were in the teacher-student relation
-\autocites[see, e.g.,][p.\,69]{Gingerich2002}[p.\,142]{Salatowsky2015}.
-The ownership part of this information is recorded in the library's catalogue,
-and the relationships between the owners are contained in the
-\gls{GND}.
-Hence, researchers can answer Queries~\exaquery{2} and~\exaquery{3} manually
-by inspecting the item's entry in the library's catalogue,
-following the links to the GND entries of the owners,
-and inspecting those entries for personal relationships.
+Queries~\exaquery{1}--\exaquery{9}
+share the common feature of 
+
+\todo[inline]{Discuss SNA/HNA and general significance of relations; see intro report SoNAR AP~2}
+
+%If a researcher
+%For example, one of the two exemplars of Nicolaus Copernicus's
+%main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
+%that are now held by the Gotha Research Library of the University of Erfurt
+%have been owned by several scholars
+%from the circle around the author,
+%some of which were in the teacher-student relation
+%\autocites[see, e.g.,][p.\,69]{Gingerich2002}[p.\,142]{Salatowsky2015}.
+%The ownership part of this information is recorded in the library's catalogue,
+%and the relationships between the owners are contained in the
+%\gls{GND}.
+%Hence, researchers can answer Queries~\exaquery{2} and~\exaquery{3} manually
+%by inspecting the item's entry in the library's catalogue,
+%following the links to the GND entries of the owners,
+%and inspecting those entries for personal relationships.
 
 %An important difference between Queries~\exaquery{2} and~\exaquery{3} is the following.
 %While \exaquery{2} fixes a relation between persons (\enquote{student})
@@ -200,15 +214,27 @@ and inspecting those entries for personal relationships.
 %
 %\todo[inline]{Discuss \emph{all} of \exaquery{1}--\exaquery{9}?}
 
-\todo[inline]{Discuss SNA/HNA and general significance of relations; see intro report SoNAR AP~2}
+Queries~\exaquery{1}--\exaquery{9}
+have in common that relations of bibliographic and inter-personal (or inter-institutional)
+nature play an important role.
+These relations are typically distributed over several data sources.
+For example, in order to answer Query~\exaquery{2},
+a researcher would have to find exemplars of work $X$
+in the catalogues of various libraries or library networks,
+inspect the provenance entries of each exemplar for owners,
+find records for those owners in one or several authority files,
+and inspect those records for professional relationships.
+This process is highly laborious
+and involves interaction with a multitude of heterogeneous data sources
+at an expert level.
 
-When attempting to answer queries such as \exaquery{1}--\exaquery{9},
-it does not suffice to consult a single data source such as
-a catalogue, authority file, or knowledge base.
-Instead, it is necessary to consult several data sources
-and combine the information found. This process is highly laborious,
-given not just the number of data sources but also their diverse
-data formats. Therefore, automated support is essential.
+It is obvious that the described process would benefit greatly 
+from automation, i.e., from a procedure that receives a query as an input,
+consults the data sources autonomously, collects answers, and presents them
+to the user. 
+
+***** ÜBERGANG!
+
 This is one of the reasons for Hakelberg
 to raise the following question \autocite[p.\,46, translated from German]{Hakelberg2016}:
 \enquote{How can historical provenance relationships be formulated and represented
@@ -219,15 +245,17 @@ it is necessary to analyse available data sources, data models, and data integra
 to develop an abstract model of data sources and possible queries,
 and to devise a method for obtaining answers in this abstract framework.
 
-\todo[think,inline]{Further thoughts on example queries:}
-%
-\begin{itemize}
-  \item
-    While the difference between persons and institutions may be negligible
-    from a modelling point of view, it is highly relevant concerning the
-    amount of query answers and their handling.
-\end{itemize}
 
+
+%\todo[think,inline]{Further thoughts on example queries:}
+%%
+%\begin{itemize}
+%  \item
+%    While the difference between persons and institutions may be negligible
+%    from a modelling point of view, it is highly relevant concerning the
+%    amount of query answers and their handling.
+%\end{itemize}
+%
 % -----------------------------------------------------------------
 \section{Aim and Research Question}
 \label{sec:research_questions}
