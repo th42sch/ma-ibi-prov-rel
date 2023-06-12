@@ -10,7 +10,9 @@
 Provenance research is concerned with the origins and ownership history
 of cultural objects. Its main objective is the reconstruction of
 \enquote{object biographies} in the historical context.
-Application areas of provenance research include
+Application areas 
+%of provenance research 
+include
 the study of private and public collections,
 the detection of forgery,
 and the identification and restitution of loot.
@@ -127,9 +129,9 @@ which were obtained in personal communication with researchers.%
     Which exemplars%
     \footnote{%
       Conforming to the FRBR model \autocite{FRBR1998},
-      the precise wording should be \enquote{examplars of manifestations of expressions of $X$}
-      but, here and in the following,
-      we omit the intermediate entities for brevity when no misunderstanding is expected.%
+      the precise wording should be \enquote{examplars of manifestations of expressions of $X$},
+      but
+      we omit the intermediate entities for brevity whenever there is no chance of misunderstanding.%
     }
     of work $X$
     were passed from one of its owners to a student?
@@ -256,24 +258,27 @@ in a machine-readable way?}
 %\end{itemize}
 %
 % -----------------------------------------------------------------
-\section{Aim and Research Question}
+\section{Goal and Research Question}
 \label{sec:research_questions}
 
 In this thesis, we pursue the goal of facilitating
 the automated retrieval of provenance relationships.
 More precisely,
-we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporate bodies
-as well as the relationships between those. This method should consult standard data sources such as
-library catalogues, authority files, and knowledge bases. The method should furthermore be implementable as a retrieval system
+we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporate bodies,
+as well as bibliographic and inter-personal or inter-institutional relationships.
+This method should, on input of a query,
+autonomously consult relevant data sources,
+retrieve the required information, and return the set of all answers to the user.
+The method should furthermore provide a high-level specification
+for the implementation of a retrieval system
 that supports the user in formulating their queries, answering them, and exploring the data that supports the query answers.
-In the long term, we envisage that such a retrieval system will support provenance research
+It is our long-term vision that such a retrieval system will support provenance research
 by prospectively retrieving potentially interesting constellations.
 
-\todo[inline]{Highlight: retrieval system $=$ vision (see begin of §\ref{chap:method})}
+%
+%\todo[inline]{Describe intended group of users (and align begin of §\ref{chap:method})}
 
-\todo[inline]{Describe intended group of users (and align begin of §\ref{chap:method})}
-
-This goal leads to the following
+The described goal leads to the following
 central research question for this thesis.
 %
 \begin{quote}
@@ -295,7 +300,7 @@ This question implies several subordinate questions:
     of data from heterogeneous sources?}
   \item[\subquestion{3}]
     \emph{Based on the structure of the identified data sources,
-    how data sources, queries, and answers be modelled in an abstract framework?}
+    how can data sources, queries, and answers be modelled in an abstract framework?}
   \item[\subquestion{4}]
     \emph{What is a suitable method for retrieving provenance relationships
     in that framework?}
