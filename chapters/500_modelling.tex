@@ -1352,8 +1352,9 @@ Query Pattern~\exaquery{3} contains a reference to a \emph{set} of objects:
 %
 
 %\begin{figure}[ht]
-\begin{wrapfigure}[14]{o}{6.4cm}
+\begin{wrapfigure}[13]{o}{6.4cm}
   \centering
+  \vspace*{-.5\baselineskip}
   \begin{tikzpicture}[
     >=Latex,baseline=0pt,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -1399,7 +1400,7 @@ our basic model needs to be extended by \emph{set variables} representing sets o
 and \emph{set nodes} corresponding to set variables.
 In the case of \exaquery{3}, the set node acts nearly as an answer variable
 because the query asks for the relationships between the set of owners.
-In order to distinguish set variables and nodes from ordinary variables and nodes in the visualisation,
+In order to distinguish set variables and nodes from ordinary ones in the visualisation,
 we use overlined letters and octagonal shapes.
 Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}.
 
@@ -1464,7 +1465,7 @@ the answer set will inevitably be empty.
 This problem cannot be addressed at the level of the modelling,
 but rather at the levels of (a) the interaction between user and retrieval system
 or (b) the retrieval method.
-Option~(a) refers to way the system supports users in formulating their queries.
+Option~(a) refers to the way the system supports users in formulating their queries.
 Independently of the problem of missing relations or concepts, users should be able to 
 select terms from the supply of terms available in the data source(s).
 If a term that the user wants to use is missing, then the user has no other choice than
@@ -1528,6 +1529,7 @@ This can be expressed using attributes of the \term{owner} relation
 and a \enquote{$<$} constraint between the attributes of the \term{owner} labels
 of the edges pointing to $y_1$ and $y_2$.
 
+\enlargethispage*{5mm}
 In order to incorporate such constraints,
 the first step should be to devise a rigorous definition of the form of constraints that are allowed.
 The next step is to find a useful form of visualisation.
@@ -1535,7 +1537,7 @@ Finally, the notion of a homomorphism needs to be extended to preserve constrain
 which is quite straightforward.
 The computational properties need to be re-examined, but it is realistic to hope
 that they do not deteriorate because constraints of this kind are also part of
-modern database query languages such as \gls{SQL}.
+standard database query languages such as \gls{SQL}.
 
 \paragraph{Disjunctions in labels}
 
