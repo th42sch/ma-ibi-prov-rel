@@ -1,0 +1,162 @@
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+%\RequirePackage{latexsym,amssymb,amsmath,amsthm}
+\RequirePackage{amssymb,amsmath,amsthm}
+%\RequirePackage{marvosym}
+\RequirePackage{xspace}
+%\RequirePackage{calc}
+\RequirePackage[final]{microtype}
+\RequirePackage{xcolor}
+%\RequirePackage[pdfborder={0 0 0}]{hyperref}
+\RequirePackage{hyperref}
+%\RequirePackage{breakurl}
+\RequirePackage[symbol=${}^{\uparrow}$]{footnotebackref}
+%\RequirePackage{xurl}
+\RequirePackage[UKenglish,ngerman]{babel}
+\selectlanguage{UKenglish}
+\RequirePackage{graphicx}
+%\RequirePackage{scrlayer-scrpage}
+%\RequirePackage{wrapfig}
+%\RequirePackage{lastpage}
+\RequirePackage{enumerate}
+%\RequirePackage{blindtext}
+%\RequirePackage{setspace}
+%\onehalfspacing
+\RequirePackage[style=german,german=quotes,english=american]{csquotes}
+\RequirePackage{xurl}
+
+% ============== Font: Noto ========================
+%\RequirePackage[scaled=1.12]{nimbusmononarrow}
+\RequirePackage{inconsolata}
+\RequirePackage[subscriptcorrection]{notomath}
+%\RequirePackage[subscriptcorrection,mono]{notomath}
+%\RequirePackage[scaled=.88]{noto-mono}
+
+
+
+
+% ===== General settings =====
+%\pagestyle{empty}
+\pagestyle{plain}
+%\pagestyle{headings}
+%\pagestyle{scrheadings}
+%\clearpairofpagestyles
+%\setkomafont{pagenumber}{\textit}
+
+\parskip6pt
+\parindent0pt
+\Urlmuskip=0mu plus 10mu
+
+% ----- highlight overfull hboxes
+%\overfullrule=5pt
+
+%\DeclareFontSeriesDefault{bf}{sb}
+\newcommand{\mybold}[1]{\textbf{\textsf{{\boldmath #1}}}}
+
+\newcommand{\fns}{\footnotesize}
+
+% ===== Colours =====
+
+\definecolor{gray}{rgb}{.5,.5,.5}
+\definecolor{dgray}{rgb}{.2,.2,.2}
+%\definecolor{dgblu}{rgb}{.2,.2,.27}
+%\definecolor{dgblu}{rgb}{.2,.2,.32}
+%\definecolor{dgblu}{rgb}{.18,.18,.29}
+\definecolor{dgblu}{rgb}{.1,.1,.5}
+
+\definecolor{lightblue}{rgb}{0.929,0.953,0.996}
+\definecolor{medblue}{rgb}{0.816,0.922,0.996}
+\colorlet{ansvar}{yellow!50!white}
+\colorlet{anovar}{orange!30!white}
+%\colorlet{setvar}{red!30!white}
+\colorlet{setvar}{ansvar}
+
+\colorlet{lightgreen}{green!20!white}
+
+
+%%\colorlet{Econnred}{red!50}
+%%\colorlet{Econnblue}{blue!20}
+%%\colorlet{Econngreen}{green!10}
+%%\colorlet{Econniso}{black}
+%%
+%\colorlet{Econnred}{red!7}
+%\colorlet{Econnblue}{blue!25}
+%\colorlet{Econngreen}{green!50!black}
+%\colorlet{Econniso}{white}
+%
+%\colorlet{ctableone}{white}
+%\colorlet{ctabletwo}{lightblue}
+%\colorlet{ctablehead}{medblue}
+
+
+%\definecolor{solblue}{HTML}{268BD2}
+\colorlet{linkblue}{dgblu}
+
+% ===== hyperref setup =====
+
+\hypersetup{
+  pdfhighlight = /P,
+  colorlinks=true,
+  urlcolor=linkblue,
+  filecolor=linkblue,
+  linkcolor=linkblue,
+  citecolor=linkblue,
+  raiselinks=true,
+%  breaklinks,
+  unicode,
+}
+
+
+% \paragraph with reduced preceding parskip
+\RedeclareSectionCommand[beforeskip=-1sp plus 1sp minus -1sp]{paragraph}
+
+% ==============
+
+\newcommand{\textsfbf}[1]{\textsf{\textbf{{\boldmath #1}}}}
+\newcommand{\textsfbfgr}[1]{\textsf{\textbf{\textcolor{dgray}{#1}}}}
+\newcommand{\textsfbfgb}[1]{\textsf{\textbf{\textcolor{dgblu}{#1}}}}
+
+\newcommand{\parI}{\par\smallskip}
+\newcommand{\parII}{\par\medskip}
+\newcommand{\parIII}{\par\bigskip}
+
+%\ifoot[]{Thomas Schneider, M27, Klausur 1, Teil ...}
+%\ofoot*{\pagemark/\pageref{LastPage}}
+
+\newcommand{\Lmc}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Nmc}{\ensuremath{\mathcal{N}}\xspace}
+
+\newcommand{\term}[1]{\textsf{#1}}
+%\newcommand{\fnterm}[1]{\textsf{{\footnotesize #1}}}
+\newcommand{\sig}[1]{\textsf{#1}}
+
+\newcommand{\NC}{\ensuremath{\mathsf{N}_\mathsf{C}}\xspace}
+\newcommand{\NI}{\ensuremath{\mathsf{N}_\mathsf{I}}\xspace}
+\newcommand{\NO}{\ensuremath{\mathsf{N}_\mathsf{O}}\xspace}
+\newcommand{\NR}{\ensuremath{\mathsf{N}_\mathsf{R}}\xspace}
+\newcommand{\NV}{\ensuremath{\mathsf{N}_\mathsf{V}}\xspace}
+\newcommand{\namespace}{\textup{\textsf{N}}\xspace}
+
+\newcommand{\VARANS}{\ensuremath{\mathsf{VAR}_\mathsf{ANS}}\xspace}
+\newcommand{\VARANON}{\ensuremath{\mathsf{VAR}_\mathsf{ANON}}\xspace}
+
+%\newcommand{\exaquery}[1]{\textsf{\textbf{{\small\boldmath Q#1}}}}
+\newcommand{\exaquery}[1]{\textsf{\textbf{{\boldmath Q#1}}}}
+\newcommand{\subquestion}[1]{\textsf{\textbf{{\boldmath RQ#1}}}}
+\newcommand{\RQ}[1][]{\textsf{\textbf{{\boldmath RQ#1}}}}
+\newcommand{\hmph}[1]{\textsf{\textbf{{\boldmath H#1}}}}
+
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip4\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }%
+}
+
+\newcommand{\ans}{\textsf{ans}\xspace}
+\newcommand{\problem}[1]{\textup{\textsf{#1}}}
+\newcommand{\CC}[1]{\textup{\textsf{#1}}}
+\newcommand{\YES}{\textsc{yes}\xspace}
+\newcommand{\NOO}{\textsc{no}\xspace}
+\newcommand{\SonarR}[1]{\textsf{\textbf{{\boldmath R#1}}}}
