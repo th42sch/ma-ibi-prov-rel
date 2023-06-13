@@ -312,17 +312,26 @@ This question implies several subordinate questions:
 ]
   \begin{enumerate}
     \item[\subquestion{1}]
-      \emph{Which data sources are available for answering provenance queries?}
-  %  \item[\subquestion{2}]
-  %    \emph{What are the overlap and differences between the contents of these data sources?}
-  %    \todo{Restrict or omit later!}
+      \emph{What is the state of research on infrastructures for the automated retrieval
+      of provenance relationships? Which approach(es) is/are most closely related?}
     \item[\subquestion{2}]
-      \emph{Which techniques and tools are available for integrating
-      data from heterogeneous sources?}
+      \emph{What are the general challenges for answering queries such as \exaquery{1}--\exaquery{9},
+      and what are the specific challenges for an automated approach?}
     \item[\subquestion{3}]
+      \emph{Which data sources, standards, data formats, and further tools
+      are available for answering provenance queries using multiple, heterogeneous data sources?}
+%    \item[\subquestion{1}]
+%      \emph{Which data sources are available for answering provenance queries?}
+%  %  \item[\subquestion{2}]
+%  %    \emph{What are the overlap and differences between the contents of these data sources?}
+%  %    \todo{Restrict or omit later!}
+%    \item[\subquestion{2}]
+%      \emph{Which techniques and tools are available for integrating
+%      data from heterogeneous sources?}
+    \item[\subquestion{4}]
       \emph{Based on the structure of the identified data sources,
       how can data sources, queries, and query answers be modelled in an abstract framework?}
-    \item[\subquestion{4}]
+    \item[\subquestion{5}]
       \emph{What is a suitable method for retrieving provenance relationships
       in that framework?}
   \end{enumerate}
@@ -335,27 +344,27 @@ This question implies several subordinate questions:
 
 In order to answer our research questions, we will proceed as follows.
 
-In Chapter~\ref{chap:rel_work}, we review existing work 
-and connect it with our research questions.
-Our literature review will cover works on research infrastructures
+In Chapter~\ref{chap:rel_work}, we address \subquestion{1} by reviewing existing work 
+and relating it to the goal of this thesis.
+The literature review covers works on research infrastructures
 for (social/historical) network analysis,
 data integration techniques in general and in the library domain,
 and provenance indexing.
 
-In Chapter~\ref{chap:prototype_queries}, we revisit
-the exemplary queries from Section~\ref{sec:background},
-demonstrate a manual attempt at answering them,
-and discuss the expected quality of query answers and difficulties with this manual process.
-This discussion will inform the subsequent developments.
+In Chapter~\ref{chap:prototype_queries}, we address \subquestion{2}
+via a case study based on the exemplary queries from Section~\ref{sec:background}.
+We demonstrate a manual attempt at answering them,
+discuss the expected quality of query answers,
+and compare the challenges of this manual process and of an automated approach.
 
-In order to answer Questions~\subquestion{1} and~\subquestion{2}, we review
+In order to address Questions~\subquestion{3}, we review
 data sources, techniques, and tools in Chapter~\ref{chap:analysis}.
 This review will cover standards for the description of bibliographic resources,
 data communication protocols, data description and exchange formats,
 and a range of data sources.
 
-Based on the insights from the previous two reviews,
-we answer Question~\subquestion{3} in Chapter~\ref{chap:modelling} by
+Based on the insights from the previous two reviews and the case study,
+we address Question~\subquestion{4} in Chapter~\ref{chap:modelling} by
 developing an abstract model of
 data sources, queries, and query answers.
 This mathematical model subsumes the previous examples
@@ -364,8 +373,8 @@ build admissible queries, without restricting their contents
 (i.e., the specific names, attributes, concepts, and relations used)
 or their complexity. 
 
-Based on our model and the insights from the reviews,
-we answer Question~\subquestion{4} in Chapter~\ref{chap:retrieval} by
+Based on our model and all previous insights,
+we address Question~\subquestion{5} in Chapter~\ref{chap:retrieval} by
 developing a method for formulating queries, retrieving query answers,
 and presenting them to the user.
 This model should serve as the basis for a future implementation of a retrieval system
