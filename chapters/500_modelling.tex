@@ -135,7 +135,7 @@ we determine that their names start with a lowercase letter.
 \paragraph{Converses of relations}
 The \emph{converse} of a relation $R$ is the relation obtained from $R$
 by swapping the components in each pair,
-e.g., the converse \term{creator\_of} of \term{creator}
+for example, the converse \term{creator\_of} of \term{creator}
 contains the pair $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$.
 
 \paragraph{Instances}
@@ -197,10 +197,17 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
 \section{Labelled Directed Graphs}
 \label{sec:labelled_digraphs}
 
-%\begin{figure}[ht]
-\begin{wrapfigure}[6]{o}{5.2cm}
+Before we develop the technical definitions,
+we provide the underlying intuitions.
+Graphs consists of nodes and edges. Edges link nodes and can be directed
+or undirected. Graphs are easy to visualise: nodes are drawn as circles
+or rectangles, and edges as arrows (directed) or lines (undirected).
+Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
+
+\begin{figure}[ht]
+%\begin{wrapfigure}[6]{o}{5.2cm}
   \centering
-  \vspace*{-.7\baselineskip}
+%  \vspace*{-.7\baselineskip}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -227,15 +234,8 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
   \end{tikzpicture}
   \caption{A directed graph}
   \label{fig:example_graph_abstract}
-%\end{figure}
-\end{wrapfigure}
-
-Before we develop the technical definitions,
-we provide the underlying intuitions.
-Graphs consists of nodes and edges. Edges link nodes and can be directed
-or undirected. Graphs are easy to visualise: nodes are drawn as circles
-or rectangles, and edges as arrows (directed) or lines (undirected).
-Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
+%\end{wrapfigure}
+\end{figure}
 
 For our purposes,
 nodes represent objects or literals. 
@@ -254,6 +254,7 @@ direction matters and we use \emph{directed} graphs.
 Symmetric relations such as \term{relatedEndeavour}
 can be represented via pairs of edges pointing in both directions.
 
+\goodbreak
 Furthermore, we want to assign a unique name to each node of a graph
 and one or several labels to each node and each edge:
 The name of a node specifies the object that is represented by that node.
@@ -383,12 +384,12 @@ to represent edges, and functions over the nodes and edges to represent
 names and labels. In order for the ranges%
 \footnote{The \emph{range} or \emph{codomain} of a function is the set of values that can occur as images of that function.}
 of those functions to be well-defined,
-we give a definition of a labelled directed graph that is relative to a \emph{namespace},
+the following definition of a labelled directed graph is relative to a \emph{namespace},
 which contains all the names of objects, concepts and relations that are relevant.
 This namespace is a parameter that can be freely chosen; it may consist,
 for example, of all the names found in the relevant data sources.
-The following definition introduces the notions of a namespace and a
-labelled directed graph.
+%The following definition introduces the notions of a namespace and a
+%labelled directed graph.
 %
 %\begin{definition}
 %  Let $R$ be a set of \emph{relation names}.
@@ -714,8 +715,8 @@ the required node named \term{De\_revolutionibus}.
         \node[right=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
       \end{scope}
     \end{tikzpicture}
-    \\[-6pt]
-    (a) & (b) \\[6pt]
+    \\[-4pt]
+    (a) & (b) \\[8pt]
     \begin{tikzpicture}[
       >=Latex,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
@@ -774,7 +775,7 @@ the required node named \term{De\_revolutionibus}.
         \node[right=.5mm of y]     () {\fns\term{Scientist}};
       \end{scope}
     \end{tikzpicture}
-    \\[-6pt]
+    \\[-4pt]
     (c) & (d)
   \end{tabular}
   %
@@ -786,7 +787,7 @@ In order to identify subgraphs of a given graph that have the same structure as 
 we use the standard notion of a homomorphism.
 A homomorphism is a function that maps some object to another
 while preserving the structure of the former.
-We therefore need to define a variant of homomorphism that maps queries
+We thus need to define a variant of homomorphism that maps queries
 to data sources. This variant is given in the following.
 %
 \begin{definition}
@@ -899,8 +900,8 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
     then there is no answer to $G$ in $G'$, i.e., $\ans(G,G') =  \emptyset$.
     
 %  \item
-    From a mathematical point of view, it would suffice to simply equate answers with homomorphisms
-    because $G''$ can be reconstructed from $G$ and $h$. However, we deliberately make $G''$ explicit
+    From a mathematical point of view, it would suffice to equate answers with homomorphisms
+    since $G''$ can be reconstructed from $G$ and $h$. However, we deliberately make $G''$ explicit
     in order to take the importance of the \enquote{explorative approach} into account
     (see Sections~\ref{subsec:SoNAR_reports} and~\ref{subsec:insights_from_SoNAR}).
     The subgraph $G''$ servers as the minimal \enquote{section} of the data that a researcher should want to inspect.
@@ -1236,8 +1237,10 @@ In~\exaquery{5$^\star$}, the year is specified as an attribute of the \term{prov
 while, in~\exaquery{1}, it acts as an additional answer variable that represents
 an attribute of the \term{owner} relation.
 In order to capture~\exaquery{1} and~\exaquery{5$^\star$} fully,
-it is necessary to extend the model in a way that relationships can have attributes.
-This is straightforward in the graph representation for both graphs and queries, as the attributes can be added to
+the model needs to be extended such that relationships can have attributes.
+This is straightforward in the graph representation,
+%for both graphs and queries, 
+as the attributes can be added to
 the respective edge labels. This is shown in Figure~\ref{fig:attributes_on_relships}
 for the two respective edges of~\exaquery{1} and~\exaquery{5$^\star$}.
 
@@ -1510,7 +1513,7 @@ as can be seen, for example, in the full versions of Query Pattern~\exaquery{5}:
     \emph{between 1933 and 1945}?
 \end{enumerate}
 %
-In order to capture this query, the syntax for labels in query graphs needs to be extended in a way that
+In order to capture this query, the syntax for labels in query graphs needs to be extended such that
 constraints can be formulated as attributes of relationships,
 for example, 
 by replacing the edge label \enquote{\term{provider}\mybold{\,:\,1935}}
