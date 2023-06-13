@@ -5,7 +5,7 @@
 
 In order to build a system for retrieving provenance relationships,
 data sources need to be selected. It is the aim of this chapter
-to provide information for this selection can be based later on.
+to provide information for this selection.
 Furthermore, the abstract model of data sources, provenance queries, and answers
 that we will develop in the following chapter
 needs to incorporate the characteristics of the data models used in the appropriate data sources.
@@ -224,7 +224,7 @@ we first need to describe relevant standards and formats for the description
 and communication of (bibliographic) data.
 The following discussion 
 is based on~\citeauthor{Hider2008}'s overview \autocite*[§10]{Hider2008},
-unless indicated otherwise
+unless indicated otherwise.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Markup Languages}
@@ -250,7 +250,7 @@ The \gls{XML} is both a file format and markup language for the storage and tran
 it allows for a hierarchical structuring of data in a text file format that is readable by both humans and machines
 \autocite{WikiXML}.
 XML is the basis for many modern web developments.
-Most metadata schemas have standard expressions in XML, as we will learn below.
+Most metadata schemas have standard expressions in XML, as we will see below.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data Communication Protocols}
@@ -269,7 +269,7 @@ It is an \gls{ISO} standard as well as an \gls{ANSI}/\gls{NISO} standard.
 Z39.50 is a set of rules developed specifically
 for translating search and retrieval commands between databases such as OPACs.
 Using Z39.50, it is possible to issue commands specific to a local database
-and obtain results from a remote database that uses a possibly different command set.
+and obtain results from a remote database that might use a different command set.
 This protocol can be implemented over the internet and similar networks.
 Z39.50 is widely used in the library domain for providing access to catalogues,
 for example, by the \gls{LoC}. Still, it is not fully implemented by all library systems,
@@ -600,7 +600,7 @@ to the DNB's \emph{Data Shop}.
 The DNB's Linked Data Service provides open access to its bibliographic and authority data
 in \emph{RDF} under the same license. Instructions on how to interact with these interfaces
 are given on the DNB's webpage on metadata services \autocite{DNB_metadata}.
-There DNB website also reports on a project for the conversion of its data
+The DNB website also reports on a project for the conversion of its data
 into the \gls{BIBFRAME} format \autocite[cf.][]{DNBBIBFRAME}:
 for title records, the DNB OPAC provides a download button for the BIBFRAME format.
 The state of this project beyond 2014 is left unclear.
@@ -659,7 +659,7 @@ K10plus furthermore uses authority data from the \gls{BK} and the \gls{RVK},
 cf.\ the K10plus Wiki \autocite{K10plusWikiNormdaten}.
 
 Concerning the state of provenance indexing in the library networks \gls{GBV} and \gls{SWB},
-Hakelberg \autocite*[§4]{Hakelberg2016} reports the following.
+Hakelberg \autocite*[§4]{Hakelberg2016} reports the following:
 The catalogue systems of \gls{GBV} and \gls{SWB}, which are united in K10plus,
 support the recording and display
 of provenance marks at the bibliographic as well as the exemplar level of a record.
@@ -706,11 +706,11 @@ provides for the cataloguing of the following temporal data in authority records
 biographical data (persons), date of publication (works), dates of existence (conferences, corporations),
 year of discovery, dates of activity (persons, corporations), years of effect of relationships
 between entities of different kinds. Examples for temporal data of the latter kind include
-the time interval during which a scholar was member of a university or during which a person was a student of another.
+the time interval during which a scholar was member of a university or during which a person was another person's student.
 
 We have already learnt from the \gls{SoNAR} project (Section~\ref{sec:HNA+SoNAR}) 
-that the data in the GND incomplete for several reasons.
-Another reason is certainly connected with the individualisation guidelines
+that the data in the GND is incomplete for several reasons.
+A further reason is certainly connected with the individualisation guidelines
 in the DNB's guidelines for recording persons and families in the GND
 \autocite[part EH-P-16]{GND_Erfassungshilfen}, which specify the additional information
 that needs to be provided in order to disambiguate a person or family.
@@ -840,7 +840,7 @@ in mathematical terms, constants and unary and binary relations---%
 should play a central role in the model of queries, answers, and data sources
 that we are going to develop next. This means that a graph-based type of model,
 which also features in the \gls{SoNAR} project,
-is suitable. In case relations of higher arity turn out to be needed,
+is suitable. In case relations of higher arity turn out to be required,
 for example when representing the  provenance of an \gls{SPO} statement,
 those can always be represented by several binary relations via reification
 \autocite[cf.][p.339f.]{Doan2012}.
@@ -853,7 +853,7 @@ because the model should be independent on the contents or specific data models 
 The same holds for the general method for answering queries that we are going to develop based on our model.
 However, future implementations of our method will have to take the specifics
 of the data sources into account.
-For this reason, it will be necessary to review further data sources,
+For this reason, it will be necessary to review additional data sources,
 compare them quantitatively with respect to the extent and quality of their data,
 and find structured ways for dealing with the problems concerning the data quality
 reported above, such as the ambiguous links to works and expressions in RDA-based

@@ -70,7 +70,7 @@ social interactions \autocite{Otte2002}.
 
 In the context of historical research,
 the notion of \emph{\gls{HNA}}
-has emerged recently; it focusses on the reconstruction of
+has emerged recently; it focuses on the reconstruction of
 historical networks \autocite{Menzel2020}.
 A distinguishing feature of \gls{HNA} is its retrospective view,
 i.e., it is used to analyse historical data extracted
@@ -239,7 +239,7 @@ of heterogeneous data sources and on the design of visualisation for historical 
 In the remainder of this subsection,
 we summarise their insights on data selection and processing.
 
-In the described approach, the authors integrate data from 6 heterogeneous repositories
+In the described approach, the authors integrate data from six heterogeneous repositories
 into a large uniform graph that is stored in a graph database
 and managed by the highly performant graph database management system Neo4j \autocite{Neo4j}.
 The original repositories comprise an authority file \gls{GND},
@@ -273,7 +273,7 @@ which requires extensive remodelling.
 \subsection{Insights Relevant for This Thesis}
 \label{subsec:insights_from_SoNAR}
 
-We now put the insights from the \gls{SoNAR} project described in the previous two subections
+We now put the insights from the \gls{SoNAR} project described in the previous two subsections
 into relation with the research goals pursued in this thesis.
 First, the analysis of historical networks is a broad concept, and \gls{SoNAR} supports a setting
 that is much more general than just provenance research.
@@ -320,11 +320,11 @@ the use of a single data model, autonomous hosting
 independently of the single repositories, and thus full control over the data.
 Furthermore, inconsistencies
 between the repositories can be resolved a-priori (at creation time),
-and the created database is independent on possible changes in the data models of the repositories.
+and the created database does not depend on possible changes in the data models of the repositories.
 However, the static nature of this database also has disadvantages:
 a data model has to be fixed upfront, and ultimately needs to be adapted when
 the models of the repositories change or new repositories are added;
-regular updates are necessary when the contents of the repositories changes;
+regular updates are necessary when the contents of the repositories change;
 finally, as we have learnt above,
 a large graph database uses a large amount of memory and requires a highly performant
 database system.
@@ -615,7 +615,7 @@ i.e., accessible and shareable by everyone \autocite{WikiLinkedData}.
 
 The state of LOD in the library domain in 2013 is summarised by \textcite{Pohl2013}
 in their introduction to the edited volume \enquote{(Open) Linked Data in Libraries} \autocite{Danowski2013}
-as follows (translated from German and rephrased). Libraries and related organisations
+as follows (translated from German and rephrased): Libraries and related organisations
 began to experiment with linked data as early as 2008.
 This was followed by linked-data initiatives by important players such as
 OCLC, the \gls{LoC}, and the \gls{DNB};
@@ -630,7 +630,7 @@ the use of a much more flexible data model,
 interoperability ensured by the use of open web standards,
 and reusability via open licences.
 A prominent example of this development is the provision of authority data as LOD,
-which can be shared an reused on the Web:
+which can be shared and reused on the Web:
 e.g., authority data on person names from the \gls{GND} has been used by Wikipedia since 2005
 in order to provide links to further reading in Wikipedia articles, see also \autocite{Hengel2005}.
 In addition to the \gls{GND}, further providers have made authority data available as LOD,
@@ -676,7 +676,7 @@ Their review provides an extensive survey of the recent literature.
 The main findings include
 the observations that L(O)D is becoming
 \enquote{the mainstream trend in library cataloging especially in the major libraries and research projects of the world} \autocite[p.47]{Ullah2018}
-and that bibliographic metadata is becoming increasingly meaningful and reusable of through the emergence of Linked Open Vocabularies.
+and that bibliographic metadata is becoming increasingly meaningful and reusable through the emergence of Linked Open Vocabularies.
 
 \textcite{Hauser2014} gives an overview of the linked data service
 of the \gls{DNB},
@@ -693,7 +693,7 @@ thus allowing to disambiguate and link these entities.
 In the data integration scenario, the origins of (meta)data are important:
 When querying the combination of several data sources, the retrieved answer
 should contain, for every fact, information that identifies the original data source or repository
-from which that fact was taken.
+from which that fact was obtained.
 This information is useful as a \enquote{justification} for the retrieved answer
 or as a pointer for further research;
 it is especially desirable when the consulted data sources contain conflicting information.
@@ -740,7 +740,7 @@ in the classical database domain
 \section{Provenance Indexing}
 \label{sec:provenance_indexing}
 
-In a previous master's thesis, \textcite{Hakelberg2016}
+\textcite{Hakelberg2016}
 studies the state of provenance indexing with authority data.
 We summarise his conclusions in the remainder of this paragraph.
 The \gls{GND} provides authority data that is
@@ -766,7 +766,7 @@ in order to make them reusable as linked open data. %(see Section~\ref{sec:linke
 
 We draw the following insights from these observations.
 \gls{GND} as well as library catalogues should be central data sources within our approach.
-Obstacles may be caused by
+Obstacles may be
 the heterogeneous situation of indexing in library catalogues
 as well as the fact that T-PRO is not ready for LOD.
 The need for the presentation of the used vocabulary as a search entry

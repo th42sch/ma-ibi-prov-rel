@@ -38,7 +38,7 @@ and algorithms. By utilising graph theory, our application scenario
 can benefit from these concepts, algorithms \autocite{Diestel2012,Even2012},
 and implementations \autocite{PythonGraphLibraries,JGraphT}.
 
-The main idea of our abstract model is the following.
+The main idea of our abstract model is the following:
 Both queries and data sources are represented as graphs
 (typically a rather small graph for the query and a very large graph for the data source).
 Answers to the query are those parts of the graph that have the same structure
@@ -127,7 +127,7 @@ but it is more intuitive to use those separate terms,
 As we have already argued in Section~\ref{sec:implications_on_modelling},
 we will hardly need to deal with relations of arity beyond 2;
 therefore we will mostly discuss binary relations
-and refer to them as \emph{relations} when no confusion may arise.
+and refer to them as \emph{relations} when no confusion is likely to arise.
 
 To distinguish relations from concepts and objects,
 we determine that their names start with a lowercase letter.
@@ -434,7 +434,7 @@ labelled directed graph.
   \end{itemize}
 \end{definition}
 %
-Definition~1 captures the following commitments regarding names and labels.
+Definition~\ref{def:ld_graph} captures the following commitments regarding names and labels:
 %%
 %\begin{itemize}
 %  \item
@@ -513,14 +513,14 @@ In our model, we assume that there is always a \emph{single} data source against
 When the model is applied to real-word queries and data sources,
 the abstract notion of a data source is instantiated by the union of
 all available actual data sources (such as catalogues, authority files, knowledge bases),
-including mappings between them if applicable.
+including mappings between them, if applicable.
 We will discuss this point in more detail in Chapter~\ref{chap:retrieval}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Queries}
 
 In order to model queries based on graphs, we need to distinguish
-two special groups of nodes that act as placeholders (1) for the object(s) after which the query asks
+two special groups of nodes that act as placeholders (1) for the object(s) about which the query asks
 and (2) for further objects that are mentioned in the query without being named explicitly.
 For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answering}:
 %
@@ -968,14 +968,14 @@ and $c$ and $k$ are some constants. Problems for which an algorithm with such gu
 are called \emph{solvable in polynomial time}.
 A polynomial time bound on an algorithm provides the guarantee that its runtime as a function of the input size
 increases moderately for all inputs, as opposed to, e.g., an exponential function.
-Therefore, problems with a polynomial-time algorithms are generally considered tractable.
+Therefore, problems for which a polynomial-time algorithm exists are generally considered tractable.
 However, this is still an abstract notion, given that the constants $c$ and $k$ can be arbitrary.
 It remains for practical purposes to find an optimal algorithm with $c$ and $k$ as small as possible,
 and which performs particularly well on those inputs that occur in the application at hand.
 
 In order to check whether a computation problem is computable and tractable,
 is it usual to resort to a slightly more abstract level,
-considering the \emph{decision problem} associated to the computation problem.
+considering the \emph{decision problem} associated with the computation problem.
 Typically, \emph{decidability} (i.e., computability) and tractability of
 the decision problem imply those of the computation problem;
 hence it suffices to consider these.
@@ -1028,7 +1028,7 @@ which can be shown very easily using standard knowledge from graph theory and fi
 Without immersing into the technical definitions for standard notions in complexity theory,
 we note that polynomial-time reducibility between the two problems
 means that an algorithm for one of them
-cqn be turned into an algorithm for the other which uses only a polynomial
+can be turned into an algorithm for the other which uses only a polynomial
 (i.e., relatively small) additional amount of time.
 
 We therefore obtain the following decidability and complexity result
@@ -1322,7 +1322,7 @@ While the mathematical object can be defined analogously to standard graphs,
 it does no longer lend itself to intuitive visualisations.
 Instead, an \gls{SQL}-like query language seems better suited
 but misses the advantages of an intuitive visualisation 
-and requires expert knowledge that humanists do not usually have at hand.
+and requires expert knowledge that humanities scholars do not usually have at hand.
 As already mentioned, the notion of a homomorphism and the computational properties
 carry over directly.
 
@@ -1330,9 +1330,9 @@ Another use case for relations of higher arity is the inclusion of metadata prov
 i.e., information on the origins of a unit of data (such as a concept membership or relationship).
 In our scenario, it makes sense to distinguish two kinds of
 metadata provenance. The first is information provided by some data sources such as the \gls{GND}
-(see Section~\ref{subsec:SoNAR_reports}), referring to original data sources one whose grounds
+(see Section~\ref{subsec:SoNAR_reports}), referring to original data sources on whose grounds
 the respective data unit was entered.
-The second is the a reference to the data source from which the data unit entered
+The second is the reference to the data source from which the data unit entered
 the federated data source $G'$ against which the query $G$ is evaluated
 (see Sections~\ref{subsec:insights_from_SoNAR} and~\ref{subsec:data_provenance}).
 Both kinds of provenance information are reflected only in the data source
@@ -1407,7 +1407,7 @@ Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}.
 Query Pattern~\exaquery{9} (see above) also requires a set variable
 that represents the \enquote{previous owners}. In contrast to \exaquery{3},
 the query does not ask for the relationships between the objects in that set
-but for the relationships \todo{between} from these objects to person $X$.
+but for the relationships between these objects and person $X$.
 These relationships are automatically included in each induced subgraph that is part of a query answer,
 and they need to be evaluated manually by the user
 in order to answer the yes/no question involving the relationship \term{know},
