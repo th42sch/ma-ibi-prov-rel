@@ -110,8 +110,8 @@ the query answering problem has the same
 good computational properties as standard query answering over relational databases.
 However, some desirable features in queries may require extensions of the model that no longer lend themselves
 to intuitive visualisations; in order to capture these features, an \gls{SQL}-like syntax could be appropriate.
-Finally, our example queries, as well as some of the requirements from the \gls{SoNAR} project
-cannot simply be cast into a graph but instead require more specification or manual exploration.
+Finally, some aspects used in queries cannot be captured in any formal model
+and require manual intervention.
 
 \paragraph{\RQ[5] (Chapter~\ref{chap:method})}
 
@@ -124,17 +124,35 @@ which speaks in favour of a web application.
 The developed method is a high-level specification for a future implementation of a retrieval system,
 and many details still remain be clarified or studied further.
 
-
 \paragraph{\RQ}
 
-\dots
-
+There is neither a single model nor a single method,
+but our graph-based model and two-phase method seem suitable.
+The abstract model captures most of the exemplary questions, 
+and the general method has a number of parameters
+that need to be set or require further study.
 
 % -----------------------------------------------------------------
 \section{Outlook}
 \label{sec:outlook}
 
-\dots
+As immediate next steps, further data sources should be analysed, and the generic method
+should be elaborated in more detail. Subsequently, a prototype retrieval system should be implemented
+and tested. Ideally, this prototype is then turned into a fully-fledged web application.
+
+The work reported here can be continued in a number of further directions:
+A systematic quantitative analysis of relevant queries and data sources
+in the form of an extensive user study
+would help underpin our ad-hoc selection of example queries
+as well as, hopefully, the abstract model. 
+The testing of the prototype system could be integrated in this study,
+leading to an agile development cycle.
+In the same context, a pilot study on the correctness and completeness of query answers
+could be carried out with expert users in order to improve the resulting retrieval system.
+Furthermore, the system could be integrated in the research infrastructure
+in the context of the \gls{SoNAR} project or in large portals such as Proveana or Europeana.
+Finally, the use of semantic web technologies such as ontologies and reasoning
+could be explored in detail.
 
 
 \todo[inline]{finish conclusion ::}

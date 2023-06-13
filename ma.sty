@@ -58,6 +58,11 @@
 % ----- general settings -----
 %\makeglossaries
 %\makenoidxglossaries
+\renewcommand*{\acronymname}{Abbreviations}
+\addto\captionsUKenglish
+{%
+  \renewcommand*{\acronymname}{Abbreviations}
+}
 \glssetcategoryattribute{acronym}{indexonlyfirst}{true}
 \glssetcategoryattribute{abbreviation}{indexonlyfirst}{true}
 \renewcommand{\glsnamefont}[1]{\mybold{#1}}
