@@ -84,23 +84,46 @@ institutions and library networks.
 The general challenges for answering queries such as~\exaquery{1}--\exaquery{9}
 include several sources for missing and spurious answers.
 A prominent reason is the mismatch between natural-language terms for concepts or relations
-and the terms that are 
-
-
-
-Possible remedies include 
+and the vocabulary of the data sources.
+A possible remedy is the use of \enquote{substitute information}, hypotheses, or reasoning.
+This problem carries even more weight in an automated approach, where
+a machine cannot easily rely on human intuition or experience for identifying substitute information
+and hypothesising.
 
 \paragraph{\RQ[3] (Chapter~\ref{chap:analysis})}
 
-\dots
+There is a large number of bibliographic standards, bibliographic and generic data formats,
+communication protocols, and data sources. We have identified four groups of altogether 22
+obvious data sources, and this list is by far not exhaustive. Our detailed analysis of four
+of the 22 data sources shows that, in particular, linked (open) data and the relevant
+interfaces are provided by all of them. 
+In order to implement a prototype of a retrieval system that is supposed to provide a proof of concept,
+it certainly suffices to include these four data sources.
+However, a fully-fledged retrieval system should probably include a substantially larger selection of data sources;
+in this case, our analysis needs to be extended accordingly.
 
 \paragraph{\RQ[4] (Chapter~\ref{chap:modelling})}
 
-\dots
+We have developed a basic, conceptually simple, graph-based model for data sources, queries, and query answers,
+and sketched several extensions. For the basic version and some of the extensions,
+the query answering problem has the same
+good computational properties as standard query answering over relational databases.
+However, some desirable features in queries may require extensions of the model that no longer lend themselves
+to intuitive visualisations; in order to capture these features, an \gls{SQL}-like syntax could be appropriate.
+Finally, our example queries, as well as some of the requirements from the \gls{SoNAR} project
+cannot simply be cast into a graph but instead require more specification or manual exploration.
 
 \paragraph{\RQ[5] (Chapter~\ref{chap:method})}
 
-\dots
+We have developed an abstract method consisting of two main phases and three subphases.
+The decision between the dynamic and the static setting is a fundamental design choice,
+as it affects all phases. The comparison of the two settings does not yield a clear tendency
+towards one or the other. The challenges that both systems have in common imply
+that the system needs to be constantly maintained by domain experts and implementers,
+which speaks in favour of a web application.
+The developed method is a high-level specification for a future implementation of a retrieval system,
+and many details still remain be clarified or studied further.
+
 
 \paragraph{\RQ}
 

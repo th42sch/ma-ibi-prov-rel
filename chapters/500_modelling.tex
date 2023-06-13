@@ -1407,7 +1407,7 @@ Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}.
 Query Pattern~\exaquery{9} (see above) also requires a set variable
 that represents the \enquote{previous owners}. In contrast to \exaquery{3},
 the query does not ask for the relationships between the objects in that set
-but for the relationships from these objects to person $X$.
+but for the relationships \todo{between} from these objects to person $X$.
 These relationships are automatically included in each induced subgraph that is part of a query answer,
 and they need to be evaluated manually by the user
 in order to answer the yes/no question involving the relationship \term{know},
@@ -1551,7 +1551,7 @@ for example, the following variant of \exaquery{4}.
 %
 This example uses a disjunction of the relations \term{child} and \term{student}.
 It should be quite straightforward to extend the syntax for labels in query graphs
-and the notion of a homomorphism in order to represent and preserve this kind of constraints.
+and the notion of a homomorphism in order to represent and preserve this kind of constraint.
 The computational properties are not affected by adding disjunction,
 as Vardi's result (Theorem~\ref{thm:cplx_CQA}) applies in fact to arbitrary queries formulated in first-order logic.
 
