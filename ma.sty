@@ -46,6 +46,15 @@
   \fi
 }
 
+% ============= ggf. leere Seite vor Selbstständigkeitserklärung ===========
+\newcommand{\clearpagebeforeSE}{
+  \ifprint
+    \clearpage\thispagestyle{empty}~\newpage
+  \else
+    \clearpage
+  \fi
+}
+
 % ============= No appendix sections in toc ==============
 \usepackage{etoolbox}
 \appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
