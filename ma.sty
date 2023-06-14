@@ -409,18 +409,27 @@
 
 % ===== hyperref setup =====
 
-\hypersetup{
-  pdfhighlight = /P,
-  colorlinks=true,
-  urlcolor=linkblue,
-  filecolor=linkblue,
-  linkcolor=linkblue,
-  citecolor=linkblue,
-  raiselinks=true,
-%  breaklinks,
-  unicode,
-}
-
+\ifprint
+  \hypersetup{
+    pdfhighlight = /P,
+    colorlinks=false,
+    raiselinks=true,
+  %  breaklinks,
+    unicode,
+  }
+\else
+  \hypersetup{
+    pdfhighlight = /P,
+    colorlinks=true,
+    urlcolor=linkblue,
+    filecolor=linkblue,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    raiselinks=true,
+  %  breaklinks,
+    unicode,
+  }
+\fi
 %% ===== Appendix formatting =====
 %\newcommand\useprefix[2]{#1#2}
 %
