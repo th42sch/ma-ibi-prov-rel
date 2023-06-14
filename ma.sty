@@ -31,6 +31,21 @@
 \RequirePackage[sort=standard,abbreviations,stylemods,nomain,toc,prefix]{glossaries-extra}
 \RequirePackage{caption}
 
+% ============= Package options ==============
+\newif\ifprint\printfalse
+\newif\ifsign\signfalse
+\DeclareOption{print}{\printtrue}
+\DeclareOption{sign}{\signtrue}
+\ProcessOptions
+
+% ============= Signature macro ============
+\newcommand{\signature}{%
+  \ifsign
+    \tikzoverlay at ($(current page.south west) + ( 5.7cm,4.7cm)$) {\textsf{14.06.2023}};%
+    \tikzoverlay at ($(current page.south west) + (16.8cm,5.4cm)$) {\includegraphics[width=4cm]{img/ts-unterschrift2.jpg}};%
+  \fi
+}
+
 % ============= No appendix sections in toc ==============
 \usepackage{etoolbox}
 \appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
@@ -159,6 +174,24 @@
 \usetikzlibrary{ext.paths.ortho}
 %\usetikzlibrary{external}
 %\tikzexternalize % activate!
+
+\tikzset{
+  every overlay node/.style={
+%    draw=black,fill=white,rounded corners,
+    draw=none,fill=white,%fill opacity=.5,
+    anchor=north east,
+    inner sep=0mm
+  },
+}
+
+% Usage:
+% \tikzoverlay at (-1cm,-5cm) {content};
+% or
+% \tikzoverlay[text width=5cm] at (-1cm,-5cm) {content};
+\newcommand{\tikzoverlay}[1][]{%
+  \tikz[overlay,remember picture]\node[every overlay node,#1]
+}%
+
 
 % ===== Set up biblatex and csquotes =====
 %%%\RequirePackage[fixlanguage,noisbn,noissn]{babelbib}

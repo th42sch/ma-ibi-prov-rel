@@ -16,7 +16,7 @@
 %  chapterprefix=true% like in standard class "report"
 ]{scrreprt}
 %\documentclass[11pt,DIV=11,a4paper]{scrartcl}
-\usepackage{ma}
+\usepackage[sign]{ma}
 
 \title{Modelling and Automated Retrieval of Provenance Relationships}
 \author{Thomas Schneider}
@@ -98,7 +98,13 @@
   % =================================================================
   \clearpage
 %  \addcontentsline{toc}{chapter}{Selbstständigkeitserklärung}
-  \includepdf[addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung}]{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
+  \includepdf[%
+    addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},
+    pagecommand={\signature}%
+  ]{%
+    img/Selbststaendigkeitserklaerung_TS_printed.pdf%
+  }
+  
 %  \includepdf[addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},pagecommand={}]{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
 
 
