@@ -16,7 +16,7 @@
 %  chapterprefix=true% like in standard class "report"
 ]{scrreprt}
 %\documentclass[11pt,DIV=11,a4paper]{scrartcl}
-\usepackage[sign]{ma} % Options: sign, print
+\usepackage{ma}
 
 \title{Modelling and Automated Retrieval of Provenance Relationships}
 \author{Thomas Schneider}
@@ -95,17 +95,17 @@
   \appendix
   \include{chapters/900_appendix}
 
-  % =================================================================
-  \clearpagebeforeSE
-%  \addcontentsline{toc}{chapter}{Selbstständigkeitserklärung}
-  \includepdf[%
-    addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},
-    pagecommand={\thispagestyle{empty}\signature}%
-  ]{%
-    img/Selbststaendigkeitserklaerung_TS_printed.pdf%
-  }
-  
-%  \includepdf[addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},pagecommand={}]{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
+%  % =================================================================
+%  \clearpagebeforeSE
+%%  \addcontentsline{toc}{chapter}{Selbstständigkeitserklärung}
+%  \includepdf[%
+%    addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},
+%    pagecommand={\thispagestyle{empty}\signature}%
+%  ]{%
+%    img/Selbststaendigkeitserklaerung_TS_printed.pdf%
+%  }
+%  
+%%  \includepdf[addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},pagecommand={}]{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
 
 
 \end{document}
