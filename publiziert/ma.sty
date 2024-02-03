@@ -31,14 +31,17 @@
 \RequirePackage[sort=standard,abbreviations,stylemods,nomain,toc,prefix]{glossaries-extra}
 \RequirePackage{caption}
 
-% ============= ggf. leere Seite vor Selbstständigkeitserklärung ===========
-\newcommand{\clearpagebeforeSE}{
-  \ifprint
-    \clearpage\thispagestyle{empty}~\newpage
-  \else
-    \clearpage
-  \fi
-}
+%--------------------------- Satzspiegel (BHR-Titelei) ------------------------------
+\usepackage{setspace} %Zeilenabstand
+\onehalfspacing %1.5 Zeilenabstand
+\usepackage{multicol} %mehrspaltiger Satz
+\usepackage[inner=30mm, % inner margin 
+outer=25mm, %  outer margin
+top=25mm,   % top margin of the page.
+bottom=25mm]{geometry}
+\KOMAoption{cleardoublepage}{plain}
+\usepackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
+
 
 % ============= No appendix sections in toc ==============
 \usepackage{etoolbox}
