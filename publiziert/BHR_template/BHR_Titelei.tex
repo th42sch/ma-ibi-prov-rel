@@ -1,0 +1,223 @@
+%letzte Aktualisierung: 2024-01-18
+
+\documentclass[paper=a4,11pt,twoside,parskip=half-]{scrreprt} %scrreprt ist die empfohlene Klasse in Kombination mit dem accessibility package
+
+%------------------------- Sprache/fonts ------------------------------
+\usepackage[utf8]{inputenc} %encoding of the input text
+\usepackage[T1]{fontenc} %font encoding of the output text
+%\usepackage[utf8]{luainputenc}% alternative for \usepackage[utf8]{inputenc} when using LuaLaTeX as engine
+\usepackage{lmodern} %Latin Modern fonts
+\usepackage[english,ngerman]{babel} %Sprachpaket
+%Babel bietet 3 Möglichkeiten zwischen Sprachen umzuschalten:
+%1) \selectlanguage{language} ist für recht lange Abschnitte gedacht. 
+%2) otherlanguage-Umgebung ist für kürzere Abschnitte gedacht. 
+%3) \foreignlanguage{language}{text} kann z.B. für einzelne Begriffe genutzt werden.
+%Die im Header bei \usepackage[english,ngerman]{babel} zuletzt angegebene Sprache, ist die Hauptsprache des Dokuments.
+%Siehe: https://hickerspace.org/wiki/Mehrere_Sprachen_in_einem_Latex-Dokument
+\usepackage[xcolornames,svgnames,dvipsnames,RGB]{xcolor}
+%Farbpaket für das Einfärben von Schrift
+\definecolor{hublau}{RGB}{0,55,108}
+%\usepackage{dtk-logos} %Latex logos
+\usepackage{blindtext}
+%----------------------------------------------------------------------
+
+%--------------------------- Satzspiegel ------------------------------
+\usepackage{setspace} %Zeilenabstand
+\onehalfspacing %1.5 Zeilenabstand
+\usepackage{multicol} %mehrspaltiger Satz
+\usepackage[inner=30mm, % inner margin 
+outer=25mm, %  outer margin
+top=25mm,   % top margin of the page.
+bottom=25mm]{geometry}
+\KOMAoption{cleardoublepage}{plain}
+\usepackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
+%\usepackage{typearea}
+%\usepackage{showframe}
+%\usepackage{scrlayer-scrpage}
+%\pagestyle{scrheadings}
+%----------------------------------------------------------------------
+
+%------------------------------ Mathe ---------------------------------
+%\usepackage{siunitx} %package zur korrekten Darstellung von SI Einheiten
+\usepackage{amsmath} %Mathematikumgebung (American Mathematical Society Standard)
+\usepackage{amsfonts} %Schriften
+\usepackage{amssymb} %Symbole
+\usepackage[inline]{enumitem} %customizing the three basic list environments: enumerate, itemize and description; option inline: three environments for inline lists are defined: enumerate*, itemize*, and description*
+%\usepackage{cancel} %diagonale Linien ziehen
+%\usepackage{minted} %for code in LaTeX
+%----------------------------------------------------------------------
+
+
+%---------------------------- Grafiken --------------------------------
+\usepackage{graphicx} %Paket zum Einbinden von Grafiken
+\usepackage{wrapfig} %Paket zum Einbinden von Schrift umflossenen Bildern und Tabellen
+\usepackage{rotating} %Paket zum Drehen von Bildern und Tabellen
+\usepackage{tabularx} % table package, man kann eine definierte Breite festlegen
+%\newcolumntype{Y}{>{\centering\arraybackslash}X} %for centering X columns
+\usepackage{booktabs} %table package that offers the commands \toprule \cmidrule \bottomrule
+%----------------------------------------------------------------------
+
+
+%---------------------------- Anhänge ---------------------------------
+\usepackage[style=german]{csquotes} %Kontextsensitive Zitatanlage: Intelligente Zitierungen welche sich dynamisch an ihren Inhalt anpassen - Anführungszeichen wechseln automatisch im Fall, dass die Zitate verschachtelt sind
+%\usepackage[style=apa,backend=biber]{biblatex} %Literaturverzeichnis im APA Stil
+%\DeclareLanguageMapping{ngerman}{ngerman-apa} %Sprachmapping wichtig für biber, sonst Fehler beim compiling
+%\addbibresource{Datei.bib} % bib-Datei laden
+%\usepackage[printonlyused,withpage]{acronym} 
+%Abkürzungsverzeichnis
+%\usepackage{caption} %caption erzwingen mit \captionof auch ohne figure oder table Umgebung
+%----------------------------------------------------------------------
+
+%------------------------- new commands -------------------------------
+\makeatletter
+\newcommand*\addsubsec{\secdef\@addsubsec\@saddsubsec}
+\newcommand*{\@addsubsec}{}
+\def\@addsubsec[#1]#2{\subsection*{#2}\addcontentsline{toc}{subsection}{#1}
+  \if@twoside\ifx\@mkboth\markboth\markright{#1}\fi\fi
+}
+\newcommand*{\@saddsubsec}[1]{\subsection*{#1}\@mkboth{}{}}
+\makeatother
+\makeatletter
+% bewirkt die Verwendung des Befehls \addsubsec
+% Hinzufügen von subsections, die ohne Nummerierung im ToC erscheinen
+%----------------------------------------------------------------------
+
+
+%-------------------------- hyperref/hypersetup ------------------------------------------
+\usepackage{hyperxmp}
+\usepackage{hyperref}
+\hypersetup{%
+pdfauthor={Vorname Nachname},
+pdfkeywords={keyword1, keyword2, keyword3},
+pdflang={de},
+pdftitle={Titel},
+pdfcopyright={CC BY 4.0}, %Lizenz ggf. ändern
+%pdfdate={YYYY-MM-DD},
+pdflicenseurl={https://creativecommons.org/licenses/by/4.0/}, %URL ggf. ändern
+bookmarksopen={true}, % open up bookmark tree
+bookmarksnumbered={true},
+breaklinks={true},
+pdfborder={0 0 0}, %Setzt den Rahmen um einen Link. {0 0 0} erzeugt keinen Rahmen.
+colorlinks={true}, %Legt fest, ob die Schrift von Links farbig sein soll.
+linkcolor={black},	%Farbe für Dokument interne Links
+urlcolor={hublau},	%Farbe für URL-Links (Web, Mail).
+citecolor={black},
+citebordercolor={0 0 0}, %Farbe für den Rahmen um die Links für Zitate.
+urlbordercolor={0 0 0},
+}
+\usepackage[ngerman,noabbrev]{cleveref}
+%--------------------------------------------------------------------------
+
+%------------------------------ accesibility ------------------------------
+\usepackage[highstructure]{accessibility}
+
+%============================= Ende der Präambel ==========================================
+\begin{document}
+\begin{titlepage}
+\centering
+
+{\Huge \scshape Humboldt-Universität zu Berlin \par}
+{\Large \scshape Institut für Bibliotheks- und Informationswissenschaft \par}
+
+\vspace{2cm}
+
+\alt{Logo der Humboldt-Universität zu Berlin. Köpfe von Wilhelm und Alexander von Humboldt nach links schauend umrandet mit dem Namen der Universität.}
+\includegraphics[scale=.7]{husiegel-sw.png}\\
+
+\vspace{2cm}
+
+{\huge \scshape Berliner Handreichungen \\zur Bibliotheks- und Informationswissenschaft \par}
+
+\vspace{2cm}
+
+{\LARGE \scshape Heft XXX \par} %bei XXX bitte die Heftnummer eintragen
+
+\vspace{2,5cm}
+
+{\Large \scshape Titel \\ Untertitel \par}
+
+\vspace{2cm}
+
+{\LARGE \scshape von \\ Vorname Nachname}
+
+\end{titlepage}
+
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\centering
+\phantom{x}
+\vspace{5cm}
+
+{\Large \scshape Titel \\ Untertitel\par}
+
+\vspace{4cm}
+
+{\Large \scshape von \\ Vorname Nachname \par}
+
+\vspace{3cm}
+\hrule
+\vspace{1cm}
+\raggedleft
+{\Large Berliner Handreichungen zur \\
+Bibliotheks- und Informationswissenschaft \\
+\vspace{1cm}
+Begründet von Peter Zahn \\
+Herausgegeben von \\
+Vivien Petras \\
+Humboldt-Universität zu Berlin \\
+\vspace{.5cm}
+Heft XXX} % bei XXX bitte die Heftnummer eintragen
+
+\newpage
+\thispagestyle{empty}
+\justifying
+\phantom{x}
+\vspace{.5cm}
+
+{ \large \textbf{Nachname, Vorname} \par
+
+ Titel : Untertitel
+/ von Vorname Nachname. -- Berlin : Institut für Bibliotheks- und Informationswissenschaft
+der Humboldt-Universität zu Berlin, 2024. -- XX S. : graph. Darst. -- (Berliner Handreichungen zur Bibliotheks- und Informationswissenschaft
+; XXX) \par %bei XXX bitte die Heftnummer eintragen und ggf. Jahreszahl überprüfen/korrigieren
+
+ ISSN 14 38-76 62 \par} % ISSN ändert sich nicht
+
+
+\subsection*{\textrm{\foreignlanguage{english}{Abstract}}}
+\blindtext 
+\blindtext \par
+%Abstände ggf. entsprechend der Länge des Abstract anpassen
+
+Diese Veröffentlichung geht zurück auf eine Masterarbeit im weiterbildenden Ma\-ster\-stu\-di\-en\-gang im Fernstudium Bibliotheks- und Informationswissenschaft (\foreignlanguage{english}{Library and Information Science}, M. A. (LIS)) an der Humboldt- Universität zu Berlin aus dem Jahr XXX.\par
+%
+%bei XXX bitte die Jahreszahl eintragen, wann die Arbeit ursprünglich eingereicht wurde
+%
+%Diese Veröffentlichung geht zurück auf eine Masterarbeit im Studiengang \foreignlanguage{english}{Information Science}, M. A. an der Humboldt-Universität zu Berlin aus dem Jahr XXX.\par
+%
+%Diese Veröffentlichung geht zurück auf eine Bachelorarbeit im Studiengang Bibliotheks- und Informationswissenschaft (\foreignlanguage{english}{Library and Information Science}) an der Humboldt-Universität zu Berlin aus dem Jahr XXX.\par
+%
+Eine Online-Version ist auf dem edoc Publikationsserver der Humboldt-Universität zu Berlin verfügbar. \par
+
+\begin{wrapfigure}{l}{0.185\textwidth}
+\vspace{-.481cm}
+%\includegraphics[scale=.7]{by.png}
+%\includegraphics[scale=.7]{by-sa.png}
+%\includegraphics[scale=.7]{by-nd.png}
+%\includegraphics[scale=.2]{by-nc-eu.png}
+%\includegraphics[scale=.2]{by-nc-sa-eu.png}
+\includegraphics[scale=.2]{by-nc-nd-eu.png}
+\end{wrapfigure}
+
+\small  Sofern nicht anders angegeben, ist dieses Werk in seiner Gesamtheit verfügbar unter einer \href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{\foreignlanguage{english}{Creative Commons} Namensnennung - Nicht kommerziell - Keine Bearbeitungen 4.0 International} Lizenz. %Lizenz und URL ggf. anpassen
+Einzelne Bestandteile, für die diese Lizenz keine Anwendung findet und die daher nicht unter deren Lizenzbedingungen verwendet werden dürfen, sind mit ihren jeweiligen lizenzrechtlichen Bestimmungen in Form zusätzlicher Texthinweise gekennzeichnet. 
+\newpage
+\tableofcontents
+\chapter{Kapitel 1}
+\blindtext
+\section{Abschnitt 1}
+\blindtext
+\subsection{Unterabschnitt 1}
+\chapter{Kapitel 2}
+
+\end{document}
