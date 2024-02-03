@@ -1,0 +1,111 @@
+% !TeX spellcheck = en_GB
+%\documentclass[11pt,DIV=11,a4paper,BCOR=15mm,twoside=on,bibliography=leveldown]{scrbook}
+%\documentclass[11pt,DIV=11,a4paper,BCOR=15mm]{scrbook}
+\documentclass[%
+  11pt,
+  DIV=16,
+  a4paper,
+  BCOR=15mm,
+  twoside=on,
+  bibliography=totoc,
+  headings=normal,
+  titlepage,
+  numbers=noendperiod,
+  appendixprefix=true
+%  captions=tableheading,
+%  chapterprefix=true% like in standard class "report"
+]{scrreprt}
+%\documentclass[11pt,DIV=11,a4paper]{scrartcl}
+\usepackage[sign]{ma} % Options: sign, print
+
+\title{Modelling and Automated Retrieval of Provenance Relationships}
+\author{Thomas Schneider}
+
+\begin{document}
+
+  \pagenumbering{roman}
+  % \maketitle
+  \selectlanguage{ngerman}
+  \input{chapters/000_title}
+%  \setcounter{tocdepth}{1} % include only chapters and sections in table of contents
+%  \setcounter{tocdepth}{2} % include only chapters, sections, and subsections in table of contents
+  \selectlanguage{UKenglish}
+  \clearpage
+%  \listoftodos
+%  \clearpage
+  \tableofcontents
+  \clearpage
+  \listoffigures
+  
+
+%  \clearpage
+%  \include{chapters/050_sketchbook}
+%
+  \clearpage
+  \pagestyle{headings}
+  \pagenumbering{arabic}
+  \include{chapters/100_intro}
+  \include{chapters/200_rel_work}
+  \include{chapters/300_prototype_queries}
+  \include{chapters/400_analysis}
+  \include{chapters/500_modelling}
+  \include{chapters/600_retrieval}
+  \include{chapters/700_conclusion}
+
+  % =================================================================
+%%%  \bibliographystyle{babalpha}
+%%%  \bibliography{bib/ma_jabref}
+
+%  \printbibliography
+
+  % ----- allow slightly more whitespace in a line if necessary --> reduce overfull hboxes in bibliography?
+  \emergencystretch=1.37em
+
+  \printbibheading[title=References]
+  \newrefcontext[sorting=nyt]
+  \printbibliography[%
+%    heading=subbibliography,
+    heading=subbibintoc,
+    title={Bibliography},
+    nottype=online,
+    omitnumbers
+  ]
+  
+  \newrefcontext[sorting=none]{online}
+  \printbibliography[%
+%    heading=subbibliography,
+    heading=subbibintoc,
+    title={Web Resources},
+    type=online,
+    env=online,
+  ]
+  
+  \glsfindwidesttoplevelname
+  \setglossarystyle{alttree}
+%  \setglossarystyle{super3col}\setlength{\glsdescwidth}{13.4cm}% %% TODO: play with styles, e.g., listdotted or index; see file:///C:/Users/jo57kin/AppData/Roaming/MiKTeX/doc/latex/glossaries/glossaries-user.pdf p. 296ff.
+%  \renewcommand*{\arraystretch}{1.2}
+%  \setglossarystyle{index}
+  \glsnogroupskiptrue
+  \printunsrtglossaries
+%  \printnoidxglossaries
+%  \printglossaries
+%  \printabbreviations %%% mit latexmk probieren, wenn Perl installiert ist
+
+  % =================================================================
+  \appendix
+  \include{chapters/900_appendix}
+
+  % =================================================================
+  \clearpagebeforeSE
+%  \addcontentsline{toc}{chapter}{Selbstständigkeitserklärung}
+  \includepdf[%
+    addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},
+    pagecommand={\thispagestyle{empty}\signature}%
+  ]{%
+    img/Selbststaendigkeitserklaerung_TS_printed.pdf%
+  }
+  
+%  \includepdf[addtotoc={1,chapter,0,Selbstständigkeitserklärung,selbststaendigkeitserklaerung},pagecommand={}]{img/Selbststaendigkeitserklaerung_TS_printed.pdf}
+
+
+\end{document}

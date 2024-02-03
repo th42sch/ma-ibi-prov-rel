@@ -1,0 +1,407 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter{Introduction}
+\label{chap:intro}
+
+% -----------------------------------------------------------------
+\section{Background}
+\label{sec:background}
+
+Provenance research is concerned with the origins and ownership history
+of cultural objects. Its main objective is the reconstruction of
+\enquote{object biographies} in the historical context.
+Application areas 
+%of provenance research 
+include
+the study of private and public collections,
+the detection of forgery,
+and the identification and restitution of loot.
+Since the release of the
+\emph{Washington Conference Principles on Nazi-Confiscated Art} \autocite{WashingtonPrinciples}
+in 1998,
+provenance research has received increased attention.%
+\footnote{%
+  This paragraph is a brief summary of the introductory chapter in \citeauthor{Zuschlag2022}'s
+  Introduction to Provenance Research \autocite[§1]{Zuschlag2022}.%
+}
+
+Regarding the holdings of university and research libraries,
+particularly interesting provenances are those related to the change of
+owners when an item such as a copy of a book is passed on or distributed. %\autocite[p.\,2]{Hakelberg2016}.
+Provenances can be reconstructed on the basis of \emph{provenance marks} that 
+are present in the item and which indicate ownership,
+such as stamps, bookplates (ex libris), or handwritten signatures.
+Provenance marks are essential for retracing
+the \enquote{history} of a (book) item
+or the extent of library holdings that have been scattered in the meantime.% \autocite[p.\,2]{Hakelberg2016}.%
+\footnote{%
+  This paragraph is a brief summary of the introductory section 
+  in \citeauthor{Hakelberg2016}'s master's thesis on the 
+  status and the perspectives of provenance indexing with authority data \autocite[§1.1]{Hakelberg2016}.%
+}
+
+In order to enable provenance research,
+libraries record the provenances of their historical holdings
+in their electronic catalogues.
+A \emph{provenance entry} for an item usually consists of a reference to an entity such as a person, corporate body, or collection,
+together with a provenance mark.
+The identification and disambiguation of entities and frequently occurring provenance marks
+is achieved via links to records in authority files.
+%Integrated Authority File (GND) of the German National Library \autocite{GND}.
+%\footnote{%
+%  \url{https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd.html}%
+%}
+Provenance entries make it possible, for example,
+to query and reconstruct the items owned or held by a single person,
+to query the whereabouts of relevant items,
+or to retrace the distribution of all indexed exemplars derived from a given work.
+
+Nowadays, provenance entries are an established part of 
+many electronic catalogues,
+and are taken into account by the underlying data formats.
+For example, the union catalogue 
+\glsunset{K10plus}%
+\gls{K10plus},
+which is
+the central database maintained and used by the libraries in the
+\glsunset{GBV}%
+\glsunset{SWB}%
+German library networks \gls{GBV} and \gls{SWB},
+provides a dedicated data field for recording provenance entries in a structured way,
+plus several multi-purpose data fields which can also take provenance entries.
+Despite the uniform data format,
+there are several possibilities to record provenance entries.
+As Hakelberg \autocite*[§4]{Hakelberg2016} explains,
+libraries even within the same network often use diverse representations
+for the same type of provenance entry, and the differences are considerable:
+for example, some \gls{GBV} libraries record their provenance entries
+in data fields at the bibliographic level (\enquote{Titelebene}, describing a manifestation),
+while others use data fields at the exemplar level (\enquote{Exemplarebene}, describing held exemplars of the manifestation).
+These deviations lead to large differences in the presentation
+of the holdings in the online catalogue,
+hindering the retrieval of relevant items and historical collections.
+
+Data about persons and corporate bodies are recorded by librarians
+in national and international authority files,
+and by the general public 
+in open, cross-domain knowledge bases such as Wikidata \autocite{Wikidata}.
+Records on persons typically contain, among other things,
+a unique identifier, the preferred name, alternative name forms,
+places and times of birth and death,
+as well as relationships to corporate bodies and other persons
+(e.g., places of work, and family members or students).
+The extent of a dataset of the same person can differ between data sources;
+compare, for example, the records on the great mathematician and astronomer
+Nicolaus Copernicus (1473--1543)
+in various national and international authority files,
+which are linked at the very end of the Wikipedia page on Copernicus
+in the fold-out table \enquote{Authority Control}
+\autocite{WikiCopernicusExternalLinks}.
+Hence, the state of data on persons and corporate bodies is heterogeneous as well,
+and it may be necessary
+to consult several data sources for a given entity and combine the obtained data.
+
+Given this diversity and heterogeneity of the existing data sources,
+it is currently very difficult to retrieve provenance relationships
+which require data that is distributed over several sources.
+This requirement applies to a number of research questions
+that can arise in cultural, historical, or provenance research.
+The following list contains some examples for such questions,
+which were obtained in personal communication with researchers.%
+\footnote{%
+%  personal communication with
+  Dietrich Hakelberg 
+  (head of Dept.\ \enquote{Collection Development and Cataloguing}, Research Library Gotha of the University of Erfurt)
+  \autocite{HakelbergWeb},
+  Michaela Scheibe
+  (deputy head of Dept.\ \enquote{Manuscripts and Early Printed Books}),
+  \autocite{ScheibeWeb},
+  and Jo\"elle Weis 
+  (head of Research Area \enquote{Digital Literary and Cultural Studies}, University of Trier), 
+  \autocite{WeisWeb}.
+}
+%
+\begin{enumerate}
+  \item[\exaquery{1}]
+    Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
+    work $X$, in which manifestation and in which year?
+  \item[\exaquery{2}]
+    Which exemplars%
+    \footnote{%
+      Conforming to the FRBR model \autocite{FRBR1998},
+      the precise wording should be \enquote{examplars of manifestations of expressions of $X$},
+      but
+      we omit the intermediate entities for brevity whenever there is no chance of misunderstanding.%
+    }
+    of work $X$
+    were passed from one of its owners to a student?
+  \item[\exaquery{3}]
+    What are the relationships between the recipients of manifestation $Y$ of work $X$?
+%    (or of manifestation $M$ of $W$ or of exemplar $C$ of $W$, respectively)?
+  \item[\exaquery{4}]
+    Which items from a collection $X$ were passed on by its owner to a family member?
+  \item[\exaquery{5}]
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$
+    between 1933 and 1945?
+  \item[\exaquery{6}]
+    Who participated in the sale of collection $X$?
+  \item[\exaquery{7}]
+    Via which paths did items from collection $X$ enter library $Y$?
+  \item[\exaquery{8}]
+    Which libraries own the items once owned by person $X$?
+  \item[\exaquery{9}]
+    Where did person $X$ acquire items and did they know the previous owners?
+\end{enumerate}
+%
+In these examples, variables $X,Y$ are used as abstract placeholders for specific objects
+such as works, manifestations, collections, etc. Therefore, \exaquery{1}--\exaquery{9} are actually
+query \emph{patterns}, each of which represents a huge set of possible queries
+obtained by instantiating each variable with any such object.
+For the introductory purposes of this chapter,
+we continue to use the abstract placeholders but refer to \exaquery{1}--\exaquery{9}
+simply as \emph{queries}. % We will get back this distinction in Chapter~\ref{chap:prototype_queries}.
+
+%Query~\exaquery{1} addresses works as well as their manifestations
+%(e.g., editions of the same work in various languages).
+%Answering this query would help trace the reception
+%of the same work over several eras.
+%For example, Duchess Luise Dorothea of Saxe-Gotha-Altenburg
+%read French editions of English works by John Milton and Alexander Pope.%
+%\footnote{See, for example, the provenance entries of the respective exemplars in the Research Library Gotha \autocite{OPACLuiseDorotheaMiltonPope}.}
+%Obviously, there is a difference between the action \enquote{read}
+%used in this query and the relation \enquote{owned} represented by
+%provenance (entries). We neglect this difference for the moment
+%and will get back to it in Chapter~\ref{chap:prototype_queries}.
+%
+Queries \exaquery{1}--\exaquery{9} are examples for a multitude of queries that arise
+in the context of disciplines such as history, the social sciences, cultural studies, or law,
+or in an interdisciplinary context.
+For example, answers to
+Query~\exaquery{1} can help trace the reception
+of the same work over several eras.
+Queries~\exaquery{2}--\exaquery{4}
+aim at exploring the network
+that spans between the recipients of a work or collection.
+Queries~\exaquery{5}--\exaquery{8} are relevant for research on Nazi loot and restitution.
+
+%Queries~\exaquery{1}--\exaquery{9}
+%share the common feature of 
+%
+%\todo[inline]{Discuss SNA/HNA and general significance of relations; see intro report SoNAR AP~2}
+%
+%If a researcher
+%For example, one of the two exemplars of Nicolaus Copernicus's
+%main work \emph{De revolutionibus orbium coelestium} \autocite{Kopernikus1543}
+%that are now held by the Gotha Research Library of the University of Erfurt
+%have been owned by several scholars
+%from the circle around the author,
+%some of which were in the teacher-student relation
+%\autocites[see, e.g.,][p.\,69]{Gingerich2002}[p.\,142]{Salatowsky2015}.
+%The ownership part of this information is recorded in the library's catalogue,
+%and the relationships between the owners are contained in the
+%\gls{GND}.
+%Hence, researchers can answer Queries~\exaquery{2} and~\exaquery{3} manually
+%by inspecting the item's entry in the library's catalogue,
+%following the links to the GND entries of the owners,
+%and inspecting those entries for personal relationships.
+
+%An important difference between Queries~\exaquery{2} and~\exaquery{3} is the following.
+%While \exaquery{2} fixes a relation between persons (\enquote{student})
+%and asks for works in whose context this relation has instances,
+%\exaquery{3} does not fix a particular relation but asks for the entire context of
+%the manifestation.
+%
+%Query \exaquery{4} is very similar in structure to \exaquery{2}.
+%Query \exaquery{5} is important in the context of research on Nazi loot.
+%
+%\todo[inline]{Discuss \emph{all} of \exaquery{1}--\exaquery{9}?}
+
+Queries~\exaquery{1}--\exaquery{9}
+have in common that relations of bibliographic and inter-personal (or inter-institutional)
+nature play an important role.
+These relations are typically distributed over several data sources.
+For example, in order to answer Query~\exaquery{2},
+a researcher would have to find exemplars of work $X$
+in the catalogues of various libraries or library networks,
+inspect the provenance entries of each exemplar for owners,
+find records for those owners in one or several authority files,
+and inspect those records for professional relationships.
+This process is highly laborious
+and involves interaction with a multitude of heterogeneous data sources
+at an expert level.
+
+It is obvious that the described process would benefit greatly 
+from automation, i.e., from a procedure that receives a query as an input,
+consults the various data sources autonomously, collects answers, and presents them
+to the user. In order to be as generic as possible,
+such a procedure requires an abstract model of data sources and possible queries,
+and it needs to be based on a careful analysis of the available data sources and their data models,
+and on data integration techniques. These requirements are closely linked
+to the question raised by \textcite[p.\,46, translated from German]{Hakelberg2016}:
+\enquote{How can historical provenance relationships be formulated and represented
+in a machine-readable way?}
+
+%In order to implement suitable tools,
+%it is necessary to analyse available data sources, data models, and data integration techniques,
+%to develop an abstract model of data sources and possible queries,
+%and to devise a method for obtaining answers in this abstract framework.
+%
+
+
+%\todo[think,inline]{Further thoughts on example queries:}
+%%
+%\begin{itemize}
+%  \item
+%    While the difference between persons and institutions may be negligible
+%    from a modelling point of view, it is highly relevant concerning the
+%    amount of query answers and their handling.
+%\end{itemize}
+%
+% -----------------------------------------------------------------
+\section{Goal and Research Question}
+\label{sec:research_questions}
+
+In this thesis, we pursue the goal of facilitating
+the automated retrieval of provenance relationships.
+More precisely,
+we want to develop a method for answering provenance queries that refer to bibliographic entities, people, and corporate bodies,
+as well as bibliographic and inter-personal or inter-institutional relationships.
+This method should, on input of a query,
+autonomously consult relevant data sources,
+retrieve the required information, and return the set of all answers to the user.
+The method should furthermore provide a high-level specification
+for the implementation of a retrieval system
+that supports the user in formulating their queries, answering them, and exploring the data that supports the query answers.
+It is our long-term vision that such a retrieval system will support provenance research
+by prospectively retrieving potentially interesting constellations.
+
+%
+%\todo[inline]{Describe intended group of users (and align begin of §\ref{chap:method})}
+
+The described goal leads to the following
+central research question for this thesis.
+%
+%\begin{quote}
+%  \begin{itshape}
+%    How can provenance relationships be modelled and automatically retrieved?
+%  \end{itshape}
+%\end{quote}
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\RQ\phantom{\mybold{1}}]
+  %    \begin{mdframed}[roundcorner=10pt]
+        \mybold{How can provenance relationships be modelled and automatically retrieved?}
+  %    \end{mdframed}
+  \end{enumerate}
+\end{mdframed}
+%
+This question implies several subordinate questions:
+%
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\subquestion{1}]
+      \emph{What is the state of research on infrastructures for the automated retrieval
+      of provenance relationships? Which approach(es) is/are most closely related?}
+    \item[\subquestion{2}]
+      \emph{What are the general challenges for answering queries such as \exaquery{1}--\exaquery{9},
+      and what are the specific challenges for an automated approach?}
+    \item[\subquestion{3}]
+      \emph{Which data sources, standards, data formats, and further tools
+      are available for answering provenance queries using multiple, heterogeneous data sources?}
+%    \item[\subquestion{1}]
+%      \emph{Which data sources are available for answering provenance queries?}
+%  %  \item[\subquestion{2}]
+%  %    \emph{What are the overlap and differences between the contents of these data sources?}
+%  %    \todo{Restrict or omit later!}
+%    \item[\subquestion{2}]
+%      \emph{Which techniques and tools are available for integrating
+%      data from heterogeneous sources?}
+    \item[\subquestion{4}]
+      \emph{Based on the structure of the identified data sources,
+      how can data sources, queries, and query answers be modelled in an abstract framework?}
+    \item[\subquestion{5}]
+      \emph{What is a suitable method for retrieving provenance relationships
+      in that framework?}
+  \end{enumerate}
+\end{mdframed}
+
+
+% -----------------------------------------------------------------
+\section{Methods and Outline}
+\label{sec:methods}
+
+In order to answer our research questions, we will proceed as follows.
+
+In Chapter~\ref{chap:rel_work}, we address \subquestion{1} by reviewing existing work 
+and relating it to the goal of this thesis.
+The literature review covers works on research infrastructures
+for (social/historical) network analysis,
+data integration techniques in general and in the library domain,
+and provenance indexing.
+
+In Chapter~\ref{chap:prototype_queries}, we address \subquestion{2}
+via a case study based on the exemplary queries from Section~\ref{sec:background}.
+We demonstrate a manual attempt at answering them,
+discuss the expected quality of query answers,
+and compare the challenges of this manual process and of an automated approach.
+
+In order to address Questions~\subquestion{3}, we review
+data sources, techniques, and tools in Chapter~\ref{chap:analysis}.
+This review will cover standards for the description of bibliographic resources,
+data communication protocols, data description and exchange formats,
+and a range of data sources.
+
+Based on the insights from the previous two reviews and the case study,
+we address Question~\subquestion{4} in Chapter~\ref{chap:modelling} by
+developing an abstract model of
+data sources, queries, and query answers.
+This mathematical model subsumes the previous examples
+while being vastly more general: it gives a formal description of how to
+build admissible queries, without restricting their contents
+(i.e., the specific names, attributes, concepts, and relations used)
+or their complexity. 
+
+Based on our model and all previous insights,
+we address Question~\subquestion{5} in Chapter~\ref{chap:retrieval} by
+developing a method for formulating queries, retrieving query answers,
+and presenting them to the user.
+This model should serve as the basis for a future implementation of a retrieval system
+as indicated in the previous section.
+
+Finally, we draw conclusions in Chapter~\ref{chap:conclusion}.
+
+Our central research question originates from library and information science (LIS).
+With the development of our model and method,
+we hope to provide a means for LIS to benefit 
+from established methods from mathematics and computer science.
+
+% -----------------------------------------------------------------
+\section{Acknowledgements}
+\label{sec:acks}
+
+The author expresses his sincere thanks to 
+Prof.\ Dr.\ Robert Jäschke for supervising and agreeing to review this thesis
+and for valuable suggestions; Christian Rüter for agreeing to review this thesis and for valuable feedback;
+Dr.\ Dietrich Hakelberg for an inspiring introduction to provenance research
+and stimulating discussions from which the main idea for this thesis originates;
+\glsunset{SoNAR}%
+Prof.\ Vivien Petras, PhD, for valuable suggestions and the pointer to the \gls{SoNAR} project;
+\glsreset{SoNAR}%
+Dr.\ Joëlle Weis and Michaela Scheibe for inspiring conversations and valuable suggestions;
+Dr.\ Nadine Neute for inspiring discussions and valuable feedback;
+and, last but not least,
+Dr.\ Renate Stein for proofreading, valuable feedback, and ongoing support,
+especially during the challenging four months allotted for preparing this thesis.
+

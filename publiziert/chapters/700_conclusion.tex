@@ -1,0 +1,156 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+% -----------------------------------------------------------------
+\section{Summary of the Results}
+\label{sec:summary}
+
+In this thesis, we have examined the problem of modelling and automated retrieval of provenance relationships
+that require information which is usually distributed over several data sources.
+We have provided a review of the related literature,
+a case study with example queries, and a review of available standards, data sources,
+and techniques for data exchange and integration.
+As the main contribution, we have developed an abstract and general model for queries,
+data sources, and query answers, and we have devised a method for implementing this model
+in an answer retrieval system, together with a discussion of various design choices.
+
+In order to return to the initial research question and its subquestions,
+we list them here once more.
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\RQ\phantom{\mybold{1}}]
+  %    \begin{mdframed}[roundcorner=10pt]
+        \mybold{How can provenance relationships be modelled and automatically retrieved?}
+  %    \end{mdframed}
+  \end{enumerate}
+\end{mdframed}
+%
+This question implies several subordinate questions:
+%
+\begin{mdframed}[
+  linewidth=1pt,
+  linecolor=black!50,
+%  innertopmargin=-3pt,
+  innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]
+  \begin{enumerate}
+    \item[\subquestion{1}]
+      \emph{What is the state of research on infrastructures for the automated retrieval
+      of provenance relationships? Which approach(es) is/are most closely related?}
+    \item[\subquestion{2}]
+      \emph{What are the general challenges for answering queries such as \exaquery{1}--\exaquery{9},
+      and what are the specific challenges for an automated approach?}
+    \item[\subquestion{3}]
+      \emph{Which data sources, standards, data formats, and further tools
+      are available for answering provenance queries using multiple, heterogeneous data sources?}
+    \item[\subquestion{4}]
+      \emph{Based on the structure of the identified data sources,
+      how can data sources, queries, and query answers be modelled in an abstract framework?}
+    \item[\subquestion{5}]
+      \emph{What is a suitable method for retrieving provenance relationships
+      in that framework?}
+  \end{enumerate}
+\end{mdframed}
+%
+We now summarise the insights obtained in this thesis relating to each of these questions.
+
+\paragraph{\RQ[1] (Chapter~\ref{chap:context})}
+
+Our literature review has shown that
+social network analysis and historical network analysis are generic methods closely related to the goal of this thesis;
+the general context of social and historical research produces research questions similar to
+those underlying provenance research.
+The SoNAR project is a rich source of relevant insights concerning the support for historical research
+by research data infrastructures.
+While network analysis aims at answering questions of a \enquote{global} nature,
+our scenario covers more \enquote{local} questions.
+
+Furthermore, our review has also shown that
+linked (open) data and data integration techniques have been used extensively in the library domain,
+and that the state of provenance indexing varies greatly between, and sometimes even within,
+institutions and library networks.
+
+\paragraph{\RQ[2] (Chapter~\ref{chap:prototype_queries})}
+
+The general challenges for answering queries such as~\exaquery{1}--\exaquery{9}
+include several sources for missing and spurious answers.
+A prominent reason is the mismatch between natural-language terms for concepts or relations
+and the vocabulary of the data sources.
+A possible remedy is the use of \enquote{substitute information}, hypotheses, or reasoning.
+This problem carries even more weight in an automated approach, where
+a machine cannot easily rely on human intuition or experience for identifying substitute information
+and hypothesising.
+
+\paragraph{\RQ[3] (Chapter~\ref{chap:analysis})}
+
+There is a large number of bibliographic standards, bibliographic and generic data formats,
+communication protocols, and data sources. We have identified four groups of altogether 22
+obvious data sources, and this list is by far not exhaustive. Our detailed analysis of four
+of the 22 data sources shows that, in particular, linked (open) data and the relevant
+interfaces are provided by all of them. 
+In order to implement a prototype of a retrieval system that is supposed to provide a proof of concept,
+it certainly suffices to include these four data sources.
+However, a fully-fledged retrieval system should probably include a substantially larger selection of data sources;
+in this case, our analysis will need to be extended accordingly.
+
+\paragraph{\RQ[4] (Chapter~\ref{chap:modelling})}
+
+We have developed a basic, conceptually simple, graph-based model for data sources, queries, and query answers,
+and sketched several extensions. For the basic version and some of the extensions,
+the query answering problem has the same
+good computational properties as standard query answering over relational databases.
+However, some desirable features in queries may require extensions of the model that no longer lend themselves
+to intuitive visualisations; in order to capture these features, an \gls{SQL}-like syntax could be appropriate.
+Finally, some aspects used in queries cannot be captured in any formal model
+and require manual intervention.
+
+\paragraph{\RQ[5] (Chapter~\ref{chap:method})}
+
+We have developed an abstract method consisting of two main phases and three subphases.
+The decision between the dynamic and the static setting is a fundamental design choice,
+as it affects all phases. The comparison of the two settings does not yield a clear tendency
+towards one or the other. The challenges that both systems have in common imply
+that the system needs to be constantly maintained by domain experts and implementers,
+which favours a web application.
+The developed method is a high-level specification for a future implementation of a retrieval system,
+and many details still remain be clarified or studied further.
+
+\paragraph{\RQ}
+
+There is neither a single model nor a single method,
+but our graph-based model and two-phase method seem suitable.
+The abstract model captures most of the exemplary questions, 
+and the general method has a number of parameters
+that need to be set or require further study.
+
+% -----------------------------------------------------------------
+\section{Outlook}
+\label{sec:outlook}
+
+As immediate next steps, further data sources should be analysed, and the generic method
+should be elaborated in more detail. Subsequently, a prototype retrieval system should be implemented
+and tested. Ideally, this prototype is then turned into a fully-fledged web application.
+
+The work reported here can be continued in a number of further directions:
+A systematic quantitative analysis of relevant queries and data sources
+in the form of an extensive user study
+would help underpin our ad-hoc selection of example queries
+as well as, hopefully, the abstract model. 
+The testing phase for the prototype system could be integrated in this study,
+leading to an agile development cycle.
+The testing of the system should also include a pilot study on the correctness and completeness of query answers
+with expert users in order to validate and improve the overall approach.
+Furthermore, the system could be integrated in the research infrastructure
+in the context of the \gls{SoNAR} project or in large portals such as Proveana or Europeana.
+Finally, the use of semantic web technologies such as ontologies and reasoning
+should be explored in detail.
+

@@ -1,0 +1,1589 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter{A General Model of Provenance Relationships}
+\label{chap:modelling}
+
+In this chapter, we develop a generic approach to modelling provenance relationships.
+More precisely, we need to model three central notions: queries that a user may want to ask,
+data sources that are to be consulted in order to answer a query,
+and answers given to a query.
+In order to obtain a generic approach, we aim at providing rigorous definitions
+for these central concepts, and we seek intensional rather than extensional definitions.
+In particular, those definitions should not depend on specific example queries or data sources
+such as the ones discussed in Chapters~\ref{chap:prototype_queries} and~\ref{chap:analysis};
+neither should they depend on concrete objects, concepts, or relations
+(such as \term{Copernicus}, \term{exemplar}, or \term{student}).
+Instead, we will develop an abstract model that formalises
+the notions of a query, data source, and answer.
+This model can then be instantiated with a multitude of specific queries and data sources,
+and it constitutes the basis of the method for finding answers
+that we will develop in the next chapter.
+
+As a basis for our abstract model, we choose standard concepts and techniques
+from graph theory.
+The concept of a graph is widely used in computer science and discrete mathematics;
+see standard textbooks \autocite[e.g.,][]{Diestel2012}.
+Graphs and graph techniques are widely applied in various areas such as 
+computer science, linguistics, physics and chemistry,
+social sciences, and biology \autocite{WikiGraphTheoryApplications}.
+They are also the foundation of social networks \autocite{Galety2022}
+and therefore highly relevant for historical research, e.g.,
+in the \gls{SoNAR} project, as we have seen in Section~\ref{sec:HNA+SoNAR}.
+Graphs
+are used to represent large knowledge bases \autocite[e.g.,][]{Ehrlinger2016}
+and are a fundamental ingredient of \gls{RDF}.
+Furthermore, the basic definition of a graph is conceptually simple,
+and graph theory provides a plethora of well-understood concepts
+and algorithms. By utilising graph theory, our application scenario
+can benefit from these concepts, algorithms \autocite{Diestel2012,Even2012},
+and implementations \autocite{PythonGraphLibraries,JGraphT}.
+
+The main idea of our abstract model is the following:
+Both queries and data sources are represented as graphs
+(typically a rather small graph for the query and a very large graph for the data source).
+Answers to the query are those parts of the graph that have the same structure
+as the query. In more formal words, answers are found using \emph{pattern matching} techniques,
+which are well-known from querying \gls{RDF} graphs via \gls{SPARQL} \autocite{DellaValle2011}
+and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
+
+%\todo[defer,inline]{Delineate from classical database theory (text snippets commented out)? This argument %should be a logical consequence of the requirement analysis in the previous chapter(s)!}
+%
+%An obvious choice would be to base our abstract model on database theory,
+%where the notions of a database, a query, and a query answer are well-defined based on rigorous mathematical concepts;
+%see, e.g., the standard introduction ... \todo{citation}.
+%This framework is very general, well-established, and implemented in database management systems
+%that scale well to large databases \todo{citation}.
+%However, .....
+%...
+%We want to model objects and concepts (e.g., ...) as well as relationships
+%between objects (e.g., ...).  $\leadsto$ constants, unary and binary relations
+%...
+%With the choice of graphs, we commit ourselves to a restricted view of a data source:
+%graphs can only represent unary and binary relations via nodes and edges
+%while, in general, a database may have relations of arbitrary arity.
+%However, we do not consider this a significant restriction in the context of our purpose
+%because we only want to represent relations that are relevant for provenance research,
+%and those are predominantly unary or binary. \todo{strengthen argument, give examples, consult literature}
+%
+%%
+%\begin{itemize}
+%  \item
+%    mathematically complex
+%  \item
+%    hard to visualise
+%  \item
+%    relations of arity $\geqslant 2$ seem overkill, given the relations used in OPACs, GND, Wikidata
+%\end{itemize}
+%%
+%\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
+
+In the following sections, we introduce our model
+by defining 
+the basic terminology (Section~\ref{sec:terminology}),
+the specific notion of a graph (Section~\ref{sec:labelled_digraphs}),
+and the abstract notions of data sources, queries, and answers
+(Section~\ref{sec:modelling}).
+We also discuss decision procedures related to query answering (Section~\ref{sec:decision_problems}).
+Up to that point, the model remains conceptually simple
+and is based on elementary and self-contained mathematical definitions.
+We provide additional explanations and illustrations
+for the sake of readers with little or no background in mathematics.
+%
+Finally, in Section~\ref{sec:modelling_discussion}, we will discuss
+the scope and limitations of our basic model based on the exemplary query patterns
+\exaquery{1}--\exaquery{9}, and sketch possible extensions.
+
+% -------------------------------------------------------------------
+\section{Basic Notions}
+\label{sec:terminology}
+
+We start by introducing the basic terminology that we are going to use
+in the following, which consists of the usual terms from conceptual
+modelling \autocite{Brodie1984}.
+
+\paragraph{Objects}
+An \emph{object} is a specific entity,
+for example, the work \enquote{Graph Theory} by Reinhard Diestel,
+its expression in English,
+its manifestation as the 4th edition by Springer,
+a specific copy, or the person Reinhard Diestel.
+
+\paragraph{Concepts}
+A \emph{concept} is a class of objects,
+such as the entities \term{Work}, \term{Expression}, etc.\
+from the \gls{FRBR} model (see Section~\ref{sec:bib_standards}).
+
+We determine that names for concepts and objects start with an uppercase letter.
+
+\paragraph{Relations}
+An \emph{$n$-ary relation} is a set of $n$-tuples of objects;
+for example, the binary relation \term{creator}
+consists of pairs of objects including $(\term{Graph\_Theory},\term{Reinhard\_Diestel})$
+if we assume for the sake of simplicity that \term{Graph\_Theory}
+is the unambiguous name of said work. 
+
+Constants and concepts are in fact nullary and unary relations,
+but it is more intuitive to use those separate terms,
+As we have already argued in Section~\ref{sec:implications_on_modelling},
+we will hardly need to deal with relations of arity beyond 2;
+therefore we will mostly discuss binary relations
+and refer to them as \emph{relations} when no confusion is likely to arise.
+
+To distinguish relations from concepts and objects,
+we determine that their names start with a lowercase letter.
+
+\paragraph{Converses of relations}
+The \emph{converse} of a relation $R$ is the relation obtained from $R$
+by swapping the components in each pair,
+for example, the converse \term{creator\_of} of \term{creator}
+contains the pair $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$.
+
+\paragraph{Instances}
+An \emph{instance} of a concept or relation
+is an object or a pair of objects from that set;
+e.g., \term{Reinhard\_Diestel} is an instance of \term{Person},
+and $(\term{Graph\_Theory},\term{Reinhard\_Diestel})$ is an instance of
+\term{creator}.
+
+\paragraph{Relationships}
+Instances of relations are called \emph{relationships}.
+
+\paragraph{Literals}
+A \emph{literal} is a fixed value, such as a year, date, or identifier.
+
+%%
+%\begin{itemize}
+%  \item
+%    An \emph{object} is a specific entity,
+%    for example, the work \enquote{Graph Theory} by Reinhard Diestel,
+%    its manifestation as the 4th edition in English,
+%    a specific copy, or the person Reinhard Diestel.
+%  \item
+%    A \emph{concept} is a class of objects,
+%    such as the entities \term{Work}, \term{Expression}, etc.\
+%    from the \gls{FRBR} model (see Section~\ref{sec:bib_standards}).
+%    
+%    We determine that names for concepts and objects start with an uppercase letter.
+%  \item
+%    An \emph{$n$-ary relation} is a set of $n$-tuples of objects;
+%    for example, the binary relation \term{creator}
+%    consists of pair of objects including $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$
+%    if we assume for the sake of simplicity that \term{Graph\_Theory}
+%    is the unambiguous name of said work. 
+%    
+%    Constants and concepts are in fact nullary and unary relations,
+%    but it is more intuitive to use those separate terms,
+%    As we have already argued in Section~\ref{sec:implications_on_modelling},
+%    we will hardly need to deal with relations of arity beyond 2;
+%    therefore we will mostly discuss binary relations
+%    and refer to them as \emph{relations} when no confusion may arise.
+%    
+%    To distinguish relations from concepts and objects,
+%    we determine that their names start with a lowercase letter.
+%  \item
+%    An \emph{instance} of a concept or relation
+%    is an object or a pair of objects from that set;
+%    e.g., \term{Reinhard\_Diestel} is an instance of \term{Person},
+%    and $(\term{Reinhard\_Diestel},\term{Graph\_Theory})$ is an instance of
+%    \term{creatorOf}.
+%  \item
+%    Instances of relations are also called \emph{relationships}.
+%  \item 
+%    A \emph{literal} is a fixed value, such as a year, date, or identifier.
+%\end{itemize}
+%
+
+% -------------------------------------------------------------------
+\section{Labelled Directed Graphs}
+\label{sec:labelled_digraphs}
+
+Before we develop the technical definitions,
+we provide the underlying intuitions.
+Graphs consists of nodes and edges. Edges link nodes and can be directed
+or undirected. Graphs are easy to visualise: nodes are drawn as circles
+or rectangles, and edges as arrows (directed) or lines (undirected).
+Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
+
+\begin{figure}[ht]
+%\begin{wrapfigure}[6]{o}{5.2cm}
+  \centering
+%  \vspace*{-.7\baselineskip}
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,circle,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \node                       (nw)                         {};
+    \node [right=12mm of nw]    (ne)                         {};
+    \node [below= 8mm of nw]    (sw)                         {};
+    \node [right=12mm of sw]    (se)                         {};
+    \node [draw=none,fill=none] (n)     at ($(nw)!0.5!(ne)$) {};
+    \node [above= 6mm of n]     (ridge)                      {};
+      
+    \path[->]
+      (sw)    edge (nw)
+      (nw)    edge (ridge)
+      (ridge) edge (ne)
+      (ne)    edge (se)
+      (se)    edge (sw)
+      (sw)    edge (ne)
+      (ne)    edge (nw)
+      (nw)    edge (se)
+    ;
+        
+  \end{tikzpicture}
+  \caption{A directed graph}
+  \label{fig:example_graph_abstract}
+%\end{wrapfigure}
+\end{figure}
+
+For our purposes,
+nodes represent objects or literals. 
+%Objects include, e.g., works, expressions, manifestations, items,
+%persons, or corporate bodies; literals include, e.g., publication years, birth years, or identifiers.
+Directed edges represent relations, 
+for example, 
+the relation \term{creator} is represented by a set of directed edges
+pointing \emph{from} nodes representing persons or corporate bodies
+edges representing the relation
+\emph{to} nodes representing the corresponding works;
+the converse relation \term{creatorOf} is represented by the same set of edges 
+with their direction reversed.
+Since relations such as \term{creator} are not symmetric,
+direction matters and we use \emph{directed} graphs. 
+Symmetric relations such as \term{relatedEndeavour}
+can be represented via pairs of edges pointing in both directions.
+
+\goodbreak
+Furthermore, we want to assign a unique name to each node of a graph
+and one or several labels to each node and each edge:
+The name of a node specifies the object that is represented by that node.
+The labels of a node specify the concepts
+of which that node is an instance.
+For example, a node representing the physicist Albert Einstein
+may be labelled, among others, with the concepts \term{Person}, \term{Scientist},
+and \term{Physicist}.
+The labels of an edge specify the relations of which the pair of nodes
+represented by that edge is an instance.
+For example, if a person $P_1$ has a student $P_2$ and also 
+collaborates with $P_2$, then this can be represented via an edge from $P_1$ to $P_2$
+labelled with both \term{student} and \term{collaborator}
+(and/or an edge from $P_2$ to $P_1$ labelled with both \term{studentOf} and \term{collaborator}).
+These considerations lead us to a straightforward extension
+of the notion of a directed graph:
+a \emph{labelled directed graph}.
+
+In order to visualise a labelled directed graph,
+node names are written into the respective node,
+and node and edge labels are written next to the node or edge.
+Multiple labels of the same node or edge are delimited with commas.
+An example is given in Figure~\ref{fig:example_graph}.
+The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
+concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
+Gotha Research Library \emph{(FB Gotha)}.
+It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
+a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
+and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
+For the sake of this example, the owners are additionally labelled with the profession
+\term{Scientist}, which is implicit in the actual data.
+The ten edges represent relationships that are instances
+of \gls{FRBR} relations and others between \term{Work}, \term{Item}, and \term{Person}.
+For the sake of simplicity, the graph deviates from the \gls{FRBR} model \autocite{FRBR1998}
+by omitting the \gls{FRBR} entities \term{Expression} and \term{Manifestation}
+that should occur between the nodes labelled \term{Work} and \term{Item}.
+
+\newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
+\newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
+\newcommand{\tikzexagraphMinusCopernicus}[3][]{%
+  \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
+  \node [text width=\derevnode,below=25mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+  \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+  \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+  ]
+    \path[->]
+%      (work1)   edge[bend right=10] node[pos=.4,left=1mm]      {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (item1)
+%      (item1)   edge[bend right=10] node[pos=.8,right=1mm]     {\fns\term{is\_exemplar\_of}}      (work1)
+%      (work1)   edge[bend left=4]   node[pos=.5,sloped, above] {\fns\strut\term{has\_creator}}    (person1)
+%      (person1) edge[bend left=4]   node[pos=.5,sloped, below] {\fns\strut\term{is\_creator\_of}} (work1)
+%      (item1)   edge[bend left=14]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person2)
+%      (person2) edge[bend right=6]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+%      (item1)   edge[bend right=6]  node[pos=.5,sloped, above] {\fns\strut\term{has\_owner}}      (person3)
+%      (person3) edge[bend left=14]  node[pos=.5,sloped, below] {\fns\strut\term{is\_owner\_of}}   (item1)
+%      (person2) edge[bend right=10] node[pos=.46,left=1mm]     {\fns\tikztabtwo[r]{\term{has\_student,}}{\term{collaborates\_with}}} (person3)
+%      (person3) edge[bend right=10] node[pos=.54,right=1mm]    {\fns\tikztabtwo{\term{is\_student\_of,}}{\term{collaborates\_with}}} (person2)
+      ($(work1.270)+(-0.08,0)$)   edge node[pos=#2,left=.5mm]          {\fns\term{exemplar}}      ($(item1.90)+(-0.08,0)$)
+      ($(item1.90)+(0.08,0)$)     edge node[pos=#3,right=.5mm]         {\fns\term{exemplarOf}}    ($(work1.270)+(0.08,0)$)
+      
+      ($(item1.0)+(0,0.4)$)      edge node[pos=.5,sloped, above=.7mm] {\fns\term{owner}}   ($(person2.180)+(0,0.08)$)
+      ($(person2.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{ownerOf}} ($(item1.0)+(0,0.24)$)
+
+      ($(item1.0)+(0,-0.24)$)     edge node[pos=.5,sloped, above=.7mm] {\fns\term{owner}}   ($(person3.180)+(0,0.08)$)
+      ($(person3.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{ownerOf}} ($(item1.0)+(0,-0.4)$)
+      
+      ($(person2.270)+(-0.08,0)$) edge node[pos=.46,left=.5mm]         {\fns\tikztabtwo[r]{\term{student,}}{\term{collaborator}}} ($(person3.90)+(-0.08,0)$)
+      ($(person3.90)+(0.08,0)$)   edge node[pos=.54,right=.5mm]        {\fns\tikztabtwo{\term{studentOf,}}{\term{collaborator}}}  ($(person2.270)+(0.08,0)$)
+    ;
+      
+    \node[above=.7mm of work1]   () {\fns\term{Work}};
+    \node[below=.7mm of item1]   () {\fns\term{Item}};
+    \node[right=.7mm of person2] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Mathematician}}};
+    \node[right=.7mm of person3] () {\fns\tikztabthree{\term{Person,}}{\term{Scientist,}}{\term{Astronomer}}};
+    
+  \end{scope}      
+}%
+\newcommand{\tikzexagraph}[3][]{%
+  \tikzexagraphMinusCopernicus[#1]{#2}{#3}
+
+  \node [text width=\copernode,above right=4mm and 45mm of work1] (person1) {\fns\tikztabtwo{\term{Nicolaus\_}}{\term{Copernicus}}};
+
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+  ]
+    \path[->]
+      ($(work1.0)+(0,0.08)$)      edge node[pos=.5,sloped, above=.7mm] {\fns\term{creator}}   ($(person1.180)+(0,0.08)$)
+      ($(person1.180)+(0,-0.08)$) edge node[pos=.5,sloped, below=.5mm] {\fns\term{creatorOf}} ($(work1.0)+(0,-0.08)$)
+    ;
+  
+    \node[right=.7mm of person1] () {\fns\tikztabtwo{\term{Person,}}{\term{Astronomer}}};
+  \end{scope}      
+
+}%
+%
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+    every edge/.style={draw=black,thick}
+  ]
+    \tikzexagraph{.5}{.5}
+  \end{tikzpicture}
+  
+  \caption{A labelled directed graph that represents data
+    concerning an exemplar of Copernicus' \emph{De revolutionibus} and some of its owners}
+  \label{fig:example_graph}
+\end{figure}
+
+As we will see in the following, labelled directed graphs can be used in our setting
+to represent (combinations of) data sources as well as queries.
+They allow us to draw on standard notions from graph theory and query answering
+in order to define admissible query answers and to devise methods for obtaining those.
+
+%In a nutshell, a labelled directed graph consists of a set of nodes, a set of directed edges between
+%the nodes, a function that names nodes with objects,
+%and a function that labels the nodes (edges) with concepts (relations)
+%of which the nodes (edges) are instances.
+%In our setting, these four abstract components have the following meaning:
+
+The above explanations can be cast into a rigorous mathematical definition,
+which uses sets to represent nodes, a binary relation over the set of nodes
+to represent edges, and functions over the nodes and edges to represent
+names and labels. In order for the ranges%
+\footnote{The \emph{range} or \emph{codomain} of a function is the set of values that can occur as images of that function.}
+of those functions to be well-defined,
+the following definition of a labelled directed graph is relative to a \emph{namespace},
+which contains all the names of objects, concepts and relations that are relevant.
+This namespace is a parameter that can be freely chosen; it may consist,
+for example, of all the names found in the relevant data sources.
+%The following definition introduces the notions of a namespace and a
+%labelled directed graph.
+%
+%\begin{definition}
+%  Let $R$ be a set of \emph{relation names}.
+%  A \emph{directed edge-labelled graph over $R$} is a triple $G = (V,E,\Lmc)$,
+%  where
+%  %
+%  \begin{itemize}
+%    \item
+%    $V$ is a set, whose members are called or \emph{nodes};\footnote{%
+%      In classical graph theory, nodes are called \emph{vertices}; thus the set of
+%      nodes of a graph is denoted by $V$. We adopt the denotation $V$ for conformity
+%      and the more modern term \enquote{node} for brevity.%
+%    }      
+%    \item 
+%    $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
+%    \item
+%    $\Lmc : E \to 2^R$ is a function that assigns to each edge a non-empty set of relation names,
+%    called the \emph{labels} of that edge; we call \Lmc a \emph{labelling function}.
+%  \end{itemize}
+%\end{definition}
+%
+\begin{definition}
+  \label{def:ld_graph}
+  Let $\namespace=(\NO,\NC,\NR)$ be a \emph{namespace} consisting of a set \NO of \emph{object names}, a set \NC of \emph{concept names}, and a set \NR of \emph{relation names}.
+  A \emph{labelled directed graph over $\namespace$} is a triple $G = (V,E,\Nmc,\Lmc)$
+  where
+  %
+  \begin{itemize}
+    \item
+      $V$ is a set, whose members are called \emph{nodes};\footnote{%
+        We use the standard denotation $V$ (from \enquote{vertex}) for the set of nodes.%
+      }      
+    \item 
+      $E \subseteq V \times V$ is a set of pairs of nodes, whose members are called \emph{edges};
+    \item
+      $\Nmc : V \to \NO$ is an injective function that assigns
+      to each node a unique object (called the node's \emph{name});
+    \item
+      $\Lmc : V \cup E \to \NV \cup 2^{\NR}$ is a function that assigns 
+      to each node a set of concept names (called the node's \emph{labels}) and
+      to each edge a non-empty set of relation names (called the edge's \emph{labels});
+      we call \Lmc a \emph{labelling function}.
+  \end{itemize}
+\end{definition}
+%
+Definition~\ref{def:ld_graph} captures the following commitments regarding names and labels:
+%%
+%\begin{itemize}
+%  \item
+%    every node has a unique name and no two nodes have the same name (the latter being ensured by injectivity);
+%  \item
+%    a node can have an arbitrary number of labels, including no label (in case the node belongs to no concept);
+%  \item
+%    an edge can have an arbitrary number of labels, but that number must not be zero --
+%    the effect of an edge having no labels can be achieved by simply omitting the edge.
+%\end{itemize}
+%
+(1) Every node has a unique name, and no two nodes have the same name (the latter is ensured by injectivity).
+(2) A node can have an arbitrary number of labels, including no label (in case the node belongs to no concept).
+(3) An edge can have an arbitrary number of labels, but that number must not be zero --
+the effect of an edge having no labels can be achieved by simply omitting that edge.
+
+In order to illustrate the components of Definition~\ref{def:ld_graph},
+we refer to the graph depicted in Figure~\ref{fig:example_graph}:
+$V$ consists of five nodes, and $E$ of ten edges
+(each single arrow constitutes an edge since the direction matters).
+%Let $v_1,v_2$ denote the nodes on the left and $v_3,v_4,v_5$
+%denote the nodes on the right (both from top to bottom).
+There are, among others, the following node names and labels:
+%
+\begin{itemize}
+  \item
+    The node at the top left has the name \term{De\_revolutionibus}
+    and the single label \term{Work}.
+  \item 
+    The node at the bottom right has the two labels \term{Person} and \term{Astronomer}.
+  \item 
+    The edge from the node named \term{Johann\_Hommel} to the node named \term{Valentin\_Thau}
+    has the two labels \term{student} and \term{collaborator},
+    and the edge pointing in the reverse direction has the labels
+    \term{studentOf} and \term{collaborator}.
+\end{itemize}
+%
+%%
+%\begin{equation*}
+%  \Nmc(v_1) = \term{De\_revolutionibus}
+%  \qquad
+%  \Lmc(v_1) = \{\term{Work}\}
+%  \qquad
+%  \Lmc(v_5) = \{\term{Person},\term{Astronomer}\}
+%\end{equation*}
+%%
+%Additionally, two of the ten edges have the following labels:
+%%
+%\begin{alignat*}{2}
+%  e_1 & = (v_4,v_5) & \qquad \Lmc(e_1) & = \{\term{has\_student},\term{collaborates\_with}\} \\
+%  e_2 & = (v_5,v_4) &        \Lmc(e_2) & = \{\term{is\_student\_of},\term{collaborates\_with}\} \\
+%\end{alignat*}
+
+% ------------------------------------------------------------------
+\section{Modelling Data Sources, Queries, and Answers}
+\label{sec:modelling}
+
+We can now use our notion of a labelled directed graph to model
+data sources and queries, and to obtain a rigorous definition of a query answer.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Data Sources}
+\label{subsec:data_sources}
+
+Data sources correspond exactly to our notion of a graph.
+%
+\begin{definition}
+  \label{def:data_source}
+%  \scalebox{0.965}[1]{A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
+%  over \namespace.}
+  A \emph{data source over the namespace $\namespace=(\NO,\NC,\NR)$} is a labelled directed graph
+  over \namespace.
+\end{definition}
+%
+In our model, we assume that there is always a \emph{single} data source against which a query is posed and evaluated.
+When the model is applied to real-word queries and data sources,
+the abstract notion of a data source is instantiated by the union of
+all available actual data sources (such as catalogues, authority files, knowledge bases),
+including mappings between them, if applicable.
+We will discuss this point in more detail in Chapter~\ref{chap:retrieval}.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Queries}
+
+In order to model queries based on graphs, we need to distinguish
+two special groups of nodes that act as placeholders (1) for the object(s) about which the query asks
+and (2) for further objects that are mentioned in the query without being named explicitly.
+For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answering}:
+%
+\Qtwoprime
+
+\newcommand{\tikzexaquery}[1][1]{%
+  \begin{scope}[%
+    opacity=#1,fill opacity=#1
+  ]
+    \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+    \node [ansvar,below=17mm of derev]           (x)     {\fns\mystrut$x$};
+    \node [anovar,above right=6.0mm and 20mm of x] (y)     {\fns\mystrut$y$};
+    \node [anovar,below right=6.0mm and 20mm of x] (z)     {\fns\mystrut$z$};
+  \end{scope}
+  
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm},
+    opacity=#1,fill opacity=#1
+  ]
+    \path[->]
+%      (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%      (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%      (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%      (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+      (derev) edge node[left=.7mm]           {\fns\term{exemplar}} (x)
+      (x)     edge node[sloped, above=.7mm] {\fns\term{owner}}         (y)
+      (x)     edge node[sloped, below=.5mm]      {\fns\strut\term{owner}}   (z)
+      (y)     edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm,pos=.4] {\fns\term{student}} (z)      
+    ;
+      
+    \node[above=.9mm of derev] () {\fns\term{Work}};
+    \node[left=.5mm of x]      () {\fns\term{Item}};
+    \node[above=.3mm of y]     () {\fns\term{Scientist}};
+    
+  \end{scope}
+}
+%
+\begin{figure}[ht]
+%\begin{wrapfigure}[10]{o}{5.4cm}
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \tikzexaquery
+  \end{tikzpicture}
+  
+  \caption{Graph representation of Query \exaquery{2$'$}}
+  \label{fig:graph_for_exa_query2'}
+%\end{wrapfigure}
+\end{figure}
+
+To model this query, we do not only need a node representing the work \emph{De revolutionibus},
+but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
+and two nodes representing the owner and their student (Group~2).
+Since these three individuals are not known when the query is formulated,
+we need to use \emph{variables} for naming them.
+Query~\exaquery{2$'$}
+can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
+
+
+
+The nodes of this graph fall into three groups:
+%
+\begin{enumerate}[(1)]
+  \item
+    The node named \tikzinlinenode{\term{De\_revolutionibus}} represents that work;
+  \item
+    Node \tikzinlinenode[ansvar]{\mystrut$x$} falls into Group~1 as explained above;
+  \item
+    Nodes \tikzinlinenode[anovar]{\mystrut$y$} and \tikzinlinenode[anovar]{\mystrut$z$}
+    fall into Group~2 as explained above.
+\end{enumerate}
+%
+Node names $x,y,z$ are the variables mentioned above,
+and we call $x$ the \emph{answer variable} and $y,z$ the \emph{anonymous variables}
+of this query.
+From now on, we fix two sets \VARANS and \VARANON
+of \emph{answer variables} and \emph{anonymous variables}, respectively,
+and we assume that they both contain a countably infinite number of elements
+(which ensures that there is an unlimited supply of variables).
+We furthermore require that these two sets are disjoint with each other
+and with any set \NO of object names.
+Thus, according to Definition~\ref{def:data_source},
+graphs representing data sources cannot use any variables as node names.
+
+In order to allow variables in queries,
+the following definition of a query is now immediate. 
+%
+\begin{definition}
+  A \emph{query over the namespace $(\NO,\NC,\NR)$} is a labelled directed graph
+  over $(\NO \uplus \VARANS \uplus \VARANON, \NC, \NR)$.
+\end{definition}
+%
+The operator \enquote{$\uplus$} used in this definition
+stands for \emph{disjoint union}, i.e., \enquote{$A \uplus B$}
+stands for the union of the \emph{disjoint} sets $A,B$.
+The wording of the definition also ensures
+that we do not have to mention variables explicitly when specifying the
+namespace of a query.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Query Answers}
+
+Based on the representation of both data sources and queries as graphs,
+we can now define the notion of an answer to a query 
+with respect to a data source. For this purpose, it is important to realise
+that, typically, a query is a small graph and a data source is a large graph,
+and that finding answers means finding small parts of the large graph
+that have the same structure as the small graph.
+For the example query given in Figure~\ref{fig:graph_for_exa_query2'},
+this means that every subgraph of the data source consisting of four nodes
+with the same edges and labels should be an answer.
+Regarding the previous example, the subgraphs given in
+Figure~\ref{fig:example_answers}~(a,\,b) constitute answers,
+while the subgraphs in Figure~\ref{fig:example_answers}~(c,\,d) do not:
+Subgraph~(a) is identical to the query graph with the only exception that it
+contains proper objects instead of variables in the node names;
+Subgraph~(b) is the same graph as~(a) but extended with an additional edge and additional node labels;
+Subgraph~(c) lacks the edge labelled \term{student} between the two owners;
+Subgraph~(d) resembles the structure of the query but does not contain
+the required node named \term{De\_revolutionibus}.
+
+\newlength{\student}
+\settowidth{\student}{{\fns\term{student}}}
+\newlength{\Scientist}
+\settowidth{\Scientist}{{\fns\term{Scientist}}}
+\begin{figure}[ht]
+  \centering
+  \begin{tabular}{@{}c@{\hspace{10mm}}c@{}}
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+      ]
+        \path[->]
+%          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[above=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+      ]
+        \path[->]
+%          (derev) edge[bend right=10] node[left=1mm]         {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{is\_exemplar\_of}}                       (derev)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge[bend right=10] node[left=1mm]         {\fns\term{exemplar}} (x)
+          (x)     edge[bend right=10] node[pos=.6,right=1mm] {\fns\term{exemplarOf}}                       (derev)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[right=.5mm of y]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+        \node[right=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[-4pt]
+    (a) & (b) \\[8pt]
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+      ]
+        \path[->]
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
+        ;
+        \path[every edge/.style={draw=none}]
+          (y) edge node[right=1mm] {\rule{\student}{0pt}} (z)
+        ;
+
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[above=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+      every edge/.style={draw=black,thick}
+    ]
+      \node                                   (derev) {\fns\mystrut$\term{ABC}$};
+      \node [below=16mm of work1]             (x)     {\fns\mystrut$\term{DEF}$};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
+      ]
+        \path[->]
+%          (derev) edge node[left=1mm]           {\fns\tikztabtwo[r]{\term{has\_}}{\term{exemplar}}} (x)
+%          (x)     edge node[sloped, above=.6mm] {\fns\term{has\_owner}}         (y)
+%          (x)     edge node[sloped, below]      {\fns\strut\term{has\_owner}}   (z)
+%          (y)     edge node[right=1mm]          {\fns\tikztabtwo[r]{\term{has\_}}{\term{student}}} (z)      
+          (derev) edge node[left=1mm]           {\fns\term{exemplar}} (x)
+          (x)     edge node[sloped, above=.6mm] {\fns\term{owner}}         (y)
+          (x)     edge node[sloped, below]      {\fns\strut\term{owner}}   (z)
+          (y)     edge node[right=1mm]          {\fns\term{student}} (z)      
+        ;
+          
+        \node[above=.5mm of derev] () {\fns\term{Work}};
+        \node[below=.5mm of x]     () {\fns\term{Item}};
+        \node[right=.5mm of y]     () {\fns\term{Scientist}};
+      \end{scope}
+    \end{tikzpicture}
+    \\[-4pt]
+    (c) & (d)
+  \end{tabular}
+  %
+  \caption{Positive (a,\,b) and negative (c,\,d) examples for query answers}
+  \label{fig:example_answers}
+\end{figure}
+
+In order to identify subgraphs of a given graph that have the same structure as another given graph,
+we use the standard notion of a homomorphism.
+A homomorphism is a function that maps some object to another
+while preserving the structure of the former.
+We thus need to define a variant of homomorphism that maps queries
+to data sources. This variant is given in the following.
+%
+\begin{definition}
+  \label{def:hmph}
+  Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
+  and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
+  A \emph{homomorphism from $G$ to $G'$} is a map $h : V \to V'$ that satisfies the following properties.
+  %
+  \begin{enumerate}
+    \item[\hmph{1}]
+      $\Nmc(v) = \Nmc'(h(v))$ for every node $v \in V$ with $\Nmc(v) \in \NO$.
+    \item[\hmph{2}]
+      $\Lmc(v) \subseteq \Lmc'(h(v))$ for every node $v \in V$.
+    \item[\hmph{3}]
+      $\Lmc(v_1, v_2) \subseteq \Lmc'(h(v_1), h(v_2))$
+      for every edge $(v_1,v_2) \in E$.
+  \end{enumerate}
+  %
+  If $h$ is a homomorphism from $G$ to $G'$, we write $h : G \to G'$.
+  If there is some homomorphism from $G$ to $G'$, we write $G \lesssim G'$.
+\end{definition}
+%
+Property~\hmph{1} requires that a homomorphism maps each node in $G$ that is named with an object
+to that node in $G'$ which is named with the same object.
+Nodes named with variables in $G$ can be mapped to arbitrary nodes in $G'$.
+Properties~\hmph{2} and~\hmph{3} require that homomorphisms preserve node and edge labels;
+more precisely, the subset relation entails that the image of a node (or edge) under $h$
+must have \emph{at least} the same labels (and may have additional labels).
+Furthermore, the graph $G'$ may have additional nodes that are not among the images
+of the homomorphism.
+
+Figure~\ref{fig:example_hmph} shows a homomorphism $h$ (dashed lines)
+from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
+to the graph from Figure~\ref{fig:example_graph}.
+
+\newcommand{\tikzhmph}{%
+  \begin{scope}[%
+    every node/.style={draw=none,fill=none,inner sep=.2mm,align=left},
+    every edge/.style={densely dashed,draw=black!70,thick}
+  ]
+    \path[->]
+%      (derev) edge[out= 20,in=160]               node[below=.6mm]         {\fns$h$} (work1)
+%      (x)     edge[out=270,in=200]               node[above=.4mm]         {\fns$h$} (item1)
+%      (y)     edge[out= 30,in=150,looseness=.19] node[above=.4mm,pos=.25] {\fns$h$} (person2)
+%      (z)     edge[out=340,in=200,looseness=.8]  node[above=.4mm,pos=.60] {\fns$h$} (person3)
+      (derev) edge                               node[above=.4mm,pos=.56] {\fns$h$} (work1)
+      (y.0)   edge[shorten <= -1.5pt]            node[above=.4mm,pos=.16] {\fns$h$} ($(person2.north west)!(y.0)!(person2.south west)$)
+    ;
+    
+    \draw[->,densely dashed,draw=black!70,thick,rounded corners=2mm]
+      (x.south) |- node[above=.4mm,pos=.835] {\fns$h$} (item1.194)
+    ; 
+
+    \draw[->,densely dashed,draw=black!70,thick,rounded corners=2mm]
+      ($(z.south) + (0, 1.5pt)$) |- node[above=.4mm,pos=.60] {\fns$h$} (person3.196)
+    ; 
+  \end{scope}
+}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+    every edge/.style={draw=black,thick}
+  ]
+    \tikzexaquery
+    \tikzexagraph[right=69mm of derev]{.28}{.72}
+    \tikzhmph      
+  \end{tikzpicture}
+  %  
+  \caption{A homomorphism from \exaquery{2$'$} to the graph from Figure~\ref{fig:example_graph}}
+  \label{fig:example_hmph}
+\end{figure}
+
+We can now use homomorphisms to define the notion of an answer to a query.
+%
+\begin{definition}
+  \label{def:query_answer}
+  Let $\namespace=(\NO,\NC,\NR)$ be a namespace, $G = (V,E,\Nmc,\Lmc)$ a query over \namespace,
+  and $G' = (V',E',\Nmc',\Lmc')$ a data source over \namespace.
+  %
+  \begin{enumerate}
+    \item
+      An \emph{answer to $G$ in $G'$} is a pair $(h,G'')$
+      where $h$ is a homomorphism $h : G \to G'$
+      and $G''$ is the subgraph of $G'$ induced by $h(V)$.
+    \item
+      The set of all answers to $G$ in $G'$ is called the \emph{answer set} for $G$ in $G'$
+      and denoted $\ans(G,G')$.
+  \end{enumerate}
+\end{definition}
+%
+We make the following remarks concerning Definition~\ref{def:query_answer}.
+
+%
+%\begin{itemize}
+%  \item
+    The \emph{subgraph of $G'$ induced by $h(V)$} in Point~1 is the graph $G'' = (V'', E'', \Nmc'', \Lmc'')$
+    where $V'' = h(V)$ and $E'', \Nmc'', \Lmc''$ are the restrictions of $E,\Nmc,\Lmc$ to $V''$.
+    
+%  \item
+    The answer corresponding to the homomorphism $h$ depicted in Figure~\ref{fig:example_hmph}
+    consists of $h$ and 
+    the graph on the right-hand side after removal of the node \term{Nicolaus\_Copernicus} and the two adjacent edges.
+    This situation is shown in Figure~\ref{fig:example_answer} with the query greyed out.
+    
+%  \item
+    Every homomorphism determines an answer. If no homomorphism $h : G \to G'$ exists,
+    then there is no answer to $G$ in $G'$, i.e., $\ans(G,G') =  \emptyset$.
+    
+%  \item
+    From a mathematical point of view, it would suffice to equate answers with homomorphisms
+    since $G''$ can be reconstructed from $G$ and $h$. However, we deliberately make $G''$ explicit
+    in order to take the importance of the \enquote{explorative approach} into account
+    (see Sections~\ref{subsec:SoNAR_reports} and~\ref{subsec:insights_from_SoNAR}).
+    The subgraph $G''$ servers as the minimal \enquote{section} of the data that a researcher should want to inspect.
+%\end{itemize}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
+    every edge/.style={draw=black,thick}
+  ]
+    \tikzexaquery[.5]
+    \tikzexagraphMinusCopernicus[right=69mm of derev]{.28}{.72}
+    \tikzhmph
+  \end{tikzpicture}
+  %
+  \caption{An answer consisting of the homomorphism $h$ and the graph $G''$ on the right-hand side}
+  \label{fig:example_answer}
+\end{figure}
+
+So far, we have built a model that captures data sources and query patterns such as \exaquery{2}.
+In this model, answering queries amounts to finding homomorphisms between graphs.
+The two natural next steps consist in examining the computational properties
+of the problem of finding homomorphisms
+and in extending the model to capture further query patterns.
+We will realise these two steps in the following sections.
+
+% ------------------------------------------------------------------
+\section{Computational Properties}
+\label{sec:decision_problems}
+\label{sec:decision_procedures}
+\label{sec:computational_properties}
+
+As already indicated, the problem of finding homomorphisms is well-understood in the contexts of
+database theory and classical logic. In particular, the favourable computational properties of this problem
+are exploited in successful database systems. We review these in the following,
+building on fundamental principles of complexity theory \autocite{Arora2009}.
+
+The computation problem of query answering in which we are interested according to our model can be 
+phrased as follows: Given a query and data source, compute all answers.
+More formally:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \hline\rule{0pt}{12pt}%
+    Input:  & a query $G$ and a data source $G'$ over some namespace \namespace \\[2pt]
+    Output: & $\ans(G,G')$ \\[1pt]
+    \hline
+  \end{tabular}
+\end{center}
+
+For the implementation of a retrieval tool that is designed to answer questions,
+it is crucial to verify that this problem can be solved at all (i.e., is \emph{computable})
+and efficiently so (i.e., is \emph{tractable}).%
+Here, computability means that there is some algorithm
+which, given an arbitrary input $(G,G')$, returns the correct answer set $\ans(G,G')$
+after a finite amount of time.
+Tractability means that there is even an algorithm whose runtime is strongly limited
+depending on the size of its input.
+Usually a \emph{polynomial} upper bound on the amount of time is
+considered sufficient for tractability; that is, the runtime of the algorithm
+is bounded by $c \cdot n^k$, where $n$ is the size of the input (e.g., nodes and edges in the input graphs)
+and $c$ and $k$ are some constants. Problems for which an algorithm with such guaranteed time bounds exists
+are called \emph{solvable in polynomial time}.
+A polynomial time bound on an algorithm provides the guarantee that its runtime as a function of the input size
+increases moderately for all inputs, as opposed to, e.g., an exponential function.
+Therefore, problems for which a polynomial-time algorithm exists are generally considered tractable.
+However, this is still an abstract notion, given that the constants $c$ and $k$ can be arbitrary.
+It remains for practical purposes to find an optimal algorithm with $c$ and $k$ as small as possible,
+and which performs particularly well on those inputs that occur in the application at hand.
+
+In order to check whether a computation problem is computable and tractable,
+is it usual to resort to a slightly more abstract level,
+considering the \emph{decision problem} associated with the computation problem.
+Typically, \emph{decidability} (i.e., computability) and tractability of
+the decision problem imply those of the computation problem;
+hence it suffices to consider these.
+
+The associated decision problem additionally considers a candidate output as an input
+and asks whether that candidate is in fact a valid output.
+In the case of our computation problem, the associated decision problem is the following.
+
+\begin{center}
+  \begin{tabular}{ll}
+    \hline\rule{0pt}{12pt}%
+    Input:  & a query $G$ over \namespace, a data source $G'$ over \namespace, \\
+            & a function $h$ from $G$ to $G'$, and a subgraph $G''$ of $G'$ \\[2pt]
+    Output: & \YES if $(h,G'') \in \ans(G,G')$;\quad \NOO otherwise \\[1pt]
+    \hline
+  \end{tabular}
+\end{center}
+
+We denote it with \problem{QA}.
+
+\problem{QA} is strongly related to the decision problem associated to
+answering (conjunctive) queries over relational databases.
+This problem has been studied from a computational point of view in seminal papers
+by \textcite{Vardi1982} and \textcite{Chandra1977} with the following main result.
+%
+\begin{theorem}
+  \label{thm:cplx_CQA}
+  \textup{\autocite{Vardi1982}}~
+  Answers to conjunctive queries over relational databases
+  can be decided in time polynomial with respect to the size of the database.
+\end{theorem}
+%
+This result means that the decision problem associated with answering conjunctive queries is decidable
+and, furthermore, tractable if the size of the query is neglected.
+Given that queries are typically very small compared to the size of the data,
+tractability under this assumption is sufficient for practical purposes;
+in fact, it is the basis for the success of modern (relational) database engines.
+As a side remark, if this assumption is dropped and the complexity with respect
+to the joint size of both the database and the query is considered,
+then it follows from \citeauthor{Chandra1977}'s \autocite*{Chandra1977}
+results that the problem 
+is intractable (under the usual reasonable complexity-theoretic assumptions)
+already in the presence of binary relations.
+
+The strong relationship between our decision problem \problem{QA}
+and the classical problem of answering conjunctive queries
+implies that Theorem~\ref{thm:cplx_CQA} carries over directly to \problem{QA}.
+In more precise terms, both problems are mutually \emph{reducible} in polynomial time,
+which can be shown very easily using standard knowledge from graph theory and first-order logic.
+Without immersing into the technical definitions for standard notions in complexity theory,
+we note that polynomial-time reducibility between the two problems
+means that an algorithm for one of them
+can be turned into an algorithm for the other which uses only a polynomial
+(i.e., relatively small) additional amount of time.
+
+We therefore obtain the following decidability and complexity result
+for our problem \problem{QA}.
+%
+\begin{corollary}
+  \label{cor:cplx_QA}
+  \problem{QA} is decidable
+  in time polynomial with respect to the size of the data source.
+\end{corollary}
+%
+As a consequence of Corollary~\ref{cor:cplx_QA}, 
+there is an algorithm for deciding \problem{QA},
+and thus also for computing the answer set $\ans(G,G')$
+for a given query $G$ and data source $G'$ in time polynomial
+with respect to the size of $G'$.
+The polynomial time bound ensures that the growth of runtime
+as a function of the input size is guaranteed to be bounded by a function
+of moderate growth, independently of the specific input.
+However, as explained above,
+the existence of a polynomial-time algorithm does not immediately imply that there
+is an algorithm that performs well for the purposes of our envisaged application,
+which is the implementation of a retrieval system.
+Fortunately, the close relationship to conjunctive query answering over databases
+comes to our aid: 
+given the existence of a (very straightforward) polynomial-time reduction
+of \problem{QA} to conjunctive query answering,
+%there are two options for obtaining an algorithm that is efficient in practice.
+\problem{QA} can be solved by either re-implementing one of the existing
+successful polynomial-time algorithms for conjunctive query answering
+or by implementing the reduction feeding its output directly into a relational database system,
+using the latter as a \enquote{black box}.
+These two options correspond nicely to the
+distinction between the dynamic and static scenario
+that we have contemplated in Section~\ref{subsec:insights_from_SoNAR},
+and which we will expand in Chapter~\ref{chap:retrieval}.
+
+% ------------------------------------------------------------------
+\section{Discussion of the Basic Model and Extensions}
+\label{sec:modelling_discussion}
+
+In Section~\ref{sec:modelling}, we have developed a basic model
+that is conceptually simple and easy to implement.
+We have shown how the exemplary query pattern \exaquery{2}
+can be modelled, and we have indicated how implementations can be obtained.
+What is missing is a wider analysis of the scope and suitability
+of this model for capturing queries and data sources relevant
+for provenance research.
+It is clear that this analysis cannot be performed comprehensively
+within the scope of a master's thesis.
+However, we can estimate the extent of generality of our model
+by relating it to the exemplary query patterns \exaquery{1}--\exaquery{9}.
+In doing so, we will understand the limitations of the model
+and be able to sketch possible extensions.
+This is the aim of this section.
+
+In the following discussion, we will continue to use \exaquery{1}--\exaquery{9}
+as \emph{patterns}. That is, we will abstain from instantiating the variables $X$ and $Y$
+because the considerations are independent of the specific instantiations.
+As a consequence, the drawn graphs will contain nodes labelled with uppercase letters $X,Y$
+as well as lowercase letters $x,y$ (or similar).
+Only the latter type of nodes represents answer variables and anonymous variables;
+the former represents specific objects, for which $X$ and $Y$ are used as placeholders.
+We continue to distinguish these types of nodes by their shape and colour as in Figure~\ref{fig:graph_for_exa_query2'},
+using blue rectangles for objects, yellow circles for answer variables, and orange diamonds 
+for anonymous variables.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{The Basic Model}
+
+The basic model that we have so far developed captures not just Query Pattern~\exaquery{2}
+but also \exaquery{4}, as well as \exaquery{1} and \exaquery{5} if we leave out the year(s) for the moment, i.e.,
+the following query patterns.
+%
+\begin{enumerate}
+  \item[\exaquery{1$^-$}]
+    Who read
+    work $X$, and
+    in which manifestation?
+%    and in which year?
+  \item[\exaquery{4\phantom{$^-$}}]
+    Which items from collection $X$ were passed on by its owner to a family member?
+  \item[\exaquery{5$^-$}]
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$?
+%    between 1933 and 1945?
+  \item[\exaquery{8}\phantom{$^-$}]
+    Which libraries own the items once owned by person $X$?
+\end{enumerate}
+%
+In the case of \exaquery{1}, the relation \term{reads} is most certainly not recorded in provenance entries
+in any bibliographic data source. Therefore, we need to resort to the \emph{substitute information}
+(see Section~\ref{sec:HNA+SoNAR}) provided by the \term{owner} relation.
+Now these two query patterns
+can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,baseline=0pt,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    % ----- Q1- main nodes
+    \node                             (Q1X)  {\fns\mystrut$~~~~X~~~~$};
+    \node [anovar,below=16mm of Q1X]  (Q1y1) {\fns\mystrut$y_1$};
+    \node [ansvar,below=16mm of Q1y1] (Q1x1) {\fns\mystrut$x_1$};
+    \node [anovar,below=16mm of Q1x1] (Q1y2) {\fns\mystrut$y_2$};
+    \node [ansvar,right=22mm of Q1y2] (Q1x2) {\fns\mystrut$x_2$};
+
+    % ----- Q4 main nodes
+    \node [right=44mm of Q1X]                        (Q4X)  {\fns\mystrut$~~~~X~~~~$};
+    \node [ansvar,below=22mm of Q4X]                 (Q4x)  {\fns\mystrut$x$};
+    \node [anovar,above right=7.4mm and 20mm of Q4x] (Q4y1) {\fns\mystrut$y_1$};
+    \node [anovar,below right=7.4mm and 20mm of Q4x] (Q4y2) {\fns\mystrut$y_2$};
+
+    % ----- Q5- main nodes
+    \node [right=56mm of Q4X]        (Q5X) {\fns\mystrut$~~~~X~~~~$};
+    \node [ansvar,below=14mm of Q5X] (Q5x) {\fns\mystrut$x$};
+    \node [right=25mm of Q5x]        (Q5Y) {\fns\mystrut$~~~~Y~~~~$};
+
+    % ----- Q8 main nodes
+    \node [ansvar,below=34mm of Q5X] (Q8x) {\fns\mystrut$x$};
+    \node [anovar,below=14mm of Q8x] (Q8y) {\fns\mystrut$y$};
+    \node [right=25mm of Q8y]        (Q8X) {\fns\mystrut$~~~~X~~~~$};
+
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm},
+    ]
+      \path[->]
+        % ----- Q1- edges
+        (Q1X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (Q1y1)
+        (Q1y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (Q1x1)
+        (Q1x1) edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (Q1y2)
+        (Q1y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (Q1x2)
+
+        % ----- Q4 edges
+        (Q4X)  edge                                       node[right=1mm,pos=.4]   {\fns\term{part}}         (Q4x)
+        (Q4x)  edge                                       node[sloped, above=.6mm] {\fns\term{owner}}        (Q4y1)
+        (Q4x)  edge                                       node[sloped, below=.6mm] {\fns\term{owner}}        (Q4y2)
+        (Q4y1) edge[shorten >= -1.5pt, shorten <= -1.5pt] node[right=1mm]          {\fns\term{familyMember}} (Q4y2)
+
+        % ----- Q5- edges
+        (Q5X) edge node[right=1mm,pos=.4]   {\fns\term{holds}}    (Q5x)
+        (Q5x) edge node[above=.6mm,pos=.46] {\fns\term{provider}} (Q5Y)
+
+        % ----- Q8 edges
+        (Q8x) edge[shorten >= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{holds}} (Q8y)
+        (Q8y) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}} (Q8X)
+      ;
+        
+      % ----- Q1- node labels
+      \node[right=.5mm of Q1X]  ()                 {\fns\term{Work}};
+      \node[right=.5mm of Q1y1] ()                 {\fns\term{Expression}};
+      \node[right=.5mm of Q1x1] ()                 {\fns\term{Manifestation}};
+      \node[below right=-.5mm and .5mm of Q1y2] () {\fns\term{Item}};
+      \node[above=.5mm of Q1x2] ()                 {\fns\term{Person}};
+
+      % ----- Q4 node labels
+      \node[right=.5mm of Q4X] () {\fns\term{Collection}};
+      \node[below=.5mm of Q4x] () {\fns\term{Item}};
+
+      % ----- Q5- node labels
+      \node[right=.5mm of Q5X] () {\fns\term{Library}};
+      \node[below=.5mm of Q5x] () {\fns\term{Item}};
+      \node[below=.5mm of Q5Y] () {\fns\term{ResponsibleEntity}};
+
+      % ----- Q8 node labels
+      \node[right=.5mm of Q8x] () {\fns\term{Library}};
+      \node[below=.5mm of Q8y] () {\fns\term{Item}};
+      
+      % ----- labels with query numbers
+      \node[below=6mm of $(Q1y2)!.6!(Q1x2)$] () {\exaquery{1$^-$}};
+      \node[below=7mm of $(Q4x)!.4!(Q4y2)$]  () {\exaquery{4}};
+      \node[below=7mm of $(Q5x)!.4!(Q5Y)$]   () {\exaquery{5$^-$}};
+      \node[below=6mm of $(Q8y)!.4!(Q8X)$]   () {\exaquery{8}};
+    \end{scope}
+  \end{tikzpicture}
+    
+  \caption{Graph representations of Query Patterns \exaquery{1$^-$},\exaquery{4}, \exaquery{5$^-$}, and \exaquery{8}}
+  \label{fig:modelling_Q145}
+\end{figure}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Relations with Attributes and Relations of Higher Arity}
+\label{subsec:attributes+n-ary}
+
+The full wording of \exaquery{1} and~\exaquery{5} includes references to years
+as attributes of relationships.
+In the case of \exaquery{5}, we restrict ourselves to a variant that names
+a specific year rather than an interval.
+We will get back to intervals in Subsection~\ref{subsec:further_information}.
+That is, we consider the following two query patterns (with the temporal reference highlighted).
+%
+\begin{enumerate}
+  \item[\exaquery{1\phantom{$^\star$}}]
+    Who read %\todo[color=red!30]{read $\neq$ own; make clear what is meant}
+    work $X$, in which manifestation and \emph{in which year}?
+  \item[\exaquery{5$^\star$}]
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$
+%    \emph{between 1933 and 1945}?
+    \emph{in 1935}?
+\end{enumerate}
+%
+In~\exaquery{5$^\star$}, the year is specified as an attribute of the \term{provider} relation
+while, in~\exaquery{1}, it acts as an additional answer variable that represents
+an attribute of the \term{owner} relation.
+In order to capture~\exaquery{1} and~\exaquery{5$^\star$} fully,
+the model needs to be extended such that relationships can have attributes.
+This is straightforward in the graph representation,
+%for both graphs and queries, 
+as the attributes can be added to
+the respective edge labels. This is shown in Figure~\ref{fig:attributes_on_relships}
+for the two respective edges of~\exaquery{1} and~\exaquery{5$^\star$}.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tabular}{@{}c@{\hspace*{20mm}}c@{}}
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [anovar]                  (y2) {\fns\mystrut$y_2$};
+      \node [ansvar,right=28mm of y2] (x2) {\fns\mystrut$x_2$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}\mybold{{\boldmath\,:\,$x_3$}}} (x2)
+        ;
+          
+        \node[below right=-.5mm and .5mm of y2] () {\fns\term{Item}};
+        \node[above=.5mm of x2] ()                 {\fns\term{Person}};
+      \end{scope}
+    \end{tikzpicture}
+    &
+    \begin{tikzpicture}[
+      >=Latex,baseline=0pt,
+      every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+      every edge/.style={draw=black,thick}
+    ]
+      \node [ansvar]          (x) {\fns\mystrut$x$};
+      \node [right=37mm of x] (Y) {\fns\mystrut$~~~~Y~~~~$};
+  
+      \begin{scope}[%
+        every node/.style={draw=none,fill=none,inner sep=.2mm},
+      ]
+        \path[->]
+          (x) edge node[above=.6mm,pos=.46] {\fns\term{provider}\mybold{\,:\,1935}} (Y)
+        ;
+          
+        \node[below=.5mm of x] () {\fns\term{Item}};
+        \node[below=.5mm of Y] () {\fns\term{ResponsibleEntity}};
+      \end{scope}
+    \end{tikzpicture}
+    \\
+%    \rule{0pt}{16pt}
+    \exaquery{1}
+    &
+    \exaquery{5$^\star$}~~~~~
+  \end{tabular}
+
+  \caption{Capturing attributes on relationships}
+  \label{fig:attributes_on_relships}
+\end{figure}
+
+On the formal side, the notion of a graph (Definition~\ref{def:ld_graph})
+needs to be extended such that the labelling function \Lmc maps each edge to a set
+that consists not necessarily only of relation names (for relationships without attributes),
+but which may also contain pairs of relation names and literals/objects/variables (for relationships with attributes).
+The notion of a homomorphism (Definition~\ref{def:hmph}) does not need to be changed,
+as the current formulation of Condition~\hmph{3} continues to ensure that edge labels are preserved.
+
+Binary relations with attributes are in fact a special case of ternary relations: e.g., \term{owner} in \exaquery{1}
+is a relation between items, persons, and literals (year numbers).
+As the computational properties discussed in Section~\ref{sec:computational_properties}
+hold for relations of higher arity as well, this modest extension of the model can be implemented
+along with the basic model.
+
+Ternary relations are also necessary to model \exaquery{9} (and the supporting data):
+%
+\begin{enumerate}
+  \item[\exaquery{9}]
+    Where did person $X$ acquire items and did they know the previous owners?
+\end{enumerate}
+%
+In this case, the relation \term{acquires} needs to involve persons, items, and sellers,
+and this constellation can no longer be visualised as a graph in a straightforward way.
+A possible extension is the notion of a \emph{hypergraph} \autocite[§7.1]{Voloshin2009},
+which allows edges of arbitrary arity.
+While the mathematical object can be defined analogously to standard graphs,
+it does no longer lend itself to intuitive visualisations.
+Instead, an \gls{SQL}-like query language seems better suited
+but misses the advantages of an intuitive visualisation 
+and requires expert knowledge that humanities scholars do not usually have at hand.
+As already mentioned, the notion of a homomorphism and the computational properties
+carry over directly.
+
+Another use case for relations of higher arity is the inclusion of metadata provenance,
+i.e., information on the origins of a unit of data (such as a concept membership or relationship).
+In our scenario, it makes sense to distinguish two kinds of
+metadata provenance. The first is information provided by some data sources such as the \gls{GND}
+(see Section~\ref{subsec:SoNAR_reports}), referring to original data sources on whose grounds
+the respective data unit was entered.
+The second is the reference to the data source from which the data unit entered
+the federated data source $G'$ against which the query $G$ is evaluated
+(see Sections~\ref{subsec:insights_from_SoNAR} and~\ref{subsec:data_provenance}).
+Both kinds of provenance information are reflected only in the data source
+and not in the query, and they play a role only in the retrieved answers,
+enabling users to consult the original data sources for further research.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Answer Variables for Sets of Objects}
+\label{subsec:set_variables}
+
+Query Pattern~\exaquery{3} contains a reference to a \emph{set} of objects:
+%
+\begin{enumerate}
+  \item[\exaquery{3}]
+    What are the relationships between the recipients of manifestation $Y$ of work $X$?
+\end{enumerate}
+%
+
+%\begin{figure}[ht]
+\begin{wrapfigure}[13]{o}{6.4cm}
+  \centering
+  \vspace*{-.5\baselineskip}
+  \begin{tikzpicture}[
+    >=Latex,baseline=0pt,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    \node                             (Q3X)  {\fns\mystrut$~~~~X~~~~$};
+    \node [anovar,below=14mm of Q3X]  (Q3y1) {\fns\mystrut$y_1$};
+    \node [       below=14mm of Q3y1] (Q3Y)  {\fns\mystrut$~~~~Y~~~~$};
+    \node [anovar,below=14mm of Q3Y]  (Q3y2) {\fns\mystrut$y_2$};
+    \node [setvar,right=22mm of Q3y2] (Q3x)  {\fns\mystrut$\overline{x}$};
+
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm},
+    ]
+      \path[->]
+        (Q3X)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{realization}} (Q3y1)
+        (Q3y1) edge[shorten <= -1.5pt] node[right=1mm,pos=.4]   {\fns\term{embodiment}}  (Q3Y)
+        (Q3Y)  edge[shorten >= -1.5pt] node[right=1mm]          {\fns\term{exemplar}}    (Q3y2)
+        (Q3y2) edge[shorten <= -1.5pt] node[above=.6mm,pos=.46] {\fns\term{owner}}       (Q3x)
+      ;
+        
+      % ----- Q3- node labels
+      \node[right=.5mm of Q3X]  ()                 {\fns\term{Work}};
+      \node[right=.5mm of Q3y1] ()                 {\fns\term{Expression}};
+      \node[right=.5mm of Q3Y]  ()                 {\fns\term{Manifestation}};
+      \node[below right=-.5mm and .5mm of Q3y2] () {\fns\term{Item}};
+      \node[above=.5mm of Q3x]  ()                 {\fns\term{Person}};
+    \end{scope}
+  \end{tikzpicture}
+
+%  \caption{A graph representing example query pattern \exaquery{3}}
+  \caption{Graph representation of \exaquery{3}}
+  \label{fig:modelling_Q3}
+\end{wrapfigure}
+%\end{figure}
+
+If we use the substitute information \enquote{ownership} for \enquote{reception},
+then the expected answer to \exaquery{3} is a set of owners,
+together with the relationships between them---%
+or, more precisely, the subgraph of the data source induced by the set of all owners.
+In order to capture this idea,
+our basic model needs to be extended by \emph{set variables} representing sets of objects
+and \emph{set nodes} corresponding to set variables.
+In the case of \exaquery{3}, the set node acts nearly as an answer variable
+because the query asks for the relationships between the set of owners.
+In order to distinguish set variables and nodes from ordinary ones in the visualisation,
+we use overlined letters and octagonal shapes.
+Figure~\ref{fig:modelling_Q3} depicts the graph for \exaquery{3}.
+
+Query Pattern~\exaquery{9} (see above) also requires a set variable
+that represents the \enquote{previous owners}. In contrast to \exaquery{3},
+the query does not ask for the relationships between the objects in that set
+but for the relationships between these objects and person $X$.
+These relationships are automatically included in each induced subgraph that is part of a query answer,
+and they need to be evaluated manually by the user
+in order to answer the yes/no question involving the relationship \term{know},
+which is very likely not recorded explicitly in data sources.
+
+In order to capture set variables in our definition of query answers,
+the notion of a homomorphism needs to be extended such that
+every set node in the query graph $G$ is mapped to a set of nodes in $G'$,
+under preservation conditions analogous to~\hmph{2} and~\hmph{3}.
+While all these extensions are straightforward,
+their effect on the complexity of query answering is not obvious.
+Since the number of subsets of a set is exponential in the number of its
+elements, it is possible that there is no longer an algorithm
+that requires only polynomial time (with respect to the size of the data).
+This question remains to be investigated.
+
+Finally, when our basic model is extended with set variables,
+it can express Requirements \SonarR{016}--\SonarR{018} from the 
+SoNAR report \autocite{Fangerau2022}, which are listed in Section~\ref{subsec:SoNAR_reports},
+as queries.
+The only additional feature required is the use of unlabelled edges in queries
+in order to capture the (deliberately) unspecified relation \enquote{connected to}.
+That addition is minor: homomorphisms simply need to be required to map unlabelled
+edges in the query graph $G'$ to arbitrary edges in the data source graph $G$.
+The computational properties are unaffected because 
+query answering with unlabelled edges can be reduced to the basic query answering problem
+by adding a fresh relation name to all unlabelled edges in $G'$ and all edges in $G$.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Further Types of Information}
+\label{subsec:further_information}
+
+There are some types of information that should be captured in our model
+or by our general approach,
+given the specifics of the example query patterns
+and the insights from the SoNAR project.
+We briefly discuss them and their effects on modelling.
+
+\paragraph{Substitute information}
+
+This type of information was discussed
+in the SoNAR report \autocite{Fangerau2022}, see Section~\ref{subsec:SoNAR_reports}.
+As we have already mentioned in several places in this chapter.
+Query Patterns~\exaquery{1}--\exaquery{9} use several relationships
+that are typically not recorded in data sources explicitly, such as
+\enquote{read}, \enquote{recipient of}, \enquote{passed on to},
+\enquote{once owned}, or \enquote{knows}.
+Furthermore, \exaquery{4} and \exaquery{2$'$}
+use the relation \enquote{family member} and the concept \enquote{scientist},
+which are superordinate to terms that are used in data sources
+(such as \enquote{child} or \enquote{astronomer}).
+
+Whenever one of these terms occurs in a query,
+the answer set will inevitably be empty.
+This problem cannot be addressed at the level of the modelling,
+but rather at the levels of (a) the interaction between user and retrieval system
+or (b) the retrieval method.
+Option~(a) refers to the way the system supports users in formulating their queries.
+Independently of the problem of missing relations or concepts, users should be able to 
+select terms from the supply of terms available in the data source(s).
+If a term that the user wants to use is missing, then the user has no other choice than
+to select an alternative \enquote{substitute} term.
+In this case, the user should be made aware of the effect of overapproximation
+described in Section~\ref{sec:quality_of_answers}.
+Option~(b) refers to using semantic technologies such as ontologies
+in the retrieval method (and of course in the support for formulating queries).
+Given that ontologies are generally useful in data integration \autocite[§12]{Doan2012},
+it would be promising to include them in our method.
+From the modelling perspective, it remains to proceed with caution
+because, depending on the ontology language used,
+query answering is not guaranteed to retain its favourable computational properties
+in the presence of ontologies \autocite{Lutz2016,Xiao2018,Barcelo2019}.
+
+\paragraph{Complex relationships}
+
+Relationships between two objects that cannot be described using a single relation name
+have already been mentioned as \enquote{indirect relationships}
+in the context of SoNAR (Section~\ref{sec:HNA+SoNAR})
+and in our discussion of manual versus automated query answering (Section~\ref{sec:manual_vs_automated}).
+For example, the relationship \enquote{$P_1$ and $P_2$ are students of the same scholar}
+between two persons $P_1$ and $P_2$ does not correspond to a single relation.
+Instead, it is represented in the data graph 
+via two \term{student}-edges that point from the nodes representing $P_1$ and $P_2$
+to a unique node representing some other person (the scholar).
+Whenever a user wants to query such a complex relationship, they will
+have to build this small subgraph into their query.
+Supporting users in constructing queries is again a matter of user interaction,
+not of the modelling.
+
+\paragraph{Temporal constraints}
+
+In Subsection~\ref{subsec:attributes+n-ary}, we have already sketched one way of handling
+temporal information in our model of queries and data graphs.
+However, there are more complex kinds of temporal information,
+as can be seen, for example, in the full versions of Query Pattern~\exaquery{5}:
+%
+\begin{enumerate}
+  \item[\exaquery{5}]
+    Which items from the holdings of library $X$ were acquired from bookseller $Y$
+    \emph{between 1933 and 1945}?
+\end{enumerate}
+%
+In order to capture this query, the syntax for labels in query graphs needs to be extended such that
+constraints can be formulated as attributes of relationships,
+for example, 
+by replacing the edge label \enquote{\term{provider}\mybold{\,:\,1935}}
+on the right-hand side of Figure~\ref{fig:attributes_on_relships}
+with \enquote{\term{provider}\mybold{\,:\,$\geqslant$\,1933 \& $\leqslant$\,1945}.}
+
+Temporal constraints can also be useful for modelling relations
+that are not explicit in the data, such as \enquote{passed on to}, which occurs in~\exaquery{2} and~\exaquery{4}.
+Our approach so far was to consider each pair of owners as a candidate for an instance of this relation,
+with the risk of returning a large number of spurious answers
+(see also the discussion in Section~\ref{sec:manual_vs_automated}).
+With temporal constraints, it is possible to narrow down the spurious answers:
+if dates of ownership are given, then a pair $(y_1,y_2)$ of owners
+is a candidate only if the ownership of $y_1$ predates that of $y_2$.
+This can be expressed using attributes of the \term{owner} relation
+and a \enquote{$<$} constraint between the attributes of the \term{owner} labels
+of the edges pointing to $y_1$ and $y_2$.
+
+\enlargethispage*{5mm}
+In order to incorporate such constraints,
+the first step should be to devise a rigorous definition of the form of constraints that are allowed.
+The next step is to find a useful form of visualisation.
+Finally, the notion of a homomorphism needs to be extended to preserve constraints,
+which is quite straightforward.
+The computational properties need to be re-examined, but it is realistic to hope
+that they do not deteriorate because constraints of this kind are also part of
+standard database query languages such as \gls{SQL}.
+
+\paragraph{Disjunctions in labels}
+
+It is conceivable that a researcher wants to formulate a query that contains a disjunction,
+for example, the following variant of \exaquery{4}.
+%
+\begin{enumerate}
+  \item[\exaquery{4$'$}]
+    Which items from a collection $X$ were passed on by its owner to \emph{a child or a student}?
+\end{enumerate}
+%
+This example uses a disjunction of the relations \term{child} and \term{student}.
+It should be quite straightforward to extend the syntax for labels in query graphs
+and the notion of a homomorphism in order to represent and preserve this kind of constraint.
+The computational properties are not affected by adding disjunction,
+as Vardi's result (Theorem~\ref{thm:cplx_CQA}) applies in fact to arbitrary queries formulated in first-order logic.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Problematic Queries}
+
+So far, we have not addressed Query Patterns~\exaquery{6} and~\exaquery{7} in this chapter:
+%
+\begin{enumerate}
+  \item[\exaquery{6}]
+    Who participated in the sale of collection $X$?
+  \item[\exaquery{7}]
+    Via which paths did items from collection $X$ enter library $Y$?
+\end{enumerate}
+%
+The reason is that they contain complex features which need to be resolved outside the scope of our model:
+The participation in a sale (\exaquery{6}) is a very general notion that needs to be specified
+\emph{before} formulating the query and attempting to match it to the available data.
+The paths of ownership featuring in \exaquery{7} are a complex notion that cannot be captured by a simple query;
+instead, the query should simply ask for owners, and the paths need to be reconstructed manually
+\emph{after} the retrieval system has returned the answers.
+
+We also have not yet discussed the requirements identified by the SoNAR report
+and listed in Section~\ref{subsec:SoNAR_reports},
+other than \SonarR{016}--\SonarR{018}.
+Most of these remaining requirements are of a rather exploratory nature
+(in particular, \SonarR{029}, \SonarR{030}, and \SonarR{061}),
+and they therefore need to be discussed apart from the topic of modelling.
+The topic of exploration should be dealt with in a separate
+thesis or paper.
+
+

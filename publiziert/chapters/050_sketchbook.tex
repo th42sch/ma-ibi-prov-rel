@@ -1,0 +1,37 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter*{Sketchbook}
+
+% -------------------------------------------------------------------
+\section*{``Storyline''}
+
+\begin{tikzpicture}[
+  >=Latex,
+  every node/.style={draw=none,fill=none,thick,inner sep=1.5mm},
+  every edge/.style={draw=black,thick}  
+]
+  \node                                 (queries)         {Prototype queries};
+  \node [below=10mm of queries]         (datasources)     {\tikztab[c]{Requirement analysis:\\[-1pt]Analysis of available data sources\\[-1pt]Analysis of possible queries}};
+  \node [below=10mm of datasources]     (modelling)       {Modelling};
+  \node [below=10mm of modelling]       (dataintegration) {Data integration};
+  \node [below=10mm of dataintegration] (method)          {Method};
+  
+  \path[->]
+    (queries)         edge (datasources)
+    (datasources)     edge (modelling)
+    (modelling)       edge (dataintegration)
+    (dataintegration) edge (method)
+  ;
+  
+\end{tikzpicture}
+
+\begin{itemize}
+  \item 
+    Modelling depends on requirement analysis: why is it appropriate to use graphs rather than ``fully-fledged'' database theory?
+  \item
+    OTOH, the early specification of prototype queries will necessarily remain vague and extensional
+    as long as we don't have an abstract model!
+  \item
+    perhaps use ``lightweight'' def. of a conjunctive query?
+\end{itemize}
+

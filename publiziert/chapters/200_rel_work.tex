@@ -1,0 +1,782 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+\chapter{Context}
+\label{chap:rel_work}
+\label{chap:context}
+
+This thesis aims at providing support for provenance research, which is part of historical research.
+As we have seen in Chapter~\ref{chap:intro}, networks that represent
+people and their relationships play a central role.
+Therefore, we begin our exploration of the scientific context of our work
+with the topic of historical (social) network analysis.
+In Section~\ref{sec:HNA+SoNAR}, we collect insights from a recent research project
+aimed at providing a research infrastructure for historical network analysis
+and apply them to our research questions.
+
+It has also become clear in Chapter~\ref{chap:intro} that the relevant data is distributed 
+over a multitude of heterogeneous data sources.
+Therefore we review 
+the literature on linked data, data integration,
+and data provenance in Section~\ref{sec:linked_data+integration}.
+
+Finally, we give a brief overview of the state of provenance indexing
+with authority data in Section~\ref{sec:provenance_indexing}.
+
+% -------------------------------------------------------------------
+\section{Network Analysis and the SoNAR Project}
+\label{sec:HNA+SoNAR}
+
+% - - - - - - - - - - - - - - - 
+\subsection{Network Analysis}
+
+According to \textcite{Jansen2003},
+the notion of a \emph{network} is a central tool for the analysis
+of modern societies in sociology, political science, and economics.
+In these disciplines, networks of political actors, companies, or researchers,
+among many others, are the subject of study.
+Additionally, networks play an important role
+in organisational psychology, biology, and web science \autocite{WikiSNAGerman,WikiNetworkAnalysis}.
+%As we will see in the remainder of this section,
+%networks and their analysis are essential tools
+%in the context of the approach that we are going to develop.
+%Therefore, the next 
+The following
+paragraph briefly summarises the main constituents of network analysis
+as described by \textcite{Jansen2003}.
+
+\emph{Network analysis}
+defines networks and provides a statistical toolset for describing and analysing them.
+A network is a graph, which consists of nodes and edges.
+Nodes represent actors, events or objects (e.g., people, companies, institutions, countries),
+and edges represent relations between those (in the case of social networks, e.g.,
+friendship, collaboration, or family relationships).
+Networks are defined via certain modelling decisions
+such as the commitment to a set of actors and relations that are of relevance,
+or the decision whether relations are directed or undirected
+and whether they are dichotomous (an edge is present or not)
+or weighted by values representing frequencies or extent.
+The tools provided by network analysis include
+various metrics that apply to single nodes, pairs of nodes, paths in the network,
+or the whole network; those often come in several variants.
+Examples are connectivity, in-/outdegree, density,
+size, cohesion, multiplexity, reachability, and path distance.
+Since a graph can conveniently be represented by its adjacency matrix,
+methods from matrix algebra are part of the toolset \autocite[cf.][§§1.1, 3.3, 5.3]{Jansen2003}.
+
+In applications where social structures are the object of study,
+the term \emph{\gls{SNA}} is used,
+and it predominantly refers to the \emph{method} of investigating
+social interactions \autocite{Otte2002}.
+
+In the context of historical research,
+the notion of \emph{\gls{HNA}}
+has emerged recently; it focuses on the reconstruction of
+historical networks \autocite{Menzel2020}.
+A distinguishing feature of \gls{HNA} is its retrospective view,
+i.e., it is used to analyse historical data extracted
+from available sources \autocite{Fangerau2022}.
+Menzel et al.\ \autocite*{Menzel2020} name
+\enquote{a lack of awareness with regard to the availability of suitable research data}
+as a limiting factor of \gls{HNA};
+in particular, a large amount of data is distributed over heterogeneous data sources.
+
+% - - - - - - - - - - - - - - - 
+\subsection{SoNAR (IDH)}
+\label{subsec:SoNAR_reports}
+
+The \gls{SoNAR},
+%project \enquote{SoNAR (IDH),
+%Interfaces to Data for Historical Social Network Analysis
+%and Research} \autocite{Bludau2020,Menzel2020,SoNAR},
+%\glsunset{SoNAR}%
+which was funded by the German Research Foundation (DFG)
+from 2019 to 2021,
+developed approaches to building 
+\enquote{an advanced research technology environment
+supporting Historical Network Analysis and related research} \autocite{SoNAR}.
+In the long-term vision, that environment is expected to
+integrate data from a variety of existing repositories,
+thus providing researchers with an extensive,
+standardised, and interregional infrastructure for answering research questions
+using methods from \gls{HNA}.
+According to the project proposal and the final reports \autocite{SoNARreports},
+the project participants undertook
+a systematic analysis of processing and managing the source data
+for the purposes of \gls{HNA},
+designed a model of a structured data analysis for \gls{HNA} based on \gls{SNA} methods,
+developed visualization approaches and interfaces,
+evaluated all components for a scientific usage,
+and developed a concept for implementation and operation.
+
+One of the project's four work packages (WPs)
+addresses the development of the research technology environment
+and its evaluation against real research questions.
+In the remainder of this subsection,
+we summarise the insights described in the final report on this WP \autocite{Fangerau2022}
+that are relevant for the research goals of this thesis.
+
+The report emphasises relationships and their evolution over time
+as central aspects of historical research and acknowledges the increased 
+importance of methods of \gls{HNA}. In this context, the authors note that visualisation plays an important role
+as a means for restructuring information and thus contributes to the progression of knowledge.
+They also address the \emph{hermeneutic circle} \autocite{Malpas2015}
+as a general approach to answering historical research questions:
+this term refers to an iterative, circular work process
+where the initial question guides the work with the source material
+and is, in turn, readjusted based on the answers obtained.
+
+In order to evaluate the research technology,
+the project participants developed two research scenarios
+with several research questions.
+The report names four specific questions that were considered central.
+The nature of these questions is very general and \enquote{global}
+in the sense that they refer to a large part of a network:
+for example, they ask for the point in time when a scientific area became a separate discipline,
+or for the role of academic and familial links in the course of a given scientist's career.
+
+In this context, the report distinguishes two approaches to developing research questions
+in \gls{HNA}. One of these is the explorative approach,
+where suitable questions are developed based on the available data.
+According to the authors, this approach includes serendipity,
+i.e., the hope that an inspection of the data helps identify unexpected
+phenomena that contribute to the shaping of the research question.
+
+The report uses the term \emph{data source} for original documents, media, and artefacts
+from which \enquote{network-compatible} (i.e., essentially relational) data can be obtained;
+data sources can be identified via \emph{repositories} of various kinds,
+including library catalogues, archive portals, databases, and more.
+The report highlights the advantages of using data from authority files
+such as the \gls{GND}, which are standardised,
+subject to quality control, and essential for disambiguating personal names.
+Moreover, authority files are freely accessible and provide information
+on the provenance of their data.
+%According to the authors,
+%\enquote{the use of authority data from \gls{GND} in SoNAR is a unique feature
+%of the research technology environment and has, in principle, proved its worth}.
+
+Concerning the repositories used,
+the authors report the general problem of missing or erroneous data,
+which leads to distorted answers to the questions, and which was not solved
+systematically in the project. In particular, the \gls{GND} is focused on German library holdings
+and thus contains a disproportionately high amount of German-speaking persons.
+The data is biased towards people who have published at all,
+towards elite research, towards men (in particular among authors before the 1950s),
+and against certain disciplines, such as economy.
+The authors conclude that these restrictions significantly affect the answers to
+historical research questions. As possible remedies, they include 
+further repositories, such as 
+the \gls{ZDB},
+the \gls{DNB},
+the \gls{KPE},
+\glsunset{VIAF}%
+and, tentatively, other authority files (in particular, Wikidata and \gls{VIAF});
+we will get back to these in Section~\ref{sec:data_sources}.
+However, the evaluation showed that even the sum of these repositories
+does not provide enough data for a differentiated temporal
+analysis; in particular, biographical data of the authors 
+dominate, but those cover long time spans and do not provide sufficient evidence
+for or against dynamic relationships such as teacher-student relationships.
+
+%\enquote{allow a temporal differentiation over longer periods of time} (translated).
+
+Concerning the selection of data, the report distinguishes between
+direct and indirect information on relationships.
+For example, if one is looking for support for the hypothesis of a social relationship
+between two persons $A$ and $B$, then a family relationship between $A$ and $B$ explicit in the data
+supports the hypothesis directly, while matching biographical dates for $A$ and $B$
+are an indirect indicator. In the latter case, the relationship
+explicit in the data (matching biographical dates) acts as \emph{substitute information}
+(originally, in German: \enquote{Stellvertreterinformation}) for the relationship under consideration.
+The authors also address a special kind of indirect relationship,
+called intellectual, which mostly involves a third person
+or event, such as the co-citation of $A$'s and $B$'s texts by someone else.
+
+A main constituent of the report is a catalogue of requirements
+to \gls{HNA} and the research technology. This catalogue consists of 61
+requirements that reflect the specific needs of researchers.
+The following of these requirements are relevant for our purposes
+(descriptions translated from the original German text and slightly rephrased and/or shortened):
+%
+\begin{description}
+  \item[R003]
+    Researcher wants all information on relationships contained in the metadata of the resources
+    to be shown as derived social relationships in the data model.
+  \item[R004]
+    Researcher wants all information on non-social
+    relationships (see above) to be distinguished from direct social relationships.
+  \item[R005]
+    Researcher wants to connect non-social and non-explicit social relationships
+    with further conditions (e.g., overlapping lifespans).
+  \item[R006]
+    Researcher wants to group people with comparable attributes (e.g., overlapping lifespans).
+  \item[R016]
+    Researcher wants a list of people connected to a given person.
+  \item[R017]
+    Researcher wants a list of corporate bodies connected to a given person.
+  \item[R018]
+    Researcher wants a list of people connected to a given person via some corporate body.
+  \item[R029]
+    Researcher wants, given a node, a description of the \enquote{potentially available attributes}
+    and the provenance of the data.
+  \item[R030]
+    [dito, but with edges instead of nodes]
+  \item[R043]
+    [Researcher wants] a filter on attributes, e.g. biographical data, in order to
+    restrict relationships to adulthood.
+  \item[R061]
+    Researcher wants to know which kinds of relationships are contained in the dataset.
+\end{description}
+
+% - - - - - - - - - - - - - - - 
+\subsection{Graph Technologies for the Analysis of Historical Social Networks Using Heterogeneous Data Sources}
+
+In the paper of the same name, \textcite{Menzel2020} report on
+work in the \gls{SoNAR} project concerning the 
+\enquote{creation and operation of research infrastructure
+for [\gls{HNA}] based on heterogeneous data sources from cultural heritage institutions}.
+In particular, the authors present insights on modelling and transformation
+of heterogeneous data sources and on the design of visualisation for historical networks.
+In the remainder of this subsection,
+we summarise their insights on data selection and processing.
+
+In the described approach, the authors integrate data from six heterogeneous repositories
+into a large uniform graph that is stored in a graph database
+and managed by the highly performant graph database management system Neo4j \autocite{Neo4j}.
+The original repositories comprise an authority file \gls{GND},
+federated library catalogues (\gls{DNB}, \gls{ZDB}, \gls{KPE}), %\autocite{DNBCatalogue,ZDB,KPE}),
+and portals offering electronic full texts of historical newspapers 
+\glsunset{ZEFYS}%
+(\gls{ZEFYS} \autocite{ZEFYS}, Exile Press \autocite{ExilePress});
+altogether they contain some 30 million records.
+The data model is restricted to 9 entity types (e.g., \term{Resource} or \term{PersonName})
+and 9 very generic relation types (e.g., \term{RelationToPersonName}, \term{RelationToTopicTerm}).
+There is also a distinction between explicit and implicit relations:
+the former are present in the data, and the latter have to be inferred automatically via
+certain \enquote{guidelines} and marked as such.
+
+Since some of the above data sources include full texts,
+it is necessary to link names of people, corporate bodies, or geographical entities
+to entities in authority files. The use of the underlying technique,
+\emph{named entity linking}, is discussed further by \textcite{Menzel2021}
+in the context of \gls{SoNAR},
+and by \textcite{Meiners2022} independently of \gls{SoNAR}.
+
+Among the challenges associated specifically with processing data,
+\textcite{Menzel2020} name
+the sheer size of the combined graph, which causes performance issues,
+and the fact that the normalisation led to errors and inconsistencies.
+More generic challenges include the integration of domain knowledge
+and the adaptation of a more performant graph database engine (GraphDB \autocite{GraphDB}),
+which requires extensive remodelling.
+
+% - - - - - - - - - - - - - - - 
+\subsection{Insights Relevant for This Thesis}
+\label{subsec:insights_from_SoNAR}
+
+We now put the insights from the \gls{SoNAR} project described in the previous two subsections
+into relation with the research goals pursued in this thesis.
+First, the analysis of historical networks is a broad concept, and \gls{SoNAR} supports a setting
+that is much more general than just provenance research.
+Thus, the setting that we want to support in this thesis is a specific section of \gls{HNA} and subsumed 
+by the \gls{SoNAR} setting.
+
+The central role of relationships and of temporal aspects in historical research
+have to be reflected in the model and method that we are going to develop.
+Furthermore, the hermeneutic approach to historical research
+and the explorative approach to answering general research questions 
+need to be supported by our method. In fact, the repeated exploration of data
+is exactly what we hope to support by enabling researchers to ask specific
+queries over a combination of data sources and use the answers to obtain
+\enquote{local} views of the whole network and thus inform the next steps in their research process.
+
+\emph{Locality} is an important feature that distinguishes our approach from the \gls{SoNAR} setting:
+The exemplary research questions from the \gls{SoNAR} report appear to be rather global
+in the sense that they focus on wider areas in the network and that their analysis requires
+\enquote{global} techniques such as graph metrics and statistical methods.
+In contrast, we aim at answering more local queries
+that are part of a larger research question and which 
+focus on a single item/actor and its neighbourhood in the network
+(e.g., owners of a book or students of a scholar, see the exemplary questions
+in Section~\ref{sec:background}). Answering such queries
+requires the retrieval of certain \enquote{candidates} from that neighbourhood
+which provide the necessary evidence and which then can be used
+to inform another iteration within the explorative approach.
+In the light of these considerations, 
+we should not adopt the a-priori restriction
+to a fixed set of entity types or (generic) relation types;
+instead, it should be to use arbitrary concepts and relations
+from the data sources in queries and answers.
+Hence, we will focus on the described local perspective
+and leave the accommodation of global techniques for future work.
+In a similar spirit, we will not study visualisation;
+however, our envisaged retrieval system can be used \emph{along with} visualisation tools
+and provide entry points to a large network.
+
+The construction of a uniform (graph) database that integrates all the available data
+from the heterogeneous repositories appears to be an integral part of \gls{SoNAR},
+according to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} discussion.
+The obvious advantages include the interaction with a single database,
+the use of a single data model, autonomous hosting
+independently of the single repositories, and thus full control over the data.
+Furthermore, inconsistencies
+between the repositories can be resolved a-priori (at creation time),
+and the created database does not depend on possible changes in the data models of the repositories.
+However, the static nature of this database also has disadvantages:
+a data model has to be fixed upfront, and ultimately needs to be adapted when
+the models of the repositories change or new repositories are added;
+regular updates are necessary when the contents of the repositories change;
+finally, as we have learnt above,
+a large graph database uses a large amount of memory and requires a highly performant
+database system.
+As a result of this discussion,
+we do not want to commit our approach to a \emph{static} scenario
+in the sense just described.
+Instead, we want to include the possibility of a \emph{dynamic} scenario,
+where the single graph database that encompasses the distributed repositories
+is just an abstract notion and queries are answered
+\emph{in place} over the original repositories.
+We will extend this discussion in Chapter~\ref{chap:retrieval}.
+
+A feature that we miss in the reports and publications of \gls{SoNAR} is a rigorous definition of admissible queries
+that specifies exactly which queries are in the scope and which are not.
+We aim at providing such a rigorous definition for our setting
+which, at the same time, should be as general as possible. We consider this rigorous definition
+a main feature of our approach.
+
+Data sources in the sense used in the \gls{SoNAR} project report,
+i.e., original documents, media, and further artefacts
+are not part of our setting, as we do not consider the part of the research process
+that consults those data sources. Our work focuses on the level of
+what the \gls{SoNAR} authors refer to as repositories,
+and we will relate, in Section~\ref{sec:data_sources}, our choice of repositories
+to \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} selection.
+In this thesis, we continue to use the term \enquote{data source} for what
+\gls{SoNAR} refers to as a repository,
+and we speak of \emph{original data sources} to refer to original documents etc.
+
+In order to allow researchers to refer to the original data sources,
+it becomes clear that \emph{data provenance} plays a crucial role:
+the answer to a specific query in our approach needs to refer to
+the original data sources that provide evidence for the information contained in that answer.
+This reference can point to original documents (\gls{SoNAR}: data sources),
+and/or to data sets in repositories. For a more detailed discussion of data provenance,
+see Section~\ref{subsec:data_provenance}.
+
+The observed relevance of indirect or substitute information in the context of \gls{SoNAR} 
+seems important to keep in mind for our work as well: 
+It has to be noted that not all information that one might be looking for is recorded
+in the data. For example, there is no record of who \emph{read} a book,
+and ownership has to be used as a substitute for readership although evidence
+of ownership is only a necessary condition for readership and not a sufficient one---%
+although one might argue that, in the case of, say, a scientist, ownership is very likely
+to indicate readership.
+Therefore, answers to questions
+about readership retrieved on the grounds of recorded ownership require further interpretation and investigation
+by the researcher who asked the question in the first place.
+The example from the \gls{SoNAR} report that uses \enquote{having the same biographical dates}
+as a substitute for a social relationship is very similar, but in addition
+the fact that two persons have the same biographical dates is not a relationship that is
+given explicitly in the data but requires a certain amount of reasoning on several attributes of the entries
+for the two persons.
+This general observation has to be taken into account by our approach.
+
+Finally, the insights on advantages and disadvantages of the repositories used in \gls{SoNAR}
+will affect our discussion of data sources in Section~\ref{sec:data_sources}.
+
+% - - - - - - - - - - - - - - - 
+\subsection{Further Initiatives Providing Research Infrastructures}
+
+\textcite{Menzel2020} mention several projects that connect
+decentralised and heterogeneous bibliographic data sources
+and/or extract historical networks within the social sciences and humanities.
+We briefly summarise some of these projects.
+
+DARIAH-DE \autocite{DariahDE} is an association that develops
+a digital research infrastructure for the arts and humanities
+following the example of large digital research infrastructures for the natural sciences.
+It comprises of 16 partner institutions from the academic sector
+and is part of the European network DARIAH-EU \autocite{DariahEU}.
+DARIAH-DE's services for research include
+the development and hosting of services for data analysis and visualisation
+\autocite{WikiDariahDE}.
+
+Culturegraph \autocite{Vorndran2018,Culturegraph} is a service offered by the
+\gls{DNB} which aggregates bibliographic data 
+from library networks in German-speaking countries,
+from the \gls{DNB} itself, and from the British Library.
+According to \textcite{Vorndran2018}, Culturegraph makes over 160 million data sets
+available \enquote{for data analyses, evaluation of connections and statistical analyses}.
+This is achieved, among other things,
+by enrichment via external data sources such as \gls{GND}
+and ORCID \autocite{ORCID}, thus allowing for the identification
+and disambiguation of persons.
+
+\textcite{Menzel2020} further note \enquote{an increase in joint research projects
+that are focused on the extraction of historical networks within the social sciences and the humanities.}
+These projects include \emph{Six Degrees of Francis Beacon} \autocite{Warren2016,SixDegreesFB},
+\emph{histoGraph} \autocite{Novak2014,histograph},
+\emph{Issues with Europe} \autocite{IssuesWithEurope},
+\emph{APIS} \autocite{Gruber2017,APIS},
+and \emph{Gesellschaftliche Wissensproduktion in der Aufklärung} \autocite{Purschwitz2018}.
+Judging from \citeauthor*{Menzel2020}'s \autocite*{Menzel2020} summary,
+these projects put an emphasis on statistical methods,
+visualisation, and/or exploration.
+
+% -------------------------------------------------------------------
+\section{Linked Data and Data Integration}
+\label{sec:linked_data+integration}
+
+% - - - - - - - - - - - - - - - 
+\subsection{Basic Concepts}
+\label{subsec:LOD_basic_concepts}
+
+\emph{Data Integration} refers to the problem of making a set of autonomous and heterogeneous data sources
+uniformly accessible \autocite[p.6]{Doan2012}.
+The current landscape of data sources includes highly structured data
+represented and accessed using classical database techniques,
+as well as more loosely structured data accessible via (Semantic) Web techniques.
+Given this vast and diverse landscape, data integration is a complex problem,
+and various techniques have been developed for this purpose.
+The textbook by \textcite{Doan2012} provides a
+comprehensive introduction to data integration.
+
+In the remainder of this section,
+we restrict our focus on those aspects of data integration
+that are most relevant in the context of bibliographic data sources on the Web.
+
+\emph{Linked data} \autocite{W3CLinkedData,Domingue2011} refers to data published on the World Wide Web that is structured and connected with other data.
+Based on a small and uniform set of simple technologies
+%---essentially HTTP URIs and the Resource Description Framework (RDF)---,
+the linked data paradigm provides applications with access to \enquote{a global, unbounded dataspace} \autocite{Domingue2011}.
+In the context of the Semantic Web \autocite{BernersLee2001,Marshall2003},
+linked data is one of several developments aimed at making data on the Web more machine-understandable.
+
+The main technologies underlying linked data are the following.
+%%
+%\begin{itemize}
+%  \item
+%    \emph{\glspl{URI}}:
+%    
+%    \par
+%    A URI is a string that is assigned to a physical or logical resource
+%    in order to identify that resource uniquely. URLs (Uniform Resource Locators)
+%    are a special case of URIs which additionally ensure that a resource
+%    can be located in a network and that information can be retrieved from it,
+%    where \enquote{network} includes, but is not restricted to, the World Wide Web (WWW).
+%    URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
+%  \item
+%    the \emph{\gls{HTTP}}:
+%    
+%    \par
+%    HTTP is the fundamental protocol for data transfer and communication underlying the WWW.
+%  \item
+%    the \emph{\gls{RDF}}:
+%    
+%    \par
+%    \gls{RDF} is \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
+%    \autocite{RDFPrimer}.
+%    Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
+%    \gls{RDF} statements are \emph{triples} of the format \enquote{subject--predicate--object}
+%    consisting of a resource, a property, and a resource (or literal).
+%    Resources and properties are described using \glspl{URI}.
+%    \gls{RDF} thus provides a simple and flexible data model that is particularly useful for the publication
+%    and linking of data on the Web;
+%    it has been a standard of the
+%    World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
+%\end{itemize}
+%%
+
+\paragraph{URIs}
+A \gls{URI} is a string that is assigned to a physical or logical resource
+in order to identify that resource uniquely. URLs (Uniform Resource Locators)
+are a special case of URIs which additionally ensure that a resource
+can be located in a network (e.g., the internet) and that information can be retrieved from it.
+URIs are an integral part of RDF and the Web Ontology Language OWL (see below).
+
+\paragraph{HTTP}
+The \gls{HTTP} is the fundamental protocol for data transfer and communication underlying the \gls{WWW}.
+
+\paragraph{RDF}
+The \gls{RDF} \enquote{is a framework for expressing information about resources. Resources can be anything, including documents, people, physical objects, and abstract concepts}
+\autocite{RDFPrimer}.
+Its main ingredients are \emph{resources} and binary \emph{properties} for linking resources.
+RDF statements are \emph{triples} of the format \gls{SPO}
+consisting of a resource, a property, and a resource (or literal).
+Resources and properties are described using \glspl{URI}.
+RDF thus provides a simple and flexible data model that is particularly useful for the publication
+and linking of data on the Web;
+it has been a standard of the
+World Wide Web Consortium (W3C) since 2004 \autocite{W3CRDF}.
+
+\par\medskip
+In the context of the Semantic Web, \gls{RDF} and associated technologies
+are important tools for the definition and use of ontologies.
+For a definition of the term \enquote{ontology} in this setting, we cite \textcite{Horrocks2011}:
+\enquote{A major feature of the Semantic Web is the ability to provide definitions for objects and types of objects that are accessible and manipulable from within the Semantic Web. In Computer Science, a collection of these sorts of definitions about a particular domain is called an ontology, although philosophers may (and probably will) have a different understanding of what constitutes an ontology.}
+More importantly for this thesis, ontologies can be used to represent knowledge about a specific domain
+or about the world in general, in an unambiguous and machine-readable way, using a formal language.
+What is more, \emph{reasoning} mechanisms can be employed to derive implicit knowledge,
+i.e., knowledge that logically follows from the explicitly represented knowledge.
+Last but not least, ontologies and reasoning play a role in data integration
+where they allow for disambiguating entities and their definitions,
+and for specifying and validating mappings between data sources
+\autocites[cf.][]{Wache2001}[§12]{Doan2012}.
+
+%The following technologies associated with \gls{RDF} and ontologies
+%are of interest for the purposes of this thesis:
+The following technologies associated with \gls{RDF} and ontologies
+are of interest for this thesis.
+%%
+%\begin{itemize}
+%  \item
+%    \emph{RDF Schema (RDFS)} \autocite{RDFS}:
+%    
+%    \par
+%    RDFS is a specific \gls{RDF} vocabulary which can be used for modelling
+%    and thus serves as a very basic ontology language.
+%    It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
+%  \item
+%    the \emph{Web Ontology Language OWL} \autocite{OWLPrimer}:
+%    
+%    \par
+%    OWL is the ontology language recommended by the W3C.
+%    It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
+%    DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+%    as a formal ontology language in the sense mentioned above.
+%    The members of the DL family vary regarding their expressive power and,
+%    closely related, regarding the computational complexity of their basic reasoning problems.
+%    OWL 2, which is the current version of OWL,
+%    is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
+%    in various inference machines that perform well on a wide range of real-world ontologies.
+%    Besides these knowledge representation languages and support for reasoning,
+%    OWL includes infrastructure for interaction with ontologies and interoperability
+%    within the Web, such as Internationalized Resource Identifiers (IRIs),
+%    \glsunset{XML}%
+%    \gls{XML} schema datatypes, import mechanisms, and many more.
+%  \item
+%    \emph{SPARQL} (Simple Protocol And RDF Query Language) \autocite{SPARQL}:
+%    
+%    \par
+%    SPARQL is a W3C-recommended query language for the Semantic Web.
+%    More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
+%    whose syntax is based on the ISO standard SQL \autocite{SQL} for managing and querying relational databases.
+%    However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
+%    SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
+%    answers are returned in \gls{RDF} or \gls{XML}.
+%    Additionally, SPARQL exploits inference mechanisms,
+%    i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
+%    but are obtained involving certain sets of inference rules, based on OWL or other standards.
+%\end{itemize}
+%%
+
+\paragraph{RDFS}
+\gls{RDFS} is a specific \gls{RDF} vocabulary which can be used for modelling
+and thus serves as a very basic ontology language.
+It provides terms for modelling, among others, classes, properties, and domain and range restrictions.
+
+\paragraph{OWL}
+\glsunset{OWL}%
+\gls{OWL} is the ontology language recommended by the W3C.
+It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
+DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+as a formal ontology language in the sense mentioned above.
+The members of the DL family vary regarding their expressive power and,
+closely related, regarding the computational complexity of their basic reasoning problems.
+OWL 2, which is the current version of OWL,
+is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
+in various inference machines that perform well on a wide range of real-world ontologies.
+Besides these knowledge representation languages and support for reasoning,
+OWL includes infrastructure for interaction with ontologies and interoperability
+within the Web, such as Internationalized Resource Identifiers (IRIs),
+\glsunset{XML}%
+\gls{XML} schema datatypes, import mechanisms, and many more.
+
+\paragraph{SPARQL}
+The \gls{SPARQL} is a W3C-recommended query language for the Semantic Web.
+More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
+whose syntax is based on the \gls{SQL}, the ISO standard for managing and querying relational databases.
+However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
+SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
+answers are returned in \gls{RDF} or \gls{XML}.
+Additionally, SPARQL exploits inference mechanisms,
+i.e., answers may contain facts that are not explicitly stated in the original \gls{RDF} graph
+but are obtained involving certain sets of inference rules, based on \gls{OWL} or other standards.
+
+\par\medskip
+\emph{Linked open data (LOD)} is linked data that is also \emph{open data},
+i.e., accessible and shareable by everyone \autocite{WikiLinkedData}.
+
+%\todo[inline]{Also mention ontology-based data integration? See \url{https://en.wikipedia.org/wiki/Ontology-based_data_integration} and references therein} 
+
+
+
+% - - - - - - - - - - - - - - - 
+\subsection{Linked Data in the Library Domain}
+
+The state of LOD in the library domain in 2013 is summarised by \textcite{Pohl2013}
+in their introduction to the edited volume \enquote{(Open) Linked Data in Libraries} \autocite{Danowski2013}
+as follows (translated from German and rephrased): Libraries and related organisations
+began to experiment with linked data as early as 2008.
+This was followed by linked-data initiatives by important players such as
+OCLC, the \gls{LoC}, and the \gls{DNB};
+in particular, the \gls{LoC} started the initiative \enquote{Bibliographic Framework for the Digital Age} in 2011,
+\glsunset{MARC}%
+\glsunset{Z39.50}%
+declaring the renunciation of the library-specific standards \gls{MARC}~21 and \gls{Z39.50} (see Section~\ref{sec:data_models}),
+and announcing the development of an infrastructure based on \gls{RDF} as a basic data model. The advantages of LOD for the library domain include
+retrievability of, e.g., catalogue data by search engines,
+mechanisms for permanently linking, e.g., hit lists and hit views,
+the use of a much more flexible data model,
+interoperability ensured by the use of open web standards,
+and reusability via open licences.
+A prominent example of this development is the provision of authority data as LOD,
+which can be shared and reused on the Web:
+e.g., authority data on person names from the \gls{GND} has been used by Wikipedia since 2005
+in order to provide links to further reading in Wikipedia articles, see also \autocite{Hengel2005}.
+In addition to the \gls{GND}, further providers have made authority data available as LOD,
+among them \gls{LoC} and \gls{VIAF} (see Section~\ref{sec:data_sources}).
+
+The state of L(O)D in libraries in 2013 was extensively surveyed in the special issue
+\enquote{Linked Data, Semantic Web and Libraries} of the \emph{Journal of Library Metadata} \autocite{JLM13_2-3}.
+In her preface to this issue, \textcite{Bair2013} refers to the challenges to linked data implementations
+in general and in the library domain that were reported in previous work
+\autocite{Bizer2009,Byrne2010,Gonzalez2011,Alemu2012},
+and she emphasises that these challenges remain.
+The special issue contains a survey on the perception of linked data in libraries,
+as well as
+\enquote{seven case studies of the experimental efforts of LAM institutions to use linked data to increase access to their collections and user services, plus four others that aim to increase awareness of and educate on key topics} \autocite[p.76]{Bair2013}.
+The challenges highlighted in these articles fall into five areas,
+among them data and schema mapping and interoperability, and data quality and trust.
+
+Further work on L(O)D in the library domain is reported in the following publications.
+
+\textcite{Burrows2021} describe an LOD model that links
+three large manuscript databases
+in the \emph{Mapping Manuscript Migrations (MMM)} project.
+MMM aims at \enquote{providing large-scale analysis and visualizations of the history and provenance of medieval and Renaissance manuscripts} \autocite[p.3]{Burrows2021}.
+
+\textcite{LigiaTriques2022} give an overview of the data collection and integration technology
+in the Digital Public Library of America (DPLA), with a focus on
+interoperability and challenges for integrated data access.
+
+\textcite{Freire2019} study metadata aggregation in the context of \emph{Europeana} \autocite{Isaac2012,Petras2017},
+a web portal of the European Union that provides unified access to 
+more than 56 million digital objects
+from the collections of over 4000 cultural heritage institutions in Europe \autocite{Europeana}.
+\citeauthor{Freire2019}'s case study involves two Dutch institutions as data provider and aggregator,
+and aims at improved discoverability of the data.
+The main challenge was the transition from traditional data models to flexible semantic data models.
+The article presents the results of a requirement analysis,
+the workflow that was developed, and its implementation.
+
+\textcite{Ullah2018} review the current state of L(O)D in cataloguing
+in the context of the trending transfer of bibliographic metadata
+towards L(O)D by major libraries.
+Their review provides an extensive survey of the recent literature.
+The main findings include
+the observations that L(O)D is becoming
+\enquote{the mainstream trend in library cataloging especially in the major libraries and research projects of the world} \autocite[p.47]{Ullah2018}
+and that bibliographic metadata is becoming increasingly meaningful and reusable through the emergence of Linked Open Vocabularies.
+
+\textcite{Hauser2014} gives an overview of the linked data service
+of the \gls{DNB},
+which started in 2010 with the publication of \gls{GND} authority data as linked data.
+Since 2012, the \gls{DNB} has been using and maintaining its own \gls{GND} ontology \autocite{GNDOntology}
+in order to bridge the gap from the original MARC-based data model to a flexible, open data model.
+In particular, the \gls{GND} ontology provides a vocabulary for describing entities such as persons, corporate bodies, and places,
+thus allowing to disambiguate and link these entities.
+
+% - - - - - - - - - - - - - - - 
+\subsection{Metadata Provenance}
+\label{subsec:data_provenance}
+
+In the data integration scenario, the origins of (meta)data are important:
+When querying the combination of several data sources, the retrieved answer
+should contain, for every fact, information that identifies the original data source or repository
+from which that fact was obtained.
+This information is useful as a \enquote{justification} for the retrieved answer
+or as a pointer for further research;
+it is especially desirable when the consulted data sources contain conflicting information.
+In order to delineate the origin of data about a book (or other item)
+from the provenance of that book itself,
+we adopt the notion of \emph{metadata provenance} \autocite{Eckert2012}.
+
+Metadata provenance on the Web
+has been studied
+from the beginnings of linked data
+\autocite[see, e.g.][]{Hartig2009,Moreau2008,Moreau2008a}.
+In the context of linked data from cultural heritage institutions
+and especially the Europeana portal,
+metadata provenance is studied by
+\citeauthor{Eckert2013} \autocite*{Eckert2013,Eckert2013a,Eckert2012}.
+%\todo[defer,inline]{elaborate, depending on whether provenance plays a larger role in subsequent chapters}
+Data provenance has also received attention 
+in the classical database domain
+\autocite[see, e.g.,][§14]{Doan2012}.
+
+%% - - - - - - - - - - - - - - - 
+%\subsection{Some Recent Developments}
+%
+%\todo[defer,inline]{omit this subsection?}
+%
+%\textcite{Boumechaal2023} developed a framework for transforming queries formulated in natural language (NL)
+%to SPARQL queries in order to \enquote{query linked and heterogeneous semantic data on the web}
+%\autocite[p.1]{Boumechaal2023}.
+%In contrast to most of the previous work, their approach focuses on complex queries
+%involving negation, numbers, superlatives, and comparative adjectives.
+%The aspect of translation from NL to \gls{SPARQL} (or any other formal query language)
+%is important in the context of historical research, where the use of a formal query language
+%would be a barrier for most users. This aspect is, however, not in the scope of this thesis
+%and should be considered in future work.
+%
+%% -------------------------------------------------------------------
+%\section{Knowledge Graphs}
+%\label{sec:KGs}
+%
+%\todo[defer,inline]{review literature on KGs}
+%
+%
+% -------------------------------------------------------------------
+\section{Provenance Indexing}
+\label{sec:provenance_indexing}
+
+\textcite{Hakelberg2016}
+studies the state of provenance indexing with authority data.
+We summarise his conclusions in the remainder of this paragraph.
+The \gls{GND} provides authority data that is
+very suitable for recording provenances across institutions;
+this is ensured by the structured data model
+and the open and collaborative nature of the \gls{GND}.
+The \gls{GND} has thus become a central instrument for recording
+provenance information.
+Provenance indexing is laborious, and
+practices vary greatly between German libraries (see Section~\ref{sec:background}).
+Provenance records are useful only if
+they are retrievable across library networks.
+For this purpose, indexed data needs to be homogeneous
+and the usability of catalogues of library networks needs to be ensured.
+Among other things, an overview
+of the normed vocabulary used for provenance indexing
+should be provided to users as a search entry.
+Hakelberg also recommends the further development of the \gls{T-PRO},
+which is a controlled vocabulary
+for the specification of provenances via single descriptors or chains thereof.
+In particular, the T-PRO descriptors need to be assigned \glspl{URI}
+in order to make them reusable as linked open data. %(see Section~\ref{sec:linked_data+integration}).
+
+We draw the following insights from these observations.
+\gls{GND} as well as library catalogues should be central data sources within our approach.
+Obstacles may be
+the heterogeneous situation of indexing in library catalogues
+as well as the fact that T-PRO is not ready for LOD.
+The need for the presentation of the used vocabulary as a search entry
+should be taken into account.
+
+%\todo[inline]{find+mention more literature?}
+%
+%% -------------------------------------------------------------------
+%\section{Further Relevant Work}
+%\label{sec:further}
+%
+%\dots
+

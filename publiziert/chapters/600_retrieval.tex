@@ -1,0 +1,448 @@
+% !TeX spellcheck = en_GB
+% =================================================================
+%\chapter{Automated Retrieval of Provenance Relationships}
+\chapter{A Method for Retrieving Provenance Relationships}
+\label{chap:retrieval}
+\label{chap:method}
+
+In the previous chapter, 
+we have developed a model for answering provenance queries.
+It is the vision of this thesis that, ultimately,
+this model is implemented 
+in a retrieval system
+that answers provenance queries conforming to our model.
+The primary user group for that system consists of provenance researchers
+and historians who want to investigate, for example, the history of
+items and collections or the social networks of historically important figures.
+
+In this chapter, we design a method that serves
+as a the general basis for a retrieval system.
+This method abstracts away from specific details such as 
+programming paradigms, languages, libraries, or data structures;
+instead, it represents a high-level specification
+for future implementations.
+
+In the discussion of the insights from the \gls{SoNAR} project
+in Section~\ref{subsec:insights_from_SoNAR},
+we have suggested a distinction between a dynamic and a static setting.
+The method that we are going to develop should be flexible
+and support both settings.
+For this purpose, we make this distinction more explicit.
+The \emph{static setting} resembles the setting used in the SoNAR project:
+a large uniform data source \emph{(data graph)} is constructed
+from the various identified data sources \emph{(remote repositories)},
+using a uniform data model that integrates the heterogeneous data models
+of the remote repositories in some way. This data graph is 
+used as the sole source for computing query answers.
+In contrast, the \emph{dynamic setting} foregoes
+the explicit construction of a uniform data graph and instead
+regards a collection of remote repositories as a representation of that
+graph. In order to answer a query, the system identifies
+suitable repositories, computes partial answers using the repositories' interfaces,
+and composes the final answer from the partial answers.
+
+Our method will consist of two main phases, the second of which is divided
+into three subphases.
+We describe these phases in Section~\ref{sec:phases},
+addressing special requirements of the dynamic or static setting.
+In Section~\ref{sec:dynamic_vs_static}, we compare the 
+advantages and disadvantages of the two settings.
+%Finally, we will discuss aspects of the system's interaction with its users
+%in Section~\ref{sec:user_interaction}.
+
+% -------------------------------------------------------------------
+\section{The Main Phases}
+\label{sec:phases}
+
+\newlength{\mainphases}\settowidth{\mainphases}{\fns \textbf{Configuration Phase}~}%
+\newlength{\subphases}\settowidth{\subphases}{\fns Answer Presentation~}%
+%\begin{figure}[ht]
+\begin{wrapfigure}[16]{o}{5.0cm}
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=white,thick,inner sep=1.5mm},
+    every edge/.style={draw=black,thick}
+  ]
+    
+    % the 3 subphases of Runtime
+    \begin{scope}[
+      every node/.append style={text width=\subphases,align=center}
+    ]
+      \node                    (QF) {\fns\mystrut Query Formulation};
+      \node [below=10mm of QF] (QP) {\fns\mystrut Query Processing};
+      \node [below=10mm of QP] (AP) {\fns\mystrut Answer Presentation};
+    \end{scope}
+
+    % frames for the 2 main phases
+    \begin{scope}[
+      on background layer,
+      every node/.append style={fill=lightgreen}
+    ]      
+      \node [fit={($(QF.north west) + (-0.3, 1.0)$) ($(AP.south east) + (0.7, -0.55)$)},inner sep=0mm] (RPF) {};
+      \node [fit={($(QF.north west) + (-0.3, 1.5)$) ($(QF.north east) + (0.7, 2.1)$)},inner sep=0mm]  (PPF) {};
+    \end{scope}
+      
+    % labels for the 2 main phases
+    \begin{scope}[
+      every node/.append style={draw=none,fill=none}
+    ]      
+      
+      \node [right=0mm of PPF.west]                     (PP) {\fns\mystrut\textbf{Configuration Phase}};
+      \node [below right=0mm and 0mm of RPF.north west] (RP) {\fns\mystrut\textbf{Runtime Phase}};
+    \end{scope}
+
+    \begin{scope}[%
+      every node/.style={draw=none,fill=none,inner sep=.2mm}
+    ]
+      
+      \path[->]
+        % the 3 main Group-1 relations
+        (QF) edge (QP)
+        (QP) edge (AP)
+        (PPF) edge (RPF)
+      ;
+      
+      \draw[->, rounded corners=2.8mm, draw=black, thick]
+        (AP.south) |- ($(AP.south east) + (0.4, -0.3)$) -- ($(QF.north east) + (0.4, 0.45)$) -| (QF.north);
+    \end{scope}
+  \end{tikzpicture}
+  
+  \caption{Main phases of the retrieval method}
+  \label{fig:method_phases}
+\end{wrapfigure}
+%\end{figure}
+
+
+Our method consists of a \emph{Configuration Phase}, which
+needs to be carried out before users can interact with the system,
+and a \emph{Runtime Phase}, where the actual user interaction takes place.
+The latter is divided into three consecutive subphases as shown in Figure~\ref{fig:method_phases}.
+In the \emph{Query Formulation} phase, the system supports the user 
+in constructing their query.
+In the \emph{Query Processing} phase, the system evaluates the query
+and computes answers.
+In the \emph{Answer Presentation} phase, the system allows the user to
+navigate through the computed answers.
+Given the significance of \emph{exploration} in historical research
+(see Section~\ref{subsec:SoNAR_reports}),
+the answers presented by the system may
+prompt the user to reformulate their original query.
+In fact, query answers can be seen as one means of support
+for formulating a query in the first place.
+For this reason, we prefer to understand the Runtime Phase as an iterative process,
+which we indicate by the looping arrow in Figure~\ref{fig:method_phases}.
+%
+We now describe these phases in more detail.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{The Configuration Phase}
+\label{subsec:configuration_phase}
+
+The Configuration Phase consists of the steps that need to be taken
+in order for the system to be able to interact with the user in the Runtime Phase.
+The first step is the selection of remote repositories that are available 
+throughout the Runtime Phase.
+In the dynamic setting, where the data graph is implicit in this collection of repositories,
+it is necessary that the details of accessing each single repository
+have been implemented.
+In the static setting, the data graph needs to be built from the remote repositories
+and stored in memory, in \pgls{RDBMS}, or on some suitable storage medium.
+As a final step, a list of terms (objects, concepts, relations) available in the data graph
+needs to be compiled in both settings. Ideally, each term should be annotated with the remote repository
+(or repositories)
+from which it originates, in order to trace it back for disambiguation and
+other purposes.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{The Runtime Phase}
+
+The Runtime Phase is the phase in which the system receives queries from the user,
+computes answers, and presents them to the user. It is thus divided into
+three subphases.
+
+% ...............................
+\paragraph{Query Formulation}
+
+In the Query Formulation Phase, the user builds the query
+to be answered. The system should provide support via a query editor.
+Since we opted for a graph-based model
+that facilitates intuitive visual representations,
+it makes perfect sense to offer a graphical interface
+that allows the user to create nodes, draw edges between them,
+and pick node names, node labels, and edge labels from the list of available terms.
+For disambiguation purposes, it would be helpful to have an
+integrated lookup functionality, i.e., the entry for a term
+in the original remote repository could be displayed in the system
+without switching to another application.
+
+In this phase, the system should also provide support 
+for substitute information and indirect relationships
+(see Section~\ref{subsec:further_information}),
+i.e., for finding terms to substitute for terms that are not recorded in the data,
+and for constructing subgraphs of the query graphs that represent indirect
+relationships. For example, suggestions for the former
+and \enquote{templates} for the latter could be deposited in the system
+either through the implementation or during the Configuration Phase.
+
+In the dynamic setting, it is possible to let the user
+restrict the selection of remote repositories and thus the list of available terms.
+This initial step is not useful in the static setting
+because it would require a time-consuming recomputation
+of the data graph (as part of the Configuration Phase).
+
+If ternary relations or relations of higher arity play a significant role,
+then a visualisation is no longer feasible, as explained in Section~\ref{subsec:attributes+n-ary}.
+In this case, it is possible to resort to a (more technical)
+\gls{SQL}-like syntax. The system should then support non-computer scientist users via 
+a graphical query editor allowing to pick, arrange, and link
+the basic ingredients of queries as blocks.
+There are numerous online and standalone graphical \gls{SQL} query builders
+\autocite[e.g.,][]{VisualSQL,SQLeo}, see also the reviews on dedicated webpages
+\autocite[e.g.,][]{ChartioVisualSQL,FinOnlBestVisualQueryBuilders}.
+
+A possible alternative to a graphical interface that is worth considering
+is a text interface that allows the user to formulate their queries in natural language
+and translates them into SQL or SPARQL queries.
+For SPARQL, a framework for transforming complex natural-language queries 
+to SPARQL queries has been developed very recently by \textcite{Boumechaal2023}
+in the context of linked data.
+
+% ...............................
+\paragraph{Query Processing}
+
+In the Query Processing Phase, the system evaluates the query against the
+data graph.
+In the technical terms of our model, the system finds all homomorphisms from the query graph
+to the data graph and stores them along with the induced subgraphs.
+
+In the static setting, where the data graph has been built and stored during the
+configuration phase, the system has full control over the data.
+Concerning the implementation of query answering,
+the static setting leaves several options:
+the most ambitious one is certainly the implementation of a dedicated new
+algorithm, which inevitably requires extensive optimisations in order to perform
+well on large amounts of data.
+A second option is the re-implementation of existing algorithms
+for query answering in \glspl{RDBMS} or graph databases (such as GraphDB \autocite{GraphDB}),
+exploiting the strong relationship
+between our query answering problem and the classical query answering problem
+(see Section~\ref{sec:computational_properties}).
+This \enquote{glass-box} approach to reusing existing implementations promises
+full control over the algorithm and thus allows optimisations tailored
+towards our specific query answering problem.
+Furthermore, numerous implementations are available \autocite[cf.][]{WikiSQLRDBMSs}.
+However, the downside is that a highly optimised, and thus highly complex,
+codebase needs to be adapted to our retrieval system, which is a
+highly non-trivial task. In addition, not all systems make their code freely available.
+A third option is the use of an existing \gls{RDBMS} or graph database engine
+as a \enquote{black box},
+which requires the transfer of the data graph into that external system in the Configuration Phase,
+the translation of each query into an \gls{SQL} or \gls{SPARQL} query,
+the invocation of the external engine,
+and the retranslation of the retrieved set of answers
+into an answer set in our formalism, i.e.,
+the reconstruction of homomorphisms and subgraphs.
+The implementation effort is restricted to realising these translations,
+and it is not possible to add specific optimisations.
+
+In the dynamic setting, where the data graph is implicit in the collection of remote repositories,
+the system needs to interact with the repositories in real time via their interfaces.
+For this purpose, it is important to keep track of the repositories
+from which each term originates, as indicated in Subsection~\ref{subsec:configuration_phase}.
+Using this information, the query needs to be decomposed into
+smaller queries, and each of these needs to be answered against the respective repository.
+The obtained answers need to be combined to an answer set for the original query.
+Although the abstract description of this procedure sounds very simple,
+at least two parts of it require a substantial amount of work:
+First, it remains to find a rigorous definition of a decomposition and recomposition
+that provides the guarantee that the answer set obtained via this procedure 
+coincides with the definition of an answer set with respect to the abstract notion
+of a data graph.
+Second, the evaluation of the smaller queries
+requires either a uniform standard (such as \gls{SPARQL}, see Section~\ref{subsec:LOD_basic_concepts})
+or a dedicated algorithm for each single remote repository and data format.
+%
+%In both settings, 
+%
+%Section~\ref{subsec:further_information}
+
+% ...............................
+\paragraph{Answer Presentation}
+
+In the Answer Presentation Phase, the answer set is shown to the user.
+Given the importance of exploration (see Sections~\ref{subsec:SoNAR_reports} and~\ref{subsec:insights_from_SoNAR})
+and the resulting decision that answers include the respective subgraph of the data as a \enquote{witness},
+a visual presentation is to be favoured. This visual presentation should allow for means to navigate through the subgraph
+and beyond, i.e., to explore its context in the data graph.
+
+\enlargethispage*{5mm}
+Furthermore, the size of an answer set can vary greatly: for \enquote{overspecified} queries, the answer set can be empty,
+and for very vaguely specified queries, the answer set can be even larger than the data graph.
+For example, if the query \exaquery{2$'$} is modified to ask for a scientist who passed the item on
+to someone who was a student and family member at the same time, and if the owners of the item
+do not include two persons in those two relationships, then the answer set will be empty.
+The other extreme occurs, for example, if the query asks for pairs of owners that are collaborators of each other,
+which is a symmetric relationship. If the data contains $n$ owners of the item and those are all in a mutual collaboration relationship,
+then the answer set consists of $n^2 - n$ answers because there are $n \cdot (n-1)$ pairs of distinct owners.
+The use of unlabelled edges (or nodes), which was mentioned as a useful extension of the model in Section~\ref{subsec:set_variables},
+can have a similar effect.%
+\footnote{%
+  In the theoretical worst case, there are pairs $(G,G')$ of query and data graphs
+  where each possible mapping from the nodes in $G$
+  to the nodes in $G'$ is a homomorphism. The number of such mappings is $n^k$,
+  where $n,k$ are the numbers of nodes in $G$ and $G'$, respectively.
+  Given the dominating size of the data, this upper bound is prohibitively large even for very small queries.%
+}
+In order to cope with the wide range of possible sizes of answer sets,
+ways to present answer sets in a structured way,
+allowing the user to group and filter answers, have to be found.
+
+Since we are advocating an iterative runtime phase where query answers can help users (re)for\-mu\-late their queries,
+the presentation of query answers should include an assistant for marking unexpected or missing answers.
+Ideally, that assistant could suggests changes to the user's query based on these marks.
+
+% -------------------------------------------------------------------
+\section{The Dynamic versus the Static Setting}
+\label{sec:dynamic_vs_static}
+
+We deliberately developed our method such that it can be applied
+in both the dynamic and the static setting.
+Both settings have advantages and disadvantages,
+and we have already learnt about some of them for the static setting
+from the SoNAR project (see Section~\ref{subsec:SoNAR_reports}).
+We now discuss the advantages, disadvantages, and common challenges of both settings,
+thus providing future system developers with a basis for deciding on one setting.
+
+\paragraph{Advantages of the Static Setting}
+
+The most important advantage of the static setting is the interaction with a single, fixed data source
+and data model during the Runtime Phase.
+The data graph is self-hosted, allowing the system full control over the data
+and the method of access.
+Thanks to the static nature, data access during the Runtime Phase is
+unaffected by any unforeseen unavailability of a remote repository
+or by changes to the external data models.
+Furthermore, possible inconsistencies between repositories
+can be resolved in the Configuration Phase, after the data graph has been built. Hiding this process from the Runtime Phase
+should contribute to a better user experience.
+Finally, as we have seen, the static setting also offers more freedom for implementations of
+query answering, although only the \enquote{black-box} approach seems feasible.
+
+\paragraph{Disadvantages of the Static Setting}
+
+In the static setting, the federated data graph requires a large amount of memory
+and a highly performant, scaleable implementation of query answering.
+The data graph also needs to be updated regularly in order to incorporate changes
+to the remote repositories.
+If it is desirable to give the user the opportunity to select repositories 
+that are relevant for his*her query during the Runtime Phase, 
+then additional efforts are necessary, including annotations of the data
+with their provenance and incorporating appropriate filters into the implementation
+of query answering.
+
+\paragraph{Advantages of the Dynamic Setting}
+
+In the dynamic setting, our method does not depend on hosting capacities
+such as a large amount of memory or a highly scalable query answering implementation.
+Furthermore, by accessing the remote repositories directly,
+the method will always have access to their current content.
+Finally, it is relatively easy to implement support for 
+a restriction of the repositories used for answering a particular query,
+which can improve user experience by helping restrict the set of terms to choose from.
+
+\paragraph{Disadvantages of the Dynamic Setting}
+
+On the downside, the dynamic setting depends on the web services provided by the remote repositories,
+which means that there is no control over either the data or the time required
+by the interaction with the system.
+In the dynamic setting, the Runtime Phase is also sensitive to changes in the data models
+or interfaces of the remote repositories.
+If inconsistencies occur between the data in distinct repositories,
+then they need to be resolved in the Runtime Phase, too.
+This can be done autonomously by the system during the Query Processing Phase
+or through interaction with the user during the Answer Presentation Phase.
+Both cases are problematic because neither the system nor the user
+can be expected to have sufficient knowledge of the external repositories
+to take the necessary decisions.
+
+An open problem of the dynamic setting is the decomposition of the query
+into smaller queries to be posed to the single repositories
+and the subsequent recomposition of the partial answers.
+As already mentioned above, it remains to find a
+formal framework with rigorous guarantees.
+It is conceivable that these guarantees can only be achieved by an iterative approach,
+which would require a larger amount of interaction with the remote repositories.
+Finally, this distributed query answering would require either an implementation
+of several query answering routines specific to the respective repository,
+or a restriction to repositories offering a standardised query answering interface,
+such as a \gls{SPARQL} endpoint.
+
+\paragraph{Challenges for Both Settings}
+
+In both settings, inconsistencies between the remote repositories need to be dealt with.
+For example, if two data sources give different years for the date of birth of the same person
+or for the ownership entry for the same person in the same item,
+then they will both induce different answers to queries that involve these specific
+pieces of data.
+The easiest way for implementers is to present all answers to the user
+and let them decide which answers they trust.
+However, this variant is not user-friendly because it tends to inflate answer sets
+and leaves the decision about which is the correct piece of data to the user.
+It would be more beneficial to user experience 
+if the system were able to recognise (potential) inconsistencies
+and if domain experts could be involved in resolving those.
+The topic of inconsistencies should be studied in more depth;
+a first step should be a rigorous definition of what constitutes an inconsistency.
+
+Another challenge is the system's reaction to changes in the data models
+used by the remote repositories. Every single repository and data model
+requires an implementation effort, and changes require a modification
+of the existing implementation. This fact is independent on the setting,
+but it affects different phases of the method (the Configuration Phase
+in the static setting and mostly the Query Processing Phase in the dynamic setting).
+
+From both challenges, we conclude that the retrieval system 
+cannot simply be shipped to the user as a standalone application
+but will require constant maintenance by both domain experts
+and implementers. This need is probably best served
+by the format of a web application that is hosted and maintained
+on a central server.
+
+%% -------------------------------------------------------------------
+%\section{User Interaction Aspects}
+%\label{sec:user_interaction}
+%
+%\dots
+%
+%
+%
+%\begin{itemize}
+%  \item
+%    get back to Section~\ref{sec:quality_of_answers}:
+%    %
+%    \begin{itemize}
+%      \item
+%        missing vs.\ spurious answers
+%      \item
+%        overapproximation
+%      \item
+%        \emph{reasoning}: ontologies and related technology -- also explain why
+%        missing knowledge cannot be added upfront, e.g., like this:
+%        
+%        Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
+%        because that would massively inflate the data,
+%        as most terms have several superordinate concepts or relations and,
+%        furthermore, implicit knowledge is not restricted to taxonomic knowledge.
+%      \item
+%        \emph{hypothesising}
+%    \end{itemize}
+%    %
+%  \item
+%    get back to substitute information (from SoNAR and Section~\ref{sec:quality_of_answers})
+%    \todo[inline]{move discussion of substitute information from §\ref{subsec:further_information} to §\ref{chap:retrieval}?}
+%  \item
+%    indirect relationships
+%  \item
+%    ternary relations: quads instead of triples (in \gls{RDF} speak); add attributes to the graph model? (Markus Krötzsch's work?)
+%\end{itemize}

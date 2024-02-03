@@ -1,0 +1,609 @@
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+%\RequirePackage{latexsym,amssymb,amsmath,amsthm}
+\RequirePackage{amssymb,amsmath,amsthm}
+%\RequirePackage{marvosym}
+\RequirePackage{xspace}
+%\RequirePackage{calc}
+\RequirePackage[final]{microtype}
+\RequirePackage{xcolor}
+%\RequirePackage[pdfborder={0 0 0}]{hyperref}
+\RequirePackage{hyperref}
+%\RequirePackage{breakurl}
+\RequirePackage[symbol=${}^{\uparrow}$]{footnotebackref}
+%\RequirePackage{xurl}
+\RequirePackage[UKenglish,ngerman]{babel}
+\selectlanguage{UKenglish}
+\RequirePackage{graphicx}
+%\RequirePackage{scrlayer-scrpage}
+\RequirePackage{wrapfig}
+%\RequirePackage{lastpage}
+\RequirePackage{enumerate}
+%\RequirePackage{blindtext}
+%\RequirePackage{setspace}
+%\onehalfspacing
+\setlength{\marginparwidth}{2cm}
+\RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos]{todonotes}
+%\RequirePackage[backgroundcolor=yellow!30!white,colorinlistoftodos,obeyDraft]{todonotes}
+%\RequirePackage[text=ENTWURF]{draftwatermark}
+\RequirePackage{pdfpages}
+\RequirePackage[framemethod=default]{mdframed}
+\RequirePackage[sort=standard,abbreviations,stylemods,nomain,toc,prefix]{glossaries-extra}
+\RequirePackage{caption}
+
+% ============= Package options ==============
+\newif\ifprint\printfalse
+\newif\ifsign\signfalse
+\DeclareOption{print}{\printtrue}
+\DeclareOption{sign}{\signtrue}
+\ProcessOptions
+
+% ============= Signature macro ============
+\newcommand{\signature}{%
+  \ifsign
+    \tikzoverlay at ($(current page.south west) + ( 5.7cm,4.7cm)$) {\textsf{14.06.2023}};%
+    \tikzoverlay at ($(current page.south west) + (16.8cm,5.4cm)$) {\includegraphics[width=4cm]{img/ts-unterschrift2.jpg}};%
+  \fi
+}
+
+% ============= ggf. leere Seite vor Selbstständigkeitserklärung ===========
+\newcommand{\clearpagebeforeSE}{
+  \ifprint
+    \clearpage\thispagestyle{empty}~\newpage
+  \else
+    \clearpage
+  \fi
+}
+
+% ============= No appendix sections in toc ==============
+\usepackage{etoolbox}
+\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
+
+% reinstate the correct level for list of tables and figures
+\appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
+\appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
+
+% ============== Font: Noto ========================
+%\RequirePackage[scaled=1.12]{nimbusmononarrow}
+\RequirePackage{inconsolata}
+\RequirePackage[subscriptcorrection]{notomath}
+%\RequirePackage[subscriptcorrection,mono]{notomath}
+%\RequirePackage[scaled=.88]{noto-mono}
+
+%% ============== Font: BitStream Charter ========================
+%\usepackage[scaled=.98,sups,osf]{XCharter}% osf in text, lining figures in math
+%\usepackage[scaled=1.04,varqu,varl]{inconsolata}% inconsolata typewriter
+%\usepackage[type1]{cabin}% sans serif
+%\usepackage[uprightscript,charter,vvarbb,scaled=1.05]{newtxmath}
+%\linespread{1.04}
+
+% ===== Glossary style and abbreviations =====
+
+% ----- general settings -----
+%\makeglossaries
+%\makenoidxglossaries
+\renewcommand*{\acronymname}{Abbreviations}
+\addto\captionsUKenglish
+{%
+  \renewcommand*{\acronymname}{Abbreviations}
+}
+\glssetcategoryattribute{acronym}{indexonlyfirst}{true}
+\glssetcategoryattribute{abbreviation}{indexonlyfirst}{true}
+\renewcommand{\glsnamefont}[1]{\mybold{#1}}
+%\renewcommand\glstreepredesc{\quad}
+
+% ----- citations in first use/glossary -----
+\glssetcategoryattribute{abbreviation}{nohyperfirst}{true} % to avoid nested hyperlinks
+
+%\renewcommand*{\glsxtruserparen}[2]{% requires glossaries-extra v1.04+
+%  \glsxtrfullsep{#2}%
+%  \glsxtrparen
+%   {#1\ifglshasfield{\glsxtruserfield}{#2}{;
+%     \expandafter\autocite\expandafter{\glscurrentfieldvalue}}{}}%
+%}
+%
+\renewcommand*{\glsxtruserparen}[2]{% requires glossaries-extra v1.04+
+  \glsxtrfullsep{#2}%
+  \glsxtrparen
+   {#1}%
+   \ifglshasfield{\glsxtruserfield}{#2}{
+        \expandafter\autocite\expandafter{\glscurrentfieldvalue}}{}%
+}
+
+\glsdefpostdesc{abbreviation}{% requires glossaries-extra v1.31+
+ \ifglshasfield{\glsxtruserfield}{\glscurrententrylabel}%
+ {~\expandafter\autocite\expandafter{\glscurrentfieldvalue}}%
+ {}%
+}
+
+% ----- abbreviations ----
+\setabbreviationstyle{long-short-user}
+%\newabbreviation{ANSI}{ANSI}{American National Standards Institute \protect\autocite{ANSI}}
+\newabbreviation[user1={ANSI}]{ANSI}{ANSI}{American National Standards Institute}
+\newabbreviation[user1={B3KAT}]{B3KAT}{B3KAT}{the union catalogue of the German library networks BVB and KOBV}
+\newabbreviation[user1={BIBFRAME}]{BIBFRAME}{BIBFRAME}{Bibliographic Framework}
+\newabbreviation[user1={BK}]{BK}{BK}{Basisklassifikation}
+\newabbreviation[user1={CQL}]{CQL}{CQL}{Contextual Query Language}
+\newabbreviation[user1={DC}]{DC}{DC}{The Dublin Core Metadata Element Set, in short: Dublin Core}
+\newabbreviation[user1={DCMI}]{DCMI}{DCMI}{Dublin Core Metadata Initiative}
+\newabbreviation[user1={DDB}]{DDB}{DDB}{German Digital Library}
+\newabbreviation[user1={DNBCatalogue}]{DNB}{DNB}{German National Library}
+\newabbreviation[user1={FRAD2003}]{FRAD}{FRAD}{Functional Requirements for Authority Data}
+\newabbreviation[user1={FRBR1998}]{FRBR}{FRBR}{Functional Requirements for Bibliographic Records}
+\newabbreviation[user1={FRSAD2010}]{FRSAD}{FRSAD}{Functional Requirements for Subject Authority Data}
+\newabbreviation[user1={GBV}]{GBV}{GBV}{Gemeinsamer Bibliotheksverbund, the joint library network of the German states Bremen, Hamburg, Mecklenburg-Vorpommern, Niedersachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen, and the Foundation of Prussian Cultural Heritage}
+\newabbreviation[user1={GND}]{GND}{GND}{\protect\enquote{Gemeinsame Normdatei}, the Integrated Authority File of the German National Library}
+\newabbreviation[user1={hbz}]{hbz}{hbz}{library network of the German states North Rhine-Westphalia and Rhineland-Palatinate}
+\newabbreviation[user1={hebis}]{hebis}{hebis}{library network of the German state of Hesse and the region of Rhine Hesse}
+\newabbreviation{HNA}{HNA}{historical network analysis}
+\newabbreviation[user1={HTML}]{HTML}{HTML}{Hypertext Markup Language}
+\newabbreviation[user1={HTTP}]{HTTP}{HTTP}{Hypertext Transfer Protocol}
+\newabbreviation[user1={IFLA}]{IFLA}{IFLA}{International Federation of Library Associations and Institutions}
+\newabbreviation[user1={ISNI}]{ISNI}{ISNI}{International Standard Name Identifier}
+\newabbreviation[user1={ISO}]{ISO}{ISO}{International Organization for Standardization}
+\newabbreviation{KB}{KB}{knowledge base}
+\newabbreviation[user1={K10plus}]{K10plus}{K10plus}{the union catalogue of the German library networks GBV and SWB}
+\newabbreviation[user1={KPE}]{KPE}{KPE}{Kalliope Union Catalogue}
+\newabbreviation[user1={KVK}]{KVK}{KVK}{Karlsruhe Virtual Catalogue}
+\newabbreviation[user1={LoC}]{LoC}{LoC}{Library of Congress}
+\newabbreviation[user1={LCNAF}]{LCNAF}{LCNAF}{Library of Congress Name Authority File}
+\newabbreviation[user1={MAB}]{MAB}{MAB}{\protect\enquote{Maschinelles Austauschformat für Bibliotheken}}
+\newabbreviation[user1={MADS}]{MADS}{MADS}{Metadata Authority Description Schema}
+\newabbreviation[user1={MARC}]{MARC}{MARC}{Machine-Readable Cataloguing}
+\newabbreviation[user1={MODS}]{MODS}{MODS}{Metadata Object Description Schema}
+\newabbreviation[user1={NISO}]{NISO}{NISO}{National Information Standards Organization of the USA}
+\newabbreviation[user1={OAI}]{OAI}{OAI}{Open Archives Initiative}
+\newabbreviation[user1={OAI-PMH}]{OAI-PMH}{OAI-PMH}{OAI Protocol for Metadata Harvesting}
+\newabbreviation[user1={OWLPrimer}]{OWL}{OWL}{the Web Ontology Language recommended by the W3C}
+\newabbreviation[user1={DNB_RDA}]{RDA}{RDA}{Resource Description and Access}
+\newabbreviation[prefix={an\space},prefixfirst={a~}]{RDBMS}{RDBMS}{relational database management system}
+\newabbreviation[user1={RDFPrimer}]{RDF}{RDF}{Resource Description Framework}
+\newabbreviation[user1={RDFS}]{RDFS}{RDFS}{RDF Schema}
+\newabbreviation[user1={RVK}]{RVK}{RVK}{Regensburger Verbundklassifikation}
+\newabbreviation{SNA}{SNA}{social network analysis}
+\newabbreviation[user1={Bludau2020,Menzel2020,SoNAR}]{SoNAR}{SoNAR}{research project \protect\enquote{SoNAR (IDH), Interfaces to Data for Historical Social Network Analysis and Research}}
+\newabbreviation[user1={SPARQL}]{SPARQL}{SPARQL}{Simple Protocol And RDF Query Language}
+\newabbreviation{SPO}{S--P--O}{subject--predicate--object}
+\newabbreviation[user1={SQL}]{SQL}{SQL}{Structured Query Language}
+\newabbreviation[user1={SRU}]{SRU}{SRU}{Search/Retrieval via URL}
+\newabbreviation[user1={BSZ}]{SWB}{SWB}{Südwestdeutscher Bibliotheksverbund, the joint library network of the German states Baden-Württemberg, Sachsen, Saarland, and further institutions}
+\newabbreviation[user1={T-PRO}]{T-PRO}{T-PRO}{Thesaurus of Provenance Terms}
+\newabbreviation[user1={RFC3986}]{URI}{URI}{Uniform Resource Identifier}
+\newabbreviation[user1={VIAF}]{VIAF}{VIAF}{Virtual International Authority File}
+\newabbreviation{WWW}{WWW}{World Wide Web}
+\newabbreviation[user1={XML}]{XML}{XML}{Extensible Markup Language}
+\newabbreviation[user1={Z39.50}]{Z39.50}{Z39.50}{ANSI/NISO Standard \protect\enquote{Information Retrieval: Application Service Definition and Protocol Specification}}
+\newabbreviation[user1={ZDB}]{ZDB}{ZDB}{German Union Catalogue of Serials}
+\newabbreviation[user1={ZEFYS}]{ZEFYS}{ZEFYS}{the newspaper information system of Berlin State Library}
+
+% ===== Set up TikZ (Macros see below) =====
+\RequirePackage{pgfsys}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,graphs,decorations.text,calc,shapes,patterns,fit,backgrounds}
+\usetikzlibrary{ext.paths.ortho}
+%\usetikzlibrary{external}
+%\tikzexternalize % activate!
+
+\tikzset{
+  every overlay node/.style={
+%    draw=black,fill=white,rounded corners,
+    draw=none,fill=white,%fill opacity=.5,
+    anchor=north east,
+    inner sep=0mm
+  },
+}
+
+% Usage:
+% \tikzoverlay at (-1cm,-5cm) {content};
+% or
+% \tikzoverlay[text width=5cm] at (-1cm,-5cm) {content};
+\newcommand{\tikzoverlay}[1][]{%
+  \tikz[overlay,remember picture]\node[every overlay node,#1]
+}%
+
+
+% ===== Set up biblatex and csquotes =====
+%%%\RequirePackage[fixlanguage,noisbn,noissn]{babelbib}
+%%%\selectbiblanguage{UKenglish}
+%%%\setbtxfallbacklanguage{UKenglish}
+%%%%\RequirePackage[noisbn,noissn]{babelbib}
+\RequirePackage[style=american,german=quotes,english=american]{csquotes}
+\RequirePackage[
+  backend=biber,
+  %style=ext-authoryear-icomp,  % didn't work with separate list of web resources (no semicolons between citation entries)
+  style=ext-authoryear,
+  labelnumber,
+  defernumbers,
+  backref=true,
+  autolang=hyphen,
+%  sorting=ynt,sortcites,
+  opcittracker=true,
+%  maxnames=3, minnames=1, nohashothers=false,
+%  uniquename=full,
+  isbn=false,
+  urldate=iso,date=iso,seconds=true
+]{biblatex}
+\addbibresource{bib/ma_jabref.bib}
+\setlength{\bibitemsep}{4pt}
+\RequirePackage{xurl}
+
+% \DefaultInheritance{override=true}
+
+% --- enable Oxford comma before 'and' in author lists
+\DefineBibliographyExtras{UKenglish}{\def\finalandcomma{\addcomma}}
+
+% --- Citations in brackets rather than parens
+\DeclareOuterCiteDelims{parencite}{\bibopenbracket}{\bibclosebracket}
+\DeclareInnerCiteDelims{textcite}{\bibopenbracket}{\bibclosebracket}
+
+% --- Declare redundant languages 
+\DeclareRedundantLanguages{English}{english,american,british,canadian,australian,newzealand,USenglish,UKenglish}
+
+
+%% --- Preparations for longer hyperlink anchors in citations
+%%%%\renewcommand*{\multicitedelim}{\addsemicolon\space}
+%
+%\renewbibmacro*{cite}{%
+%  \printtext[bibhyperref]{%
+%    \iffieldundef{shorthand}
+%    {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+%      {\usebibmacro{cite:label}%
+%        \setunit{\printdelim{nonameyeardelim}}}
+%      {\printnames{labelname}%
+%        \setunit{\printdelim{nameyeardelim}}}%
+%      \usebibmacro{cite:labeldate+extradate}}
+%    {\usebibmacro{cite:shorthand}}}}
+%
+%\renewbibmacro*{citeyear}{%
+%  \printtext[bibhyperref]{%
+%    \iffieldundef{shorthand}
+%    {\iffieldundef{labelyear}
+%      {\usebibmacro{cite:label}}
+%      {\usebibmacro{cite:labeldate+extradate}}}
+%    {\usebibmacro{cite:shorthand}}}}
+%
+%\renewbibmacro*{textcite}{%
+%  \ifnameundef{labelname}
+%  {\iffieldundef{shorthand}
+%    {\printtext[bibhyperref]{%
+%        \usebibmacro{cite:label}}%
+%      \setunit{%
+%        \global\booltrue{cbx:parens}%
+%        \printdelim{nonameyeardelim}\bibopenparen}%
+%      \ifnumequal{\value{citecount}}{1}
+%      {\usebibmacro{prenote}}
+%      {}%
+%      \printtext[bibhyperref]{\usebibmacro{cite:labeldate+extradate}}}
+%    {\printtext[bibhyperref]{\usebibmacro{cite:shorthand}}}}
+%  {\printtext[bibhyperref]{\printnames{labelname}}%
+%    \setunit{%
+%      \global\booltrue{cbx:parens}%
+%      \printdelim{nameyeardelim}\bibopenparen}%
+%    \ifnumequal{\value{citecount}}{1}
+%    {\usebibmacro{prenote}}
+%    {}%
+%    \usebibmacro{citeyear}}}
+%
+%\renewbibmacro*{cite:shorthand}{%
+%  \printfield{shorthand}}
+%
+%\renewbibmacro*{cite:label}{%
+%  \iffieldundef{label}
+%  {\printfield[citetitle]{labeltitle}}
+%  {\printfield{label}}}
+%
+%\renewbibmacro*{cite:labeldate+extradate}{%
+%  \printlabeldateextra}
+
+% --- Preparations for two bibliographies
+\letbibmacro{cite:default}{cite}
+
+\newbibmacro{cite:online}{%
+  \printtext[bibhyperref]{%
+    \printfield{labelprefix}%
+    \printfield{labelnumber}}}
+
+\renewbibmacro{cite}{%
+  \ifbibmacroundef{cite:\thefield{entrytype}}
+  {\usebibmacro{cite:default}}
+  {\usebibmacro*{cite:\thefield{entrytype}}}}
+
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\DeclareFieldFormat{shorthandwidth}{\mkbibbrackets{#1}}
+\defbibenvironment{online}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+\DeclareRefcontext{online}{labelprefix=Web}
+
+% --- Omit year from web resources
+\AtEveryBibitem{%
+  \ifentrytype{online}{%
+    \clearfield{labelyear}%
+  }{%
+  }%
+}
+
+% --- Show short author names in front of author names, if specified
+\renewbibmacro*{begentry}{%
+    \ifnameundef{shortauthor}
+        {}
+        {\ifopcit{}{\printnames{shortauthor}%
+         \addspace\textendash\space}}}
+%        {\printnames{shortauthor}%
+%         \addspace\textendash\space}}
+
+% --- Print URL only if there is no DOI
+\renewbibmacro*{doi+eprint+url}{%
+    \printfield{doi}%
+    \newunit\newblock%
+%    \iftoggle{bbx:eprint}{%
+%        \usebibmacro{eprint}%
+%    }{}%
+    \newunit\newblock%
+    \iffieldundef{doi}{%
+        \usebibmacro{url+urldate}}%
+        {}%
+    }
+
+% ===== General settings =====
+%\pagestyle{empty}
+%\pagestyle{plain}
+\pagestyle{headings}
+%\pagestyle{scrheadings}
+%\clearpairofpagestyles
+%\setkomafont{pagenumber}{\textit}
+
+\parskip6pt
+\parindent0pt
+\Urlmuskip=0mu plus 10mu
+
+% ----- highlight overfull hboxes
+%\overfullrule=5pt
+
+%\DeclareFontSeriesDefault{bf}{sb}
+\newcommand{\mybold}[1]{\textbf{\textsf{{\boldmath #1}}}}
+
+\counterwithout{footnote}{chapter}
+
+\newcommand{\fns}{\footnotesize}
+
+% ===== Colours =====
+
+\definecolor{gray}{rgb}{.5,.5,.5}
+\definecolor{dgray}{rgb}{.2,.2,.2}
+%\definecolor{dgblu}{rgb}{.2,.2,.27}
+%\definecolor{dgblu}{rgb}{.2,.2,.32}
+%\definecolor{dgblu}{rgb}{.18,.18,.29}
+\definecolor{dgblu}{rgb}{.1,.1,.5}
+
+\definecolor{lightblue}{rgb}{0.929,0.953,0.996}
+\definecolor{medblue}{rgb}{0.816,0.922,0.996}
+\colorlet{ansvar}{yellow!50!white}
+\colorlet{anovar}{orange!30!white}
+%\colorlet{setvar}{red!30!white}
+\colorlet{setvar}{ansvar}
+
+\colorlet{lightgreen}{green!20!white}
+
+
+%%\colorlet{Econnred}{red!50}
+%%\colorlet{Econnblue}{blue!20}
+%%\colorlet{Econngreen}{green!10}
+%%\colorlet{Econniso}{black}
+%%
+%\colorlet{Econnred}{red!7}
+%\colorlet{Econnblue}{blue!25}
+%\colorlet{Econngreen}{green!50!black}
+%\colorlet{Econniso}{white}
+%
+%\colorlet{ctableone}{white}
+%\colorlet{ctabletwo}{lightblue}
+%\colorlet{ctablehead}{medblue}
+
+
+%\definecolor{solblue}{HTML}{268BD2}
+\colorlet{linkblue}{dgblu}
+
+% ===== hyperref setup =====
+
+\ifprint
+  \hypersetup{
+    pdfhighlight = /P,
+    hidelinks,
+  %  breaklinks,
+    unicode,
+  }
+\else
+  \hypersetup{
+    pdfhighlight = /P,
+    colorlinks=true,
+    urlcolor=linkblue,
+    filecolor=linkblue,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    raiselinks=true,
+  %  breaklinks,
+    unicode,
+  }
+\fi
+%% ===== Appendix formatting =====
+%\newcommand\useprefix[2]{#1#2}
+%
+%\NewDocumentCommand\appendixprefixintoc{}
+%{%
+%  \DeclareTOCStyleEntry
+%    [%
+%      entrynumberformat=\useprefix{\appendixname~},% add the prefix before the entrynumber
+%      dynnumwidth
+%    ]{default}{chapter}
+%  \DeclareTOCStyleEntries[%
+%    dynindent
+%  ]{default}{chapter,subsection,subsubsection,paragraph,subparagraph}
+%}
+%
+%\newcommand*{\appendixmore}{%
+%  \renewcommand*{\chapterformat}{%
+%%    \appendixname~\thechapter\autodot\enskip}%
+%    \appendixname~\thechapter:\enskip}%
+%  \renewcommand*{\chaptermarkformat}{%
+%%    \appendixname~\thechapter\autodot\enskip}%
+%    \appendixname~\thechapter:\enskip}%
+%  \addtocontents{toc}{\appendixprefixintoc}%
+%}
+
+%% ==== \paragraph without additional horizontal space (2nd line) ===
+%% ==== !DOESN'T WORK! =====
+%%\newcommand*{\paragraphformat}{\theparagraph\autodot\enskip}
+%\renewcommand*{\paragraphformat}{\theparagraph\autodot}
+
+% \paragraph with reduced preceding parskip
+\RedeclareSectionCommand[beforeskip=-1sp plus 1sp minus -1sp]{paragraph}
+
+% ===== Macros for TikZ pictures =====
+\newcommand{\tikztab}[2][l]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand{\tikztabtwo}[3][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1.6pt]\mystrut#3\\[-1.5pt]\end{tabular}}
+\newcommand{\tikztabthree}[4][l]{\begin{tabular}{@{}#1@{}}\mystrut#2\\[-1.6pt]\mystrut#3\\[-1.6pt]\mystrut#4\\[-1.5pt]\end{tabular}}
+\newcommand{\tikzpb}[3][]{\parbox{#2}{#1{}#3{}#1}}
+\tikzstyle{ansvar}=[circle,fill=ansvar,inner sep=.5mm,minimum size=6.6mm]
+\tikzstyle{anovar}=[diamond,fill=anovar,inner sep=.5mm,minimum size=8mm]
+\tikzstyle{setvar}=[regular polygon,regular polygon sides=8,sharp corners,fill=setvar,inner sep=.5mm,minimum size=8mm]
+
+\newcommand{\tikzinlinenode}[2][]{%
+  \begin{tikzpicture}[
+    >=Latex,baseline=-2.8pt,
+    every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
+%    every edge/.style={draw=black,thick}
+  ]
+    \node[#1] () {\fns\mystrut#2};
+  \end{tikzpicture}%  
+}
+
+\newcommand{\mystrut}{\rule[-2.2pt]{0pt}{9.8pt}}
+
+% ===== Theorems etc. =====
+\newtheoremstyle{myplain} % name
+{\topsep}                    % Space above
+{\topsep}                    % Space below
+{\itshape}                   % Body font
+{}                           % Indent amount
+{\bfseries\sffamily}         % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}  % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\newtheoremstyle{mydefinition} % name
+{\topsep}                    % Space above
+{\topsep}                    % Space below
+{\upshape}                   % Body font
+{}                           % Indent amount
+{\bfseries\sffamily}         % Theorem head font
+{.}                          % Punctuation after theorem head
+{.5em}                       % Space after theorem head
+{}  % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\theoremstyle{mydefinition}
+\newtheorem{definition}{Definition}[chapter]
+%\numberwithin{definition}{chapter}
+
+\theoremstyle{myplain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+%\surroundwithmdframed[outerlinewidth=1pt,
+%  innerlinewidth=0pt,
+%  middlelinewidth=0pt,
+%  middlelinecolor=white,
+%  leftline=false,rightline=false]{definition}
+\surroundwithmdframed[%
+  linewidth=1pt,
+  linecolor=black!50,
+  innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]{definition}
+\surroundwithmdframed[%
+  linewidth=1pt,
+  linecolor=black!50,
+  innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]{theorem}
+\surroundwithmdframed[%
+  linewidth=1pt,
+  linecolor=black!50,
+  innertopmargin=-3pt,innerleftmargin=0pt,innerrightmargin=0pt,
+  leftline=false,rightline=false
+]{corollary}
+
+
+% ===== todonotes styles =====
+\todostyle{think}{backgroundcolor=yellow!30!white}
+\todostyle{quick}{backgroundcolor=orange!30!white}
+\todostyle{ask}{backgroundcolor=blue!30!white}
+\todostyle{defer}{backgroundcolor=black!30!white}
+
+
+% ==============
+
+\newcommand{\textsfbf}[1]{\textsf{\textbf{{\boldmath #1}}}}
+\newcommand{\textsfbfgr}[1]{\textsf{\textbf{\textcolor{dgray}{#1}}}}
+\newcommand{\textsfbfgb}[1]{\textsf{\textbf{\textcolor{dgblu}{#1}}}}
+
+\newcommand{\parI}{\par\smallskip}
+\newcommand{\parII}{\par\medskip}
+\newcommand{\parIII}{\par\bigskip}
+
+%\ifoot[]{Thomas Schneider, M27, Klausur 1, Teil ...}
+%\ofoot*{\pagemark/\pageref{LastPage}}
+
+\newcommand{\Lmc}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Nmc}{\ensuremath{\mathcal{N}}\xspace}
+
+%\newcommand{\term}[1]{\textsf{#1}}
+%\newcommand{\term}[1]{\textsf{{\fontseries{sb}\selectfont#1}}}
+%\newcommand{\term}[1]{\textsf{{\fontseries{sbc}\selectfont#1}}}
+\newcommand{\term}[1]{\textsf{\textit{#1}}}
+%\newcommand{\term}[1]{\textsf{\textsl{#1}}}
+%\newcommand{\fnterm}[1]{\textsf{{\footnotesize #1}}}
+\newcommand{\sig}[1]{\textsf{#1}}
+
+\newcommand{\NC}{\ensuremath{\mathsf{N}_\mathsf{C}}\xspace}
+\newcommand{\NI}{\ensuremath{\mathsf{N}_\mathsf{I}}\xspace}
+\newcommand{\NO}{\ensuremath{\mathsf{N}_\mathsf{O}}\xspace}
+\newcommand{\NR}{\ensuremath{\mathsf{N}_\mathsf{R}}\xspace}
+\newcommand{\NV}{\ensuremath{\mathsf{N}_\mathsf{V}}\xspace}
+\newcommand{\namespace}{\textup{\textsf{N}}\xspace}
+
+\newcommand{\VARANS}{\ensuremath{\mathsf{VAR}_\mathsf{ANS}}\xspace}
+\newcommand{\VARANON}{\ensuremath{\mathsf{VAR}_\mathsf{ANON}}\xspace}
+
+%\newcommand{\exaquery}[1]{\textsf{\textbf{{\small\boldmath Q#1}}}}
+\newcommand{\exaquery}[1]{\textup{\textsf{\textbf{{\boldmath Q#1}}}}}
+\newcommand{\subquestion}[1]{\textup{\textsf{\textbf{{\boldmath RQ#1}}}}}
+\newcommand{\RQ}[1][]{\textup{\textsf{\textbf{{\boldmath RQ#1}}}}}
+\newcommand{\hmph}[1]{\textup{\textsf{\textbf{{\boldmath H#1}}}}}
+
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip4\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }%
+}
+
+\newcommand{\ans}{\textsf{ans}\xspace}
+\newcommand{\problem}[1]{\textup{\textsf{#1}}}
+\newcommand{\CC}[1]{\textup{\textsf{#1}}}
+\newcommand{\YES}{\textsc{yes}\xspace}
+\newcommand{\NOO}{\textsc{no}\xspace}
+\newcommand{\SonarR}[1]{\textsf{\textbf{{\boldmath R#1}}}}
