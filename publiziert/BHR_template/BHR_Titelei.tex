@@ -14,7 +14,8 @@
 %3) \foreignlanguage{language}{text} kann z.B. für einzelne Begriffe genutzt werden.
 %Die im Header bei \usepackage[english,ngerman]{babel} zuletzt angegebene Sprache, ist die Hauptsprache des Dokuments.
 %Siehe: https://hickerspace.org/wiki/Mehrere_Sprachen_in_einem_Latex-Dokument
-\usepackage[xcolornames,svgnames,dvipsnames,RGB]{xcolor}
+%\usepackage[xcolornames,svgnames,dvipsnames,RGB]{xcolor}  %% TS: Option ''xcolornames'' verursacht Fehler: ''Unknown option 'xcolornames' for package xcolor.''
+\usepackage[svgnames,dvipsnames,RGB]{xcolor}
 %Farbpaket für das Einfärben von Schrift
 \definecolor{hublau}{RGB}{0,55,108}
 %\usepackage{dtk-logos} %Latex logos
@@ -84,8 +85,8 @@ bottom=25mm]{geometry}
 
 
 %-------------------------- hyperref/hypersetup ------------------------------------------
+\usepackage{hyperref} %% TS: ''Package hyperxmp Error: hyperref must be loaded before hyperxmp.''
 \usepackage{hyperxmp}
-\usepackage{hyperref}
 \hypersetup{%
 pdfauthor={Vorname Nachname},
 pdfkeywords={keyword1, keyword2, keyword3},
@@ -201,12 +202,12 @@ Eine Online-Version ist auf dem edoc Publikationsserver der Humboldt-Universitä
 
 \begin{wrapfigure}{l}{0.185\textwidth}
 \vspace{-.481cm}
-%\includegraphics[scale=.7]{by.png}
+\includegraphics[scale=.7]{by.png}
 %\includegraphics[scale=.7]{by-sa.png}
 %\includegraphics[scale=.7]{by-nd.png}
 %\includegraphics[scale=.2]{by-nc-eu.png}
 %\includegraphics[scale=.2]{by-nc-sa-eu.png}
-\includegraphics[scale=.2]{by-nc-nd-eu.png}
+%\includegraphics[scale=.2]{by-nc-nd-eu.png}
 \end{wrapfigure}
 
 \small  Sofern nicht anders angegeben, ist dieses Werk in seiner Gesamtheit verfügbar unter einer \href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{\foreignlanguage{english}{Creative Commons} Namensnennung - Nicht kommerziell - Keine Bearbeitungen 4.0 International} Lizenz. %Lizenz und URL ggf. anpassen
