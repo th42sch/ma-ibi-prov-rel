@@ -34,13 +34,13 @@
 %--------------------------- Satzspiegel (BHR-Titelei) ------------------------------
 \RequirePackage{setspace} %Zeilenabstand
 \onehalfspacing %1.5 Zeilenabstand
-%\RequirePackage{multicol} %mehrspaltiger Satz
+\RequirePackage{multicol} %mehrspaltiger Satz
 \RequirePackage[inner=30mm, % inner margin 
 outer=25mm, %  outer margin
 top=25mm,   % top margin of the page.
 bottom=25mm]{geometry}
 \KOMAoption{cleardoublepage}{plain}
-%\RequirePackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
+\RequirePackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
 
 %-------------------------- hyperref/hypersetup (BHR-Titelei) ------------------------------------------
 \RequirePackage{hyperref} %% TS: ''Package hyperxmp Error: hyperref must be loaded before hyperxmp.''
@@ -69,6 +69,8 @@ urlbordercolor={0 0 0},
 %------------------------------ accesibility (BHR-Titelei) ------------------------------
 \RequirePackage[highstructure]{accessibility}
 
+%------------------------------ Font: lmodern (BHR-Titelei) ----------------------------
+\usepackage{lmodern} %Latin Modern fonts
 
 % ============= No appendix sections in toc ==============
 \usepackage{etoolbox}

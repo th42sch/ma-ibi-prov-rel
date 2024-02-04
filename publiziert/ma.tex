@@ -1,10 +1,8 @@
 % !TeX spellcheck = en_GB
-%\documentclass[11pt,DIV=11,a4paper,BCOR=15mm,twoside=on,bibliography=leveldown]{scrbook}
-%\documentclass[11pt,DIV=11,a4paper,BCOR=15mm]{scrbook}
 \documentclass[%
   11pt,
-  a4paper,
-  twoside=on,
+  paper=a4,
+  twoside,
   bibliography=totoc,
   headings=normal,
   titlepage,
@@ -25,7 +23,13 @@
   \pagenumbering{roman}
   % \maketitle
   \selectlanguage{ngerman}
-  \input{chapters/000_title}
+  {
+    \fontfamily{lmr}\selectfont
+    \renewcommand{\rmdefault}{lmr}
+    \renewcommand{\sfdefault}{lmss}
+    \renewcommand{\ttdefault}{lmtt}
+    \input{chapters/000_title}
+  }
 %  \setcounter{tocdepth}{1} % include only chapters and sections in table of contents
 %  \setcounter{tocdepth}{2} % include only chapters, sections, and subsections in table of contents
   \selectlanguage{UKenglish}
