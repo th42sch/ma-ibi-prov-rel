@@ -7,8 +7,8 @@
 %\RequirePackage{calc}
 \RequirePackage[final]{microtype}
 \RequirePackage{xcolor}
-%\RequirePackage[pdfborder={0 0 0}]{hyperref}
-\RequirePackage{hyperref}
+%%%%\RequirePackage[pdfborder={0 0 0}]{hyperref}
+%%%\RequirePackage{hyperref}
 %\RequirePackage{breakurl}
 \RequirePackage[symbol=${}^{\uparrow}$]{footnotebackref}
 %\RequirePackage{xurl}
@@ -32,15 +32,42 @@
 \RequirePackage{caption}
 
 %--------------------------- Satzspiegel (BHR-Titelei) ------------------------------
-\usepackage{setspace} %Zeilenabstand
+\RequirePackage{setspace} %Zeilenabstand
 \onehalfspacing %1.5 Zeilenabstand
-\usepackage{multicol} %mehrspaltiger Satz
-\usepackage[inner=30mm, % inner margin 
+%\RequirePackage{multicol} %mehrspaltiger Satz
+\RequirePackage[inner=30mm, % inner margin 
 outer=25mm, %  outer margin
 top=25mm,   % top margin of the page.
 bottom=25mm]{geometry}
 \KOMAoption{cleardoublepage}{plain}
-\usepackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
+%\RequirePackage{ragged2e} %bietet u.a. den Befehl \justifying um zwischen Blocksatz, rechtsbündig und linksbündig zu wechseln
+
+%-------------------------- hyperref/hypersetup (BHR-Titelei) ------------------------------------------
+\RequirePackage{hyperref} %% TS: ''Package hyperxmp Error: hyperref must be loaded before hyperxmp.''
+\RequirePackage{hyperxmp}
+\definecolor{hublau}{RGB}{0,55,108}
+\hypersetup{%
+pdfauthor={Thomas Schneider},
+pdfkeywords={information retrieval, data integration, linked data, research infrastructure},
+pdflang={en},
+pdftitle={Modelling and Automated Retrieval of Provenance Relationships},
+pdfcopyright={CC BY 4.0}, %Lizenz ggf. ändern
+%pdfdate={YYYY-MM-DD},
+pdflicenseurl={https://creativecommons.org/licenses/by/4.0/}, %URL ggf. ändern
+bookmarksopen={true}, % open up bookmark tree
+bookmarksnumbered={true},
+breaklinks={true},
+pdfborder={0 0 0}, %Setzt den Rahmen um einen Link. {0 0 0} erzeugt keinen Rahmen.
+colorlinks={true}, %Legt fest, ob die Schrift von Links farbig sein soll.
+linkcolor={black},	%Farbe für Dokument interne Links
+urlcolor={hublau},	%Farbe für URL-Links (Web, Mail).
+citecolor={black},
+citebordercolor={0 0 0}, %Farbe für den Rahmen um die Links für Zitate.
+urlbordercolor={0 0 0},
+}
+
+%------------------------------ accesibility (BHR-Titelei) ------------------------------
+\RequirePackage[highstructure]{accessibility}
 
 
 % ============= No appendix sections in toc ==============
@@ -404,17 +431,17 @@ bottom=25mm]{geometry}
 %\definecolor{solblue}{HTML}{268BD2}
 \colorlet{linkblue}{dgblu}
 
-\hypersetup{
-  pdfhighlight = /P,
-  colorlinks=true,
-  urlcolor=linkblue,
-  filecolor=linkblue,
-  linkcolor=linkblue,
-  citecolor=linkblue,
-  raiselinks=true,
-%  breaklinks,
-  unicode,
-}
+%%%\hypersetup{
+%%%  pdfhighlight = /P,
+%%%  colorlinks=true,
+%%%  urlcolor=linkblue,
+%%%  filecolor=linkblue,
+%%%  linkcolor=linkblue,
+%%%  citecolor=linkblue,
+%%%  raiselinks=true,
+%%%%  breaklinks,
+%%%  unicode,
+%%%}
 %% ===== Appendix formatting =====
 %\newcommand\useprefix[2]{#1#2}
 %
