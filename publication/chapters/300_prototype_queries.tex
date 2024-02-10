@@ -196,8 +196,8 @@ we need to analyse the sources of missing or spurious data and their effects on 
 For the sake of a principled discussion, we call the set of answers to a query obtained by some manual or automatic procedure
 an \emph{answer set}, and we call the (set of) answers that the query has in reality the \emph{true answers} and the \emph{true answer set}.
 In the above example, the answer set obtained by the described manual process consists of the single answer
-\enquote{\sig{Druck~4°~00466}}, if we assume that our researcher interprets the data retrieved generously
-(i.e., as an indication that Thau might have been an owner and might have received the book directly from Hommel)
+\enquote{\sig{\foreignlanguage{ngerman}{Druck}~4°~00466}}, if we assume that our researcher interprets the data retrieved generously
+(i.e., as an indication that \foreignlanguage{ngerman}{Thau} might have been an owner and might have received the book directly from \foreignlanguage{ngerman}{Hommel})
 and draws additional conclusions (i.e., that every mathematician or astronomer is a scientist).
 The true answer set is not known and will most probably never be known; it is a term of rather philosophical nature.
 
@@ -213,12 +213,13 @@ and relations (such as \term{student}).
   \item
     In the above example, \gls{GND} contains no information on whether any of the persons involved is indeed
     a \emph{scientist}. Instead, \gls{GND} provides information on more specific professions,
-    e.g., for Thau and Hommel (theologian, mathematician, and astronomer).%
+    e.g., for \foreignlanguage{ngerman}{Thau} and \foreignlanguage{ngerman}{Hommel} (theologian, mathematician, and astronomer).%
     \footnote{%
       A search in the \gls{GND} catalogue
-      reveals that \gls{GND} does have an entry for the subject term \term{Wissenschaftler} (scientist) \autocite{GNDScientist},
+      reveals that \gls{GND} does have an entry for the subject term \term{\foreignlanguage{ngerman}{Wissenschaftler}} (scientist) \autocite{GNDScientist},
       but this term is used only sporadically: its 46 subordinate terms do not include, for example,
-      \term{Mathematiker}, \term{Astronom}, or \term{Theologe} (mathematician, astronomer, theologian)  \autocite{GNDScientistSub}.%
+      \term{\foreignlanguage{ngerman}{Mathematiker}}, \term{\foreignlanguage{ngerman}{Astronom}},
+      or \term{\foreignlanguage{ngerman}{Theologe}} (mathematician, astronomer, theologian)  \autocite{GNDScientistSub}.%
     }
     The information that they were scientists has to be \emph{derived} based on \emph{general knowledge
     of the world}.
@@ -277,7 +278,7 @@ and relations (such as \term{student}).
     More generally, concept memberships or relationships can be missing sporadically,
     which may lead to a loss in recall.
   \item
-    In the same example, if Hommel is erroneously recorded as the owner, then the answer obtained on the grounds
+    In the same example, if \foreignlanguage{ngerman}{Hommel} is erroneously recorded as the owner, then the answer obtained on the grounds
     of that record is not a true answer.
     More generally, spurious concept memberships or relationships may lead to a loss in precision.
 \end{enumerate}
@@ -287,8 +288,8 @@ on the answer set: Cases~3 and~4 have effects on recall and precision at the lev
 i.e., some true answers are missing or false answers are given.
 However, Cases~1 and~2 generally lead to a zero recall unless further provisions are made.
 Such \enquote{provisions} might include \emph{reasoning}
-(e.g., deriving the implicit knowledge that Hommel was a scientist from the explicitly recorded fact that he was a mathematician)
-and \emph{hypothesising} (e.g., assuming that Thau was an owner and received the book directly from Hommel).
+(e.g., deriving the implicit knowledge that \foreignlanguage{ngerman}{Hommel} was a scientist from the explicitly recorded fact that he was a mathematician)
+and \emph{hypothesising} (e.g., assuming that \foreignlanguage{ngerman}{Thau} was an owner and received the book directly from \foreignlanguage{ngerman}{Hommel}).
 Reasoning can be supported using semantic technologies such as (domain-specific or top-level) ontologies and related infrastructure.
 A possible way to support hypothesising is to provide for the use of \emph{substitute information},
 which has been addressed in the context of the \gls{SoNAR} project; see Section~\ref{sec:HNA+SoNAR}.
