@@ -279,8 +279,8 @@ and node and edge labels are written next to the node or edge.
 Multiple labels of the same node or edge are delimited with commas.
 An example is given in Figure~\ref{fig:example_graph}.
 The shown graph represents a part of the data described in Section~\ref{sec:manual_answering}
-concerning an exemplar of Copernicus' \emph{De revolutionibus} at the
-Gotha Research Library \emph{(FB Gotha)}.
+concerning an exemplar of Copernicus' \emph{\foreignlanguage{latin}{De revolutionibus}} at the
+\foreignlanguage{ngerman}{Gotha} Research Library \emph{(\foreignlanguage{ngerman}{FB Gotha})}.
 It contains a node for the work (labelled with the \gls{FRBR} entity \term{Work}),
 a node for the exemplar (labelled with the \gls{FRBR} entity \term{Item}),
 and nodes for the author and two of the owners (labelled with their professions according to their \gls{GND} entries).
@@ -295,10 +295,10 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
 \newlength{\derevnode}\settowidth{\derevnode}{\fns\term{De\_revolutionibus}}%
 \newlength{\copernode}\settowidth{\copernode}{\fns\term{Copernicus}}%
 \newcommand{\tikzexagraphMinusCopernicus}[3][]{%
-  \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{De\_revolutionibus}};
-  \node [text width=\derevnode,below=25mm of work1]               (item1)   {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-  \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-  \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+  \node [text width=\derevnode,#1]                                (work1)   {\fns\mystrut\term{\foreignlanguage{latin}{De\_revolutionibus}}};
+  \node [text width=\derevnode,below=25mm of work1]               (item1)   {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha\_}}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+  \node [text width=\copernode,above right=11mm and 45mm of item1] (person2) {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+  \node [text width=\copernode,below right=11mm and 45mm of item1] (person3) {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
   \begin{scope}[%
     every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -363,7 +363,7 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
   \end{tikzpicture}
   
   \caption{A labelled directed graph that represents data
-    concerning an exemplar of Copernicus' \emph{De revolutionibus} and some of its owners}
+    concerning an exemplar of Copernicus' \emph{\foreignlanguage{latin}{De revolutionibus}} and some of its owners}
   \label{fig:example_graph}
 \end{figure}
 
@@ -462,12 +462,12 @@ There are, among others, the following node names and labels:
 %
 \begin{itemize}
   \item
-    The node at the top left has the name \term{De\_revolutionibus}
+    The node at the top left has the name \term{\foreignlanguage{latin}{De\_revolutionibus}}
     and the single label \term{Work}.
   \item 
     The node at the bottom right has the two labels \term{Person} and \term{Astronomer}.
   \item 
-    The edge from the node named \term{Johann\_Hommel} to the node named \term{Valentin\_Thau}
+    The edge from the node named \term{\foreignlanguage{ngerman}{Johann\_Hommel}} to the node named \term{\foreignlanguage{ngerman}{Valentin\_Thau}}
     has the two labels \term{student} and \term{collaborator},
     and the edge pointing in the reverse direction has the labels
     \term{studentOf} and \term{collaborator}.
@@ -531,7 +531,7 @@ For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answeri
   \begin{scope}[%
     opacity=#1,fill opacity=#1
   ]
-    \node                                        (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
+    \node                                        (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
     \node [ansvar,below=17mm of derev]           (x)     {\fns\mystrut$x$};
     \node [anovar,above right=6.0mm and 20mm of x] (y)     {\fns\mystrut$y$};
     \node [anovar,below right=6.0mm and 20mm of x] (z)     {\fns\mystrut$z$};
@@ -575,7 +575,7 @@ For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answeri
 %\end{wrapfigure}
 \end{figure}
 
-To model this query, we do not only need a node representing the work \emph{De revolutionibus},
+To model this query, we do not only need a node representing the work \emph{\foreignlanguage{latin}{De revolutionibus}},
 but also a node representing an exemplar that satisfies the conditions stated in the query and whose name is asked for (Group~1),
 and two nodes representing the owner and their student (Group~2).
 Since these three individuals are not known when the query is formulated,
@@ -589,7 +589,7 @@ The nodes of this graph fall into three groups:
 %
 \begin{enumerate}[(1)]
   \item
-    The node named \tikzinlinenode{\term{De\_revolutionibus}} represents that work;
+    The node named \tikzinlinenode{\term{\foreignlanguage{latin}{De\_revolutionibus}}} represents that work;
   \item
     Node \tikzinlinenode[ansvar]{\mystrut$x$} falls into Group~1 as explained above;
   \item
@@ -644,7 +644,7 @@ contains proper objects instead of variables in the node names;
 Subgraph~(b) is the same graph as~(a) but extended with an additional edge and additional node labels;
 Subgraph~(c) lacks the edge labelled \term{student} between the two owners;
 Subgraph~(d) resembles the structure of the query but does not contain
-the required node named \term{De\_revolutionibus}.
+the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
 
 \newlength{\student}
 \settowidth{\student}{{\fns\term{student}}}
@@ -658,10 +658,10 @@ the required node named \term{De\_revolutionibus}.
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -688,10 +688,10 @@ the required node named \term{De\_revolutionibus}.
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -722,10 +722,10 @@ the required node named \term{De\_revolutionibus}.
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
-      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{De\_revolutionibus}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{FB\_Gotha\_}}{\term{Druck\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+      \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
+      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -753,8 +753,8 @@ the required node named \term{De\_revolutionibus}.
     ]
       \node                                   (derev) {\fns\mystrut$\term{ABC}$};
       \node [below=16mm of work1]             (x)     {\fns\mystrut$\term{DEF}$};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{Johann\_}}{\term{Hommel}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{Valentin\_}}{\term{Thau}}};
+      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
