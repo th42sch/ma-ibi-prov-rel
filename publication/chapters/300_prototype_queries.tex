@@ -183,7 +183,8 @@ Our researcher can now engage in further research in order to verify that hypoth
 Our example illustrates that the quality of query answers
 strongly depends on the quality of the underlying data,
 regardless of whether answers are obtained manually or automatically. 
-In particular, \emph{missing or spurious data} will lead to \emph{missing or spurious answers}.
+In particular, \emph{missing or spurious data} will lead to 
+a loss in \emph{recall} or \emph{precision}, respectively.
 Before we begin to deal with automated query answering,
 we need to analyse the sources of missing or spurious data and their effects on the answers obtained.
 
@@ -196,9 +197,9 @@ and draws additional conclusions (i.e., that every mathematician or astronomer i
 The true answer set is not known and will most probably never be known; it is a term of rather philosophical nature.
 
 Ideally, both answer sets should coincide.
-Incomplete data may cause the answer set to exclude some true answers,
-and spurious data may cause it to contain some answers that are not true.
-We call the respective answers \emph{missing} and \emph{spurious}.
+Incomplete data may cause a loss in recall, i.e., some true answers are missing from the answer set.
+In contrast, spurious data may cause a loss in precision, i.e., the answer set contains some answers that are not true.
+%We call the respective answers \emph{missing} and \emph{spurious}.
 On the basis of our example, we can identify four distinct causes for data being incomplete or spurious,
 as discussed in the following. We use the word \emph{term} as an umbrella term for concepts (such as \term{Scientist})
 and relations (such as \term{student}).
@@ -228,14 +229,15 @@ and relations (such as \term{student}).
     
     In summary, terms can be missing in the data sources because
     they are implicit in more specific terms.
-    If the query uses such missing terms, then the answer set is always empty.
+    If the query uses such missing terms, then the answer set is always empty
+    and the recall is zero.
     
     There are at least two possible remedies:
     the person or machine determining the answers can either make derivations based on their
     knowledge of the world, or they can use \emph{substitute information},
     which has been addressed in the context of the \gls{SoNAR} project (see Section~\ref{sec:HNA+SoNAR},
     in the form of more specific terms.
-    In the second case, we will still have to expect missing answers
+    In the second case, we will still have to expect some loss of recall
     if the selection of more specific terms is not exhaustive.
 
 %    Clearly, it would not be advisable to attempt adding all implicit knowledge to the data
@@ -258,7 +260,7 @@ and relations (such as \term{student}).
     or a general design decision for the data source. The underlying reasons can be manifold:
     for example, relationships such as who actually \emph{read} a book are very hard to confirm,
     or terms may not be part of the fixed vocabulary for a data field in a source.
-    If the query uses such terms, then the answer set is always empty, as in Case~1.
+    If the query uses such terms, then the recall is zero, as in Case~1.
     
     As a possible remedy, the use of substitute information can be helpful here, too:
     for example, the relation \term{owner} could be used as a substitute for
@@ -268,16 +270,17 @@ and relations (such as \term{student}).
     In the above example for \exaquery{2$'$}, it is possible that single owners of the exemplar or single relationships between owners
     have not been recorded because no evidence has been found yet.
     More generally, concept memberships or relationships can be missing sporadically,
-    which may lead to missing answers.
+    which may lead to a loss in recall.
   \item
     In the same example, if Hommel is erroneously recorded as the owner, then the answer obtained on the grounds
-    of that record is spurious.
-    More generally, spurious concept memberships or relationships may lead to spurious answers.
+    of that record is not a true answer.
+    More generally, spurious concept memberships or relationships may lead to a loss in precision.
 \end{enumerate}
 %
 These cases reveal a striking qualitative difference concerning the effects of data incompleteness or spuriousness
-on the answer set: Cases~3 and~4 have effects on single answers only, i.e., some answers are missing or spurious.
-However, Cases~1 and~2 generally make \emph{all} answers missing unless further provisions are made.
+on the answer set: Cases~3 and~4 have effects on recall and precision at the level of single answers,
+i.e., some true answers are missing or false answers are given.
+However, Cases~1 and~2 generally lead to a zero recall unless further provisions are made.
 Such \enquote{provisions} might include \emph{reasoning}
 (e.g., deriving the implicit knowledge that Hommel was a scientist from the explicitly recorded fact that he was a mathematician)
 and \emph{hypothesising} (e.g., assuming that Thau was an owner and received the book directly from Hommel).
@@ -291,8 +294,9 @@ In the light of these observations,
 it is appropriate to consider
 query answers as \emph{candidates} that necessitate (and inspire) further research.
 %as ....
-For this purpose, spurious answers (in manageable numbers) are less harmful than missing answers.
-Consequently, it is important to find ways to avoid missing answers without generating too many spurious answers.
+For this purpose, a loss in precision (via false answers in manageable numbers) 
+is less harmful than a loss in recall.
+Consequently, it is important to find ways to optimise recall without an excessive loss in precision.
 In other words, it is desirable to obtain an answer set that is a slight \emph{overapproximation}
 of the true answer set.
 

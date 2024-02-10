@@ -1523,9 +1523,9 @@ with \enquote{\term{provider}\mybold{\,:\,$\geqslant$\,1933 \& $\leqslant$\,1945
 Temporal constraints can also be useful for modelling relations
 that are not explicit in the data, such as \enquote{passed on to}, which occurs in~\exaquery{2} and~\exaquery{4}.
 Our approach so far was to consider each pair of owners as a candidate for an instance of this relation,
-with the risk of returning a large number of spurious answers
+with the risk of returning a large number of false answers and thus impairing precision
 (see also the discussion in Section~\ref{sec:manual_vs_automated}).
-With temporal constraints, it is possible to narrow down the spurious answers:
+With temporal constraints, it is possible to reduce those false answers:
 if dates of ownership are given, then a pair $(y_1,y_2)$ of owners
 is a candidate only if the ownership of $y_1$ predates that of $y_2$.
 This can be expressed using attributes of the \term{owner} relation
