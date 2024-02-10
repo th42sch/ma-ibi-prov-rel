@@ -58,9 +58,16 @@ Entities of Group~1 are \term{Work}, \term{Expression}, \term{Manifestation}, \t
 and their common superordinate concept \term{Endeavour};
 entities of Group~2 are \term{Person}, \term{CorporateBody},
 and their superordinate concept \term{ResponsibleEntity}.
-Furthermore, \gls{FRBR} contains relations that link Group-1 entities with each other
-and with Group-2 entities, respectively.
-These entities and the basic relations are shown in Figure~\ref{fig:FRBR}.
+Furthermore, \gls{FRBR} contains relations of two kinds, i.e.,
+relations linking Group-1 entities with each other,
+and relations linking Group-1 entities with the Group-2 entity \term{ResponsibleEntity}.
+The relations of the first kind are \term{realization}, \term{embodiment}, \term{exemplar},
+and their subordinate relations \term{relatedEndeavour} and \term{part},
+as well as the converses of all these relations (e.g., \term{realizationOf}, \term{partOf}).
+The relations of the second kind are \term{creator}, \term{realizer}, \term{producer}, \term{owner},
+and their subordinate relation \term{responsibleEntity},
+as well as their converses (e.g., \term{creatorOf}).
+These entities and relations are shown in Figure~\ref{fig:FRBR}.
 
 %\begin{figure}[ht]
 %  \centering
@@ -89,6 +96,7 @@ These entities and the basic relations are shown in Figure~\ref{fig:FRBR}.
 \newlength{\respe}\settowidth{\respe}{\fns ResponsibleEntity}%
 \begin{figure}[ht]
   \centering
+  \alt{FRBR entities and relations as described in the text above. Entities of Group 1 and 2 are on the left and right, respectively. Relations of the first kind are on the left; those of the second kind are between left and right.}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightgreen,thick,inner sep=1.5mm},

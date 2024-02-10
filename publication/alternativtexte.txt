@@ -1,0 +1,20 @@
+S. 1, Logo
+Logo der Humboldt-Universität zu Berlin. Köpfe von Wilhelm und Alexander von Humboldt nach links schauend umrandet mit dem Namen der Universität.
+
+S. 24, Fig. 3.1
+Part of an OPAC search result showing 8 provenance entries, including autographs, a handwritten note, and stamps. These entries are described in the preceding text.
+
+S. 24, Fig. 3.2
+Part of the GND entry for Johann Hommel, containing the individual's GND ID, the preferred name, years of birth and death, professions (mathematician, astronomer), and a reference to his student Valentin Thau.
+
+S. 28, Fig. 4.1
+FRBR entities and relations as described in the text above. Entities of Group 1 and 2 are on the left and right, respectively. Relations of the first kind are on the left; those of the second kind are between left and right.
+
+S. 38, Fig. 5.1
+A directed graph consisting of 5 nodes and 8 edges.
+
+S. 39, Fig. 5.2
+A directed graph with 5 nodes representing the objects and individuals described in the text above and their corresponding labels, plus the respective edges labelled with "exemplar", "creator", "owner", "student", "collaborator" (and their inverses).
+
+S. 41, Fig. 5.3
+The graph has 4 nodes for the object "De revolutionibus" and the variables x, y, z. Node x is a circle and labelled "Item"; nodes y,z are diamonds and y is labelled "Scientist". There are 4 edges according to the relations occurring in the query.
