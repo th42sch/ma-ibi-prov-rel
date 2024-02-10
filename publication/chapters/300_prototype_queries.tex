@@ -55,8 +55,8 @@ of this section. We repeat the query patterns here in order to discuss them in m
 %
 These patterns can be turned into specific queries by instantiating each variable with a specific object.
 For example, the variable $X$
-in \exaquery{2} can be instantiated with the seminal work \emph{De revolutionibus orbium coelestium}
-(short: \emph{De revolutionibus}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
+in \exaquery{2} can be instantiated with the seminal work \emph{\foreignlanguage{latin}{De revolutionibus orbium coelestium}}
+(short: \emph{\foreignlanguage{latin}{De revolutionibus}}; English translation: \emph{On the Revolutions of the Heavenly Spheres}) \autocite{Kopernikus1543}
 by the astronomer Nicolaus Copernicus (1473–1543).
 Together with the additional specification that the owner of the book is a scientist,
 we thus obtain the following query.
@@ -65,7 +65,7 @@ we thus obtain the following query.
   \begin{enumerate}
     \item[\exaquery{2$'$}]
   %    Which exemplars of \emph{De revolutionibus} were owned by scientists who passed them on to a student?
-      Which exemplars of \emph{De revolutionibus} were owned by some scientist who passed them on to a student?
+      Which exemplars of \emph{\foreignlanguage{latin}{De revolutionibus}} were owned by some scientist who passed them on to a student?
   \end{enumerate}
 }%
 \Qtwoprime
@@ -93,64 +93,69 @@ with more specific questions, which in turn can inform possible extensions of th
 In order to demonstrate how a researcher could proceed (manually) when answering a query,
 we consider the query~\exaquery{2$'$} from above.
 An obvious way to proceed is the following.
-First, our researcher finds exemplars of \emph{De revolutionibus} 
+First, our researcher finds exemplars of \emph{\foreignlanguage{ngerman}{De revolutionibus}}
 in online catalogues of libraries and library networks. For each such exemplar, they then inspect the provenance entries
 that name owners who were people (not corporate bodies). Finally, our researcher will have to find those names in databases such as
 authority files or Wikidata and, for each entry, search the listed professions 
 and relationships to other people for the specified concept \term{Scientist} and relation \term{student}.
 
-For example, the online catalogue (OPAC) of the Gotha Research Library of the University of Erfurt (Forschungsbibliothek Gotha) lists two printed exemplars
+For example, the online catalogue (OPAC) of the Gotha Research Library of the University of \foreignlanguage{ngerman}{Erfurt (Forschungsbibliothek Gotha)} lists two printed exemplars
 of \emph{De revolutionibus} \autocite{OPACDeRev}.
 %\footnote{%
 %  \url{https://opac.uni-erfurt.de/DB=1/CMD?ACT=SRCHA&IKT=1016&SRT=YOP&TRM=tit+de+revolutionibus+and+per+kopernikus+and+jah+15**+and+bbg+a*}%
 %}
-One of those bears the signature \sig{Druck~4°~00466}, and its provenance entries name the following previous owners \autocite{OPACDeRevPPN}; see also Figure~\ref{fig:OPAC_derev_provenance}:
+One of those bears the signature \sig{\foreignlanguage{ngerman}{Druck}~4°~00466}, and its provenance entries name the following previous owners \autocite{OPACDeRevPPN}; see also Figure~\ref{fig:OPAC_derev_provenance}:
 %\footnote{%
 %  \url{https://opac.uni-erfurt.de/LNG=EN/DB=1/XMLPRS=N/PPN?PPN=567506266}%
 %}
 %
 \begin{itemize}
   \item
-    Hieronymus Tilesius (1529–1566): autograph and date 1551
+    \foreignlanguage{latin}{Hieronymus Tilesius} (1529–1566): autograph and date 1551
   \item
     NN: note, date 1553, name scraped out
   \item
-    Johann Hommel (1518–1562), autograph
+    \foreignlanguage{ngerman}{Johann Hommel} (1518–1562), autograph
   \item
-    Valentin Thau (1531–1575), note (greek proverb, possibly not denoting ownership)
+    \foreignlanguage{ngerman}{Valentin Thau} (1531–1575), note (greek proverb, possibly not denoting ownership)
   \item
-    Ernest II, Duke of Saxe-Gotha-Altenburg (1745–1804): stamp/seal, initial
+    Ernest II, Duke of Saxe-\foreignlanguage{ngerman}{Gotha-Altenburg} (1745–1804): stamp/seal, initial
   \item
-    Ducal Library, Gotha (a predecessor organisation of Gotha Research Library): stamp marking a duplicate
+    Ducal Library, \foreignlanguage{ngerman}{Gotha} (a predecessor organisation of \foreignlanguage{ngerman}{Gotha} Research Library): stamp marking a duplicate
   \item
-    Ernestine Gymnasium, Gotha: stamp
+    Ernestine Gymnasium, \foreignlanguage{ngerman}{Gotha}: stamp
   \item
-    Landesbibliothek Gotha: stamp
+    \foreignlanguage{ngerman}{Landesbibliothek Gotha}: stamp
 \end{itemize}
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth,trim=88 1 26 123,clip]{img/opac_derev_prov.png}
   \caption[%
-    Excerpt of University of Erfurt OPAC search result for exemplar \sig{Druck~4°~00466} of \enquote{De Revolutionibus} with provenance entries%
+    Excerpt of University of \foreignlanguage{ngerman}{Erfurt} OPAC search result for
+    exemplar \sig{\foreignlanguage{ngerman}{Druck}~4°~00466} of
+    \enquote{\foreignlanguage{latin}{De Revolutionibus}} with provenance entries%
   ]{%
-    Excerpt of University of Erfurt OPAC search result for exemplar \sig{Druck~4°~00466} of \enquote{De Revolutionibus} with provenance entries
+    Excerpt of University of \foreignlanguage{ngerman}{Erfurt} OPAC search result
+    for exemplar \sig{\foreignlanguage{ngerman}{Druck}~4°~00466} of
+    \enquote{\foreignlanguage{ngerman}{De Revolutionibus}} with provenance entries
     (screenshot of 2023-06-05)%
   }
   \label{fig:OPAC_derev_provenance}
 \end{figure}
 
 Our researcher can immediately decide that they can ignore the second entry (no name given) and the last three entries (corporate bodies).
-For the persons named in the remaining four entries, our researcher finds the corresponding \gls{GND} records, which involves manual disambiguation in the case of Tilesius
+For the persons named in the remaining four entries, our researcher finds the corresponding \gls{GND} records,
+which involves manual disambiguation in the case of \foreignlanguage{latin}{Tilesius}
 \autocite{GNDTilesius,GNDHommel,GNDThau,GNDErnstII}.
 %\footnote{%
 %  \url{https://katalog.dnb.de/EN/home.html?v=plist}%
 %}
 On inspection of these \gls{GND} entries, it turns out that Ernest II was a regent and very probably not a scientist,
-and that the other three people---Tilesius, Hommel, and Thau---had professions such as theologian,
-mathematician, and astronomer, which qualifies them as scientists. Furthermore, Hommel's entry
-contains a reference to Thau via the relation \term{student}, see Figure~\ref{fig:GND_Hommel}
-(and Thau's entry contains the inverse reference to Hommel).
+and that the other three people---\foreignlanguage{latin}{Tilesius}, \foreignlanguage{ngerman}{Hommel}, and \foreignlanguage{ngerman}{Thau}---had professions such as theologian,
+mathematician, and astronomer, which qualifies them as scientists. Furthermore, \foreignlanguage{ngerman}{Hommel}'s entry
+contains a reference to \foreignlanguage{ngerman}{Thau} via the relation \term{student}, see Figure~\ref{fig:GND_Hommel}
+(and \foreignlanguage{ngerman}{Thau}'s entry contains the inverse reference to \foreignlanguage{ngerman}{Hommel}).
 From this reference, our researcher can conclude that two scientists in the teacher-student relation
 have both possessed the exemplar. 
 
@@ -161,17 +166,17 @@ have both possessed the exemplar.
   $\big[\raisebox{-1.8pt}{\rvdots}\big]$ \\
   \includegraphics[width=.78\linewidth,trim=140 0 150 0,clip]{img/gnd_hommel_2.png}
   \caption[%
-    Excerpt of the GND entry for Johann Hommel%
+    Excerpt of the GND entry for \foreignlanguage{ngerman}{Johann Hommel}%
   ]{%
-    Excerpt of the GND entry for Johann Hommel (screenshot of 2023-06-05)%
+    Excerpt of the GND entry for \foreignlanguage{ngerman}{Johann Hommel} (screenshot of 2023-06-05)%
   }
   \label{fig:GND_Hommel}
 \end{figure}
 
-Unfortunately, the data available does not imply that Hommel passed the exemplar (directly) to Thau;
-furthermore, the provenance entry for Thau raises doubts as to whether Thau was really an owner of the exemplar.
+Unfortunately, the data available does not imply that \foreignlanguage{ngerman}{Hommel} passed the exemplar (directly) to \foreignlanguage{ngerman}{Thau};
+furthermore, the provenance entry for \foreignlanguage{ngerman}{Thau} raises doubts as to whether \foreignlanguage{ngerman}{Thau} was really an owner of the exemplar.
 Therefore, the retrieved data can only be regarded as a \emph{candidate answer}
-which entails the hypothesis that the found exemplar was passed from Hommel to Thau.
+which entails the hypothesis that the found exemplar was passed from \foreignlanguage{ngerman}{Hommel} to \foreignlanguage{ngerman}{Thau}.
 Our researcher can now engage in further research in order to verify that hypothesis.
 
 %\todo[think,inline]{Discuss specifics of \exaquery{1}, \exaquery{3}--\exaquery{9} (extend remarks from Section~\ref{sec:background})?}
