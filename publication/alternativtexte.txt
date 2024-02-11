@@ -38,10 +38,16 @@ S. 44, Fig. 5.6
 The same as the previous figure, minus the node "Copernicus" and its incoming/outgoing edges. The query graph is slightly greyed out, putting the focus on the h edges and the remaining data graph, which together constitute the answer.
 
 S. 46, Fig. 5.7
-4 graphs depcting the above query patterns. E.g., the graph for Q1- has nodes X, y1, x1, y2, x2 labelled Work, Expression, Manifestation, Item, Person and connected, in this order, with a chain of edges labelled realization, embodiment, exemplar, owner.
+4 graphs depcting the above query patterns. E.g., the graph for Q1- has nodes X, y1, x1, y2, x2 labelled Work, Expression, Manifestation, Item, Person, and connected, in this order, with a chain of edges labelled realization, embodiment, exemplar, owner.
 
 S. 47, Fig. 5.8 (Q1)
 A graph depicting the abobe query pattern Q1. The graph has two nodes y2, x2 labelled Item and Person, respectively, and an edge "owner : x3" from y2 to x2.
 
 S. 47, Fig. 5.8 (Q5*)
 A graph depicting the abobe query pattern Q5*. The graph has two nodes x, Y labelled Item and ResponsibleEntity, respectively, and an edge "provider : 1935" from x to Y.
+
+S. 48, Fig. 5.9
+Graph for query pattern Q3, having nodes X, y1, Y, y2, x-bar labelled Work, Expression, Manifestation, Item, Person, and connected, in this order, with edges labelled realization, embodiment, exemplar, owner. Set node x-bar has a new octagon shape.
+
+S. 51, Fig. 6.1
+A rectangle "Configuration Phase" with an arrow to a rectangle "Runtime Phase", which contains three smaller rectangles "Query Formulation", "Query Processing", "Answer Presentation", which are connected via a cycle of three arrows.
