@@ -17,4 +17,16 @@ S. 39, Fig. 5.2
 A directed graph with 5 nodes representing the objects and individuals described in the text above and their corresponding labels, plus the respective edges labelled with "exemplar", "creator", "owner", "student", "collaborator" (and their inverses).
 
 S. 41, Fig. 5.3
-The graph has 4 nodes for the object "De revolutionibus" and the variables x, y, z. Node x is a circle and labelled "Item"; nodes y,z are diamonds and y is labelled "Scientist". There are 4 edges according to the relations occurring in the query.
+The rectangle-shaped node "De revolutionibus" is labelled "Work" and has an "exemplar" edge to a round node x labelled "Item". Node x has two "owner" edges to diamond-shaped nodes y and z, where y is labelled "Scientist" and has a "student" edge to z.
+
+S. 42, Fig. 5.4 (a)
+Node "De revolutionibus" is labelled "Work" and has an "exemplar" edge to node "FB Gotha Druck 4° 00466", which is labelled "Item" and has 2 "owner" edges to nodes "Hommel", "Thau". Node "Hommel" is labelled "Scientist" and has a "student" edge to "Thau".
+
+S. 42, Fig. 5.4 (b)
+The graph from the previous subfigure, plus an additional converse "exemplarOf" edge, plus additional labels "Person" for node "Hommel" and "Person", "Scientist" for "Thau".
+
+S. 42, Fig. 5.4 (c)
+The graph from the first subfigure, minus the "student" edge from "Hommel" to "Thau".
+
+S. 42, Fig. 5.4 (d)
+The graph from the first subfigure, but with the first two nodes named "ABC" and "DEF".

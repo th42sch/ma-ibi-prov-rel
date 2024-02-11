@@ -564,7 +564,7 @@ For example, consider Query \exaquery{2$'$} from Section~\ref{sec:manual_answeri
 \begin{figure}[ht]
 %\begin{wrapfigure}[10]{o}{5.4cm}
   \centering
-  \alt{The graph has 4 nodes for the object "De revolutionibus" and the variables x, y, z. Node x is a circle and labelled "Item"; nodes y,z are diamonds and y is labelled "Scientist". There are 4 edges according to the relations occurring in the query.}
+  \alt{The rectangle-shaped node "De revolutionibus" is labelled "Work" and has an "exemplar" edge to a round node x labelled "Item". Node x has two "owner" edges to diamond-shaped nodes y and z, where y is labelled "Scientist" and has a "student" edge to z.}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -656,8 +656,10 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
 \begin{figure}[ht]
   \centering
   \begin{tabular}{@{}c@{\hspace{10mm}}c@{}}
+    (a) & (b) \\
+    \alt{Node "De revolutionibus" is labelled "Work" and has an "exemplar" edge to node "FB Gotha Druck 4° 00466", which is labelled "Item" and has 2 "owner" edges to nodes "Hommel", "Thau". Node "Hommel" is labelled "Scientist" and has a "student" edge to "Thau".}
     \begin{tikzpicture}[
-      >=Latex,
+      >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
@@ -686,8 +688,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       \end{scope}
     \end{tikzpicture}
     &
+    \alt{The graph from the previous subfigure, plus an additional converse "exemplarOf" edge, plus additional labels "Person" for node "Hommel" and "Person", "Scientist" for "Thau".}
     \begin{tikzpicture}[
-      >=Latex,
+      >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
@@ -714,14 +717,16 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
           
         \node[above=.5mm of derev] () {\fns\term{Work}};
         \node[below=.5mm of x]     () {\fns\term{Item}};
-        \node[right=.5mm of y]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
-        \node[right=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+        \node[above=.5mm of y]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
+        \node[below=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
       \end{scope}
     \end{tikzpicture}
-    \\[-4pt]
-    (a) & (b) \\[8pt]
+    \\[12pt]
+    (c) & (d)
+    \\
+    \alt{The graph from the first subfigure, minus the "student" edge from "Hommel" to "Thau".}
     \begin{tikzpicture}[
-      >=Latex,
+      >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
@@ -749,8 +754,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       \end{scope}
     \end{tikzpicture}
     &
+    \alt{The graph from the first subfigure, but with the first two nodes named "ABC" and "DEF".}
     \begin{tikzpicture}[
-      >=Latex,
+      >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
       every edge/.style={draw=black,thick}
     ]
@@ -775,11 +781,10 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
           
         \node[above=.5mm of derev] () {\fns\term{Work}};
         \node[below=.5mm of x]     () {\fns\term{Item}};
-        \node[right=.5mm of y]     () {\fns\term{Scientist}};
+        \node[above=.5mm of y]     () {\fns\term{Scientist}};
       \end{scope}
     \end{tikzpicture}
-    \\[-4pt]
-    (c) & (d)
+    \\
   \end{tabular}
   %
   \caption{Positive (a,\,b) and negative (c,\,d) examples for query answers}
