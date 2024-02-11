@@ -13,8 +13,8 @@ In Section~\ref{sec:HNA+SoNAR}, we collect insights from a recent research proje
 aimed at providing a research infrastructure for historical network analysis
 and apply them to our research questions.
 
-It has also become clear in Chapter~\ref{chap:intro} that the relevant data is distributed 
-over a multitude of heterogeneous data sources.
+It also became clear in Chapter~\ref{chap:intro} that the relevant data is distributed 
+over many heterogeneous data sources.
 Therefore we review 
 the literature on linked data, data integration,
 and data provenance in Section~\ref{sec:linked_data+integration}.
@@ -46,7 +46,7 @@ as described by \textcite{Jansen2003}.
 
 \emph{Network analysis}
 defines networks and provides a statistical toolset for describing and analysing them.
-A network is a graph, which consists of nodes and edges.
+A network is a graph, consisting of nodes and edges.
 Nodes represent actors, events or objects (e.g., people, companies, institutions, countries),
 and edges represent relations between those (in the case of social networks, e.g.,
 friendship, collaboration, or family relationships).
@@ -56,8 +56,8 @@ or the decision whether relations are directed or undirected
 and whether they are dichotomous (an edge is present or not)
 or weighted by values representing frequencies or extent.
 The tools provided by network analysis include
-various metrics that apply to single nodes, pairs of nodes, paths in the network,
-or the whole network; those often come in several variants.
+various metrics applying to single nodes, pairs of nodes, paths in the network,
+or the whole network. %; those often come in several variants.
 Examples are connectivity, in-/outdegree, density,
 size, cohesion, multiplexity, reachability, and path distance.
 Since a graph can conveniently be represented by its adjacency matrix,
@@ -65,7 +65,7 @@ methods from matrix algebra are part of the toolset \autocite[cf.][§§1.1, 3.3,
 
 In applications where social structures are the object of study,
 the term \emph{\gls{SNA}} is used,
-and it predominantly refers to the \emph{method} of investigating
+typically referring to the \emph{method} of investigating
 social interactions \autocite{Otte2002}.
 
 In the context of historical research,
@@ -516,7 +516,7 @@ For a definition of the term \enquote{ontology} in this setting, we cite \textci
 More importantly for our study, ontologies can be used to represent knowledge about a specific domain
 or about the world in general, in an unambiguous and machine-readable way, using a formal language.
 What is more, \emph{reasoning} mechanisms can be employed to derive implicit knowledge,
-i.e., knowledge that logically follows from the explicitly represented knowledge.
+i.e., knowledge that logically follows from the represented knowledge.
 Last but not least, ontologies and reasoning play a role in data integration
 where they allow for disambiguating entities and their definitions,
 and for specifying and validating mappings between data sources
@@ -578,18 +578,18 @@ It provides terms for modelling, among others, classes, properties, and domain a
 \glsunset{OWL}%
 \gls{OWL} is the ontology language recommended by the W3C.
 It is based on knowledge representation languages from the description logic (DL) family \autocite{Baader2017}.
-DLs have a well-defined syntax and model-theoretic semantics, which makes them suitable
+DLs have a well-defined syntax and model-theoretic semantics, making them suitable
 as a formal ontology language in the sense mentioned above.
 The members of the DL family vary regarding their expressive power and,
 closely related, regarding the computational complexity of their basic reasoning problems.
-OWL 2, which is the current version of OWL,
+OWL 2 is the current version of OWL and
 is based on an expressive DL where reasoning is still decidable and reasoning algorithms have been implemented
 in various inference machines that perform well on a wide range of real-world ontologies.
 Besides these knowledge representation languages and support for reasoning,
 OWL includes infrastructure for interaction with ontologies and interoperability
 within the Web, such as Internationalized Resource Identifiers (IRIs),
 \glsunset{XML}%
-\gls{XML} schema datatypes, import mechanisms, and many more.
+\gls{XML} schema datatypes, import mechanisms, and more.
 
 \paragraph{SPARQL}
 The \gls{SPARQL} is a W3C-recommended query language for the Semantic Web.
@@ -604,7 +604,7 @@ but are obtained involving certain sets of inference rules, based on \gls{OWL} o
 
 \par\medskip
 \emph{Linked open data (LOD)} is linked data that is also \emph{open data},
-i.e., accessible and shareable by everyone \autocite{WikiLinkedData}.
+i.e., freely accessible and shareable \autocite{WikiLinkedData}.
 
 %\todo[inline]{Also mention ontology-based data integration? See \url{https://en.wikipedia.org/wiki/Ontology-based_data_integration} and references therein} 
 
