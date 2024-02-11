@@ -30,3 +30,18 @@ The graph from the first subfigure, minus the "student" edge from "Hommel" to "T
 
 S. 42, Fig. 5.4 (d)
 The graph from the first subfigure, but with the first two nodes named "ABC" and "DEF".
+
+S. 43, Fig. 5.5
+The previous query graph on the left, the data graph from Figure 5.2 on the right, and four edges labelled h: from "De Revolutionibus" left to "De Revolutionibus" right, and from x, y, z to "FB Gotha Druck 4° 00466", "Hommel", "Thau", respectively.
+
+S. 44, Fig. 5.6
+The same as the previous figure, minus the node "Copernicus" and its incoming/outgoing edges. The query graph is slightly greyed out, putting the focus on the h edges and the remaining data graph, which together constitute the answer.
+
+S. 46, Fig. 5.7
+4 graphs depcting the above query patterns. E.g., the graph for Q1- has nodes X, y1, x1, y2, x2 labelled Work, Expression, Manifestation, Item, Person and connected, in this order, with a chain of edges labelled realization, embodiment, exemplar, owner.
+
+S. 47, Fig. 5.8 (Q1)
+A graph depicting the abobe query pattern Q1. The graph has two nodes y2, x2 labelled Item and Person, respectively, and an edge "owner : x3" from y2 to x2.
+
+S. 47, Fig. 5.8 (Q5*)
+A graph depicting the abobe query pattern Q5*. The graph has two nodes x, Y labelled Item and ResponsibleEntity, respectively, and an edge "provider : 1935" from x to Y.

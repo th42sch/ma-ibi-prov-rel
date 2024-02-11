@@ -857,6 +857,7 @@ to the graph from Figure~\ref{fig:example_graph}.
 
 \begin{figure}[ht]
   \centering
+  \alt{The previous query graph on the left, the data graph from Figure 5.2 on the right, and four edges labelled h: from "De Revolutionibus" left to "De Revolutionibus" right, and from x, y, z to "FB Gotha Druck 4° 00466", "Hommel", "Thau", respectively.}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
@@ -917,6 +918,7 @@ We make the following remarks concerning Definition~\ref{def:query_answer}.
 
 \begin{figure}[ht]
   \centering
+  \alt{The same as the previous figure, minus the node "Copernicus" and its incoming/outgoing edges. The query graph is slightly greyed out, putting the focus on the h edges and the remaining data graph, which together constitute the answer.}
   \begin{tikzpicture}[
     >=Latex,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm,align=center},
@@ -1130,11 +1132,12 @@ the following query patterns.
 In the case of \exaquery{1}, the relation \term{reads} is most certainly not recorded in provenance entries
 in any bibliographic data source. Therefore, we need to resort to the \emph{substitute information}
 (see Section~\ref{sec:HNA+SoNAR}) provided by the \term{owner} relation.
-Now these two query patterns
+Now these four query patterns
 can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
 
 \begin{figure}[ht]
   \centering
+  \alt{4 graphs depcting the above query patterns. E.g., the graph for Q1- has nodes X, y1, x1, y2, x2 labelled Work, Expression, Manifestation, Item, Person and connected, in this order, with a chain of edges labelled realization, embodiment, exemplar, owner.}
   \begin{tikzpicture}[
     >=Latex,baseline=0pt,
     every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -1255,6 +1258,7 @@ for the two respective edges of~\exaquery{1} and~\exaquery{5$^\star$}.
 \begin{figure}[ht]
   \centering
   \begin{tabular}{@{}c@{\hspace*{20mm}}c@{}}
+    \alt{A graph depicting the abobe query pattern Q1. The graph has two nodes y2, x2 labelled Item and Person, respectively, and an edge "owner : x3" from y2 to x2.}
     \begin{tikzpicture}[
       >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
@@ -1275,6 +1279,7 @@ for the two respective edges of~\exaquery{1} and~\exaquery{5$^\star$}.
       \end{scope}
     \end{tikzpicture}
     &
+    \alt{A graph depicting the abobe query pattern Q5*. The graph has two nodes x, Y labelled Item and ResponsibleEntity, respectively, and an edge "provider : 1935" from x to Y.}
     \begin{tikzpicture}[
       >=Latex,baseline=0pt,
       every node/.style={on grid,rectangle,rounded corners=1mm,draw=black,fill=lightblue,thick,inner sep=1.5mm},
