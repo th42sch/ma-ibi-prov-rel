@@ -214,7 +214,7 @@ have a bibliographic level for describing a manifestation
 and an exemplar level for describing the related exemplars. The description of works and expressions
 is considered part of the description of a manifestation and thus recorded at the bibliographic level.
 However, it is possible to create and link an authority record for a work or expression
-containing the relevant description. In that case, the source of the information can be recorded as well
+containing the relevant description, and record the source of the information 
 \autocite[cf.][§5.1]{Wiesenmueller2015}.
 
 For our approach, this observation means that catalogues of German libraries
@@ -492,7 +492,8 @@ Examples of relevant library catalogues include
     catalogues and local systems of single libraries, if not covered by any of the above;
   \item
     special catalogues, e.g., those used for historical research in the \gls{SoNAR} project, %\todo{explain; relate to SoNAR or loot research}
-    in particular: \\
+    in particular: % \\
+    \quad
     \mybold{\gls{ZDB}, \gls{KPE}, \gls{ZEFYS}, ExilePress} \autocite{ZDB,KPE,ZEFYS,ExilePress}.
 \end{itemize}
 
@@ -802,10 +803,10 @@ Furthermore, there are two APIs mostly for editing Wikidata,
 as well as a recent changes stream and complete exports (dumps)
 \autocite[cf.][]{Wikidata_data_access}.
 
-Annotations of statements (see above) seem to be suitable for 
+Annotations of statements (see above) seem suitable for 
 recording metadata provenance and temporal attributes of relationships.
-It remains to investigate the use of annotations systematically
-in order to determine the extent to which metadata provenance and temporal attributes
+It remains to study the use of annotations systematically
+and determine the extent to which metadata provenance and temporal attributes
 are recorded.
 
 %\par\bigskip
@@ -853,12 +854,13 @@ for example when representing the  provenance of an \gls{SPO} statement,
 those can always be represented by several binary relations via reification
 \autocite[cf.][p.339f.]{Doan2012}.
 
+\enlargethispage*{5mm}
 The choice of the reviewed data sources was motivated by the insights from
-the \gls{SoNAR} project and Hakelberg's thesis \autocite{Hakelberg2016}.
+the \gls{SoNAR} project and Hakelberg's work \parencite*{Hakelberg2016}.
 For the abstract model to be developed next,
 the specific choice of data sources is largely unimportant
-because the model should be independent on the contents or specific data models of the sources.
-The same holds for the general method for answering queries that we are going to develop based on our model.
+because the model should be independent of the contents or specific data models of the sources.
+The same holds for the general query answering method that we are going to develop based on our model.
 However, future implementations of our method will have to take the specifics
 of the data sources into account.
 For this reason, it will be necessary to review additional data sources,
