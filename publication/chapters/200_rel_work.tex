@@ -197,6 +197,8 @@ requirements that reflect the specific needs of researchers.
 The following of these requirements are relevant for our purposes
 (descriptions translated from the original German text and slightly rephrased and/or shortened):
 %
+\goodbreak
+%
 \begin{description}
   \item[R003]
     Researcher wants all information on relationships contained in the metadata of the resources
@@ -592,9 +594,12 @@ within the Web, such as Internationalized Resource Identifiers (IRIs),
 \gls{XML} schema datatypes, import mechanisms, and more.
 
 \paragraph{SPARQL}
-The \gls{SPARQL} is a W3C-recommended query language for the Semantic Web.
-More precisely, it is a language for querying \gls{RDF} graphs via pattern matching,
-whose syntax is based on the \gls{SQL}, the ISO standard for managing and querying relational databases.
+The \gls{SPARQL} is a W3C-recom\-mend\-ed query language for the Semantic Web.
+It is a language for querying \gls{RDF} graphs via pattern matching,
+whose syntax is based on 
+%the \gls{SQL}, the ISO standard for managing and querying relational databases.
+\glsunset{SQL}%
+the ISO standard \gls{SQL} \cite{SQL} for managing and querying relational databases.
 However, SPARQL is \enquote{far more powerful than SQL, since it is designed for the \emph{open}, \emph{decentralized}, and \emph{fluid} Web} \autocite{DellaValle2011}.
 SPARQL also provides a communication protocol for the interaction between clients and \emph{endpoints};
 answers are returned in \gls{RDF} or \gls{XML}.
