@@ -77,6 +77,8 @@ and from database and graph theory \autocite{Abiteboul1995,Diestel2012}.
 %%
 %\todo[inline]{We first need an analysis of available data sources and of requirements; only then can we justify the choice of framework.}
 
+\enlargethispage*{5mm}
+
 In the following sections, we introduce our model
 by defining 
 the basic terminology (Section~\ref{sec:terminology}),
@@ -197,17 +199,10 @@ A \emph{literal} is a fixed value, such as a year, date, or identifier.
 \section{Labelled Directed Graphs}
 \label{sec:labelled_digraphs}
 
-Before we develop the technical definitions,
-we provide the underlying intuitions.
-Graphs consists of nodes and edges. Edges link nodes and can be directed
-or undirected. Graphs are easy to visualise: nodes are drawn as circles
-or rectangles, and edges as arrows (directed) or lines (undirected).
-Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
-
-\begin{figure}[ht]
-%\begin{wrapfigure}[6]{o}{5.2cm}
+%\begin{figure}[ht]
+\begin{wrapfigure}[6]{o}{5.2cm}
   \centering
-%  \vspace*{-.7\baselineskip}
+  \vspace*{-.7\baselineskip}
   \alt{A directed graph consisting of 5 nodes and 8 edges.}
   \begin{tikzpicture}[
     >=Latex,
@@ -216,10 +211,10 @@ Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed 
   ]
     \node                       (nw)                         {};
     \node [right=12mm of nw]    (ne)                         {};
-    \node [below=12mm of nw]    (sw)                         {};
+    \node [below=10mm of nw]    (sw)                         {};
     \node [right=12mm of sw]    (se)                         {};
     \node [draw=none,fill=none] (n)     at ($(nw)!0.5!(ne)$) {};
-    \node [above= 8mm of n]     (ridge)                      {};
+    \node [above= 6.5mm of n]     (ridge)                      {};
       
     \path[->]
       (sw)    edge (nw)
@@ -235,8 +230,17 @@ Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed 
   \end{tikzpicture}
   \caption{A directed graph}
   \label{fig:example_graph_abstract}
-%\end{wrapfigure}
-\end{figure}
+\end{wrapfigure}
+%\end{figure}
+
+Before we develop the technical definitions,
+we provide the underlying intuitions.
+Graphs consists of nodes and edges. Edges link nodes and can be directed
+or undirected. Graphs are easy to visualise: nodes are drawn as circles
+or rectangles, and edges as arrows (directed) or lines (undirected).
+Figure~\ref{fig:example_graph_abstract} shows an abstract example of a directed graph.
+
+\pagebreak
 
 For our purposes,
 nodes represent objects or literals. 
@@ -368,6 +372,8 @@ that should occur between the nodes labelled \term{Work} and \term{Item}.
     concerning an exemplar of Copernicus' \emph{\foreignlanguage{latin}{De revolutionibus}} and some of its owners}
   \label{fig:example_graph}
 \end{figure}
+
+\pagebreak
 
 As we will see in the following, labelled directed graphs can be used in our setting
 to represent (combinations of) data sources as well as queries.
@@ -586,7 +592,7 @@ we need to use \emph{variables} for naming them.
 Query~\exaquery{2$'$}
 can now be modelled by the graph shown in Figure~\ref{fig:graph_for_exa_query2'}.
 
-
+\pagebreak
 
 The nodes of this graph fall into three groups:
 %
@@ -656,7 +662,7 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
 \begin{figure}[ht]
   \centering
   \begin{tabular}{@{}c@{\hspace{10mm}}c@{}}
-    (a) & (b) \\
+    (a) & (b) \\[-6pt]
     \alt{Node "De revolutionibus" is labelled "Work" and has an "exemplar" edge to node "FB Gotha Druck 4° 00466", which is labelled "Item" and has 2 "owner" edges to nodes "Hommel", "Thau". Node "Hommel" is labelled "Scientist" and has a "student" edge to "Thau".}
     \begin{tikzpicture}[
       >=Latex,baseline=0pt,
@@ -664,9 +670,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       every edge/.style={draw=black,thick}
     ]
       \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
+      \node [text width=\derevnode,below=14mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=7.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=7.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -695,9 +701,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       every edge/.style={draw=black,thick}
     ]
       \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
+      \node [text width=\derevnode,below=14mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=7.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=7.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -721,9 +727,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
         \node[below=.5mm of z]     () {\fns\tikztabtwo{\term{Person}}{\term{Scientist}}};
       \end{scope}
     \end{tikzpicture}
-    \\[12pt]
+    \\[6pt]
     (c) & (d)
-    \\
+    \\[-6pt]
     \alt{The graph from the first subfigure, minus the "student" edge from "Hommel" to "Thau".}
     \begin{tikzpicture}[
       >=Latex,baseline=0pt,
@@ -731,9 +737,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       every edge/.style={draw=black,thick}
     ]
       \node [text width=\derevnode]                     (derev) {\fns\mystrut$\term{\foreignlanguage{latin}{De\_revolutionibus}}$};
-      \node [text width=\derevnode,below=16mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
+      \node [text width=\derevnode,below=14mm of work1] (x)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{FB\_Gotha}\_}}{\term{\foreignlanguage{ngerman}{Druck}\_4°\_00466}}};
+      \node [above right=7.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=7.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -761,9 +767,9 @@ the required node named \term{\foreignlanguage{latin}{De\_revolutionibus}}.
       every edge/.style={draw=black,thick}
     ]
       \node                                   (derev) {\fns\mystrut$\term{ABC}$};
-      \node [below=16mm of work1]             (x)     {\fns\mystrut$\term{DEF}$};
-      \node [above right=8.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
-      \node [below right=8.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
+      \node [below=14mm of work1]             (x)     {\fns\mystrut$\term{DEF}$};
+      \node [above right=7.5mm and 37mm of x] (y)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Johann}\_}}{\term{\foreignlanguage{ngerman}{Hommel}}}};
+      \node [below right=7.5mm and 37mm of x] (z)     {\fns\tikztabtwo{\term{\foreignlanguage{ngerman}{Valentin}\_}}{\term{\foreignlanguage{ngerman}{Thau}}}};
   
       \begin{scope}[%
         every node/.style={draw=none,fill=none,inner sep=.2mm,align=left}
@@ -827,9 +833,10 @@ must have \emph{at least} the same labels (and may have additional labels).
 Furthermore, the graph $G'$ may have additional nodes that are not among the images
 of the homomorphism.
 
-Figure~\ref{fig:example_hmph} shows a homomorphism $h$ (dashed lines)
-from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
-to the graph from Figure~\ref{fig:example_graph}.
+Figure~\ref{fig:example_hmph} shows a homomorphism $h$ % (dashed lines)
+%from the query depicted in Figure~\ref{fig:graph_for_exa_query2'}
+%to the graph from Figure~\ref{fig:example_graph}.
+from the previous query to the previous graph.
 
 \newcommand{\tikzhmph}{%
   \begin{scope}[%
@@ -1129,11 +1136,10 @@ the following query patterns.
     Which libraries own the items once owned by person $X$?
 \end{enumerate}
 %
-In the case of \exaquery{1}, the relation \term{reads} is most certainly not recorded in provenance entries
-in any bibliographic data source. Therefore, we need to resort to the \emph{substitute information}
+In the case of \exaquery{1}, the relation \term{reads} is unlikely to be recorded in provenance entries
+in any biblio\-graphic data source. Therefore, we need to resort to the \emph{substitute information}
 (see Section~\ref{sec:HNA+SoNAR}) provided by the \term{owner} relation.
-Now these four query patterns
-can be modelled as shown in Figure~\ref{fig:modelling_Q145}.
+Now Figure~\ref{fig:modelling_Q145} shows how to model these query patterns.
 
 \begin{figure}[ht]
   \centering
@@ -1368,9 +1374,9 @@ Query Pattern~\exaquery{3} contains a reference to a \emph{set} of objects:
 %
 
 %\begin{figure}[ht]
-\begin{wrapfigure}[13]{o}{6.4cm}
+\begin{wrapfigure}[13]{o}{6.8cm}
   \centering
-  \vspace*{-.5\baselineskip}
+%  \vspace*{-.5\baselineskip}
   \alt{Graph for query pattern Q3, having nodes X, y1, Y, y2, x-bar labelled Work, Expression, Manifestation, Item, Person, and connected, in this order, with edges labelled realization, embodiment, exemplar, owner. Set node x-bar has a new octagon shape.}
   \begin{tikzpicture}[
     >=Latex,baseline=0pt,
@@ -1378,10 +1384,10 @@ Query Pattern~\exaquery{3} contains a reference to a \emph{set} of objects:
     every edge/.style={draw=black,thick}
   ]
     \node                             (Q3X)  {\fns\mystrut$~~~~X~~~~$};
-    \node [anovar,below=14mm of Q3X]  (Q3y1) {\fns\mystrut$y_1$};
-    \node [       below=14mm of Q3y1] (Q3Y)  {\fns\mystrut$~~~~Y~~~~$};
-    \node [anovar,below=14mm of Q3Y]  (Q3y2) {\fns\mystrut$y_2$};
-    \node [setvar,right=22mm of Q3y2] (Q3x)  {\fns\mystrut$\overline{x}$};
+    \node [anovar,below=16mm of Q3X]  (Q3y1) {\fns\mystrut$y_1$};
+    \node [       below=16mm of Q3y1] (Q3Y)  {\fns\mystrut$~~~~Y~~~~$};
+    \node [anovar,below=16mm of Q3Y]  (Q3y2) {\fns\mystrut$y_2$};
+    \node [setvar,right=24mm of Q3y2] (Q3x)  {\fns\mystrut$\overline{x}$};
 
     \begin{scope}[%
       every node/.style={draw=none,fill=none,inner sep=.2mm},
