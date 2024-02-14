@@ -15,8 +15,9 @@
 %3) \foreignlanguage{language}{text} kann z.B. für einzelne Begriffe genutzt werden.
 %Die im Header bei \usepackage[english,ngerman]{babel} zuletzt angegebene Sprache, ist die Hauptsprache des Dokuments.
 %Siehe: https://hickerspace.org/wiki/Mehrere_Sprachen_in_einem_Latex-Dokument
-%\usepackage[xcolornames,svgnames,dvipsnames,RGB]{xcolor}  %% TS: Option ''xcolornames'' verursacht Fehler: ''Unknown option 'xcolornames' for package xcolor.''
-\usepackage[svgnames,dvipsnames,RGB]{xcolor}
+\usepackage[xcolornames,svgnames,dvipsnames,RGB]{xcolor}
+%\usepackage[svgnames,dvipsnames,RGB]{xcolor}
+%% Option ''xcolornames'' verursacht Fehler: ''Unknown option 'xcolornames' for package xcolor.'' (xcolor 2023/11/15 v3.01)
 %Farbpaket für das Einfärben von Schrift
 \definecolor{hublau}{RGB}{0,55,108}
 %\usepackage{dtk-logos} %Latex logos
@@ -86,8 +87,10 @@ bottom=25mm]{geometry}
 
 
 %-------------------------- hyperref/hypersetup ------------------------------------------
-\usepackage{hyperref} %% TS: ''Package hyperxmp Error: hyperref must be loaded before hyperxmp.''
+\usepackage{hyperref} 
 \usepackage{hyperxmp}
+%%% TS: Den hyperxmp-Aufruf *hinter* den hyperref-Aufruf verschoben wegen Fehlermeldung ''Package hyperxmp Error: hyperref must be loaded before hyperxmp.'' (hyperxmp 2023/09/10 v5.12; hyperref 2024-01-20 v7.01h)
+
 \hypersetup{%
 pdfauthor={Thomas Schneider},
 pdfkeywords={information retrieval, data integration, linked data, research infrastructure},
@@ -212,8 +215,19 @@ Eine Online-Version ist auf dem edoc Publikationsserver der Humboldt-Universitä
 %\includegraphics[scale=.2]{by-nc-nd-eu.png}
 \end{wrapfigure}
 
-\small  Sofern nicht anders angegeben, ist dieses Werk in seiner Gesamtheit verfügbar unter einer \href{https://creativecommons.org/licenses/by/4.0/}{\foreignlanguage{english}{Creative Commons} Namensnennung 4.0 International} Lizenz. %Lizenz und URL ggf. anpassen
-Einzelne Bestandteile, für die diese Lizenz keine Anwendung findet und die daher nicht unter deren Lizenzbedingungen verwendet werden dürfen, sind mit ihren jeweiligen lizenzrechtlichen Bestimmungen in Form zusätzlicher Texthinweise gekennzeichnet. 
+\begin{small}
+  Sofern nicht anders angegeben, ist dieses Werk in seiner Gesamtheit verfügbar unter einer \href{https://creativecommons.org/licenses/by/4.0/}{\foreignlanguage{english}{Creative Commons} Namensnennung 4.0 International} Lizenz. %Lizenz und URL ggf. anpassen
+  Einzelne Bestandteile, für die diese Lizenz keine Anwendung findet und die daher nicht unter deren Lizenzbedingungen verwendet werden dürfen, sind mit ihren jeweiligen lizenzrechtlichen Bestimmungen in Form zusätzlicher Texthinweise gekennzeichnet. 
+  \par
+\end{small}
+%% Wird \small hier als globales Kommando verwendet, wie ursprünglich geschehen,
+%% dann wirkt es sich auf allen folgenden Text aus -- also auf das gesamte Dokument,
+%% falls die Titelei in eine vorbereitete Abschlussarbeit eingefügt wird.
+%% Die Alternative, diesen Absatz mit geschweiften Klammern zu umgeben,
+%% macht die wrapfigure-Umgebung kaputt
+%% (darauf wird auch in der wrapfig-Dokumentation hingewiesen).
+%% Die small-Umgebung wie hier angegeben löst beide Probleme.
+
 %\newpage
 %\tableofcontents
 %\chapter{Kapitel 1}
