@@ -54,10 +54,31 @@ advantages and disadvantages of the two settings.
 \section{The Main Phases}
 \label{sec:phases}
 
+Our method consists of a \emph{Configuration Phase}, which
+needs to be carried out before users can interact with the system,
+and a \emph{Runtime Phase}, where the actual user interaction takes place.
+The latter is divided into three consecutive subphases as shown in Figure~\ref{fig:method_phases}.
+In the \emph{Query Formulation} phase, the system supports the user 
+in constructing their query.
+In the \emph{Query Processing} phase, the system evaluates the query
+and computes answers.
+In the \emph{Answer Presentation} phase, the system allows the user to
+navigate through the computed answers.
+Given the significance of \emph{exploration} in historical research
+(see Section~\ref{subsec:SoNAR_reports}),
+the answers presented by the system may
+prompt the user to reformulate their original query.
+In fact, query answers can be seen as one means of support
+for formulating a query in the first place.
+For this reason, we prefer to understand the Runtime Phase as an iterative process,
+which we indicate by the looping arrow in Figure~\ref{fig:method_phases}.
+%
+We now describe these phases in more detail.
+
 \newlength{\mainphases}\settowidth{\mainphases}{\fns \textbf{Configuration Phase}~}%
 \newlength{\subphases}\settowidth{\subphases}{\fns Answer Presentation~}%
-%\begin{figure}[ht]
-\begin{wrapfigure}[16]{o}{5.0cm}
+\begin{figure}[ht]
+%\begin{wrapfigure}[16]{o}{5.0cm}
   \centering
   \alt{A rectangle "Configuration Phase" with an arrow to a rectangle "Runtime Phase", which contains three smaller rectangles "Query Formulation", "Query Processing", "Answer Presentation", which are connected via a cycle of three arrows.}
   \begin{tikzpicture}[
@@ -111,30 +132,8 @@ advantages and disadvantages of the two settings.
   
   \caption{Main phases of the retrieval method}
   \label{fig:method_phases}
-\end{wrapfigure}
-%\end{figure}
-
-
-Our method consists of a \emph{Configuration Phase}, which
-needs to be carried out before users can interact with the system,
-and a \emph{Runtime Phase}, where the actual user interaction takes place.
-The latter is divided into three consecutive subphases as shown in Figure~\ref{fig:method_phases}.
-In the \emph{Query Formulation} phase, the system supports the user 
-in constructing their query.
-In the \emph{Query Processing} phase, the system evaluates the query
-and computes answers.
-In the \emph{Answer Presentation} phase, the system allows the user to
-navigate through the computed answers.
-Given the significance of \emph{exploration} in historical research
-(see Section~\ref{subsec:SoNAR_reports}),
-the answers presented by the system may
-prompt the user to reformulate their original query.
-In fact, query answers can be seen as one means of support
-for formulating a query in the first place.
-For this reason, we prefer to understand the Runtime Phase as an iterative process,
-which we indicate by the looping arrow in Figure~\ref{fig:method_phases}.
-%
-We now describe these phases in more detail.
+%\end{wrapfigure}
+\end{figure}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{The Configuration Phase}
@@ -277,7 +276,7 @@ and the resulting decision that answers include the respective subgraph of the d
 a visual presentation is to be favoured. This visual presentation should allow for means to navigate through the subgraph
 and beyond, i.e., to explore its context in the data graph.
 
-\enlargethispage*{5mm}
+%\enlargethispage*{5mm}
 Furthermore, the size of an answer set can vary greatly: for \enquote{overspecified} queries, the answer set can be empty,
 and for very vaguely specified queries, the answer set can be even larger than the data graph.
 For example, if the query \exaquery{2$'$} is modified to ask for a scientist who passed the item on
